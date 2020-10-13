@@ -43,3 +43,4 @@ class Patient(models.Model):
     gender = models.IntegerField(default=0, null=False)
     notes = models.TextFiled(max_length=800, null=True, editable=True)
 '''
+
