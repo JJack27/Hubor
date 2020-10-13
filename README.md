@@ -9,6 +9,8 @@ pip install -r ./requirements.txt
 
 ### Run the server
 ```
+python manage.py makemigrations
+python manage.py migrate
 python manage.py runserver 0.0.0.0:8000
 ```
 This will run at the IP address of your local machine with the port 8000
