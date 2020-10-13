@@ -9,7 +9,7 @@ import json
 import uuid
 from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
-
+import datetime
 from accounts.models import User
 # Create your views here.
 
@@ -19,30 +19,53 @@ from accounts.models import User
 class RegisterView(APIView):
 
     def post(self, request, *args, **kwargs):
-        request_body = request.data['values']
+        request_body = request.data
         response = {"query": "registration"}
+        
+        # validate date of birth
+        date_of_birth = datetime.datetime.strptime(request_body['date_of_birth'], '%Y-%m-%d')
+        if date_of_birth > datetime.datetime.now():
+            return Response(response, status=401)
+        
+        # parse request
         user = User(
             username = request_body['username'],
             email = request_body['email'],
             height = request_body['height'],
             weight = request_body['weight'],
-            user_type = request_body['user_type']
+            user_type = request_body['user_type'],
+            phone = request_body['phone'],
+            date_of_birth = request_body['date_of_birth'],
+            gender = request_body['gender'],
+            notes = request_body['notes']
             )
         user.set_password(request_body['password'])
+        
         try:
             user.save()
-            response['success'] = 'true'
+            response['data'] = {
+                'id': user.id,
+                'email': user.email,
+                'weight': user.weight,
+                'height': user.height,
+                'user_type': user.user_type,
+                'phone': user.phone,
+                'date_of_birth': user.date_of_birth,
+                'gender': user.gender,
+                'notes': user.notes
+            }
             return Response(response, status=200)
-        except:
-            response['success'] = 'false'
-            return Response(response, status=500)
+        except Exception as e:
+            print(e)
+            return Response(response, status=401)
     
 # Login API
 # /api/login/
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
         session = request.session 
-        request_body = request.data["values"]
+        request_body = request.data
+        response = {'query': 'login'}
         user = request.user 
         print(request_body)
         user_cache = authenticate(request, username=request_body['username'], password=request_body['password'])
@@ -50,14 +73,11 @@ class LoginView(APIView):
         try:
             login(request, user_cache, backend='django.contrib.auth.backends.ModelBackend')
         except:
-            response = {"success": "false", "id": 'None'}
             return Response(response, status=200)
         else:
             if user_cache == None:
-                response = {"success": "false", "id": 'None'}
                 return Response(response, status=200)
-            response = {"success": "true", "id": user_cache.id}
-            print(user_cache.id)
+            response = {"id": user_cache.id}
             return Response(response, status=200)
     
 # Logout View
