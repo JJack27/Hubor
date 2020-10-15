@@ -36,7 +36,7 @@ API for uplaoding and retrieving data entries. All users can perform this action
 - POST
 - GET
 '''
-class PostDataAPI(APIView):
+class DataAPI(APIView):
     model = Data
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     
@@ -60,9 +60,10 @@ class PostDataAPI(APIView):
     def post(self, request, *args, **kwargs):
         request_user = kwargs['pk']
         request_body = request.data
-        response = {'query':'data'}
-
+        response = {}
         # check if user exists
+        if(str(request_user) != str(request.user.id)):
+            return Response(response, status=403)
         
 
         request_body['owner'] = request_user
@@ -72,3 +73,35 @@ class PostDataAPI(APIView):
             serializer.save()
             return Response(response, status=200)
         return Response(response, status=401)
+
+
+    '''
+    GET
+    - Return a list of data of given user
+    - return:
+        {
+            query: 'data',
+            data:[
+                {data_1},
+                {data_2},
+                ...
+                {data_n}
+            ]
+        }
+    '''
+    def get(self, request, *args, **kwargs):
+        owner = kwargs['pk']
+        response = {'query': 'data', 'data':[]}
+        
+        # check authority of request user
+        # only owner of the data and doctors/admins can access
+        if(str(request.user.id) != str(owner) and request.user.user_type == 0):
+            return Response (response, status=403)
+    
+        # get the data 
+        query = Data.objects.filter(owner = owner).order_by('id')
+        data = DataSerializer(query, many=True).data
+        if(len(data) == 0):
+            return Response(response, status = 404)
+        response['data'] = data
+        return Response(response, status=200)

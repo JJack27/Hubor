@@ -85,7 +85,6 @@ class LoginView(APIView):
 class LogoutAPI(APIView):
 
     def post(self, request, *args, **kwargs):
-        print("User is logging out")
         logout(request)
         response = {"query": "logout"}
         return Response(response, status=200)
@@ -153,19 +152,11 @@ class BraceletAPI(APIView):
         owner = kwargs['owner']
         request_body = request.data
         request_body['owner'] = owner
-        
         response = {'query':'bracelet'}
-        response['bracelet'] = {}
-
-        # validate the owner is existed
-        try:
-            ownerObj = User.objects.get(id = owner)
-        except:
-            return Response(response, status=404)
 
         # validate mac_addr
         try:
-            valid = re.search('^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$', request_body['mac_addr'])
+            valid = re.search('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$', request_body['mac_addr'])
             if valid:
                 serializer = BraceletSerializer(data = request_body)
                 if(serializer.is_valid()):

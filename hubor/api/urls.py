@@ -1,6 +1,8 @@
 from django.urls import path
 from .views_user import *
+from .views_data import *
 from .views_test import *
+
 
 
 urlpatterns = [
@@ -11,6 +13,9 @@ urlpatterns = [
     path('login/', LoginView.as_view()),
     path('logout/', LogoutAPI.as_view()),
     path('bracelet/<uuid:owner>/', BraceletAPI.as_view()),
+
+    # Data related
+    path('data/<uuid:pk>/', DataAPI.as_view()),
 
     # test
     path('test/', TestView.as_view()),
