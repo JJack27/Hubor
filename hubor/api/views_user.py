@@ -156,7 +156,7 @@ class BraceletAPI(APIView):
         response = {'query':'bracelet'}
 
         # validate mac_addr
-        if True:
+        try True:
             valid = re.search('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$', request_body['mac_addr'])
             if valid:
                 serializer = BraceletSerializer(data = request_body)
