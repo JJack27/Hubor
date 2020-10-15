@@ -7,7 +7,7 @@ Serializer for EmergencyContact
 class EmergencyContactSerializer(serializers.ModelSerializer):
     pass
 
-'''
+''' 
 Serializer for EmergencyEvent
 '''
 class EmergencyEventSerializer(serializers.ModelSerializer):
