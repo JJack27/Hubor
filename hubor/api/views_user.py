@@ -153,11 +153,19 @@ class BraceletAPI(APIView):
         owner = kwargs['owner']
         request_body = request.data
         request_body['owner'] = owner
+        
         response = {'query':'bracelet'}
+        response['bracelet'] = {}
+
+        # validate the owner is existed
+        try:
+            ownerObj = User.objects.get(id = owner)
+        except:
+            return Response(response, status=404)
 
         # validate mac_addr
-        try True:
-            valid = re.search('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$', request_body['mac_addr'])
+        try:
+            valid = re.search('^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$', request_body['mac_addr'])
             if valid:
                 serializer = BraceletSerializer(data = request_body)
                 if(serializer.is_valid()):

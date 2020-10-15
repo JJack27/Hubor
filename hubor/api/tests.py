@@ -115,15 +115,14 @@ if(test_user):
     
     # check post method
     print('Adding 2 new bracelets to current user.', end=" ")
-    request_payload = {
-        'mac_addr':'01:23:45:67:89:AB'
-    }
+    request_payload = {'mac_addr':'01:23:45:67:89:AB'}
     bracelets = {}
     response = client.post('/api/bracelet/'+str(user.id)+'/', request_payload)
     bracelets[response.data['bracelet']['id']] = response.data['bracelet']
     assert str(user.id) == str(response.data['bracelet']['owner']), "Owner ID is not the same."
     assert request_payload['mac_addr'] == response.data['bracelet']['mac_addr'], "Mac address is not the same"
     
+    request_payload = {'mac_addr':'01:23:45:67:89:ff'}
     response = client.post('/api/bracelet/'+str(user.id)+'/', request_payload)
     bracelets[response.data['bracelet']['id']] = response.data['bracelet']
     assert str(user.id) == str(response.data['bracelet']['owner']), "Owner ID is not the same."
@@ -155,16 +154,33 @@ if(test_user):
     print("Non-existed user POST.", end=" ")
     response = client.post('/api/bracelet/'+str(uuid.uuid4())+'/', request_payload)
     assert response.status_code == 404, "\nIncorrect status code: %s" %(str(response.status_code))
-    assert response.data['bracelet'] == {}, "\nNon-empty response: %s" %(str(response.data['bracelets'])) 
+    assert response.data['bracelet'] == {}, "\nNon-empty response: %s" %(str(response.data['bracelet'])) 
     print("Pass!")
 
     # Testing invalid request payload
-    print("Non-existed user POST.", end=" ")
-    request_payload = {'mac_addr':'01:23:45:67:89:AB'}
+    print("Invalid POST payload.")
+    request_payload = {'mac_addr':'01:23:45:67:89:GF'}
+    print("\tmac_addr = %s."%(request_payload['mac_addr']), end=" ")
     response = client.post('/api/bracelet/'+str(user.id)+'/', request_payload)
     assert response.status_code == 401, "\nIncorrect status code: %s" %(str(response.status_code))
-    assert response.data['bracelets'] == [], "\nNon-empty response: %s" %(str(response.data['bracelets'])) 
+    assert response.data['bracelet'] == {}, "\nNon-empty response: %s" %(str(response.data['bracelet'])) 
     print("Pass!")
+
+    request_payload = {'mac_addr':'23:45:67:89:GF'}
+    print("\tmac_addr = %s."%(request_payload['mac_addr']), end=" ")
+    response = client.post('/api/bracelet/'+str(user.id)+'/', request_payload)
+    assert response.status_code == 401, "\nIncorrect status code: %s" %(str(response.status_code))
+    assert response.data['bracelet'] == {}, "\nNon-empty response: %s" %(str(response.data['bracelet'])) 
+    print("Pass!")
+
+    print("Invalid POST payload for non-existed user.")
+    request_payload = {'mac_addr':'23:45:67:89:GF'}
+    print("\tmac_addr = %s."%(request_payload['mac_addr']), end=" ")
+    response = client.post('/api/bracelet/'+str(uuid.uuid4())+'/', request_payload)
+    assert response.status_code == 401, "\nIncorrect status code: %s" %(str(response.status_code))
+    assert response.data['bracelet'] == {}, "\nNon-empty response: %s" %(str(response.data['bracelet'])) 
+    print("Pass!")
+
 
     
 # Testing views_data.py
