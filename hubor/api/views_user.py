@@ -7,10 +7,12 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 import json
 import uuid
+import re
 from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
 import datetime
-from accounts.models import User
+from accounts.models import *
+from accounts.serializers import *
 # Create your views here.
 
 
@@ -66,17 +68,16 @@ class LoginView(APIView):
         session = request.session 
         request_body = request.data
         response = {'query': 'login'}
-        user = request.user 
-        print(request_body)
+        user = request.user
         user_cache = authenticate(request, username=request_body['username'], password=request_body['password'])
         
         try:
             login(request, user_cache, backend='django.contrib.auth.backends.ModelBackend')
         except:
-            return Response(response, status=200)
+            return Response(response, status=403)
         else:
             if user_cache == None:
-                return Response(response, status=200)
+                return Response(response, status=403)
             response = {"id": user_cache.id}
             return Response(response, status=200)
     
@@ -128,3 +129,72 @@ class UsernameValidation(APIView):
             response["valid"] = "false"
         
         return Response(response, status=200)
+
+'''
+/api/bracelet/<uuid:owner>/
+APIs for adding and retrieving bracelets
+'''
+class BraceletAPI(APIView):
+    model = Bracelet
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+    
+    '''
+    POST
+    - Accepting adding bracelet for given user-uuid
+    - payload:
+        {
+            mac_addr: String
+        }
+    '''
+    def post(self, request, *args, **kwargs):
+        owner = kwargs['owner']
+        request_body = request.data
+        request_body['owner'] = owner
+        response = {'query':'bracelet'}
+
+        # validate mac_addr
+        if True:
+            valid = re.search('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$', request_body['mac_addr'])
+            if valid:
+                serializer = BraceletSerializer(data = request_body)
+                if(serializer.is_valid()):
+                    bracelet = serializer.save()
+                    response['bracelet'] = BraceletSerializer(bracelet).data
+                    return Response(response, status=200)
+                
+            return Response(response, status=401)
+        except Exception as e:
+            print(e)
+            return Response(response, status=401)
+    
+    '''
+    GET
+    - get all bracelets of given owner
+    - return:
+        {
+            query: bracelet
+            bracelets: [
+                {bracelet_1},
+                {bracelet_2},
+                ...
+            ]
+        }
+    '''
+    def get(self, request, *args, **kwargs):
+        response = {"query":"bracelet"}
+
+        # get bracelets from given user
+        owner = kwargs['owner']
+        query = Bracelet.objects.filter(owner=owner)
+        bracelets = BraceletSerializer(query, many=True).data
+        response['bracelets'] = bracelets
+
+        # Check if the user has no bracelets
+        if bracelets == []:
+            return Response(response, status=404)
+        else:
+            return Response(response, status=200)
+                

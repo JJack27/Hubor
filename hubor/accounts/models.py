@@ -44,3 +44,7 @@ class Patient(models.Model):
     notes = models.TextFiled(max_length=800, null=True, editable=True)
 '''
 
+class Bracelet(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    mac_addr = models.TextField(max_length=17, null=False)

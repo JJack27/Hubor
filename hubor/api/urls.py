@@ -10,6 +10,7 @@ urlpatterns = [
     path('register/', RegisterView.as_view()),
     path('login/', LoginView.as_view()),
     path('logout/', LogoutAPI.as_view()),
+    path('bracelet/<uuid:owner>/', BraceletAPI.as_view()),
 
     # test
     path('test/', TestView.as_view()),
