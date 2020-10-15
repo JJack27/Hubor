@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'channels',
     'api',
     'accounts',
     'data'
@@ -130,3 +131,6 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.TemplateHTMLRenderer'
     ]
 }
+
+# ASGI Configuration
+ASGI_APPLICATION = 'hubor.routing.application'
