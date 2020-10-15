@@ -149,11 +149,12 @@ class BraceletAPI(APIView):
         }
     '''
     def post(self, request, *args, **kwargs):
+        
         owner = kwargs['owner']
         request_body = request.data
         request_body['owner'] = owner
         response = {'query':'bracelet'}
-
+        
         # validate mac_addr
         try:
             valid = re.search('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$', request_body['mac_addr'])
