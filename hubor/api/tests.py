@@ -7,7 +7,7 @@ from accounts.models import *
 from data.models import *
 
 # Create your tests here.
-test_user = False
+test_user = True
 test_data = True
 
 # Testing views_user.py
@@ -124,6 +124,7 @@ if(test_user):
     
     request_payload = {'mac_addr':'01:23:45:67:89:ff'}
     response = client.post('/api/bracelet/'+str(user.id)+'/', request_payload)
+    print(response.data)
     bracelets[response.data['bracelet']['id']] = response.data['bracelet']
     assert str(user.id) == str(response.data['bracelet']['owner']), "Owner ID is not the same."
     assert request_payload['mac_addr'] == response.data['bracelet']['mac_addr'], "Mac address is not the same"

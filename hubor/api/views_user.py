@@ -157,7 +157,7 @@ class BraceletAPI(APIView):
         
         # validate mac_addr
         try:
-            valid = re.search('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$', request_body['mac_addr'])
+            valid = re.search('^([0-9A-Faf]{2}[:-]){5}([0-9A-Faf]{2})$', request_body['mac_addr'])
             if valid:
                 serializer = BraceletSerializer(data = request_body)
                 if(serializer.is_valid()):
