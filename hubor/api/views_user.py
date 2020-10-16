@@ -149,11 +149,16 @@ class BraceletAPI(APIView):
         }
     '''
     def post(self, request, *args, **kwargs):
-        
         owner = kwargs['owner']
         request_body = request.data
         request_body['owner'] = owner
         response = {'query':'bracelet'}
+        response['bracelet'] = {}
+        # validate if user exist
+        try:
+            r_owner = User.objects.get(id=owner)
+        except:
+            return Response(response, status=404)
         
         # validate mac_addr
         try:
