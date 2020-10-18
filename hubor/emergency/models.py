@@ -1,17 +1,26 @@
 from django.db import models
 from accounts.models import User
+import uuid
 # Create your models here.
 '''
 Class holds emergency contacts relationship
 '''
 class EmergencyContact(models.Model):
-    pass
+    id = models.AutoField(primary_key = True)
+    paitent = models.Foreignkey(User, on_delete=models.CASCADE)
+    first_name = models.TextField(max_length=30)
+    last_name = models.TextField(max_length=30)
+    phone = models.TextField(max_length=20)
+    email = models.EmailField(null=True, editable=True, unique=True)
 
 '''
 Class holds emergency events
 '''
 class EmergencyEvent(models.Model):
-    pass
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    patient = models.Foreignkey(User)
+    time = models.DateTimeField(auto_now_add=True)
+    solved = models.IntegerFiled(null=True, default=0)
 
 '''
 Class holds emergency message that have been sent

@@ -5,13 +5,17 @@ from rest_framework.validator import Uniquevalidator
 Serializer for EmergencyContact
 '''
 class EmergencyContactSerializer(serializers.ModelSerializer):
-    pass
+    class Meta:
+        model = EmergencyContact
+        fields = '__all__'
 
 ''' 
 Serializer for EmergencyEvent
 '''
 class EmergencyEventSerializer(serializers.ModelSerializer):
-    pass
+    class Meta:
+        model = EmergencyEvent
+        fields = '__all__'
 
 '''
 Serializer for EmergencyMessage
