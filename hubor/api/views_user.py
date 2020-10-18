@@ -63,6 +63,10 @@ class RegisterView(APIView):
     
 # Login API
 # /api/login/
+# response {
+#   query: login
+#   id: uuid
+# }
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
         session = request.session 
@@ -146,6 +150,11 @@ class BraceletAPI(APIView):
     - payload:
         {
             mac_addr: String
+        }
+    - response:
+        {
+            query: bracelet,
+            bracelet: UUID of new added bracelet
         }
     '''
     def post(self, request, *args, **kwargs):
