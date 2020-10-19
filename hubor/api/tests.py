@@ -452,8 +452,8 @@ if(test_emergency):
 
     # Testing GET
     print('Testing getting emergency events.', end=" ")
-    response = client.post('/api/emergency/%s/'%str(user.id), {})
+    response = client.get('/api/emergency/%s/'%str(user.id))
     assert response.status_code == 200, "Incorrect status code, expecting 200, get %d"%(response.status_code)
-    assert len(response.body['data']) == 1, "Incorrect response length, expecting 1, get %d."%len(response.body['data'])
+    assert len(response.data['data']) == 1, "Incorrect response length, expecting 1, get %d."%len(response.body['data'])
     print("Pass!")
 print("\n========== End of the Test ===========\n")

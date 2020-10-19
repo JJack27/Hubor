@@ -88,7 +88,7 @@ class EmergencyEventAPI(APIView):
         query = EmergencyEvent.objects.filter(patient=patient)
         
         data = EmergencyEventSerializer(query, many=True).data
-        if (data == []):
+        if (len(data) == 0):
             return Response({}, status=404)
         return Response({'data':data}, status=200)
         
