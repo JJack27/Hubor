@@ -7,7 +7,7 @@ Class holds emergency contacts relationship
 '''
 class EmergencyContact(models.Model):
     id = models.AutoField(primary_key = True)
-    paitent = models.Foreignkey(User, on_delete=models.CASCADE)
+    paitent = models.ForeignKey(User, on_delete=models.CASCADE)
     first_name = models.TextField(max_length=30)
     last_name = models.TextField(max_length=30)
     phone = models.TextField(max_length=20)
@@ -18,9 +18,9 @@ Class holds emergency events
 '''
 class EmergencyEvent(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    patient = models.Foreignkey(User)
+    patient = models.ForeignKey(User, on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
-    solved = models.IntegerFiled(null=True, default=0)
+    solved = models.IntegerField(null=True, default=0)
 
 '''
 Class holds emergency message that have been sent

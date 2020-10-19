@@ -1,6 +1,5 @@
 from emergency.models import *
 from rest_framework import serializers
-from rest_framework.validator import Uniquevalidator
 '''
 Serializer for EmergencyContact
 '''

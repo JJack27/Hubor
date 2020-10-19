@@ -19,7 +19,7 @@ urlpatterns = [
     path('data/<uuid:pk>/', DataAPI.as_view()),
 
     # Emergency related
-    path('emergency/<uuid:pk>', EmergencyEventAPI.as_view(),)
+    path('emergency/<uuid:pk>/', EmergencyEventAPI.as_view()),
 
     # test
     path('test/', TestView.as_view()),
