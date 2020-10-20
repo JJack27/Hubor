@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'api',
     'emergency',
     'accounts',
-    'data'
+    'data',
+    'configurations'
 ]
 
 MIDDLEWARE = [

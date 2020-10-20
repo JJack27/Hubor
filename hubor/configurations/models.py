@@ -17,10 +17,10 @@ class Configuration(models.Model):
         (2, "within")
     )
     id = models.AutoField(primary_key=True)
-    name = models.ChoiceField(null=False, choices=NAME_CHOICES, default="TEM")
+    name = models.CharField(null=False, max_length=3, choices=NAME_CHOICES, default="TEM")
     
     # Compare methods: 0-greater, 1-less, 2-within
-    compare = models.ChoiceField(null=False, choices=COMPARE_CHOICES, default="0")
+    compare = models.IntegerField(null=False, choices=COMPARE_CHOICES, default=0)
     
     # Range for comparison, default is the min/max of the integer
     range_min = models.FloatField(null = False, default=0x80000000)
