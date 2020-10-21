@@ -8,7 +8,10 @@ class Configuration(models.Model):
         ("ACZ", "acz"),
         ("BAT", "bat"),
         ("RED", "red"),
-        ("IR", "ir")
+        ("IR", "ir"),
+        ("HR", "hr"),
+        ("RR", "rr"),
+        ("O2S", "o2s")
     )
 
     COMPARE_CHOICES = (
@@ -28,3 +31,5 @@ class Configuration(models.Model):
 
     # In the unit of seconds
     duration = models.IntegerField(null = False, default = 0)
+    
+    version = models.IntegerField(null = False, default=1)
