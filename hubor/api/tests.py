@@ -9,7 +9,8 @@ from data.models import *
 # Create your tests here.
 test_user = False
 test_data = False
-test_emergency = True
+test_emergency = False
+test_config = True
 
 # Testing views_user.py
 if(test_user):
@@ -455,5 +456,16 @@ if(test_emergency):
     response = client.get('/api/emergency/%s/'%str(user.id))
     assert response.status_code == 200, "Incorrect status code, expecting 200, get %d"%(response.status_code)
     assert len(response.data['data']) == 1, "Incorrect response length, expecting 1, get %d."%len(response.body['data'])
+    print("Pass!")
+
+if(test_config):
+    client = APIClient()
+    
+    print('\n======= api/latestconfig/ ========' )
+    print('--- Valid requests ---' )
+    print("Testing getting the latest version of config.", end=" ")
+    response = client.get('/api/latestconfig/')
+    assert response.status_code == 200, "Incorrect status code, expecting 200, get %d"%(response.status_code)
+    assert len(response.data['config']) == 9, "Incorrect response length, expecting 9, get %d."%len(response.body['data'])
     print("Pass!")
 print("\n========== End of the Test ===========\n")

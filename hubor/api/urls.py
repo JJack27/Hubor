@@ -3,6 +3,7 @@ from .views_user import *
 from .views_data import *
 from .views_test import *
 from .views_emergency import *
+from .views_config import *
 
 
 
@@ -20,6 +21,9 @@ urlpatterns = [
 
     # Emergency related
     path('emergency/<uuid:pk>/', EmergencyEventAPI.as_view()),
+
+    # Configuration
+    path('latestconfig/', LatestConfigAPI.as_view()),
 
     # test
     path('test/', TestView.as_view()),
