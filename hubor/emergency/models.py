@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import User
+from configurations.models import Configuration
 import uuid
 # Create your models here.
 '''
@@ -12,6 +13,7 @@ class EmergencyContact(models.Model):
     last_name = models.TextField(max_length=30)
     phone = models.TextField(max_length=20)
     email = models.EmailField(null=True, editable=True, unique=True)
+    configuration = models.ForeignKey(Configuration, on_delete=models.SET_NULL, null=True)
 
 '''
 Class holds emergency events
