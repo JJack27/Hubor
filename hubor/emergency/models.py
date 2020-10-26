@@ -23,6 +23,8 @@ class EmergencyEvent(models.Model):
     patient = models.ForeignKey(User, on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
     solved = models.IntegerField(null=True, default=0)
+    longitude = models.FloatField(null=True)
+    latitude = models.FloatField(null=True)
 
 '''
 Class holds emergency message that have been sent
