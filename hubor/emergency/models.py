@@ -13,7 +13,7 @@ class EmergencyContact(models.Model):
     last_name = models.TextField(max_length=30)
     phone = models.TextField(max_length=20)
     email = models.EmailField(null=True, editable=True, unique=True)
-    configuration = models.ForeignKey(Configuration, on_delete=models.SET_NULL, null=True)
+    
 
 '''
 Class holds emergency events
@@ -25,6 +25,7 @@ class EmergencyEvent(models.Model):
     solved = models.IntegerField(null=True, default=0)
     longitude = models.FloatField(null=True)
     latitude = models.FloatField(null=True)
+    configuration = models.ForeignKey(Configuration, on_delete=models.SET_NULL, null=True)
 
 '''
 Class holds emergency message that have been sent
