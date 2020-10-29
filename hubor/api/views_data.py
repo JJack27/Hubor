@@ -3,7 +3,7 @@
 APIs which are data-related.
 @author: Yizhou Zhao
 @postDate: 2020/10/15 11:22
-@lastUpdate: 2020/10/15 11:22
+@lastUpdate: 2020/10/29 10:59
 
 ==== API Enclosed ====
 - DataAPI
@@ -13,6 +13,10 @@ APIs which are data-related.
 - GetAllDataAPI
   /api/alldata/
     + GET: retrieve all data
+- VitalSignAPI
+  /api/vs/<uuid:owner>/
+    + GET: retireve vital signs of given uuid
+    + POST: accpeting uploaded vital signs from given uuid
 '''
 from django.shortcuts import render
 from rest_framework.views import APIView
@@ -100,6 +104,80 @@ class DataAPI(APIView):
         # get the data 
         query = Data.objects.filter(owner = owner).order_by('id')
         data = DataSerializer(query, many=True).data
+        if(len(data) == 0):
+            return Response(response, status = 404)
+        response['data'] = data
+        return Response(response, status=200)
+
+'''
+/api/vs/<uuid:owner>/
+API for uplaoding and retrieving vital signs entries. All users can perform this action
+- POST
+- GET
+'''
+class VitalSignAPI(APIView):
+    model = VitalSign
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    POST
+    - Accpeting vital sign uploads from given uuid
+    - payload:
+        {
+            bracelet: uuid,
+            temp: double,
+            spo2: double,
+            hr: double,
+            rr: double,
+            [time: String,]
+        }
+    '''
+    def post(self, request, *args, **kwargs):
+        request_user = kwargs['owner']
+        request_body = request.data
+        response = {}
+        # check if user exists
+        if(str(request_user) != str(request.user.id)):
+            return Response(response, status=403)
+
+        request_body['owner'] = request_user
+        serializer = VitalSignSerializer(data = request_body)
+
+        if(serializer.is_valid()):
+            serializer.save()
+            return Response(response, status=200)
+        return Response(response, status=401)
+
+
+    '''
+    GET
+    - Return a list of vital signs of given user
+    - return:
+        {
+            query: 'vitalsign',
+            data:[
+                {data_1},
+                {data_2},
+                ...
+                {data_n}
+            ]
+        }
+    '''
+    def get(self, request, *args, **kwargs):
+        owner = kwargs['owner']
+        response = {'query': 'data', 'data':[]}
+        
+        # check authority of request user
+        # only owner of the data and doctors/admins can access
+        if(str(request.user.id) != str(owner) and request.user.user_type == 0):
+            return Response (response, status=403)
+    
+        # get the data 
+        query = VitalSign.objects.filter(owner = owner).order_by('id')
+        data = VitalSignSerializer(query, many=True).data
         if(len(data) == 0):
             return Response(response, status = 404)
         response['data'] = data

@@ -6,3 +6,8 @@ class DataSerializer(serializers.ModelSerializer):
     class Meta:
         model = Data
         fields = '__all__'
+
+class VitalSignSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VitalSign
+        fields = '__all__'

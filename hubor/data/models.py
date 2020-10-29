@@ -15,3 +15,13 @@ class Data(models.Model):
     bat = models.FloatField(default=0, null=False)
     red = models.FloatField(default=0, null=False)
     ir = models.FloatField(default=0, null=False)
+
+class VitalSign(models.Model):
+    id = models.AutoField(primary_key=True)
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    bracelet = models.ForeignKey(Bracelet, on_delete=models.SET_NULL, null=True)
+    time = models.DateTimeField(default=django.utils.timezone.now, null=False)
+    temp = models.FloatField(default=0, null=False)
+    spo2 = models.FloatField(default=0, null=False)
+    hr = models.FloatField(default=0, null=False)
+    rr = models.FloatField(default=0, null=False)
