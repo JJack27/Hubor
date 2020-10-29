@@ -16,3 +16,389 @@ python manage.py runserver 0.0.0.0:8000
 This will run at the IP address of your local machine with the port 8000
 
 **Note**: To know your IP address under local network, try `ifconfig` in powershell and bash
+# Supported APIs
+## Accounts
+[comment]: # ("/api/login/")
+<details><summary><code>/api/login/</code>
+</summary>
+<p>
+
+- Login a user
+- `POST`
+    - Request
+        ```json
+        {
+            "username": String,
+            "password": String
+        }
+        ```
+    - Response
+        ```json
+        {
+            "query": "login",
+            "id": uuid
+        }
+        ```
+</p>
+</details>
+
+[comment]: # ("/api/logout/")
+<details><summary><code>/api/logout/</code>
+</summary>
+<p>
+
+- logout request user. User info should be stored in client"s cookie.
+- POST
+    - Request
+        ```json
+        {} - empty payload
+        ```
+    - Response
+        ```json
+        {
+            "query": "logout"
+        }
+        ```
+</p>
+</details>
+
+
+[comment]: # ("/api/register/")
+<details><summary><code>/api/register/</code>
+</summary>
+<p>
+
+- Register a user
+- `POST`
+    - Request
+        ```json
+        {
+            "username": String,
+            "email": String,
+            "height": float,
+            "weight": float,
+            "user_type": int (0=patient, 1=doctor, 2=admin),
+            "phone": String,
+            "date_of_birth": String,
+            "gender": int (0=male, 1=female),
+            "notes": Stirng,
+            "password":String
+        }
+        ```
+    - Response
+        ```json
+        {
+            "query": "register",
+            "data": {
+                "id": UUID,
+                "email": String,
+                "weight": float,
+                "height": float,
+                "user_type": int,
+                "phone": String,
+                "date_of_birth": Stirng,
+                "gender": int,
+                "notes": Sting
+            }
+        }
+        ```
+</p>
+</details>
+
+
+[comment]: # ("/api/bracelet/<uuid:owner>/")
+<details><summary><code>/api/bracelet/[uuid:owner]/</code>
+</summary>
+<p>
+
+- `POST`
+    - Add a bracelet for the `owner` in the request URL
+    - Request
+        ```json
+        {
+            "mac_addr": String
+        }
+        ```
+    - Response
+        ```json
+        {
+            "query": "bracelet",
+            "bracelet": UUID
+        }
+        ```
+- `GET`
+    - Get all bracelets owned by the `owner` in the request URL
+    - Response
+        ```json
+        {
+            "query": "bracelet"
+            "bracelets": [
+                {
+                    "id": UUID,
+                    "owner": UUID,
+                    "mac_addr": String
+                },
+                {
+                    "id": UUID,
+                    "owner": UUID,
+                    "mac_addr": String
+                },
+                ...
+            ]
+        }
+            
+        ```
+</p>
+</details>
+
+
+## Data & Vital Sign
+[comment]: # ("/api/data/<uuid:pk>/")
+<details><summary><code>/api/data/[uuid:pk]/</code>
+</summary>
+<p>
+
+- `POST`
+    - Add an entry of raw data for the `owner` in the request URL
+    - Request
+        ```json
+        {
+            "bracelet": UUID,
+            "tem": float,
+            "acx": float,
+            "acz": float,
+            "bat": float,
+            "red": float,
+            "ir": float,
+            ["time": String]
+        }
+        ```
+    - Response
+        ```json
+        {}
+        ```
+- `GET`
+    - Get all raw data owned by the `owner` in the request URL
+    - Response
+        ```json
+        {
+            "query": "bracelet"
+            "data": [
+                {
+                    "id": int,
+                    "owner": UUID,
+                    "bracelet": UUID,
+                    "tem": float,
+                    "acx": float,
+                    "acz": float,
+                    "bat": float,
+                    "red": float,
+                    "ir": float,
+                    "time": String
+                },
+                {
+                    "id": int,
+                    "owner": UUID,
+                    "bracelet": UUID,
+                    "tem": float,
+                    "acx": float,
+                    "acz": float,
+                    "bat": float,
+                    "red": float,
+                    "ir": float,
+                    "time": String
+                },
+                ...
+            ]
+        }
+            
+        ```
+</p>
+</details>
+
+
+[comment]: # ("/api/vs/<uuid:owner>/")
+<details><summary><code>/api/vs/[uuid:owner]/</code>
+</summary>
+<p>
+
+- `POST`
+    - Add an entry of vital sign for the `owner` in the request URL
+    - Request
+        ```json
+        {
+            "bracelet": UUID,
+            "temp": float,
+            "spo2": float,
+            "hr": float,
+            "rr": float,
+            ["time": String]
+        }
+        ```
+    - Response
+        ```json
+        {}
+        ```
+- `GET`
+    - Get all vital signs owned by the `owner` in the request URL
+    - Response
+        ```json
+        {
+            "query": "bracelet"
+            "data": [
+                {
+                    "id": int,
+                    "owner": UUID,
+                    "bracelet": UUID,
+                    "bracelet": UUID,
+                    "temp": float,
+                    "spo2": float,
+                    "hr": float,
+                    "rr": float,
+                    "time": String
+                },
+                {
+                    "id": int,
+                    "owner": UUID,
+                    "bracelet": UUID,
+                    "bracelet": UUID,
+                    "temp": float,
+                    "spo2": float,
+                    "hr": float,
+                    "rr": float,
+                    "time": String
+                },
+                ...
+            ]
+        }
+            
+        ```
+</p>
+</details>
+
+
+## Emergency
+[comment]: # ("/api/emergency/<uuid:pk>/")
+<details><summary><code>/api/emergency/[uuid:pk]/</code>
+</summary>
+<p>
+
+- `POST`
+    - Initiate an emergency event
+    - Request
+        ```json
+        {
+            "longitude": float,
+            "latitude": float,
+            "configuration": int,
+            ["time": String]
+        }
+        ```
+    - Response
+        ```json
+        {}
+        ```
+- `GET`
+    - Get a list of emergency events sent by given user
+    - Response
+        ```json
+        {
+            "data": [
+                {
+                    "id" = UUID,
+                    "patient" = UUID,
+                    "time" = String,
+                    "solved" = int,
+                    "longitude" = float,
+                    "latitude" = float,
+                    "configuration": int
+                },
+                {
+                    "id" = UUID,
+                    "patient" = UUID,
+                    "time" = String,
+                    "solved" = int,
+                    "longitude" = float,
+                    "latitude" = float,
+                    "configuration": int
+                },
+                ...
+            ]
+        }
+        ```
+</p>
+</details>
+
+
+## Configuration
+[comment]: # ("/api/config/<int:version>/")
+<details><summary><code>/api/config/[int:version]/</code>
+</summary>
+<p>
+
+- `GET`
+    - Get the corresponding version of configuration
+    - Response
+        ```json
+        {
+            "config": [
+                {
+                    "id": int,
+                    "name": String,
+                    "version": int,
+                    "compare": int,
+                    "range_min": float,
+                    "range_max": float,
+                    "duration": int
+                },
+                {
+                    "id": int,
+                    "name": String,
+                    "version": int,
+                    "compare": int,
+                    "range_min": float,
+                    "range_max": float,
+                    "duration": int
+                },
+                ...
+            ]
+        }
+        ```
+</p>
+</details>
+
+[comment]: # ("/api/latestconfig/")
+<details><summary><code>/api/latestconfig/</code>
+</summary>
+<p>
+
+- `GET`
+    - Get the latest version of configuration
+    - Response
+        ```json
+        {
+            "config": [
+                {
+                    "id": int,
+                    "name": String,
+                    "version": int,
+                    "compare": int,
+                    "range_min": float,
+                    "range_max": float,
+                    "duration": int
+                },
+                {
+                    "id": int,
+                    "name": String,
+                    "version": int,
+                    "compare": int,
+                    "range_min": float,
+                    "range_max": float,
+                    "duration": int
+                },
+                ...
+            ]
+        }
+        ```
+</p>
+</details>
