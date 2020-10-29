@@ -3,13 +3,12 @@
 APIs which are data-related.
 @author: Yizhou Zhao
 @postDate: 2020/10/22 11:40
-@lastUpdate: 2020/10/22 11:40
+@lastUpdate: 2020/10/29 13:51
 
 ==== API Enclosed ====
 - ConfigurationAPI
-  /api/config/<int:version>
+  /api/config/<int:version>/
     + GET: Get the corresponding version of configuration
-    + POST: Upload the corresponding version of configuration
 - LatestConfigAPI
   /api/latestconfig/
     + GET: Get the latest version of configuration
@@ -33,7 +32,6 @@ from configurations.serializers import *
 '''
 /api/config/<int:version>
     + GET: Get the corresponding version of configuration
-    + POST: Upload the corresponding version of configuration
 '''
 class ConfigurationAPI(APIView):
     model = Configuration
@@ -72,12 +70,6 @@ class ConfigurationAPI(APIView):
         
         response = {'config': rules}
         return Response(response, status=200)
-    
-    '''
-    POST: Upload the corresponding version of configuration
-    '''
-    def post(self, request, *args, **kwargs):
-        pass
 
 
 '''

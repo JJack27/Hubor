@@ -3,16 +3,13 @@
 APIs which are data-related.
 @author: Yizhou Zhao
 @postDate: 2020/10/15 11:22
-@lastUpdate: 2020/10/29 10:59
+@lastUpdate: 2020/10/29 13:28
 
 ==== API Enclosed ====
 - DataAPI
   /api/data/<uuid:pk>
     + GET: retrieve data of given uuid
     + POST: accepting uploaded data entries from given uuid
-- GetAllDataAPI
-  /api/alldata/
-    + GET: retrieve all data
 - VitalSignAPI
   /api/vs/<uuid:owner>/
     + GET: retireve vital signs of given uuid

@@ -28,7 +28,12 @@ class EmergencyEventAPI(APIView):
     '''
     POST: initiate an emergency event
     - Request:
-        {} - empty payload 
+        {
+            "longitude": float,
+            "latitude": float,
+            "configuration": int,
+            ["time": String]
+        } 
     - Response:
         {} - empty payload
     '''
@@ -47,7 +52,8 @@ class EmergencyEventAPI(APIView):
         
 
         # add emergency events
-        data = {'patient':patient}
+        data = request.data
+        data['patient'] = patient
         try:
             serializer = EmergencyEventSerializer(data=data)
 
