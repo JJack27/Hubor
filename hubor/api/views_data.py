@@ -139,6 +139,7 @@ class VitalSignAPI(APIView):
         request_user = kwargs['owner']
         request_body = request.data
         response = {}
+        
         # check if user exists
         if(str(request_user) != str(request.user.id)):
             return Response(response, status=403)

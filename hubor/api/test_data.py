@@ -96,14 +96,14 @@ def run():
     print("Testing POST data.", end=" ")
     for i in range(num_entries):
         response = client.post('/api/data/%s/'%(str(user.id)), request_payloads[i])
-        assert response.status_code == 200, "Incorrect status_code, expecting 404, get %d"%(response.status_code)
+        assert response.status_code == 200, "Incorrect status_code, expecting 200, get %d"%(response.status_code)
         assert response.data == {}, "Non-empty return: %s"%(str(response.data))
     print('Pass!')
 
     # Testing GET added data
     print("Testing GET added data.", end=' ')
     response = client.get('/api/data/%s/'%(str(user.id)))
-    assert response.status_code == 200, "Incorrect status_code, expecting 404, get %d"%(response.status_code)
+    assert response.status_code == 200, "Incorrect status_code, expecting 200, get %d"%(response.status_code)
     assert len(response.data['data']) == num_entries, "Incorrect num_entries, expecting %d, get %d"%(num_entries, len(response.data['data']))
     for i in range(num_entries):
         result = response.data['data'][i] 
@@ -152,6 +152,9 @@ def run():
 
     # Testing api/data/<uuid:pk>/
     print('\n======= api/vs/%s/ ========'%(str(user.id)))
+    # Login user
+    client.post('/api/logout/', {})
+    client.post('/api/login/', {'username': user.username, 'password':password})
     # Creating random payload
     request_payloads = []
     num_entries = 10
@@ -172,32 +175,16 @@ def run():
     print("Pass!")
 
     # Testing POST data
-    print("Testing POST data.", end=" ")
+    print("Testing POST vital sign.", end=" ")
     for i in range(num_entries):
-        response = client.post('/api/data/%s/'%(str(user.id)), request_payloads[i])
-        assert response.status_code == 200, "Incorrect status_code, expecting 404, get %d"%(response.status_code)
+        response = client.post('/api/vs/%s/'%(str(user.id)), request_payloads[i])
+        assert response.status_code == 200, "Incorrect status_code, expecting 200, get %d"%(response.status_code)
         assert response.data == {}, "Non-empty return: %s"%(str(response.data))
     print('Pass!')
 
     # Testing GET added data
-    print("Testing GET added data.", end=' ')
-    response = client.get('/api/data/%s/'%(str(user.id)))
-    assert response.status_code == 200, "Incorrect status_code, expecting 404, get %d"%(response.status_code)
-    assert len(response.data['data']) == num_entries, "Incorrect num_entries, expecting %d, get %d"%(num_entries, len(response.data['data']))
-    for i in range(num_entries):
-        result = response.data['data'][i] 
-        for key, value in result.items():
-            if(key == 'id' or key == 'time'):
-                continue
-            if(key == 'owner'):
-                assert str(result[key]) == str(user.id), "Owner Id isn't match"
-                continue
-            assert str(result[key]) == str(request_payloads[i][key]), "Doesn't match on %s, expecting %s, get %s"%(key, str(result[key]), str(request_payloads[i][key]))
-    print("Pass!")
-
-    # Testing GET added data
-    print("Testing GET added data.", end=' ')
-    response = client.get('/api/data/%s/'%(str(user.id)))
+    print("Testing GET added vital signs.", end=' ')
+    response = client.get('/api/vs/%s/'%(str(user.id)))
     assert response.status_code == 200, "Incorrect status_code, expecting 404, get %d"%(response.status_code)
     assert len(response.data['data']) == num_entries, "Incorrect num_entries, expecting %d, get %d"%(num_entries, len(response.data['data']))
     for i in range(num_entries):
@@ -215,7 +202,7 @@ def run():
     client.post('/api/logout/', {})
     client.post('/api/login/', {'username': doctor.username, 'password':password})
     print("Testing doctor GET added data.", end=' ')
-    response = client.get('/api/data/%s/'%(str(user.id)))
+    response = client.get('/api/vs/%s/'%(str(user.id)))
     assert response.status_code == 200, "Incorrect status_code, expecting 404, get %d"%(response.status_code)
     assert len(response.data['data']) == num_entries, "Incorrect num_entries, expecting %d, get %d"%(num_entries, len(response.data['data']))
     for i in range(num_entries):
@@ -259,14 +246,14 @@ def run():
     client.post('/api/login/', {'username':unauthorized_user.username, 'password':password})
     # testing the get method
     print("Testing unauthorized GET.", end=" ")
-    response = client.get('/api/data/%s/'%(str(user.id)))
+    response = client.get('/api/vs/%s/'%(str(user.id)))
     assert response.status_code == 403, "Incorrect status_code, expecting 403, get %d"%(response.status_code)
     assert response.data['data'] == [], "Non-empty response: %s"%response.data['data']
     print("Pass!")
 
     # Testing non-exist user POST
     print("Testing non-exist user POST.", end=" ")
-    response = client.post('/api/data/%s/'%(str(uuid.uuid4())), request_payloads[0])
+    response = client.post('/api/vs/%s/'%(str(uuid.uuid4())), request_payloads[0])
     assert response.status_code == 403, "Incorrect status_code, expecting 403, get %d"%(response.status_code)
     assert response.data == {}, "Non-empty response: %s"%response.data
     print("Pass!")
@@ -282,6 +269,6 @@ def run():
             'red': random.random(),
             'ir': random.random(),
         }
-    response = client.post('/api/data/%s/'%(str(unauthorized_user.username)), request_payload)
+    response = client.post('/api/vs/%s/'%(str(unauthorized_user.username)), request_payload)
     assert response.status_code == 404, "Incorrect status_code, expecting 403, get %d"%(response.status_code)
     print("Pass!")

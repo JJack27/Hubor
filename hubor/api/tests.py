@@ -5,14 +5,14 @@ import uuid
 import datetime
 from accounts.models import *
 from data.models import *
-import test_user as user_test
-import test_data as data_test
+from . import test_user as user_test
+from . import test_data as data_test
 
 # Create your tests here.
 test_user = False
-test_data = False
+test_data = True
 test_emergency = False
-test_config = True
+test_config = False
 
 # Testing views_user.py
 if(test_user):
