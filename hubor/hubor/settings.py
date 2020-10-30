@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'emergency',
     'accounts',
     'data',
-    'configurations'
+    'configurations',
+    'notification'
 ]
 
 MIDDLEWARE = [
