@@ -20,5 +20,5 @@ from accounts.views import MyView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('', MyView.as_view())
+    path('', MyView.as_view()),
 ]
