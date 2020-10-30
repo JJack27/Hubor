@@ -137,3 +137,12 @@ REST_FRAMEWORK = {
 
 # ASGI Configuration
 ASGI_APPLICATION = 'hubor.routing.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("192.168.1.79", 6379)],
+        },
+    },
+}
