@@ -1,22 +1,48 @@
-from channels.generic.websocket import WebsocketConsumer
+from channels.generic.websocket import AsyncWebsocketConsumer
 import json
 
-class NotificationConsumer(WebsocketConsumer):
+class NotificationConsumer(AsyncWebsocketConsumer):
     
     # Override
-    def connect(self):
-        print("Connecting")
-        self.accept()
+    async def connect(self):
+        # use self.scope["user"] to get reqeust user's information
+        # i.e. print(self.scope['user'])
+        # i.e. self.scope['url_route']['kwargs'] to get kwargs in request
+        # i.e. self.scope['url_route']['kwargs']['room_number']
+
+        # hardcoded for testing
+        self.group = str(self.scope['url_route']['kwargs']['room_number'])
+        # Add channel_name to the group
+        await self.channel_layer.group_add(
+            self.group,
+            self.channel_name
+        )
+
+        await self.accept()
 
     # Override
-    def disconnect(self):
-        self.close()
+    async def disconnect(self, close_code):
+        await self.channel_layer.group_discard(
+            self.group,
+            self.channel_name
+        )
 
-    def receive(self, text_data):
-        print(text_data)
+    async def receive(self, text_data):
+        # Parsing incomming text_data
         text_message_json = json.loads(text_data)
         message = text_message_json['message'] + ", Response from the server"
-        print(message)
-        self.send(text_data=json.dumps({
-            'message': message
+        
+        # send message to the room group
+        await self.channel_layer.group_send(
+            self.group,
+            {
+                'type': 'chat_message',
+                'message': message
+            }
+        )
+    
+    async def chat_message(self, event):
+        message = "Response: " + event['message']
+        await self.send(text_data=json.dumps({
+            'message':message
         }))
