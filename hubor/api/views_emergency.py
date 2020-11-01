@@ -48,7 +48,7 @@ class EmergencyEventAPI(APIView):
         
         # Check if given user exists
         try:
-            patient_use = User.objects.get(id = patient)
+             User.objects.get(id = patient)
         except:
             return Response({}, status=404)
         
@@ -65,7 +65,7 @@ class EmergencyEventAPI(APIView):
                 # Send notification through channel layer
                 group_name = "0"
                 channel_layer = get_channel_layer()
-                async_to_sync(channel_layer.group_send)(group_name, {'type':'notification_message', 'text':"Emergency!"})
+                async_to_sync(channel_layer.group_send)(group_name, {'type':'notification_message', 'message':"Emergency!"})
 
                 return Response({}, status=200)
         except:
@@ -94,7 +94,7 @@ class EmergencyEventAPI(APIView):
         
         # Check if given user exists
         try:
-            patient_use = User.objects.get(id = patient)
+            User.objects.get(id = patient)
         except:
             return Response({}, status=404)
 
