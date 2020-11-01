@@ -11,6 +11,8 @@ from django.core.mail import send_mail
 import datetime
 from emergency.models import *
 from emergency.serializers import *
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 
 '''
 /api/emergency/<uuid:pk>/
@@ -59,6 +61,12 @@ class EmergencyEventAPI(APIView):
 
             if (serializer.is_valid()):
                 serializer.save()
+
+                # Send notification through channel layer
+                group_name = "0"
+                channel_layer = get_channel_layer()
+                async_to_sync(channel_layer.group_send)(group_name, {'type':'notification_message', 'text':"Emergency!"})
+
                 return Response({}, status=200)
         except:
             return Response({}, status=401)

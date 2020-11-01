@@ -36,12 +36,12 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         await self.channel_layer.group_send(
             self.group,
             {
-                'type': 'chat_message',
+                'type': 'notification_message',
                 'message': message
             }
         )
     
-    async def chat_message(self, event):
+    async def notification_message(self, event):
         message = "Response: " + event['message']
         await self.send(text_data=json.dumps({
             'message':message
