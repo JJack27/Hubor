@@ -65,13 +65,19 @@ class EmergencyEventAPI(APIView):
                 # Send notification through channel layer
                 group_name = "0"
                 channel_layer = get_channel_layer()
-                async_to_sync(channel_layer.group_send)(group_name, {'type':'notification_message', 'message':"Emergency!"})
+                
+                # Parsing emergency event
+                data = serializer.data
+                data['patient'] = str(data['patient'])
+                data = json.dumps(data)
+                async_to_sync(channel_layer.group_send)(group_name, {'type':'notification_message', 'data':data})
 
                 return Response({}, status=200)
-        except:
-            return Response({}, status=401)
+        except Exception as e:
+            print(e)
+            return Response({}, status=400)
         
-        return Response({}, status=401)
+        return Response({}, status=400)
     
     '''
     GET: get a list of emergency events by given user
