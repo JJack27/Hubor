@@ -6,7 +6,6 @@ A Django project running on Raspberry Pi (or any local network)
 ```
 pip install -r ./requirements.txt
 ```
-
 ### Run the server
 ```
 python manage.py makemigrations
