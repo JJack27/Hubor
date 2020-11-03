@@ -6,7 +6,18 @@ A Django project running on Raspberry Pi (or any local network)
 ```
 pip install -r ./requirements.txt
 ```
-### Run the server
+
+### Run the server with Docker
+Assuming you have already have docker installed.
+```
+cd /Hubor/deployment/docker-noproxy
+docker build -t hubor .
+docker run -itdp 80:8000 hubor
+```
+Above command will run the server and listen to your 80 port.
+
+
+### Run the server localy
 ```
 python manage.py makemigrations
 python manage.py migrate

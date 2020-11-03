@@ -1,7 +1,13 @@
 #!/bin/bash
+#!/bin/bash
+echo "Initializing application"
+redis-server --daemonize yes
+echo $(redis-cli ping)
+
+
 var=$(echo "select * from configurations_configuration;" | sqlite3 db.sqlite3)
 zero=0
-if [ ${#var} -gt $zero ]
+if [ ${#var} == $zero ]
 then
-    echo "Greater"
+    cat config.sql | sqlite3 db.sqlite3
 fi
