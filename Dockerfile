@@ -26,18 +26,30 @@ RUN tar xvzf redis-stable.tar.gz
 WORKDIR /root/redis-stable
 RUN make
 RUN make install
+RUN mkdir /etc/redis
+RUN mkdir /var/redis
+RUN ls
+RUN cp utils/redis_init_script /etc/init.d/redis_6379
+RUN mkdir /var/redis/6379
 
 # download hubor
+EXPOSE 8000
 WORKDIR /root
 RUN git clone https://github.com/JJack27/Hubor.git
 WORKDIR /root/Hubor/hubor
-RUN pip3 install -r ./requirements.txt
-RUN python ./manage.py makemigrations accounts
-RUN python ./manage.py makemigrations configurations
-RUN python ./manage.py makemigrations data
-RUN python ./manage.py makemigrations emergency
-RUN python ./manage.py migrate
-CMD [ "./init.sh" ]
+RUN cp ./redis.conf /etc/redis/6379.conf
+RUN update-rc.d redis_6379 defaults
+RUN /etc/init.d/redis_6379 start
+RUN redis-cli ping
+
+#RUN pip3 install -r ./requirements.txt
+#RUN python ./manage.py makemigrations accounts
+#RUN python ./manage.py makemigrations configurations
+#RUN python ./manage.py makemigrations data
+#RUN python ./manage.py makemigrations emergency
+#RUN python ./manage.py migrate
+#RUN ./init.sh
+#RUN redis-cli ping
 
 
 
