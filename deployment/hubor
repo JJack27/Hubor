@@ -6,7 +6,7 @@ upstream your-gunicorn {
 server {
 	listen 80;
     
-    server_name 192.168.1.74;
+    server_name 192.168.1.79;
 
     root /home/pi/Documents/Hubor/hubor;
 

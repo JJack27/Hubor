@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    web:
+        build: .
+        container_name: hubor
+        expose: 
+            - "80"
+    nginx:
+        image: nginx:latest
+        container_name: ng
+        ports:
+            - "80:80"
+        volumes:
+            - ./nginx/:/etc/nginx/conf.d
+        depends_on: 
+            - web

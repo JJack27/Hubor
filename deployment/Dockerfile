@@ -30,7 +30,6 @@ RUN make install
 
 # download hubor
 EXPOSE 8000
-EXPOSE 8001
 WORKDIR /root
 RUN git clone https://github.com/JJack27/Hubor.git
 WORKDIR /root/Hubor/hubor
@@ -40,9 +39,9 @@ RUN python ./manage.py makemigrations configurations
 RUN python ./manage.py makemigrations data
 RUN python ./manage.py makemigrations emergency
 RUN python ./manage.py migrate
+COPY ./init.sh ./init.sh
 
 # Activate this by docker run -p outerPort:portDocker jjack27/hubor
-#CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000"]
 CMD [ "./init.sh"] 
 
 # setting up Nginx delopyment
