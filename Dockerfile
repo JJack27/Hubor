@@ -26,14 +26,11 @@ RUN tar xvzf redis-stable.tar.gz
 WORKDIR /root/redis-stable
 RUN make
 RUN make install
-RUN mkdir /etc/redis
-RUN mkdir /var/redis
-RUN ls
-RUN cp utils/redis_init_script /etc/init.d/redis_6379
-RUN mkdir /var/redis/6379
+
 
 # download hubor
 EXPOSE 8000
+EXPOSE 8001
 WORKDIR /root
 RUN git clone https://github.com/JJack27/Hubor.git
 WORKDIR /root/Hubor/hubor
@@ -44,19 +41,31 @@ RUN python ./manage.py makemigrations data
 RUN python ./manage.py makemigrations emergency
 RUN python ./manage.py migrate
 
+# Activate this by docker run -p outerPort:portDocker jjack27/hubor
+#CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD [ "./init.sh"] 
+
 # setting up Nginx delopyment
-WORKDIR /root/Hubor/deployment
-RUN cp ./gunicorn.socket /etc/systemd/system/gunicorn.socket
-RUN cp ./gunicorn.service /etc/systemd/system/gunicorn.service
-RUN systemctl start gunicorn.socket
-RUN systemctl enable gunicorn.socket
+#WORKDIR /root/Hubor/deployment
+#RUN pwd
+#RUN cp ./gunicorn.socket /etc/systemd/system/gunicorn.socket
+#RUN cp ./gunicorn.service /etc/systemd/system/gunicorn.service
+#RUN echo y | apt-get install systemd
+#RUN echo y | apt-get install systemctl
+#CMD ["/usr/sbin/init"]
+#RUN systemctl start gunicorn.socket
+#RUN systemctl enable gunicorn.socket
 
 # Check gunicorn socket file
-RUN systemctl status gunicorn.socket
+#RUN systemctl status gunicorn.socket
 
 #RUN ./init.sh
 
 # Starting redis service
+#RUN mkdir /etc/redis
+#RUN mkdir /var/redis
+#RUN cp utils/redis_init_script /etc/init.d/redis_6379
+#RUN mkdir /var/redis/6379
 #RUN cp ../deployment/redis.conf /etc/redis/6379.conf
 #RUN update-rc.d redis_6379 defaults
 #RUN /etc/init.d/redis_6379 start

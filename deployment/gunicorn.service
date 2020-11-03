@@ -7,7 +7,7 @@ After=network.target
 User=root
 Group=www-data
 WorkingDirectory=/root/Hubor/hubor
-ExecStart=/usr/bin/gunicorn \
+ExecStart=/usr/local/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
