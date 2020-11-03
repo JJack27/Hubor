@@ -105,7 +105,7 @@ class EmergencyEventAPI(APIView):
             return Response({}, status=404)
 
         # retrieve emergency events
-        query = EmergencyEvent.objects.filter(patient=patient)
+        query = EmergencyEvent.objects.filter(patient=patient) # pylint: disable=maybe-no-member
         
         data = EmergencyEventSerializer(query, many=True).data
         if (len(data) == 0):
