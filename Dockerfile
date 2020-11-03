@@ -37,19 +37,30 @@ EXPOSE 8000
 WORKDIR /root
 RUN git clone https://github.com/JJack27/Hubor.git
 WORKDIR /root/Hubor/hubor
-RUN cp ./redis.conf /etc/redis/6379.conf
-RUN update-rc.d redis_6379 defaults
-RUN /etc/init.d/redis_6379 start
-RUN redis-cli ping
+RUN pip3 install -r ./requirements.txt
+RUN python ./manage.py makemigrations accounts
+RUN python ./manage.py makemigrations configurations
+RUN python ./manage.py makemigrations data
+RUN python ./manage.py makemigrations emergency
+RUN python ./manage.py migrate
 
-#RUN pip3 install -r ./requirements.txt
-#RUN python ./manage.py makemigrations accounts
-#RUN python ./manage.py makemigrations configurations
-#RUN python ./manage.py makemigrations data
-#RUN python ./manage.py makemigrations emergency
-#RUN python ./manage.py migrate
+# setting up Nginx delopyment
+WORKDIR /root/Hubor/deployment
+RUN cp ./gunicorn.socket /etc/systemd/system/gunicorn.socket
+RUN cp ./gunicorn.service /etc/systemd/system/gunicorn.service
+RUN systemctl start gunicorn.socket
+RUN systemctl enable gunicorn.socket
+
+# Check gunicorn socket file
+RUN systemctl status gunicorn.socket
+
 #RUN ./init.sh
-#RUN redis-cli ping
 
+# Starting redis service
+#RUN cp ../deployment/redis.conf /etc/redis/6379.conf
+#RUN update-rc.d redis_6379 defaults
+#RUN /etc/init.d/redis_6379 start
+#RUN /etc/init.d/redis_6379 status
+#RUN redis-cli ping
 
 
