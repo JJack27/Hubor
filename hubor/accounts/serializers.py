@@ -6,3 +6,9 @@ class BraceletSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bracelet
         fields = '__all__'
+
+class EmergencyUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'username']
