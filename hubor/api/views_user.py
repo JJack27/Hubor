@@ -38,7 +38,9 @@ class RegisterView(APIView):
             phone = request_body['phone'],
             date_of_birth = request_body['date_of_birth'],
             gender = request_body['gender'],
-            notes = request_body['notes']
+            notes = request_body['notes'],
+            first_name = request_body['first_name'],
+            last_name = request_body['last_name']
             )
         user.set_password(request_body['password'])
         
@@ -53,7 +55,9 @@ class RegisterView(APIView):
                 'phone': user.phone,
                 'date_of_birth': user.date_of_birth,
                 'gender': user.gender,
-                'notes': user.notes
+                'notes': user.notes,
+                'first_name': user.first_name,
+                'last_name': user.last_name
             }
             return Response(response, status=200)
         except Exception as e:

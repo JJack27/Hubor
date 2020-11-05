@@ -14,11 +14,11 @@ class EmergencyContactSerializer(serializers.ModelSerializer):
 Serializer for EmergencyEvent
 '''
 class EmergencyEventSerializer(serializers.ModelSerializer):
-    patient = EmergencyUserSerializer(many=False, read_only=True)
     class Meta:
         model = EmergencyEvent
         fields = '__all__'
 
+        
 '''
 Serializer for EmergencyMessage
 '''

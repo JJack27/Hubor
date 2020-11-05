@@ -13,7 +13,8 @@ from emergency.models import *
 from emergency.serializers import *
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
-
+from configurations.models import Configuration
+from configurations.serializers import ConfigurationSerializer
 '''
 /api/emergency/<uuid:pk>/
 Handle Emergency events of a given user with his/her UUID
@@ -58,7 +59,6 @@ class EmergencyEventAPI(APIView):
         data['patient'] = patient
         try:
             serializer = EmergencyEventSerializer(data=data)
-
             if (serializer.is_valid()):
                 serializer.save()
 
@@ -68,10 +68,15 @@ class EmergencyEventAPI(APIView):
                 
                 # Parsing emergency event
                 data = serializer.data
-                data['patient'] = str(data['patient'])
+                query = User.objects.get(id=data['patient'])
+                patient_data = EmergencyUserSerializer(query).data
+                query = Configuration.objects.get(id=data['configuration'])
+                config_data = ConfigurationSerializer(query).data
+
+                data['configuration'] = config_data
+                data['patient'] = patient_data
                 data = json.dumps(data)
                 async_to_sync(channel_layer.group_send)(group_name, {'type':'notification_message', 'data':data})
-
                 return Response({}, status=200)
         except Exception as e:
             print(e)
