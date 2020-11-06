@@ -116,4 +116,7 @@ class EmergencyEventAPI(APIView):
         if (len(data) == 0):
             return Response({}, status=404)
         return Response({'data':data}, status=200)
-        
+
+
+class EmergencyContactAPI(APIView):
+    pass
