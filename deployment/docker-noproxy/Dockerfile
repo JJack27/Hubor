@@ -30,7 +30,6 @@ RUN make install
 
 # download hubor
 EXPOSE 8000
-EXPOSE 8001
 WORKDIR /root
 RUN git clone https://github.com/JJack27/Hubor.git
 WORKDIR /root/Hubor/hubor
