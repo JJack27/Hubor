@@ -22,6 +22,7 @@ urlpatterns = [
 
     # Emergency related
     path('emergency/<uuid:pk>/', EmergencyEventAPI.as_view()),
+    path('emergencycontact/<uuid:pk>/', EmergencyContactAPI.as_view()),
 
     # Configuration
     path('latestconfig/', LatestConfigAPI.as_view()),

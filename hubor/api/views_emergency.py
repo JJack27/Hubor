@@ -117,6 +117,50 @@ class EmergencyEventAPI(APIView):
             return Response({}, status=404)
         return Response({'data':data}, status=200)
 
-
+'''
+/api/emergencycontact/<uuid:pk>/
+Handle Emergency contacts of a given user with his/her UUID
+- GET: Get a list of emergency contacts of given user
+- POST: Create an emergency contact for given user
+'''
 class EmergencyContactAPI(APIView):
-    pass
+    model = EmergencyContact    
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    GET: Get a list of emergency contacts of given user
+    - response:
+        {
+            'data': [
+                {emergency_contact_1},
+                {emergency_contact_2},
+                ...
+                {emergency_contact_3}
+            ]
+        }
+    '''
+    def get(self, request, *args, **kwargs):
+        patient = kwargs['pk']
+        response = {"query": "emergencycontact"}
+        # Check if request user has permission to access
+        if(request.user.id != patient and request.user.user_type == 0):
+            return Response({}, status=403)
+        
+        # Check if given user exists
+        try:
+            User.objects.get(id = patient)
+        except:
+            return Response({}, status=404)
+        
+        # Get a list of emergency contacts
+        query = EmergencyContact.objects.filter(patient=patient)
+        contacts = EmergencyContactSerializer(query, many=True).data
+
+        if(len(contacts) == 0):
+            return Response({}, status=404)
+        else:
+            response['data'] = contacts
+            return Response(response, status=200)
