@@ -92,7 +92,9 @@ This will run at the IP address of your local machine with the port 8000
             "date_of_birth": String,
             "gender": int (0=male, 1=female),
             "notes": Stirng,
-            "password":String
+            "password":String,
+            "first_name": String,
+            "last_name": String
         }
         ```
     - Response
