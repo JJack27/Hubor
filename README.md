@@ -83,18 +83,18 @@ This will run at the IP address of your local machine with the port 8000
     - Request
         ```json
         {
-            "username": String,
-            "email": String,
-            "height": float,
-            "weight": float,
+            "username": String **,
+            "email": String **,
+            "height": float *,
+            "weight": float *,
             "user_type": int (0=patient, 1=doctor, 2=admin),
-            "phone": String,
-            "date_of_birth": String,
+            "phone": String **,
+            "date_of_birth": String *,
             "gender": int (0=male, 1=female),
             "notes": Stirng,
-            "password":String,
-            "first_name": String,
-            "last_name": String
+            "password":String *,
+            "first_name": String *,
+            "last_name": String *
         }
         ```
     - Response
@@ -128,7 +128,7 @@ This will run at the IP address of your local machine with the port 8000
     - Request
         ```json
         {
-            "mac_addr": String
+            "mac_addr": String **
         }
         ```
     - Response
@@ -175,14 +175,14 @@ This will run at the IP address of your local machine with the port 8000
     - Request
         ```json
         {
-            "bracelet": UUID,
-            "tem": float,
-            "acx": float,
-            "acz": float,
-            "bat": float,
-            "red": float,
-            "ir": float,
-            ["time": String]
+            "bracelet": UUID *,
+            "tem": float *,
+            "acx": float *,
+            "acz": float *,
+            "bat": float *,
+            "red": float *,
+            "ir": float *,
+            "time": String
         }
         ```
     - Response
@@ -239,12 +239,12 @@ This will run at the IP address of your local machine with the port 8000
     - Request
         ```json
         {
-            "bracelet": UUID,
-            "temp": float,
-            "spo2": float,
-            "hr": float,
-            "rr": float,
-            ["time": String]
+            "bracelet": UUID *,
+            "temp": float *,
+            "spo2": float *,
+            "hr": float *,
+            "rr": float *,
+            "time": String
         }
         ```
     - Response
@@ -300,10 +300,10 @@ This will run at the IP address of your local machine with the port 8000
     - Request
         ```json
         {
-            "longitude": float,
-            "latitude": float,
-            "configuration": int,
-            ["time": String]
+            "longitude": float *,
+            "latitude": float *,
+            "configuration": int *,
+            "time": String
         }
         ```
     - Response
