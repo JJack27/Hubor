@@ -15,6 +15,7 @@ urlpatterns = [
     path('login/', LoginView.as_view()),
     path('logout/', LogoutAPI.as_view()),
     path('bracelet/<uuid:owner>/', BraceletAPI.as_view()),
+    path('takecareof/<uuid:doctor>/<uuid:patient>/', TakeCareOfAPI.as_view()),
 
     # Data related
     path('data/<uuid:pk>/', DataAPI.as_view()),

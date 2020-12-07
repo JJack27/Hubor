@@ -214,4 +214,65 @@ class BraceletAPI(APIView):
             return Response(response, status=404)
         else:
             return Response(response, status=200)
-                
+
+
+'''
+/api/takecareof/<UUID:doctor>/<UUID:patient>/
+API Represents the take-care-of relationship between doctors and patients
+Note that this API isn't responsible for updating the relationship
+'''
+class TakeCareOfAPI(APIView):
+    model = TakeCareOf
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    POST
+    - Create a take-care-of relationship between given doctors and patients
+    - payload:
+        {} - Empty payload
+    - return:
+        {} - Empty return
+        - 200: relationship created
+        - 403: forbidden
+        - 404: didn't find given doctor or patient
+    '''
+    def post(self, request, *args, **kwargs):
+        # parsing reqeust
+        doctor_id = kwargs['doctor']
+        patient_id = kwargs['patient']
+        body = {'doctor':doctor_id, 
+                'patient':patient_id
+                }
+        
+        # check if this request is authorized.
+        # - only doctors, admins, and patient himself can post
+        request_user = request.user
+        if(request_user.user_type != 1 
+            and request_user.user_type != 2 
+            and request_user.id != patient_id):
+            return Response({}, status=403)
+
+        # check if given doctor and given patient exists
+        try:
+            User.objects.get(id=doctor_id, user_type=1)
+            User.objects.get(id=patient_id, user_type=0)
+        except:
+            return Response({}, status=404)
+
+        # save the relationship into the database
+        try:
+            serializer = TakeCareOfSerializer(data=body)
+            if(serializer.is_valid()):
+                #print("validated data: ", serializer.validated_data)
+                relation = serializer.save()
+                data = TakeCareOfSerializer(relation).data
+
+                return Response(data, status=200)
+            else:
+                return Response({}, status=400)
+        except Exception as e:
+            print(e)
+            return Response({}, status=400)

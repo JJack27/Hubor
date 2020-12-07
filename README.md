@@ -163,6 +163,39 @@ This will run at the IP address of your local machine with the port 8000
 </p>
 </details>
 
+[comment]: # ("/api/takecareof/<uuid:doctor>/<uuid:patient>/")
+<details><summary><code>/api/takecareof/[uuid:doctor]/[uuid:patient]/</code>
+</summary>
+<p>
+
+- Assign `doctor` to take care of `patient`
+- `POST`
+    - Request
+        ```json
+        {} - empty request
+        ```
+    - Response
+        ```json
+        {
+            "id": int,
+            "doctor" : {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "since": DateTime,
+                "user_type": int    
+            },
+            "patient" : {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "since": DateTime,
+                "user_type": int    
+            },
+        }
+        ```
+</p>
+</details>
 
 ## Data & Vital Sign
 [comment]: # ("/api/data/<uuid:pk>/")

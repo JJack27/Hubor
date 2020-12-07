@@ -48,3 +48,13 @@ class Bracelet(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     mac_addr = models.TextField(max_length=17, null=False)
+
+
+'''
+Represents the relationship between doctors and patients.
+'''
+class TakeCareOf(models.Model):
+    id = models.AutoField(primary_key=True)
+    doctor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='doctor')
+    patient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='patient')
+    since = models.DateTimeField(auto_now_add=True)
