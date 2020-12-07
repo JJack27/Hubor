@@ -168,7 +168,8 @@ This will run at the IP address of your local machine with the port 8000
 </summary>
 <p>
 
-- Assign `doctor` to take care of `patient`
+- Assign `doctor` to take care of `patient`. Only doctors, admins, and patients him/herselves can do the post.
+- Patients cannot POST for other patients.
 - `POST`
     - Request
         ```json
