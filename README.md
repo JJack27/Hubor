@@ -208,6 +208,7 @@ This will run at the IP address of your local machine with the port 8000
 </summary>
 <p>
 - Get a list of patients of the given doctor
+
 - `GET`
     - Response
         ```json
