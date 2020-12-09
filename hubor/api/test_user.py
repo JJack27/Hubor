@@ -31,7 +31,16 @@ def create_user(client, user_type):
 def run():
     client = APIClient()
     password = "Apple"
-
+    # Create 4 users
+    user1 = create_user(client, 0)
+    user2 = create_user(client, 0)
+    doctor1 = create_user(client, 1)
+    doctor2 = create_user(client, 1)
+    print("======= User created =======")
+    print("user1 = %s" %str(user1.id))
+    print("user2 = %s" %str(user2.id))
+    print("doctor1 = %s" %str(doctor1.id))
+    print("doctor2 = %s" %str(doctor2.id))
     print('\n======= api/register/ ========' )
     print('--- Valid requests ---' )
     username = str(random.random())
@@ -61,11 +70,7 @@ def run():
         print(key, '=' ,item)
         assert str(request_payload[key]) == str(item), "%s: request=%s resposne=%s"%(key, str(request_payload[key]), str(item))
     
-    # Create 4 users
-    user1 = create_user(client, 0)
-    user2 = create_user(client, 0)
-    doctor1 = create_user(client, 1)
-    doctor2 = create_user(client, 1)
+    
 
     print('--- Invalid requests ---' )
     username = str(random.random())
@@ -249,17 +254,17 @@ def run():
     client.post('/api/login/', {'username': doctor2.username, 'password':password})
 
     # check the post method
-    response = client.post('/api/takecareof/%s/%s/'%(str(doctor1.id), str(user1.id)), {})
+    response = client.post('/api/takecareof/%s/%s/'%(str(doctor1.id), str(user2.id)), {})
     assert response.status_code == 200, "Error! Expected 200, get %d" % response.status_code
     assert response.data['doctor']['id'] == str(doctor1.id), "Error on doctor's `id`, expected %s, get %s" \
         %(str(doctor1.id), str(response.data['doctor']['id']))
     assert response.data['doctor']['user_type'] == doctor1.user_type, "Error on doctor's `user_type`, expected %s, get %s" \
         %(str(doctor1.user_type), str(response.data['doctor']['user_type']))
     
-    assert response.data['patient']['id'] == str(user1.id), "Error on doctor's `id`, expected %s, get %s" \
-        %(str(user1.id), str(response.data['patient']['id']))
-    assert response.data['patient']['user_type'] == user1.user_type, "Error on doctor's `user_type`, expected %s, get %s" \
-        %(str(user1.user_type), str(response.data['patient']['user_type']))
+    assert response.data['patient']['id'] == str(user2.id), "Error on doctor's `id`, expected %s, get %s" \
+        %(str(user2.id), str(response.data['patient']['id']))
+    assert response.data['patient']['user_type'] == user2.user_type, "Error on doctor's `user_type`, expected %s, get %s" \
+        %(str(user2.user_type), str(response.data['patient']['user_type']))
     print("Pass!")
     
     print('--- Invalid requests ---')
@@ -298,5 +303,44 @@ def run():
     print("Pass!")
 
 
+    print("\n======= api/patientsof/<uuid:doctor>/ ========")
+    print('--- Valid requests ---' )
+    # login as doctor1
+    response = client.post('/api/login/', {'username': doctor1.username, 'password':password})
+    print("Testing doctor GET.", end=" ")
+    response = client.get('/api/patientsof/%s/'%str(doctor1.id))
+    assert response.status_code == 200, "Error! Expected 200, get %d" % response.status_code
+    patients = response.data
+    assert len(patients) == 2, "Error! Expect length of 2, get %d" % len(patients)
+    assert str(patients[0]['id']) == str(user1.id) or str(patients[0]['id']) == str(user2.id), "Error! Invalid id: %s" %str(patients[0]['id'])
+    assert str(patients[1]['id']) == str(user1.id) or str(patients[1]['id']) == str(user2.id), "Error! Invalid id: %s" %str(patients[1]['id'])
+    print("Pass!")
 
+    print('--- Invalid requests ---' )
+    # login as doctor1
+    response = client.post('/api/login/', {'username': doctor1.username, 'password':password})
+    print("Testing doctor GET of doctor without any patients.", end=" ")
+    response = client.get('/api/patientsof/%s/'%str(doctor2.id))
+    assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
+    print("Pass!")
+
+    print("Testing doctor GET of non-existed doctor.", end=" ")
+    response = client.get('/api/patientsof/%s/'%str(uuid.uuid4()))
+    assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
+    print("Pass!")
+
+
+    # login as uesr1
+    response = client.post('/api/login/', {'username': user1.username, 'password':password})
+    print("Testing patient GET.", end=" ")
+    response = client.get('/api/patientsof/%s/'%str(doctor2.id))
+    assert response.status_code == 403, "Error! Expected 403, get %d" % response.status_code
+    print("Pass!")
+
+    print("Testing patient GET of non-existed doctor.", end=" ")
+    response = client.get('/api/patientsof/%s/'%str(uuid.uuid4()))
+    assert response.status_code == 403, "Error! Expected 403, get %d" % response.status_code
+    print("Pass!")
+    
+    
     print('')

@@ -58,3 +58,13 @@ class TakeCareOf(models.Model):
     doctor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='doctor')
     patient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='patient')
     since = models.DateTimeField(auto_now_add=True)
+
+'''
+Status of patients
+'''
+class PatientStatus(models.Model):
+    id = models.AutoField(primary_key=True)
+    patient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='status')
+    
+    RISK_LEVELS = [(0,'LOW'), (1, 'MID'), (2, 'HIGH')]
+    risk = models.IntegerField(default=0, null=False, choices=RISK_LEVELS)

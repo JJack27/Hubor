@@ -77,6 +77,9 @@ class RegisterView(APIView):
                 'first_name': user.first_name,
                 'last_name': user.last_name
             }
+            if(user.user_type == 0):
+                status = PatientStatus(patient = user, risk=0)
+                status.save()
             return Response(response, status=200)
         except Exception as e:
             print(e)
@@ -259,14 +262,20 @@ class TakeCareOfAPI(APIView):
                 "first_name": String,
                 "last_name": String,
                 "since": DateTime,
-                "user_type": int    
+                "user_type": int,
+                "gender": int  
             },
             "patient" : {
                 "id": UUID,
-                "first_name": String,
-                "last_name": String,
-                "since": DateTime,
-                "user_type": int    
+                "first_name": String, 
+                "last_name": String, 
+                "user_type": int,
+                "height": int, 
+                "weigh"': int, 
+                "date_of_birth": datetime, 
+                "notes": String, 
+                "phone": String,
+                "status": List<int>     
             }
         }
         - 200: relationship created
@@ -307,7 +316,6 @@ class TakeCareOfAPI(APIView):
                 #print("validated data: ", serializer.validated_data)
                 relation = serializer.save()
                 data = TakeCareOfSerializer(relation).data
-
                 return Response(data, status=200)
             else:
                 return Response({}, status=400)
@@ -382,10 +390,15 @@ class DoctorOfAPI(APIView):
             },
             "patient" : {
                 "id": UUID,
-                "first_name": String,
-                "last_name": String,
-                "since": DateTime,
-                "user_type": int    
+                "first_name": String, 
+                "last_name": String, 
+                "user_type": int,
+                "height": int, 
+                "weigh"': int, 
+                "date_of_birth": datetime, 
+                "notes": String, 
+                "phone": String,
+                "status": List<int> 
             }
         }
         - 404: unable to find given given doctor
@@ -425,3 +438,76 @@ class DoctorOfAPI(APIView):
         except Exception as e:
             print(e)
             return Response({}, status=400)
+
+
+'''
+/api/patientsof/<UUID:doctor>/
+Get the patients' information of a given doctor
+- GET: Get the patients' information of a given doctor
+'''
+class PatientsOfAPI(APIView):
+    model = TakeCareOf
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    GET
+    - Get the patients' information of a given doctor
+    - Response:
+            [
+                {
+                    "id": UUID,
+                    "first_name": String, 
+                    "last_name": String, 
+                    "user_type": int,
+                    "height": int, 
+                    "weigh"': int, 
+                    "date_of_birth": datetime, 
+                    "notes": String, 
+                    "phone": String,
+                    "status": List<int> 
+                },
+                {
+                    "id": UUID,
+                    "first_name": String, 
+                    "last_name": String, 
+                    "user_type": int,
+                    "height": int, 
+                    "weigh"': int, 
+                    "date_of_birth": datetime, 
+                    "notes": String, 
+                    "phone": String,
+                    "status": List<int> 
+                }
+            ]
+    '''
+    def get(self, request, *args, **kwargs):
+        # parse the request
+        doctor_id = kwargs['doctor']
+
+        # check authorization
+        if(not isSelfOrStaff(request, doctor_id)):
+            return Response({}, status=403)
+        
+        # check if take-care-of relationship of given patient exists
+        try:
+            doctor_user = User.objects.get(id = doctor_id)
+            relations = TakeCareOf.objects.filter(doctor=doctor_user)
+            if(len(relations) == 0):
+                return Response({}, status=404)
+            patient_users = []
+            for relation in relations:
+                patient_users.append(relation.patient)
+        except:
+            return Response({}, status=404)
+
+        # serializing the TakeCareOf object
+        try:
+            patients_data = PatientSerializer(patient_users, many=True).data
+            return Response(patients_data, status=200)
+        except:
+            return Response({}, status=400)
+
+   

@@ -188,12 +188,55 @@ This will run at the IP address of your local machine with the port 8000
             },
             "patient" : {
                 "id": UUID,
-                "first_name": String,
-                "last_name": String,
-                "since": DateTime,
-                "user_type": int    
+                "first_name": String, 
+                "last_name": String, 
+                "user_type": int,
+                "height": int, 
+                "weigh"': int, 
+                "date_of_birth": datetime, 
+                "notes": String, 
+                "phone": String,
+                "status": List<int>   
             }
         }
+        ```
+</p>
+</details>
+
+[comment]: # ("/api/patientsof/<uuid:doctor>/")
+<details><summary><code>/api/patientsof/[uuid:doctor]/</code>
+</summary>
+<p>
+- Get a list of patients of the given doctor
+- `GET`
+    - Response
+        ```json
+            [
+                {
+                    "id": UUID,
+                    "first_name": String, 
+                    "last_name": String, 
+                    "user_type": int,
+                    "height": int, 
+                    "weigh"': int, 
+                    "date_of_birth": datetime, 
+                    "notes": String, 
+                    "phone": String,
+                    "status": List<int> 
+                },
+                {
+                    "id": UUID,
+                    "first_name": String, 
+                    "last_name": String, 
+                    "user_type": int,
+                    "height": int, 
+                    "weigh"': int, 
+                    "date_of_birth": datetime, 
+                    "notes": String, 
+                    "phone": String,
+                    "status": List<int> 
+                }
+            ]
         ```
 </p>
 </details>

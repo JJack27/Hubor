@@ -13,7 +13,20 @@ class EmergencyUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'user_type']
+        fields = ['id', 'first_name', 'last_name', 'user_type', 'gender']
+
+'''
+Serializer for patients
+'''
+class PatientSerializer(serializers.ModelSerializer):
+    status = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='risk'
+     )
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'user_type', 'height', 'weight', 'date_of_birth', 'notes', 'phone', 'status']
 
 
 class TakeCareOfSerializer(serializers.ModelSerializer):
@@ -27,7 +40,7 @@ class TakeCareOfSerializer(serializers.ModelSerializer):
     
     def get_patient(self, obj):
         query = User.objects.get(id=obj.patient_id)
-        patient = EmergencyUserSerializer(query).data
+        patient = PatientSerializer(query).data
         return patient
 
     def validate(self, data):
@@ -40,7 +53,6 @@ class TakeCareOfSerializer(serializers.ModelSerializer):
 
     
     def update(self, instance, validated_data):
-        print(validated_data)
         instance.doctor = User.objects.get(id=validated_data.get('doctor'))
         instance.patient = User.objects.get(id=validated_data.get('patient'))
         instance.since = datetime.datetime.now()
