@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from accounts.models import *
-
+import datetime
 #class UserSerializer()
 
 class BraceletSerializer(serializers.ModelSerializer):
@@ -37,6 +37,15 @@ class TakeCareOfSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("'patient' expect an UUID, get %s." % str(type(self.initial_data['patient'])))
         
         return self.initial_data
+
+    
+    def update(self, instance, validated_data):
+        print(validated_data)
+        instance.doctor = User.objects.get(id=validated_data.get('doctor'))
+        instance.patient = User.objects.get(id=validated_data.get('patient'))
+        instance.since = datetime.datetime.now()
+        instance.save()
+        return instance
 
     def create(self, validated_data):
         # parse data

@@ -14,6 +14,23 @@ from accounts.models import *
 from accounts.serializers import *
 # Create your views here.
 
+'''
+================ HELPER FUNCTIONS ================
+'''
+# is the request is sent by given id
+def isSelf(request, id) -> bool:
+    return request.user.id == id
+
+# is the request is sent by him/herself or by a staff
+def isSelfOrStaff(request, id) -> bool:
+    # check if this request is authorized.
+    # - only doctors, admins, and patient himself can post
+    return request.user.user_type == 1 or request.user.user_type == 2 or request.user.id == id
+
+'''
+================ END HELPER FUNCTIONS ================
+'''
+
 
 # Register API
 # /api/register/
@@ -42,6 +59,7 @@ class RegisterView(APIView):
             first_name = request_body['first_name'],
             last_name = request_body['last_name']
             )
+        
         user.set_password(request_body['password'])
         
         try:
@@ -234,10 +252,27 @@ class TakeCareOfAPI(APIView):
     - payload:
         {} - Empty payload
     - return:
-        {} - Empty return
+        {
+            "id": int,
+            "doctor" : {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "since": DateTime,
+                "user_type": int    
+            },
+            "patient" : {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "since": DateTime,
+                "user_type": int    
+            }
+        }
         - 200: relationship created
         - 403: forbidden
         - 404: didn't find given doctor or patient
+        - 409: when given patient is already assigned to a doctor
     '''
     def post(self, request, *args, **kwargs):
         # parsing reqeust
@@ -249,24 +284,138 @@ class TakeCareOfAPI(APIView):
         
         # check if this request is authorized.
         # - only doctors, admins, and patient himself can post
-        request_user = request.user
-        if(request_user.user_type != 1 
-            and request_user.user_type != 2 
-            and request_user.id != patient_id):
+        if(not isSelfOrStaff(request, patient_id)):
             return Response({}, status=403)
 
         # check if given doctor and given patient exists
         try:
-            User.objects.get(id=doctor_id, user_type=1)
+            patient_user = User.objects.get(id=doctor_id, user_type=1)
             User.objects.get(id=patient_id, user_type=0)
         except:
             return Response({}, status=404)
+
+        try:
+            TakeCareOf.objects.get(patient=patient_user)
+            return Response({}, status=409)
+        except:
+            pass
 
         # save the relationship into the database
         try:
             serializer = TakeCareOfSerializer(data=body)
             if(serializer.is_valid()):
                 #print("validated data: ", serializer.validated_data)
+                relation = serializer.save()
+                data = TakeCareOfSerializer(relation).data
+
+                return Response(data, status=200)
+            else:
+                return Response({}, status=400)
+        except Exception as e:
+            print(e)
+            return Response({}, status=400)
+
+
+'''
+/api/doctorof/<UUID:patient>/
+Get the doctor's information of given patient
+- GET: Get the doctor's information of given patient
+- PUT: Update the TakeCareOf relationship.
+'''
+class DoctorOfAPI(APIView):
+    model = TakeCareOf
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    GET
+    - Get the doctor's information of the given patient
+    - Response:
+        {
+            id: UUID,
+            first_name: String, 
+            last_name: String, 
+            user_type: int
+        }
+    '''
+    def get(self, request, *args, **kwargs):
+        # parse the request
+        patient_id = kwargs['patient']
+
+        # check authorization
+        if(not isSelfOrStaff(request, patient_id)):
+            return Response({}, status=403)
+        
+        # check if take-care-of relationship of given patient exists
+        try:
+            patient_user = User.objects.get(id = patient_id)
+            relation = TakeCareOf.objects.get(patient=patient_user)
+            doctor_user = relation.doctor
+        except:
+            return Response({}, status=404)
+
+        # serializing the TakeCareOf object
+        try:
+            doctor_data = EmergencyUserSerializer(doctor_user).data
+            return Response(doctor_data, status=200)
+        except:
+            return Response({}, status=400)
+
+    '''
+    PUT
+    - Update the doctor user takeCareOf relationship of given patient. 
+    - Payload:
+        {
+            doctor_id: UUID/String
+        }
+    - Response:
+        {
+            "id": int,
+            "doctor" : {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "since": DateTime,
+                "user_type": int    
+            },
+            "patient" : {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "since": DateTime,
+                "user_type": int    
+            }
+        }
+        - 404: unable to find given given doctor
+        - 403: request is not sent by the patient him/herself, nor by doctors and admins
+    '''
+    def put(self, request, *args, **kwargs):
+        # parse the request
+        patient_id = kwargs['patient']
+        doctor_id = request.data['doctor_id']
+        body = {'doctor':doctor_id, 
+                'patient':patient_id
+                }
+
+        # check authorization
+        if(not isSelfOrStaff(request, patient_id)):
+            return Response({}, status=403)
+        
+        # check if given doctor and given patient exists
+        try:
+            patient_user = User.objects.get(id=doctor_id, user_type=1)
+            User.objects.get(id=patient_id, user_type=0)
+            relation = TakeCareOf.objects.get(patient=patient_user)
+        except:
+            return Response({}, status=404)
+
+
+        # save the relationship into the database
+        try:
+            serializer = TakeCareOfSerializer(relation, data=body)
+            if(serializer.is_valid()):
                 relation = serializer.save()
                 data = TakeCareOfSerializer(relation).data
 

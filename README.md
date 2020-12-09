@@ -192,7 +192,7 @@ This will run at the IP address of your local machine with the port 8000
                 "last_name": String,
                 "since": DateTime,
                 "user_type": int    
-            },
+            }
         }
         ```
 </p>
