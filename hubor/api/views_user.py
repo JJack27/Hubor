@@ -408,7 +408,8 @@ class DoctorOfAPI(APIView):
         # parse the request
         patient_id = kwargs['patient']
         doctor_id = request.data['doctor_id']
-        body = {'doctor':doctor_id, 
+
+        body = {'doctor':uuid.UUID(doctor_id), 
                 'patient':patient_id
                 }
 
@@ -418,22 +419,30 @@ class DoctorOfAPI(APIView):
         
         # check if given doctor and given patient exists
         try:
-            patient_user = User.objects.get(id=doctor_id, user_type=1)
-            User.objects.get(id=patient_id, user_type=0)
-            relation = TakeCareOf.objects.get(patient=patient_user)
+            patient_user = User.objects.get(id=patient_id, user_type=0)
+            User.objects.get(id=doctor_id, user_type=1)
+            
         except:
             return Response({}, status=404)
 
-
+        # check if relation with patient exists
+        try:
+            relation = TakeCareOf.objects.get(patient=patient_user)
+            serializer = TakeCareOfSerializer(relation, data=body)
+        except:
+            # if not exist, create one
+            print('relation with given patient does not exist')
+            serializer = TakeCareOfSerializer(data=body)
+        
         # save the relationship into the database
         try:
-            serializer = TakeCareOfSerializer(relation, data=body)
             if(serializer.is_valid()):
                 relation = serializer.save()
                 data = TakeCareOfSerializer(relation).data
-
                 return Response(data, status=200)
             else:
+                #print(relation)
+                print("data is invalid")
                 return Response({}, status=400)
         except Exception as e:
             print(e)

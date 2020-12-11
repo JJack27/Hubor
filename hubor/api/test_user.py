@@ -267,6 +267,8 @@ def run():
         %(str(user2.user_type), str(response.data['patient']['user_type']))
     print("Pass!")
     
+    
+
     print('--- Invalid requests ---')
     print("Un-permitted patient POST.", end=" ")
     client.post('/api/logout/', {})
@@ -301,6 +303,7 @@ def run():
     assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
     assert response.data == {}, "Non-empty data response!"
     print("Pass!")
+
 
 
     print("\n======= api/patientsof/<uuid:doctor>/ ========")
@@ -341,6 +344,74 @@ def run():
     response = client.get('/api/patientsof/%s/'%str(uuid.uuid4()))
     assert response.status_code == 403, "Error! Expected 403, get %d" % response.status_code
     print("Pass!")
+
+
+
+    print("\n======= api/doctorof/<uuid:patient>/ ========")
+    print('--- Valid requests ---' )
+    # Test patient GET
+    # login as user 1
+    response = client.post('/api/login/', {'username': user1.username, 'password':password})
+    print("Testing patient GET.", end=" ")
+    response = client.get('/api/doctorof/%s/'%str(user1.id))
+    assert response.status_code == 200, "Error! Expected 200, get %d" % response.status_code
+    doctor = response.data
+    assert str(doctor['id']) == str(doctor1.id), "Incorrect doctor id (%s). Expecting (%s)" \
+        %(str(doctor['id']), str(doctor1.id))
+    print("Pass!")
     
-    
+
+    # Test patient PUT
+    print("Testing patient PUT.", end=" ")
+    response = client.put('/api/doctorof/%s/'%str(user1.id), {'doctor_id':str(doctor2.id)})
+    assert response.status_code == 200, "Error! Expected 200, get %d" % response.status_code
+    assert str(response.data['patient']['id']) == str(user1.id), "Incorrect patient id (%s). Expecting (%s)" \
+        %(str(response.data['patient']['id']), str(user1.id))
+    assert str(response.data['doctor']['id']) == str(doctor2.id), "Incorrect doctor id (%s). Expecting (%s)" \
+        %(str(response.data['doctor']['id']), str(doctor2.id))
+    print("Pass!")
+
+    # logout
+    client.post("/api/logout/", {})
+
+    # Test doctor GET
+    # login as doctor 1
+    response = client.post('/api/login/', {'username': doctor1.username, 'password':password})
+    print("Testing doctor GET.", end=" ")
+    response = client.get('/api/doctorof/%s/'%str(user1.id))
+    assert response.status_code == 200, "Error! Expected 200, get %d" % response.status_code
+    doctor = response.data
+    assert str(doctor['id']) == str(doctor2.id), "Incorrect doctor id (%s). Expecting (%s)" \
+        %(str(doctor['id']), str(doctor2.id))
+    print("Pass!")
+
+    print('--- Invalid requests ---' )
+    print("Testing unauthorized patient GET.", end=' ')
+    response = client.post('/api/login/',  {'username': user2.username, 'password':password})
+    response = client.get('/api/doctorof/%s/'%str(user1.id))
+    assert response.status_code == 403, "Error! Expected 403, get %d" % response.status_code
+    print("Pass!")
+
+    print("Testing unauthorized patient PUT.", end=' ')
+    response = client.put('/api/doctorof/%s/'%str(user1.id), {'doctor_id':doctor1.id})
+    assert response.status_code == 403, "Error! Expected 403, get %d" % response.status_code
+    print("Pass!")
+
+    print("Testing patient non-exist GET.", end=' ')
+    response = client.get('/api/doctorof/%s/'%str(uuid.uuid4()))
+    assert response.status_code == 403, "Error! Expected 403, get %d" % response.status_code
+    print("Pass!")
+
+    print("Testing doctor non-exist GET.", end=' ')
+    response = client.post('/api/login/',  {'username': doctor1.username, 'password':password})
+    response = client.get('/api/doctorof/%s/'%str(uuid.uuid4()))
+    assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
+    print("Pass!")
+
+    print("Testing doctor non-exist PUT.", end=' ')
+    response = client.post('/api/login/',  {'username': doctor1.username, 'password':password})
+    response = client.put('/api/doctorof/%s/'%str(uuid.uuid4()), {'doctor_id':doctor1.id})
+    assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
+    print("Pass!")
+
     print('')
