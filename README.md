@@ -242,6 +242,59 @@ This will run at the IP address of your local machine with the port 8000
 </p>
 </details>
 
+[comment]: # ("/api/doctorof/<uuid:patient>/")
+<details><summary><code>/api/doctorof/[uuid:patient]/</code>
+</summary>
+<p>
+- Get and update the doctor's information of given patient
+
+- `GET`
+    - Get the doctor's information of the given patient
+    - Response
+        ```json
+        {
+            id: UUID,
+            first_name: String, 
+            last_name: String, 
+            user_type: int
+        }
+        ```
+- `PUT`
+    - Update the doctor user takeCareOf relationship of given patient. 
+    - Request
+        ```json
+        {
+            doctor_id: UUID/String * 
+        }
+        ```
+    - Response
+        ```json
+        {
+            "id": int,
+            "doctor" : {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "since": DateTime,
+                "user_type": int    
+            },
+            "patient" : {
+                "id": UUID,
+                "first_name": String, 
+                "last_name": String, 
+                "user_type": int,
+                "height": int, 
+                "weigh"': int, 
+                "date_of_birth": datetime, 
+                "notes": String, 
+                "phone": String,
+                "status": List<int> 
+            }
+        }
+        ```
+</p>
+</details>
+
 ## Data & Vital Sign
 [comment]: # ("/api/data/<uuid:pk>/")
 <details><summary><code>/api/data/[uuid:pk]/</code>
