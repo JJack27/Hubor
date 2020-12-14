@@ -7,6 +7,7 @@ from .views_config import *
 
 
 
+
 urlpatterns = [
     # Accounts related
     path('emailvalidation/', EmailValidation.as_view()),
@@ -32,6 +33,7 @@ urlpatterns = [
 
     # test
     path('test/', TestView.as_view()),
+    path('allapi/', AllAPIView.as_view())
 
     #path('forgetpassword/', ForgetPasswordAPI.as_view()),
     #path('resetpassword/<uuid:pk>/', ResetPasswordAPI.as_view()),

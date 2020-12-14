@@ -9,7 +9,6 @@ import json
 import uuid
 from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
-
 from accounts.models import User
 # Create your views here.
 
@@ -22,3 +21,34 @@ class TestView(APIView):
         request_body = request.data
         print(request_body)
         return Response({"query":'test'}, status=200)
+
+    
+class AllAPIView(APIView):
+
+    def get(self, request, *args, **kwargs):
+        available_urls = [
+            'emailvalidation/', 
+            'usernamevalidation/', 
+            'register/',
+            'login/',
+            'logout/', 
+            'bracelet/<uuid:owner>/',
+            'takecareof/<uuid:doctor>/<uuid:patient>/', 
+            'patientsof/<uuid:doctor>/', 
+            'doctorof/<uuid:patient>/', 
+
+            # Data related
+            'data/<uuid:pk>/', 
+            'vs/<uuid:owner>/', 
+
+            # Emergency related
+            'emergency/<uuid:pk>/', 
+            'emergencycontact/<uuid:pk>/', 
+
+            # Configuration
+            'latestconfig/', 
+
+            # test
+            'test/', 
+        ]
+        return Response(data=available_urls, status=200)
