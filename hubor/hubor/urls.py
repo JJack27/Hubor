@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from accounts.views import MyView
+from django.views.generic import TemplateView
+from hubor.settings import MEDIA_ROOT
+from django.views.static import serve
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('', MyView.as_view()),
+    path('', TemplateView.as_view(template_name = "index.html"), name='index'),
+    re_path(r'media/(?P<path>.*)$',serve,{'document_root':MEDIA_ROOT}),
+    re_path(r'.*', TemplateView.as_view(template_name = "index.html")),
 ]
