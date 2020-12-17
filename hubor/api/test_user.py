@@ -414,4 +414,21 @@ def run():
     assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
     print("Pass!")
 
+    print("Testing patient PUT empty.", end=" ")
+    response = client.put('/api/doctorof/%s/'%str(user1.id), {'doctor_id':""})
+    assert response.status_code == 400, "Error! Expected 400, get %d" % response.status_code
+    print("Pass!")
+
+    print("\n======= api/patientsof/<uuid:doctor>/ ========")
+    print('--- Valid requests ---' )
+    # login as doctor1
+    response = client.post('/api/login/', {'username': doctor1.username, 'password':password})
+    print("Testing doctor GET.", end=" ")
+    response = client.get('/api/doctors/')
+    assert response.status_code == 200, "Error! Expected 200, get %d" % response.status_code
+    doctors = response.data
+    assert len(doctors) >= 2, "Error! Expect length >= 2, get %d" % len(patients)
+    print(len(doctors), end=". ")
+    print("Pass!")
+
     print('')
