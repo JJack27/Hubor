@@ -72,3 +72,5 @@ migrations/
 # Workspace
 *.code-workspace
 
+node_modules/
+

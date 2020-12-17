@@ -408,10 +408,12 @@ class DoctorOfAPI(APIView):
         # parse the request
         patient_id = kwargs['patient']
         doctor_id = request.data['doctor_id']
-
-        body = {'doctor':uuid.UUID(doctor_id), 
+        try:
+            body = {'doctor':uuid.UUID(doctor_id), 
                 'patient':patient_id
                 }
+        except:
+            return Response({}, status=400)
 
         # check authorization
         if(not isSelfOrStaff(request, patient_id)):
@@ -519,4 +521,46 @@ class PatientsOfAPI(APIView):
         except:
             return Response({}, status=400)
 
-   
+
+'''
+/api/doctors/
+Get the doctor's information of given patient
+- GET: Get a list of current doctors
+''' 
+class DoctorsAPI(APIView):
+    model = User
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    GET
+    - Response:
+        [
+            {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "since": DateTime,
+                "user_type": int  
+            },
+            {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "since": DateTime,
+                "user_type": int  
+            }
+        ]
+    '''
+    def get(self, request, *args, **kwargs):
+        try:
+            # setting up the query
+            query = User.objects.filter(user_type=1)
+
+            data = EmergencyUserSerializer(query, many=True).data
+            return Response(data, status=200)
+        except Exception as e:
+            print(e)
+            return Response([], status=400)
