@@ -295,6 +295,35 @@ This will run at the IP address of your local machine with the port 8000
 </p>
 </details>
 
+[comment]: # ("/api/doctors/")
+<details><summary><code>/api/doctors/</code>
+</summary>
+<p>
+- Get a list of registered doctors
+
+- `GET`
+    - Response
+        ```json
+            [
+                {
+                    "id": UUID,
+                    "first_name": String,
+                    "last_name": String,
+                    "since": DateTime,
+                    "user_type": int  
+                },
+                {
+                    "id": UUID,
+                    "first_name": String,
+                    "last_name": String,
+                    "since": DateTime,
+                    "user_type": int  
+                }
+            ]
+        ```
+</p>
+</details>
+
 ## Data & Vital Sign
 [comment]: # ("/api/data/<uuid:pk>/")
 <details><summary><code>/api/data/[uuid:pk]/</code>
