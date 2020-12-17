@@ -1,15 +1,19 @@
 <template>
   
-    <a-form :model="form" :wrapper-col="wrapperCol">
+    <a-form 
+      ref='loginFormRef'
+      :model="form" 
+      :rules="rules"
+      :wrapper-col="wrapperCol">
       <!-- Login Identification = email / username -->
-      <a-form-item>
+      <a-form-item required name="username">
         <a-input v-model:value="this.form.username" placeholder="Username">
           <template #prefix><UserOutlined :style="{fontSize: '16px', color: '#918de0'}"/></template>
         </a-input>
       </a-form-item>
 
       <!-- Password -->
-      <a-form-item >
+      <a-form-item required name="password">
         <a-input-password type v-model:value="this.form.password" placeholder="Password">
           <template #prefix><LockOutlined :style="{fontSize: '16px', color: '#918de0'}"/></template>
         </a-input-password>
@@ -43,11 +47,29 @@ export default {
         username: '',
         password: '',
       },
+
+      rules:{
+        username: [
+          {required: true, message: "Please enter your username!", trigger:'blur'},
+        ],
+
+        password: [
+          {required: true, message: "Please enter your password!", trigger: 'blur'}
+        ]
+      }
+       
     };
   },
   methods: {
     onSubmit() {
-      console.log('submit!', this.form);
+      this.$refs.loginFormRef
+        .validate()
+        .then(() => {
+          console.log('values', this.form);
+        })
+        .catch(error => {
+          console.log('error', error);
+        });
     },
   },
 };
