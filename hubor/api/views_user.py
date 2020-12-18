@@ -604,8 +604,14 @@ class DoctorsAPI(APIView):
         try:
             # setting up the query
             query = User.objects.filter(user_type=1)
-
-            data = EmergencyUserSerializer(query, many=True).data
+            valid_query = []
+            for doctor in query:
+                try:
+                    BelongsToFacilities.objects.get(user=doctor.id)
+                    valid_query.append(doctor)
+                except:
+                    pass
+            data = EmergencyUserSerializer(valid_query, many=True).data
             return Response(data, status=200)
         except Exception as e:
             print(e)
@@ -639,8 +645,14 @@ class ShortDoctorsAPI(APIView):
         try:
             # setting up the query
             query = User.objects.filter(user_type=1)
-
-            data = ShortDoctorsSerializer(query, many=True).data
+            valid_query = []
+            for doctor in query:
+                try:
+                    BelongsToFacilities.objects.get(user=doctor.id)
+                    valid_query.append(doctor)
+                except:
+                    pass
+            data = EmergencyUserSerializer(valid_query, many=True).data
             return Response(data, status=200)
         except Exception as e:
             print(e)
