@@ -36,7 +36,11 @@ class AllAPIView(APIView):
             'takecareof/<uuid:doctor>/<uuid:patient>/', 
             'patientsof/<uuid:doctor>/', 
             'doctorof/<uuid:patient>/', 
-            'doctors/'
+            'doctors/',
+            'shortdoctors/',
+            'facilities/', 
+            'belongsto/<uuid:facility>/',
+
 
             # Data related
             'data/<uuid:pk>/', 

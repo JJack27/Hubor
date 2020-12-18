@@ -27,6 +27,14 @@ def isSelfOrStaff(request, id) -> bool:
     # - only doctors, admins, and patient himself can post
     return request.user.user_type == 1 or request.user.user_type == 2 or request.user.id == id
 
+# is the request is sent by staff
+def isStaff(request) -> bool:
+    return request.user.user_type == 1 or request.user.user_type == 2
+
+# is the request is sent by admin
+def isAdmin(request) -> bool:
+    return request.user.user_type == 2
+
 '''
 ================ END HELPER FUNCTIONS ================
 '''
@@ -230,6 +238,8 @@ class BraceletAPI(APIView):
         bracelets = BraceletSerializer(query, many=True).data
         response['bracelets'] = bracelets
 
+
+
         # Check if the user has no bracelets
         if bracelets == []:
             return Response(response, status=404)
@@ -290,6 +300,17 @@ class TakeCareOfAPI(APIView):
         body = {'doctor':doctor_id, 
                 'patient':patient_id
                 }
+
+        # check authorization. Only the staff and patients belongs to the facility can get this information
+        try:
+            fa_of_request = BelongsToFacilities.objects.get(user=request.user).facility_id
+            fa_of_doctor = BelongsToFacilities.objects.get(user=doctor_id).facility_id
+            fa_of_patient = BelongsToFacilities.objects.get(user=patient_id).facility_id
+            assert fa_of_doctor == fa_of_request, "User belongs to different facilities"
+            assert fa_of_patient == fa_of_request, "User belongs to different facilities"
+        except Exception as e:
+            print(e)
+            return Response({}, status=403)
         
         # check if this request is authorized.
         # - only doctors, admins, and patient himself can post
@@ -351,6 +372,14 @@ class DoctorOfAPI(APIView):
     def get(self, request, *args, **kwargs):
         # parse the request
         patient_id = kwargs['patient']
+
+        # check authorization. Only the staff and patients belongs to the facility can get this information
+        try:
+            fa_of_request = BelongsToFacilities.objects.get(user=request.user).facility_id
+            fa_of_patient = BelongsToFacilities.objects.get(user=patient_id).facility_id
+            assert fa_of_patient == fa_of_request, "User belongs to different facilities"
+        except:
+            return Response({}, status=403)
 
         # check authorization
         if(not isSelfOrStaff(request, patient_id)):
@@ -415,6 +444,16 @@ class DoctorOfAPI(APIView):
         except:
             return Response({}, status=400)
 
+        # check authorization. Only the staff and patients belongs to the facility can get this information
+        try:
+            fa_of_request = BelongsToFacilities.objects.get(user=request.user).facility_id
+            fa_of_doctor = BelongsToFacilities.objects.get(user=uuid.UUID(doctor_id)).facility_id
+            fa_of_patient = BelongsToFacilities.objects.get(user=patient_id).facility_id
+            assert fa_of_doctor == fa_of_request, "User belongs to different facilities"
+            assert fa_of_patient == fa_of_request, "User belongs to different facilities"
+        except:
+            return Response({}, status=403)
+
         # check authorization
         if(not isSelfOrStaff(request, patient_id)):
             return Response({}, status=403)
@@ -433,7 +472,6 @@ class DoctorOfAPI(APIView):
             serializer = TakeCareOfSerializer(relation, data=body)
         except:
             # if not exist, create one
-            print('relation with given patient does not exist')
             serializer = TakeCareOfSerializer(data=body)
         
         # save the relationship into the database
@@ -498,8 +536,16 @@ class PatientsOfAPI(APIView):
         # parse the request
         doctor_id = kwargs['doctor']
 
+        # check authorization. Only the staff and patients belongs to the facility can get this information
+        try:
+            fa_of_request = BelongsToFacilities.objects.get(user=request.user).facility_id
+            fa_of_doctor = BelongsToFacilities.objects.get(user=doctor_id).facility_id
+            assert fa_of_doctor == fa_of_request, "User belongs to different facilities"
+        except:
+            return Response({}, status=403)
+
         # check authorization
-        if(not isSelfOrStaff(request, doctor_id)):
+        if(not isStaff(request)):
             return Response({}, status=403)
         
         # check if take-care-of relationship of given patient exists
@@ -565,4 +611,228 @@ class DoctorsAPI(APIView):
             print(e)
             return Response([], status=400)
 
-            
+
+'''
+/api/shortdoctors/
+Get the patients' information of a given doctor
+- GET: Get the patients' information of a given doctor
+'''
+class ShortDoctorsAPI(APIView):
+
+    '''
+    GET
+    - Response:
+        [
+            {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+            },
+            {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+            }
+        ]
+    '''
+    def get(self, request, *args, **kwargs):
+        try:
+            # setting up the query
+            query = User.objects.filter(user_type=1)
+
+            data = ShortDoctorsSerializer(query, many=True).data
+            return Response(data, status=200)
+        except Exception as e:
+            print(e)
+            return Response([], status=400)
+
+
+'''
+/api/facities/
+- GET: Get a all facilities. Only short information included
+- POST: Create a facility.
+'''
+class FacilitiesAPI(APIView):
+    model = User
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    GET
+    - Get a list of facilities
+    - Response
+        [
+            {
+                "id": UUID,
+                "name": String,
+                "address": String,
+                "phone": String,
+                "Description": String
+            },
+            {
+                "id": UUID,
+                "name": String,
+                "address": String,
+                "phone": String,
+                "Description": String
+            }
+        ]
+    '''
+    def get(self, request, *args, **kwargs):
+        try:
+            query = Facilities.objects.all()
+            data = FacilitySerializer(query, many=True).data
+            return Response(data, status=200)
+        except Exception as e:
+            print(e)
+            return Response({}, status=400)
+
+    '''
+    POST
+    - Create a facility
+    - Payload:
+        {
+            "id": UUID,
+            "name": String,
+            "address": String,
+            "phone": String,
+            "Description": String
+        }
+    - Resposne"
+        {
+            "id": UUID,
+            "name": String,
+            "address": String,
+            "phone": String,
+            "Description": String
+        }
+    '''
+    def post(self, request, *args, **kwargs):
+        # Check the authorization of the request user
+        if(not isStaff(request)):
+            return Response({}, status=403)
+        
+        # Parse the payload
+        request_body = request.data
+
+        try:
+            serializer = FacilitySerializer(data = request_body)
+            if(serializer.is_valid()):
+                serializer.save()
+                return Response(serializer.data, status=200)
+            raise Exception("Invalid data")
+        except Exception as e:
+            print(e)
+            return Response({}, status=400)
+
+
+'''
+/api/belongsto/<uuid:facility>
+- GET: Get a all user belongs to given facility
+- PUT: Create a belongs to relationship
+'''
+class BelongsToAPI(APIView):
+    model = User
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    GET
+    - Get a all user belongs to given facility
+    - Response
+        [
+            {
+                "id": UUID,
+                "user": {
+                    'id': UUID, 
+                    'first_name': String, 
+                    'last_name': String, 
+                    'user_type': int, 
+                    'gender': int, 
+                    'belongs_to': UUID
+                },
+                "facility":{
+                    "id": UUID,
+                    "name": String,
+                    "address": String,
+                    "phone": String,
+                    "Description": String
+                }
+            },
+            ...
+        ]
+    '''
+    def get(self, request, *args, **kwargs):
+        facility = kwargs['facility']
+        # check authorization. Only the staff and patients belongs to the facility can get this information
+        try:
+            query = BelongsToFacilities.objects.get(facility=facility, user=request.user)
+        except:
+            return Response({}, status=403)
+
+        # getting data
+        try:
+            query = BelongsToFacilities.objects.filter(facility=facility)
+            data = UserBelongsToSerializer(query, many=True).data
+            return Response(data, status=200)
+        except Exception as e:
+            print(e)
+            return Response({}, status=400)
+
+    '''
+    PUT
+    - Create a belongs to relationship
+    - Payload:
+        {
+            "user": UUID
+        }
+    - Resposne"
+        {
+            "id": UUID,
+            "user": {
+                'id': UUID, 
+                'first_name': String, 
+                'last_name': String, 
+                'user_type': int, 
+                'gender': int, 
+                'belongs_to': UUID
+            },
+            "facility":{
+                "id": UUID,
+                "name": String,
+                "address": String,
+                "phone": String,
+                "Description": String
+            }
+        }
+    '''
+    def put(self, request, *args, **kwargs):
+        # Check the authorization of the request user
+        if(not isSelfOrStaff(request, uuid.UUID(request.data['user']))):
+            return Response({}, status=403)
+        
+        # Parse the payload
+        body = {
+            'facility': kwargs['facility'],
+            'user': uuid.UUID(request.data['user'])
+        }
+
+        # see if given user was assigned to a health facility
+        try:
+            query = BelongsToFacilities.objects.get(user = body['user'])
+            serializer = UserBelongsToSerializer(query, data=body)
+        except:
+            serializer = UserBelongsToSerializer(data=body)
+
+        try:
+            if(serializer.is_valid()):
+                serializer.save()
+                return Response(serializer.data, status=200)
+            raise Exception("Invalid data")
+        except Exception as e:
+            print(e)
+            return Response({}, status=400)

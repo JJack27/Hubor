@@ -5,6 +5,13 @@ import uuid
 import datetime
 from accounts.models import *
 
+def logout(client):
+    return client.post('/api/logout/', {})
+
+def login(client, user):
+    password = "Apple"
+    return client.post('/api/login/', {'username': user.username, 'password':password})
+
 def create_user(client, user_type):
     username = str(random.random())
     last7digits = str(random.randint(1000000,9999999))
@@ -144,14 +151,14 @@ def run():
 
 
 
-    print('\n======= api/bracelet/%s/ ========'%(str(user.id)) )
+    print('\n======= api/bracelet/%s/ ========'%(str(user1.id)) )
     print('--- Valid requests ---' )
     # login first
-    response = client.post('/api/login/', {'username': user.username, 'password':password})
+    response = client.post('/api/login/', {'username': user1.username, 'password':password})
     
     # check get method
     print("Check if current user having any bracelets, should be empty.", end=" ")
-    response = client.get('/api/bracelet/'+str(user.id)+'/')
+    response = client.get('/api/bracelet/'+str(user1.id)+'/')
     assert response.status_code == 404, "\n!Current user should not have any bracelets."
     print("Pass!")
     
@@ -159,21 +166,21 @@ def run():
     print('Adding 2 new bracelets to current user.', end=" ")
     request_payload = {'mac_addr':'01:23:45:67:89:AB'}
     bracelets = {}
-    response = client.post('/api/bracelet/'+str(user.id)+'/', request_payload)
+    response = client.post('/api/bracelet/'+str(user1.id)+'/', request_payload)
     bracelets[response.data['bracelet']['id']] = response.data['bracelet']
-    assert str(user.id) == str(response.data['bracelet']['owner']), "Owner ID is not the same."
+    assert str(user1.id) == str(response.data['bracelet']['owner']), "Owner ID is not the same."
     assert request_payload['mac_addr'] == response.data['bracelet']['mac_addr'], "Mac address is not the same"
     
     request_payload = {'mac_addr':'01:23:45:67:89:ff'}
-    response = client.post('/api/bracelet/'+str(user.id)+'/', request_payload)
+    response = client.post('/api/bracelet/'+str(user1.id)+'/', request_payload)
     bracelets[response.data['bracelet']['id']] = response.data['bracelet']
-    assert str(user.id) == str(response.data['bracelet']['owner']), "Owner ID is not the same."
+    assert str(user1.id) == str(response.data['bracelet']['owner']), "Owner ID is not the same."
     assert request_payload['mac_addr'] == response.data['bracelet']['mac_addr'], "Mac address is not the same"
     print("Pass!")
     
     # Test get method
     print("Check if bracelets were successfully added", end=" ")
-    response = client.get('/api/bracelet/'+str(user.id)+'/')
+    response = client.get('/api/bracelet/'+str(user1.id)+'/')
     assert response.status_code == 200, "Incorrect status code, expecting 200, received " + str(response.status_code)
     recv_braclets = response.data['bracelets']
     for b in recv_braclets:
@@ -203,14 +210,14 @@ def run():
     print("Invalid POST payload.")
     request_payload = {'mac_addr':'01:23:45:67:89:GF'}
     print("\tmac_addr = %s."%(request_payload['mac_addr']), end=" ")
-    response = client.post('/api/bracelet/'+str(user.id)+'/', request_payload)
+    response = client.post('/api/bracelet/'+str(user1.id)+'/', request_payload)
     assert response.status_code == 401, "\nIncorrect status code: %s" %(str(response.status_code))
     assert response.data['bracelet'] == {}, "\nNon-empty response: %s" %(str(response.data['bracelet'])) 
     print("Pass!")
 
     request_payload = {'mac_addr':'23:45:67:89:GF'}
     print("\tmac_addr = %s."%(request_payload['mac_addr']), end=" ")
-    response = client.post('/api/bracelet/'+str(user.id)+'/', request_payload)
+    response = client.post('/api/bracelet/'+str(user1.id)+'/', request_payload)
     assert response.status_code == 401, "\nIncorrect status code: %s" %(str(response.status_code))
     assert response.data['bracelet'] == {}, "\nNon-empty response: %s" %(str(response.data['bracelet'])) 
     print("Pass!")
@@ -226,21 +233,138 @@ def run():
 
 
 
+    print("\n======= api/facilities/ ========")
+    print('--- Valid requests ---')
+    # login as doctor
+    response = login(client, doctor1)
+    print("Testing doctor POST.", end=" ")
+    request_payload = {
+        'name': "facility",
+        'address': "123123123",
+        'phone': "123123123"
+    }
+    response = client.post('/api/facilities/', request_payload)
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
+    facility1 = Facilities.objects.get(id = response.data['id'])
+    assert response.data['name'] == facility1.name, "Incorrect name! Expected %s, get %s" %(facility1.name, response.data['name'])
+    assert response.data['address'] == facility1.address, "Incorrect address! Expected %s, get %s" %(facility1.address, response.data['address'])
+    assert response.data['phone'] == facility1.phone, "Incorrect phone! Expected %s, get %s" %(facility1.phone, response.data['phone'])
+    
+    response = client.post('/api/facilities/', request_payload)
+    facility2 = Facilities.objects.get(id = response.data['id'])
+    print("Pass!")
 
+    print("Testing doctor GET.", end=" ")
+    response = client.get('/api/facilities/')
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
+    print("Pass!")
+
+    print("Testing patient GET.", end=" ")
+    logout(client)
+    login(client, user1)
+    response = client.get('/api/facilities/')
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
+    print("Pass!")
+
+    print('--- Invalid requests ---')
+    print("Testing patient POST.", end=" ")
+    response = client.post('/api/facilities/', request_payload)
+    assert response.status_code == 403, "Incorrect status code: %s" %(str(response.status_code))
+    print("Pass!")
+
+    print("\n======= api/belongsto/<uuid:facility>/ ========")
+    print('--- Valid requests ---')
+    
+    # doctor1 -> facility1
+    logout(client)
+    login(client, doctor1)
+    print("Testing doctor PUT.", end=" ")
+    response = client.put('/api/belongsto/%s/'%str(facility1.id), {'user':str(doctor1.id)})
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
+    assert str(response.data['user']['id']) == str(doctor1.id), "User is not match. Expecting (%s), get (%s)" \
+        %(str(doctor1.id), str(response.data['user']['id']))
+    assert str(response.data['facility']['id']) == str(facility1.id), "Facility is not match. Expecting (%s), get (%s)" \
+        %(str(facility1.id), str(response.data['facility']['id']))
+    print("Pass!")
+    
+    print("Testing doctor GET.", end=" ")
+    response = client.get('/api/belongsto/%s/'%str(facility1.id))
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
+    print("Pass!")
+    
+    # user1 -> facility1
+    logout(client)
+    login(client, user1)
+    print("Testing patient PUT.", end=" ")
+    response = client.put('/api/belongsto/%s/'%str(facility1.id), {'user':str(user1.id)})
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
+    assert str(response.data['user']['id']) == str(user1.id), "User is not match. Expecting (%s), get (%s)" \
+        %(str(user1.id), str(response.data['user']['id']))
+    assert str(response.data['facility']['id']) == str(facility1.id), "Facility is not match. Expecting (%s), get (%s)" \
+        %(str(facility1.id), str(response.data['facility']['id']))
+    print("Pass!")
+
+    print("Testing patient GET.", end=" ")
+    response = client.get('/api/belongsto/%s/'%str(facility1.id))
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
+    len_of_response = len(response.data)
+    print("Pass!")
+
+    print("Testing duplicate patient PUT.", end=" ")
+    response = client.put('/api/belongsto/%s/'%str(facility1.id), {'user':str(user1.id)})
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
+    response = client.get('/api/belongsto/%s/'%str(facility1.id))
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
+    assert len(response.data) == len_of_response, "len after put (%d) != len before put (%d)" \
+        %(len(response.data), len_of_response)
+    print("Pass!")
+
+    # user2 -> facility1
+    logout(client)
+    login(client, doctor1)
+    print("Testing doctor-patient PUT.", end=" ")
+    response = client.put('/api/belongsto/%s/'%str(facility1.id), {'user':str(user2.id)})
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
+    print("Pass!")
+
+
+    print('--- Invalid requests ---')
+    logout(client)
+    login(client, doctor2)
+    print("Tesing no-facility doctor GET.", end=" ")
+    response = client.get('/api/belongsto/%s/'%str(facility1.id))
+    assert response.status_code == 403, "Incorrect status code: %s" %(str(response.status_code))
+    print("Pass!")
+
+    print("Tesing diff-facility doctor GET.", end=" ")
+    # doctor2 -> facility2
+    response = client.put('/api/belongsto/%s/'%str(facility2.id), {'user':str(doctor2.id)})
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
+    response = client.get('/api/belongsto/%s/'%str(facility1.id)) 
+    assert response.status_code == 403, "Incorrect status code: %s" %(str(response.status_code))
+    print("Pass!")
+    
+    #===========================================================================
+    '''
+    doctor1 -> fa-1
+    doctor2 -> fa-2
+    user1 -> fa-1
+    user2 -> fa-1
+    '''
     print("\n======= api/takecareof/<uuid:doctor>/<uuid:patient>/ ========")
     print('--- Valid requests ---' )
     # login first
-    response = client.post('/api/login/', {'username': user1.username, 'password':password})
-    
+    logout(client)
+    login(client, user1)
     # check the post method
-    print("Testing patient POST.", end=" ")
+    # doctor1 <-> user1
+    print("Testing patient POST (same facility).", end=" ")
     response = client.post('/api/takecareof/%s/%s/'%(str(doctor1.id), str(user1.id)), {})
     assert response.status_code == 200, "Error! Expected 200, get %d" % response.status_code
     assert response.data['doctor']['id'] == str(doctor1.id), "Error on doctor's `id`, expected %s, get %s" \
         %(str(doctor1.id), str(response.data['doctor']['id']))
     assert response.data['doctor']['user_type'] == doctor1.user_type, "Error on doctor's `user_type`, expected %s, get %s" \
         %(str(doctor1.user_type), str(response.data['doctor']['user_type']))
-    
     assert response.data['patient']['id'] == str(user1.id), "Error on doctor's `id`, expected %s, get %s" \
         %(str(user1.id), str(response.data['patient']['id']))
     assert response.data['patient']['user_type'] == user1.user_type, "Error on doctor's `user_type`, expected %s, get %s" \
@@ -250,17 +374,17 @@ def run():
     # Doctor POST
     print("Testing doctor POST.", end=" ")
     # login as a doctor
-    client.post('/api/logout/', {})
-    client.post('/api/login/', {'username': doctor2.username, 'password':password})
+    logout(client)
+    login(client, doctor1)
 
     # check the post method
+    # doctor1 <-> user2
     response = client.post('/api/takecareof/%s/%s/'%(str(doctor1.id), str(user2.id)), {})
     assert response.status_code == 200, "Error! Expected 200, get %d" % response.status_code
     assert response.data['doctor']['id'] == str(doctor1.id), "Error on doctor's `id`, expected %s, get %s" \
         %(str(doctor1.id), str(response.data['doctor']['id']))
     assert response.data['doctor']['user_type'] == doctor1.user_type, "Error on doctor's `user_type`, expected %s, get %s" \
         %(str(doctor1.user_type), str(response.data['doctor']['user_type']))
-    
     assert response.data['patient']['id'] == str(user2.id), "Error on doctor's `id`, expected %s, get %s" \
         %(str(user2.id), str(response.data['patient']['id']))
     assert response.data['patient']['user_type'] == user2.user_type, "Error on doctor's `user_type`, expected %s, get %s" \
@@ -271,8 +395,8 @@ def run():
 
     print('--- Invalid requests ---')
     print("Un-permitted patient POST.", end=" ")
-    client.post('/api/logout/', {})
-    client.post('/api/login/', {'username': user1.username, 'password':password})
+    logout(client)
+    login(client, user1)
     response = client.post('/api/takecareof/%s/%s/'%(str(doctor1.id), str(user2.id)), {})
     assert response.status_code == 403, "Error! Expected 403, get %d" % response.status_code
     assert response.data == {}, "Non-empty data response!"
@@ -280,7 +404,7 @@ def run():
     
     print("Non-existed doctor POST by existing patient.", end=" ")
     response = client.post('/api/takecareof/%s/%s/'%(str(uuid.uuid4()), str(user1.id)), {})
-    assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
+    assert response.status_code == 403, "Error! Expected 404, get %d" % response.status_code
     assert response.data == {}, "Non-empty data response!"
     print("Pass!")
 
@@ -291,25 +415,32 @@ def run():
     print("Pass!")
 
     print("Non-existed doctor POST by existing doctor.", end=" ")
-    client.post('/api/logout/', {})
-    client.post('/api/login/', {'username': doctor1.username, 'password':password})
+    logout(client)
+    login(client, doctor2)
     response = client.post('/api/takecareof/%s/%s/'%(str(uuid.uuid4()), str(user1.id)), {})
-    assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
+    assert response.status_code == 403, "Error! Expected 404, get %d" % response.status_code
     assert response.data == {}, "Non-empty data response!"
     print("Pass!")
 
     print("Non-existed patient POST by existing doctor.", end=" ")
     response = client.post('/api/takecareof/%s/%s/'%(str(doctor1.id), str(uuid.uuid4())), {})
-    assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
+    assert response.status_code == 403, "Error! Expected 404, get %d" % response.status_code
+    assert response.data == {}, "Non-empty data response!"
+    print("Pass!")
+
+    print("Doctor POST by doctor from other facilities", end=" ")
+    response = client.post('/api/takecareof/%s/%s/'%(str(doctor1.id), str(user1.id)), {})
+    assert response.status_code == 403, "Error! Expected 403, get %d" % response.status_code
     assert response.data == {}, "Non-empty data response!"
     print("Pass!")
 
 
-
+    
     print("\n======= api/patientsof/<uuid:doctor>/ ========")
     print('--- Valid requests ---' )
     # login as doctor1
-    response = client.post('/api/login/', {'username': doctor1.username, 'password':password})
+    logout(client)
+    login(client, doctor1)
     print("Testing doctor GET.", end=" ")
     response = client.get('/api/patientsof/%s/'%str(doctor1.id))
     assert response.status_code == 200, "Error! Expected 200, get %d" % response.status_code
@@ -324,12 +455,12 @@ def run():
     response = client.post('/api/login/', {'username': doctor1.username, 'password':password})
     print("Testing doctor GET of doctor without any patients.", end=" ")
     response = client.get('/api/patientsof/%s/'%str(doctor2.id))
-    assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
+    assert response.status_code == 403, "Error! Expected 404, get %d" % response.status_code
     print("Pass!")
 
     print("Testing doctor GET of non-existed doctor.", end=" ")
     response = client.get('/api/patientsof/%s/'%str(uuid.uuid4()))
-    assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
+    assert response.status_code == 403, "Error! Expected 404, get %d" % response.status_code
     print("Pass!")
 
 
@@ -346,8 +477,16 @@ def run():
     print("Pass!")
 
 
-
+    #================
+    '''
+    all in facility 1
+    '''
     print("\n======= api/doctorof/<uuid:patient>/ ========")
+    logout(client)
+    login(client, doctor2)
+    print("Testing patient PUT.", end=" ")
+    response = client.put('/api/belongsto/%s/'%str(facility1.id), {'user':str(doctor2.id)})
+    assert response.status_code == 200, "Incorrect status code: %s" %(str(response.status_code))
     print('--- Valid requests ---' )
     # Test patient GET
     # login as user 1
@@ -405,13 +544,13 @@ def run():
     print("Testing doctor non-exist GET.", end=' ')
     response = client.post('/api/login/',  {'username': doctor1.username, 'password':password})
     response = client.get('/api/doctorof/%s/'%str(uuid.uuid4()))
-    assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
+    assert response.status_code == 403, "Error! Expected 404, get %d" % response.status_code
     print("Pass!")
 
     print("Testing doctor non-exist PUT.", end=' ')
     response = client.post('/api/login/',  {'username': doctor1.username, 'password':password})
     response = client.put('/api/doctorof/%s/'%str(uuid.uuid4()), {'doctor_id':doctor1.id})
-    assert response.status_code == 404, "Error! Expected 404, get %d" % response.status_code
+    assert response.status_code == 403, "Error! Expected 404, get %d" % response.status_code
     print("Pass!")
 
     print("Testing patient PUT empty.", end=" ")
@@ -419,7 +558,8 @@ def run():
     assert response.status_code == 400, "Error! Expected 400, get %d" % response.status_code
     print("Pass!")
 
-    print("\n======= api/patientsof/<uuid:doctor>/ ========")
+
+    print("\n======= api/doctors/ ========")
     print('--- Valid requests ---' )
     # login as doctor1
     response = client.post('/api/login/', {'username': doctor1.username, 'password':password})
@@ -432,3 +572,4 @@ def run():
     print("Pass!")
 
     print('')
+    
