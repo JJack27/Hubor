@@ -68,3 +68,23 @@ class PatientStatus(models.Model):
     
     RISK_LEVELS = [(0,'LOW'), (1, 'MID'), (2, 'HIGH')]
     risk = models.IntegerField(default=0, null=False, choices=RISK_LEVELS)
+
+
+'''
+Health Care Facilities
+'''
+class Facilities(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    name = models.TextField(max_length=100)
+    address = models.TextField(max_length=150)
+    phone = models.TextField(max_length=20)
+    description = models.TextField(max_length=400, null=True)
+
+'''
+Relationship between facilities and users
+'''
+class BelongsToFacilities(models.Model):
+    id = models.AutoField(primary_key=True)
+    since = models.DateTimeField(auto_now_add=True)
+    facility = models.ForeignKey(Facilities, on_delete=models.CASCADE, related_name='having')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='belongsto')
