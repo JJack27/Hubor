@@ -196,7 +196,8 @@ This will run at the IP address of your local machine with the port 8000
                 "date_of_birth": datetime, 
                 "notes": String, 
                 "phone": String,
-                "status": List<int>   
+                "status": List<int>,
+                "facility": <Facility>
             }
         }
         ```
@@ -223,7 +224,8 @@ This will run at the IP address of your local machine with the port 8000
                     "date_of_birth": datetime, 
                     "notes": String, 
                     "phone": String,
-                    "status": List<int> 
+                    "status": List<int>,
+                    "facility": <Facility>
                 },
                 {
                     "id": UUID,
@@ -235,7 +237,8 @@ This will run at the IP address of your local machine with the port 8000
                     "date_of_birth": datetime, 
                     "notes": String, 
                     "phone": String,
-                    "status": List<int> 
+                    "status": List<int>,
+                    "facility": <Facility>
                 }
             ]
         ```
@@ -288,7 +291,8 @@ This will run at the IP address of your local machine with the port 8000
                 "date_of_birth": datetime, 
                 "notes": String, 
                 "phone": String,
-                "status": List<int> 
+                "status": List<int>,
+                "facility": <Facility>
             }
         }
         ```
@@ -310,16 +314,132 @@ This will run at the IP address of your local machine with the port 8000
                     "first_name": String,
                     "last_name": String,
                     "since": DateTime,
-                    "user_type": int  
+                    "user_type": int ,
+                    "facility": <Facility>
                 },
                 {
                     "id": UUID,
                     "first_name": String,
                     "last_name": String,
                     "since": DateTime,
-                    "user_type": int  
+                    "user_type": int ,
+                    "facility": <Facility>
                 }
             ]
+        ```
+</p>
+</details>
+
+[comment]: # ("/api/facilities/")
+<details><summary><code>/api/facilities/</code>
+</summary>
+<p>
+- GET: Get a all facilities. Only short information included
+- POST: Create a facility.
+
+- `GET`
+    - Response
+        ```json
+            [
+                {
+                    "id": UUID,
+                    "name": String,
+                    "address": String,
+                    "phone": String,
+                    "Description": String
+                },
+                {
+                    "id": UUID,
+                    "name": String,
+                    "address": String,
+                    "phone": String,
+                    "Description": String
+                }
+            ]
+        ```
+- `POST`
+    - Request
+        ```json
+        {
+            "id": UUID,
+            "name": String,
+            "address": String,
+            "phone": String,
+            "Description": String
+        }
+        ```
+    - Response
+        ```json
+        {
+            "id": UUID,
+            "name": String,
+            "address": String,
+            "phone": String,
+            "Description": String
+        }
+        ```
+</p>
+</details>
+
+[comment]: # ("/api/belongsto/<uuid:facility>")
+<details><summary><code>/api/belongsto/[uuid:facility]</code>
+</summary>
+<p>
+- GET: Get a all user belongs to given facility
+- PUT: Create a belongs to relationship
+
+- `GET`
+    - Response
+        ```json
+        [
+            {
+                "id": UUID,
+                "user": {
+                    'id': UUID, 
+                    'first_name': String, 
+                    'last_name': String, 
+                    'user_type': int, 
+                    'gender': int, 
+                    'belongs_to': UUID
+                },
+                "facility":{
+                    "id": UUID,
+                    "name": String,
+                    "address": String,
+                    "phone": String,
+                    "Description": String
+                }
+            },
+            ...
+        ]
+        ```
+- `PUT`
+    - Request
+        ```json
+        {
+            "user": UUID
+        }
+        ```
+    - Response
+        ```json
+        {
+            "id": UUID,
+            "user": {
+                'id': UUID, 
+                'first_name': String, 
+                'last_name': String, 
+                'user_type': int, 
+                'gender': int, 
+                'belongs_to': UUID
+            },
+            "facility":{
+                "id": UUID,
+                "name": String,
+                "address": String,
+                "phone": String,
+                "Description": String
+            }
+        }
         ```
 </p>
 </details>
