@@ -167,6 +167,7 @@ def run():
     request_payload = {'mac_addr':'01:23:45:67:89:AB'}
     bracelets = {}
     response = client.post('/api/bracelet/'+str(user1.id)+'/', request_payload)
+    assert response.status_code == 200, "Incorrect status code %d"%response.status_code
     bracelets[response.data['bracelet']['id']] = response.data['bracelet']
     assert str(user1.id) == str(response.data['bracelet']['owner']), "Owner ID is not the same."
     assert request_payload['mac_addr'] == response.data['bracelet']['mac_addr'], "Mac address is not the same"
@@ -572,4 +573,3 @@ def run():
     print("Pass!")
 
     print('')
-    

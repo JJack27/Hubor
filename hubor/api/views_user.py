@@ -191,30 +191,36 @@ class BraceletAPI(APIView):
     '''
     def post(self, request, *args, **kwargs):
         owner = kwargs['owner']
-        request_body = request.data
+        print(request.data)
+        request_body = dict(request.data)
         request_body['owner'] = owner
         response = {'query':'bracelet'}
         response['bracelet'] = {}
+
         # validate if user exist
         try:
-            r_owner = User.objects.get(id=owner)
+            owner = User.objects.get(id=owner)
         except:
             return Response(response, status=404)
         
         # validate mac_addr
         try:
+            print(request_body)
             valid = re.search('^([0-9A-Faf]{2}[:-]){5}([0-9A-Faf]{2})$', request_body['mac_addr'])
+            print(valid)
             if valid:
                 serializer = BraceletSerializer(data = request_body)
+                print(serializer)
                 if(serializer.is_valid()):
                     bracelet = serializer.save()
                     response['bracelet'] = BraceletSerializer(bracelet).data
+                    
                     return Response(response, status=200)
                 
-            return Response(response, status=401)
+            return Response(response, status=400)
         except Exception as e:
             print(e)
-            return Response(response, status=401)
+            return Response(response, status=400)
     
     '''
     GET
