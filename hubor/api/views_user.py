@@ -51,7 +51,7 @@ class RegisterView(APIView):
         # validate date of birth
         date_of_birth = datetime.datetime.strptime(request_body['date_of_birth'], '%Y-%m-%d')
         if date_of_birth > datetime.datetime.now():
-            return Response(response, status=401)
+            return Response(response, status=400)
         
         # parse request
         user = User(
@@ -91,7 +91,7 @@ class RegisterView(APIView):
             return Response(response, status=200)
         except Exception as e:
             print(e)
-            return Response(response, status=401)
+            return Response(response, status=400)
     
 # Login API
 # /api/login/

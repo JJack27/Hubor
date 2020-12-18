@@ -98,7 +98,7 @@ def run():
     print('* date_of_birth *')
     response = client.post('/api/register/', request_payload)
     print("Status = ", response.status_code)
-    assert response.status_code == 401
+    assert response.status_code == 400
     print("OK")
     
     print("* user_type * ")
@@ -106,7 +106,7 @@ def run():
     response = client.post('/api/register/', request_payload)
     print("Status = ", response.status_code)
     request_payload['user_type'] = 1
-    assert response.status_code == 401 
+    assert response.status_code == 400 
     print("OK")
 
     print('* gender *')
@@ -114,7 +114,7 @@ def run():
     response = client.post('/api/register/', request_payload)
     print("Status = ", response.status_code)
     request_payload['gender'] = 1
-    assert response.status_code == 401
+    assert response.status_code == 400
     print("OK")
 
     print('* notes *')
@@ -122,7 +122,7 @@ def run():
     response = client.post('/api/register/', request_payload)
     print("Status = ", response.status_code)
     request_payload['notes'] = '123'
-    assert response.status_code == 401
+    assert response.status_code == 400
     print("OK")
 
 
@@ -212,14 +212,14 @@ def run():
     request_payload = {'mac_addr':'01:23:45:67:89:GF'}
     print("\tmac_addr = %s."%(request_payload['mac_addr']), end=" ")
     response = client.post('/api/bracelet/'+str(user1.id)+'/', request_payload)
-    assert response.status_code == 401, "\nIncorrect status code: %s" %(str(response.status_code))
+    assert response.status_code == 400, "\nIncorrect status code: %s" %(str(response.status_code))
     assert response.data['bracelet'] == {}, "\nNon-empty response: %s" %(str(response.data['bracelet'])) 
     print("Pass!")
 
     request_payload = {'mac_addr':'23:45:67:89:GF'}
     print("\tmac_addr = %s."%(request_payload['mac_addr']), end=" ")
     response = client.post('/api/bracelet/'+str(user1.id)+'/', request_payload)
-    assert response.status_code == 401, "\nIncorrect status code: %s" %(str(response.status_code))
+    assert response.status_code == 400, "\nIncorrect status code: %s" %(str(response.status_code))
     assert response.data['bracelet'] == {}, "\nNon-empty response: %s" %(str(response.data['bracelet'])) 
     print("Pass!")
 
