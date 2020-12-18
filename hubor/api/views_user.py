@@ -191,7 +191,6 @@ class BraceletAPI(APIView):
     '''
     def post(self, request, *args, **kwargs):
         owner = kwargs['owner']
-        print(request.data)
         request_body = dict(request.data)
         request_body['owner'] = owner
         response = {'query':'bracelet'}
@@ -205,12 +204,9 @@ class BraceletAPI(APIView):
         
         # validate mac_addr
         try:
-            print(request_body)
             valid = re.search('^([0-9A-Faf]{2}[:-]){5}([0-9A-Faf]{2})$', request_body['mac_addr'])
-            print(valid)
             if valid:
                 serializer = BraceletSerializer(data = request_body)
-                print(serializer)
                 if(serializer.is_valid()):
                     bracelet = serializer.save()
                     response['bracelet'] = BraceletSerializer(bracelet).data
