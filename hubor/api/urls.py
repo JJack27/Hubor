@@ -23,6 +23,7 @@ urlpatterns = [
     path('shortdoctors/', ShortDoctorsAPI.as_view()),
     path('facilities/', FacilitiesAPI.as_view()),
     path('belongsto/<uuid:facility>/', BelongsToAPI.as_view()),
+    path('myinfo/', MyInfoAPI.as_view()),
 
     # Data related
     path('data/<uuid:pk>/', DataAPI.as_view()),

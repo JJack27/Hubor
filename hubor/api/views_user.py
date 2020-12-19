@@ -39,6 +39,42 @@ def isAdmin(request) -> bool:
 ================ END HELPER FUNCTIONS ================
 '''
 
+'''
+Get basic information of current logged in user
+'''
+class MyInfoAPI(APIView):
+    model = User
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    GET
+    - Get basic information of current logged in user
+    - Response
+        {
+            "id": UUID,
+            "first_name": String,
+            "last_name": String,
+            "date_joined": DateTime,
+            "user_type": int,
+            "gender": int,
+            "facility": <facility>,
+            "phone": String,
+            "email": String
+        }
+    '''
+    def get(self, request, *args, **kwargs):
+        # see if requesting user is anonymous
+        try:
+            id = request.user.id
+        except:
+            return Response({}, status=403)
+        
+        data = BaseUserSerializer(request.user).data
+        return Response(data, status=200)
+
 
 # Register API
 # /api/register/
@@ -103,18 +139,18 @@ class LoginView(APIView):
     def post(self, request, *args, **kwargs):
         session = request.session 
         request_body = request.data
-        response = {'query': 'login'}
         user = request.user
         user_cache = authenticate(request, username=request_body['username'], password=request_body['password'])
         
         try:
             login(request, user_cache, backend='django.contrib.auth.backends.ModelBackend')
         except:
-            return Response(response, status=403)
+            return Response({}, status=403)
         else:
             if user_cache == None:
-                return Response(response, status=403)
-            response = {"id": user_cache.id}
+                return Response({}, status=403)
+            query = User.objects.get(id = user_cache.id)
+            response = BaseUserSerializer(query).data
             return Response(response, status=200)
     
 # Logout View
@@ -606,6 +642,7 @@ class DoctorsAPI(APIView):
         try:
             # setting up the query
             query = User.objects.filter(user_type=1)
+            '''
             valid_query = []
             for doctor in query:
                 try:
@@ -613,7 +650,8 @@ class DoctorsAPI(APIView):
                     valid_query.append(doctor)
                 except:
                     pass
-            data = EmergencyUserSerializer(valid_query, many=True).data
+            '''
+            data = EmergencyUserSerializer(query, many=True).data
             return Response(data, status=200)
         except Exception as e:
             print(e)
@@ -647,6 +685,7 @@ class ShortDoctorsAPI(APIView):
         try:
             # setting up the query
             query = User.objects.filter(user_type=1)
+            '''
             valid_query = []
             for doctor in query:
                 try:
@@ -654,7 +693,8 @@ class ShortDoctorsAPI(APIView):
                     valid_query.append(doctor)
                 except:
                     pass
-            data = EmergencyUserSerializer(valid_query, many=True).data
+            '''
+            data = EmergencyUserSerializer(query, many=True).data
             return Response(data, status=200)
         except Exception as e:
             print(e)

@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'accounts',
     'data',
     'configurations',
-    'notification'
+    'notification',
+
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',   
 ]
 
 ROOT_URLCONF = 'hubor.urls'
@@ -153,3 +154,12 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+'''
+# Using for test
+CORS_ALLOWED_ORIGINS = [
+    "http://192.168.1.64:8080",
+]
+'''
+
+SESSION_COOKIE_HTTPONLY = False

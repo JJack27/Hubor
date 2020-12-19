@@ -27,7 +27,7 @@ const mutations = {
     state.firstName = userInfo.first_name;
     state.lastName = userInfo.last_name;
     state.userType = userInfo.user_type;
-    state.since = userInfo.since;
+    state.since = userInfo.date_joined;
     state.phone = userInfo.phone;
     state.email = userInfo.email;
     state.dateOfBirth = userInfo.date_of_birth
@@ -49,7 +49,7 @@ const mutations = {
 // actions
 const actions = {
   login : ({commit, state}, userInfo) => {
-    commit('updateUserInfo', userInfo);
+    commit('updateInfo', userInfo);
   },
 
   logout : ({commit, state}) => {

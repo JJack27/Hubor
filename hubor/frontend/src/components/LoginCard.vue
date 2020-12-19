@@ -18,7 +18,7 @@
           <template #prefix><LockOutlined :style="{fontSize: '16px', color: '#918de0'}"/></template>
         </a-input-password>
       </a-form-item>
-
+    
       <a-form-item >
         <a-button id="login-button" type="primary" @click="onSubmit">
           Login
@@ -37,6 +37,12 @@ export default {
   components:{
     UserOutlined,
     LockOutlined
+  },
+
+  mounted(){
+    if(this.$getCookie('sessionid') != null){
+      this.$router.push("dashboard");
+    }
   },
 
   data() {
@@ -60,12 +66,23 @@ export default {
        
     };
   },
+  
   methods: {
     onSubmit() {
       this.$refs.loginFormRef
         .validate()
         .then(() => {
-          console.log('values', this.form);
+          this.$post('api/login/', this.form)
+            .then((response) =>{
+              this.$store.dispatch("accounts/login", response.data)
+              .then(()=>{
+                // Route to the dash board page
+                this.$router.push("dashboard");
+                });
+            })
+            .catch((error) => {
+              console.log(error);
+            })
         })
         .catch(error => {
           console.log('error', error);
@@ -95,7 +112,7 @@ export default {
   z-index: 100;
   opacity: 100;
   width: 200pt;
-  margin-top: 25% !important;
+  margin-top: 120pt !important;
   border-radius: 90px !important;
 	height: 40pt !important ;
 }

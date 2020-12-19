@@ -10,13 +10,32 @@ class BraceletSerializer(serializers.ModelSerializer):
         model = Bracelet
         fields = '__all__'
 
+class BaseUserSerializer(serializers.ModelSerializer):
+    facility = serializers.SerializerMethodField('get_facility')
+
+    def get_facility(self, obj):
+        try:
+            query = BelongsToFacilities.objects.get(user=obj.id)
+            facility = query.facility
+            return FacilitySerializer(facility).data
+        except:
+            return {'id': 'null'}
+
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'user_type', 'gender', 'facility', 
+                    'date_joined', 'date_of_birth', 'phone', 'email']
+
 class EmergencyUserSerializer(serializers.ModelSerializer):
     facility = serializers.SerializerMethodField('get_facility')
 
     def get_facility(self, obj):
-        query = BelongsToFacilities.objects.get(user=obj.id)
-        facility = query.facility
-        return FacilitySerializer(facility).data
+        try:
+            query = BelongsToFacilities.objects.get(user=obj.id)
+            facility = query.facility
+            return FacilitySerializer(facility).data
+        except:
+            return {'id': 'null'}
 
     class Meta:
         model = User
@@ -27,9 +46,12 @@ class ShortDoctorsSerializer(serializers.ModelSerializer):
     facility = serializers.SerializerMethodField('get_facility')
 
     def get_facility(self, obj):
-        query = BelongsToFacilities.objects.get(user=obj.id)
-        facility = query.facility
-        return FacilitySerializer(facility).data
+        try:
+            query = BelongsToFacilities.objects.get(user=obj.id)
+            facility = query.facility
+            return FacilitySerializer(facility).data
+        except:
+            return {'id': 'null'}
 
     class Meta:
         model = User
@@ -47,9 +69,12 @@ class PatientSerializer(serializers.ModelSerializer):
     facility = serializers.SerializerMethodField('get_facility')
 
     def get_facility(self, obj):
-        query = BelongsToFacilities.objects.get(user=obj.id)
-        facility = query.facility
-        return FacilitySerializer(facility).data
+        try:
+            query = BelongsToFacilities.objects.get(user=obj.id)
+            facility = query.facility
+            return FacilitySerializer(facility).data
+        except:
+            return {'id': 'null'}
     class Meta:
         model = User
         fields = ['id', 'first_name', 'last_name', 'user_type', 'height', 'weight', 'date_of_birth', 'notes', 'phone', 'status', 'facility']
@@ -61,9 +86,12 @@ class UserBelongsToSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField('get_user')
 
     def get_facility(self, obj):
-        query = Facilities.objects.get(id=obj.facility_id)
-        facility = FacilitySerializer(query).data
-        return facility
+        try:
+            query = Facilities.objects.get(id=obj.facility_id)
+            facility = FacilitySerializer(query).data
+            return facility
+        except:
+            return None
     
     def get_user(self, obj):
         query = User.objects.get(id=obj.user_id)
