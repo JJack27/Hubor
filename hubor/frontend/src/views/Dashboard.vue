@@ -10,8 +10,9 @@ export default {
 
     mounted(){
         
-        // redirect user to the login page if the session expired
-        if(this.$getCookie('sessionid') === null){
+        // redirect user to the login page if the sessionid and csrtoken doesn't exist
+        if(this.$getCookie('sessionid') === null
+            && this.$getCookie('csrftoken') === null){
             this.$router.push('/');
         }else{
             // if currentUserInfo is empty but the session exists. Get from the server

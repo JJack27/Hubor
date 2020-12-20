@@ -150,7 +150,7 @@
 
 #login-card{
   width: 100%;
-  
+
 }
 </style>
 

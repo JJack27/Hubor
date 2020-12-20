@@ -1,6 +1,6 @@
 <template>
   
-    <a-form 
+    <a-form
       ref='loginFormRef'
       :model="form" 
       :rules="rules"
@@ -18,7 +18,13 @@
           <template #prefix><LockOutlined :style="{fontSize: '16px', color: '#918de0'}"/></template>
         </a-input-password>
       </a-form-item>
-    
+
+      <a-form-item name="keeplogged">
+        <a-checkbox v-model:checked="keeplogged">
+          <span>Keep me logged in</span>
+        </a-checkbox>
+      </a-form-item>
+
       <a-form-item >
         <a-button id="login-button" type="primary" @click="onSubmit">
           Login
@@ -40,7 +46,11 @@ export default {
   },
 
   mounted(){
-    if(this.$getCookie('sessionid') != null){
+    // if sessionid && csrftoken && keeplogged exists in cookie, redirect to dashboard
+    // means the user want's to stay logged-in
+    if(this.$getCookie('sessionid') != null 
+      && this.$getCookie('csrftoken') != null
+      && this.$getCookie('keeplogged') != null){
       this.$router.push("dashboard");
     }
   },
@@ -49,6 +59,7 @@ export default {
     return {
       labelCol: { span: 4 },
       wrapperCol: { span: 24 },
+      keeplogged: false,
       form: {
         username: '',
         password: '',
@@ -76,16 +87,21 @@ export default {
             .then((response) =>{
               this.$store.dispatch("accounts/login", response.data)
               .then(()=>{
+                // if the user wants to kept logged in. set the cookie
+                if(this.keeplogged){
+                  this.$setCookie('keeplogged', 1, 30);
+                }
+
                 // Route to the dash board page
                 this.$router.push("dashboard");
-                });
-            })
-            .catch((error) => {
-              console.log(error);
+              });
+            }).catch(error =>{
+                  this.$message.error("Login failed!\nPlease check you username or password.");
             })
         })
         .catch(error => {
-          console.log('error', error);
+          console.log(error);
+          this.$message.error("Login failed!\nPlease check you username or password.");
         });
     },
   },
@@ -108,11 +124,15 @@ export default {
   z-index: 100; 
 }
 
+.ant-checkbox-wrapper {
+  z-index: 100;
+}
+
 #login-button{
   z-index: 100;
   opacity: 100;
   width: 200pt;
-  margin-top: 120pt !important;
+  margin-top: 50pt !important;
   border-radius: 90px !important;
 	height: 40pt !important ;
 }
