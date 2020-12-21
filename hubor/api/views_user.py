@@ -51,18 +51,19 @@ class RegisterView(APIView):
         # validate date of birth
         date_of_birth = datetime.datetime.strptime(request_body['date_of_birth'], '%Y-%m-%d')
         if date_of_birth > datetime.datetime.now():
-            return Response(response, status=401)
+            return Response(response, status=400)
+        
         
         # parse request
         user = User(
             username = request_body['username'],
             email = request_body['email'],
-            height = request_body['height'],
-            weight = request_body['weight'],
-            user_type = request_body['user_type'],
+            height = float(request_body['height']),
+            weight = float(request_body['weight']),
+            user_type = int(request_body['user_type']),
             phone = request_body['phone'],
             date_of_birth = request_body['date_of_birth'],
-            gender = request_body['gender'],
+            gender = int(request_body['gender']),
             notes = request_body['notes'],
             first_name = request_body['first_name'],
             last_name = request_body['last_name']
