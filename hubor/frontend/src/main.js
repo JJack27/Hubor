@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import 'ant-design-vue/dist/antd.less';
 
-import {Button, Form, Input, Icon, Checkbox, Card, Row, Col} from 'ant-design-vue'
+import {Button, Form, Input, Icon, Checkbox, Card, Row, Col, message} from 'ant-design-vue'
 import Axios from 'axios';
 
 
@@ -26,6 +26,16 @@ app.config.globalProperties.$getCookie = function(name) {
         }
     }
     return cookieValue;
+}
+
+app.config.globalProperties.$setCookie = function (name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
 
 app.config.globalProperties.$post = async function(url, body) {
@@ -50,6 +60,8 @@ app.config.globalProperties.$get = async function(url) {
         }
     )
 }
+
+app.config.globalProperties.$message = message;
 
 app.use(store)
     .use(router)
