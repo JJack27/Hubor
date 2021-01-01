@@ -1,0 +1,1 @@
+./deploy.sh ~/Document/Hubor/hubor/ hubor
