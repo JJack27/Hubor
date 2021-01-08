@@ -19,6 +19,8 @@ sudo apt install python3-pip
 # install required libraries
 pip3 install virtualenv
 virtualenv -p python3 "$1"
+source 
+
 # migrate the database
 # initialize the project
 # build the frontend project

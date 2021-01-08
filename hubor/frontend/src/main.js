@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import 'ant-design-vue/dist/antd.less';
 
-import {Button, Form, Input, Icon, Checkbox, Card, Row, Col, message} from 'ant-design-vue'
+import {Button, Form, Input, Icon, Checkbox, Card, Row, Col, message, Layout, Menu} from 'ant-design-vue'
 import Axios from 'axios';
 
 
@@ -74,4 +74,9 @@ app.use(store)
     .use(Card)
     .use(Row)
     .use(Col)
+    .use(Layout)
+    .use(Layout.Footer)
+    .use(Layout.Sider)
+    .use(Layout.Header)
+    .use(Menu)
     .mount('#app');

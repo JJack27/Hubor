@@ -142,7 +142,6 @@ class LoginView(APIView):
         request_body = request.data
         user = request.user
         user_cache = authenticate(request, username=request_body['username'], password=request_body['password'])
-        
         try:
             login(request, user_cache, backend='django.contrib.auth.backends.ModelBackend')
         except:
