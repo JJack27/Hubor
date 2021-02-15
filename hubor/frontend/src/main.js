@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import 'ant-design-vue/dist/antd.less';
 
-import {Button, Form, Input, Icon, Checkbox, Card, Row, Col, message, Layout, Menu} from 'ant-design-vue'
+import {Button, Form, Input, Icon, Checkbox, Card, Row, Col, message, Layout, Menu, Avatar} from 'ant-design-vue'
 import Axios from 'axios';
 
 
@@ -64,19 +64,20 @@ app.config.globalProperties.$get = async function(url) {
 app.config.globalProperties.$message = message;
 
 app.use(store)
-    .use(router)
+    .use(Avatar)
     .use(Button)
+    .use(Card)
+    .use(Checkbox)
+    .use(Col)
     .use(Form)
+    .use(Form.Item)
     .use(Icon)
     .use(Input)
-    .use(Form.Item)
-    .use(Checkbox)
-    .use(Card)
-    .use(Row)
-    .use(Col)
     .use(Layout)
     .use(Layout.Footer)
     .use(Layout.Sider)
     .use(Layout.Header)
     .use(Menu)
+    .use(router)
+    .use(Row)
     .mount('#app');

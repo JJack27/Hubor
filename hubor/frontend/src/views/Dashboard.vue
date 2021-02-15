@@ -89,12 +89,10 @@ export default {
                     // update user info in the store.
                     this.$store.dispatch('login', response.data)
                       .then(() => {
-                        console.log("Dispatched!");
-                        console.log(this.$store.getters.currentUserInfo.id);
                         // if current user is a doctor, get his/her patients
                         this.$get('api/patientsof/'+ this.$store.getters.userId +'/')
                           .then((response) => {
-                            console.log(response.data);
+                            this.$store.dispatch('addPatients', response.data);
                           }).catch((error) => {
                             console.log(error);
                           });
