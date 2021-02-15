@@ -13,32 +13,34 @@
       </div>
       <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
         <a-menu-item key="1">
-          <user-outlined />
-          <span class="nav-text">nav 1</span>
+          <PieChartFilled />
+          <span class="nav-text">Home</span>
         </a-menu-item>
         <a-menu-item key="2">
-          <video-camera-outlined />
-          <span class="nav-text">nav 2</span>
+          <ExclamationCircleFilled />
+          <span class="nav-text">Notifications</span>
         </a-menu-item>
         <a-menu-item key="3">
-          <upload-outlined />
-          <span class="nav-text">nav 3</span>
-        </a-menu-item>
-        <a-menu-item key="4">
-          <user-outlined />
-          <span class="nav-text">nav 4</span>
+          <EditFilled />
+          <span class="nav-text">My Info</span>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
     <a-layout>
+      <!-- Header -->
       <a-layout-header :style="{ background: '#fff', padding: 0 }">
-        
       </a-layout-header>
+
+      <!-- Content -->
       <a-layout-content :style="{ margin: '24px 16px 0' }">
         <div :style="{ padding: '24px', background: '#fff', minHeight: '83vh'}">
-          content
+          <patients-page v-if="selectedKeys=='1'"/>
+          <notification-page v-else-if="selectedKeys=='2'"/>
+          <my-info-page v-else-if="selectedKeys=='3'"/>
         </div>
       </a-layout-content>
+
+      <!-- Footer -->
       <a-layout-footer style="textAlign: center; bottom:0;">
         Vital Sign Project ©2021 Created by Yizhou Zhao
       </a-layout-footer>
@@ -48,24 +50,34 @@
 
 
 <script>
-import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue';
+// Icons
+import { EditFilled, ExclamationCircleFilled, PieChartFilled, } from '@ant-design/icons-vue';
+
+// Components
+import MyInfoPage from './MyInfoPage.vue';
+import PatientsPage from './PatientsPage.vue';
+import NotificationPage from './NotificationPage.vue';
 
 export default {
     name: "Dashboard",
 
     data() {
         return {
-            selectedKeys: ['4'],
+            selectedKeys: ['1'],
         };
     },
     components: {
-        UserOutlined,
-        VideoCameraOutlined,
-        UploadOutlined,
+        ExclamationCircleFilled,
+        PieChartFilled,
+        EditFilled,
+
+        MyInfoPage,
+        PatientsPage,
+        NotificationPage,
     },
 
     mounted(){
-        /*
+        
         // redirect user to the login page if the sessionid and csrtoken doesn't exist
         if(this.$getCookie('sessionid') === null
             && this.$getCookie('csrftoken') === null){
@@ -75,14 +87,27 @@ export default {
             this.$get('api/myinfo/')
                 .then((response) => {
                     // update user info in the store.
-                    this.$store.dispatch('accounts/login', response.data);
+                    this.$store.dispatch('login', response.data)
+                      .then(() => {
+                        console.log("Dispatched!");
+                        console.log(this.$store.getters.currentUserInfo.id);
+                        // if current user is a doctor, get his/her patients
+                        this.$get('api/patientsof/'+ this.$store.getters.userId +'/')
+                          .then((response) => {
+                            console.log(response.data);
+                          }).catch((error) => {
+                            console.log(error);
+                          });
+                      });
                 }).catch((error) =>{
                     // redirect it to the home page if getting error
                     console.log(error);
                     this.$router.push('/');
-                })
+                });
+            
+            
         }
-        */
+        
     },
 
     methods: {

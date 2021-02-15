@@ -85,7 +85,7 @@ export default {
         .then(() => {
           this.$post('api/login/', this.form)
             .then((response) =>{
-              this.$store.dispatch("accounts/login", response.data)
+              this.$store.dispatch("login", response.data)
               .then(()=>{
                 // if the user wants to kept logged in. set the cookie
                 if(this.keeplogged){

@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Test from '../views/Test.vue'
 import Dashboard from '../views/Dashboard.vue';
 
+
 const routes = [
   {
     path: '/',
@@ -17,7 +18,7 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: Dashboard
+    component: Dashboard,
   },
   {
     path: '/about',

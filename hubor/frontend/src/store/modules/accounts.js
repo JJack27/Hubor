@@ -1,21 +1,28 @@
 // initial state
-// shape: [{ id, quantity }]
 const state = () => ({
-  id:"",
-  firstName: "",
-  lastName: "",
-  userType:1,
-  since: "",
-  phone: "",
-  email: "",
-  dateOfBirth: ""
+  currentUser:{
+    id:"",
+    firstName: "",
+    lastName: "",
+    userType:1,
+    since: "",
+    phone: "",
+    email: "",
+    dateOfBirth: ""
+  }
+
+  
 });
   
 // getters
 const getters = {
   currentUserInfo: (state) => {
-    return state;
+    return state.currentUser;
   },
+
+  userId :(state) => {
+    return state.currentUser.id;
+  }
 
 
 }
@@ -23,25 +30,25 @@ const getters = {
 // mutations
 const mutations = {
   updateInfo: (state, userInfo) =>{
-    state.id = userInfo.id;
-    state.firstName = userInfo.first_name;
-    state.lastName = userInfo.last_name;
-    state.userType = userInfo.user_type;
-    state.since = userInfo.date_joined;
-    state.phone = userInfo.phone;
-    state.email = userInfo.email;
-    state.dateOfBirth = userInfo.date_of_birth
+    state.currentUser.id = userInfo.id;
+    state.currentUser.firstName = userInfo.first_name;
+    state.currentUser.lastName = userInfo.last_name;
+    state.currentUser.userType = userInfo.user_type;
+    state.currentUser.since = userInfo.date_joined;
+    state.currentUser.phone = userInfo.phone;
+    state.currentUser.email = userInfo.email;
+    state.currentUser.dateOfBirth = userInfo.date_of_birth
   },
 
   clearInfo: (state) => {
-    state.id = "",
-    state.firstName = "",
-    state.lastName = "",
-    state.userType = 1,
-    state.since = "",
-    state.phone = "",
-    state.email = "",
-    state.dateOfBirth = ""
+    state.currentUser.id = "",
+    state.currentUser.firstName = "",
+    state.currentUser.lastName = "",
+    state.currentUser.userType = 1,
+    state.currentUser.since = "",
+    state.currentUser.phone = "",
+    state.currentUser.email = "",
+    state.currentUser.dateOfBirth = ""
   }
   
 }
@@ -59,7 +66,7 @@ const actions = {
 }
   
 export default {
-  namespaced: true,
+  namespaced: false,
   state,
   getters,
   actions,
