@@ -122,6 +122,7 @@ class RegisterView(APIView):
                 'first_name': user.first_name,
                 'last_name': user.last_name
             }
+            # Create accompany status of current patient
             if(user.user_type == 0):
                 status = PatientStatus(patient = user, risk=0)
                 status.save()
