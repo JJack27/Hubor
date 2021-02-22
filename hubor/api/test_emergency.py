@@ -5,53 +5,17 @@ import uuid
 import datetime
 from accounts.models import *
 from data.models import *
+from .test_util import *
 
 def run():
     client = APIClient()
+    password = "Apple"
     print("\n======== Testing views_emergency.py ========")
     # Creating user
-    print("Creating user...", end=" ")
-    username = str(random.random())
-    last4digits = str(random.randint(1000,9999))
-    email = str(random.randint(100000, 9999999)) + "@ualberta.ca"
-    password = "Apple"
-    request_payload = {   
-            "username": username,
-            "email": email,
-            'height': 175,
-            'weight': 63,
-            'user_type': 0,
-            'phone':'780-995-'+last4digits,
-            'date_of_birth': datetime.date(2010, 1, 1),
-            'gender':0,
-            'notes':'123123',
-            'password':password
-        }
-    response = client.post('/api/register/', request_payload)
-    assert response.status_code == 200, "Not pass!"
-    user = User.objects.get(id=response.data['data']['id'])
+    user = create_user(client, 0)
     
     # Creating a doctor user
-    username = str(random.random())
-    last4digits = str(random.randint(1000,9999))
-    email = str(random.randint(100000, 9999999)) + "@ualberta.ca"
-    password = "Apple"
-    request_payload = {   
-            "username": username,
-            "email": email,
-            'height': 175,
-            'weight': 63,
-            'user_type': 1,
-            'phone':'780-995-'+last4digits,
-            'date_of_birth': datetime.date(2010, 1, 1),
-            'gender':1,
-            'notes':'123123',
-            'password':password
-        }
-    response = client.post('/api/register/', request_payload)
-    assert response.status_code == 200, "Not pass!"
-    doctor = User.objects.get(id=response.data['data']['id'])
-    print("Pass!")
+    doctor = create_user(client, 1)
 
     # login user
     print("Logging in user...", end=" ")
@@ -72,18 +36,48 @@ def run():
         "longitude": 129.3,
         "latitude": -80,
         "configuration": 1,
+        "risk": 2
     }
     print('Testing adding emergency events.', end=" ")
     response = client.post('/api/emergency/%s/'%str(user.id), request_payload)
     assert response.status_code == 200, "Incorrect status code, expecting 200, get %d"%(response.status_code)
+    
+    # assign user to doctor
+    login(client, doctor)
+    facility = create_facility(client, "Alibaba")
+    request_payload = {"user": str(doctor.id)}
+    response = client.put('/api/belongsto/%s/'%(str(facility.id)), request_payload)
+    assert response.status_code == 200, "User is not assigned to the facility!"
+
+    request_payload['user'] = str(user.id)
+    response = client.put('/api/belongsto/%s/'%(str(facility.id)), request_payload)
+    assert response.status_code == 200, "Doctor is not assigned to the facility!"
+
+    response = client.post('/api/takecareof/%s/%s/'%(str(doctor.id), str(user.id)), {})
+    assert response.status_code == 200, "User is not assigned to the doctor!"
+
+
+    # Testing user's status is up-to-date
+    response = client.get('/api/patientsof/%s/'%str(doctor.id))
+    assert response.status_code == 200, "Incorrect status code, expecting 200, get %d"%(response.status_code)
+    assert len(response.data) == 1, "Incorrect length, expecting 1, get %d" % (len(response.data))
+    assert response.data[0]['id'] == str(user.id), "ID: doesn't match"
+    print(response.data[0]['status'])
+    assert response.data[0]['status'][0] == 2, "status: doesn't match"
     print("Pass!")
 
     # Testing GET
+    request_payload = {
+        "longitude": 129.3,
+        "latitude": -80,
+        "configuration": 1,
+        "risk": 2
+    }
     print('Testing getting emergency events.', end=" ")
     response = client.get('/api/emergency/%s/'%str(user.id))
     assert response.status_code == 200, "Incorrect status code, expecting 200, get %d"%(response.status_code)
-    assert len(response.data['data']) == 1, "Incorrect response length, expecting 1, get %d."%len(response.body['data'])
-    assert float(response.data['data'][0]["longitude"]) == float(request_payload['longitude']), "Incorrect longitude, expect %s, get %s" %(str(request_payload['longitude']), response.data['data'][0]["longitude"])
-    assert float(response.data['data'][0]["latitude"]) == float(request_payload['latitude']), "Incorrect latitude, expect %s, get %s" %(str(request_payload['latitude']), response.data['data'][0]["latitude"])
-    assert float(response.data['data'][0]["configuration"]) == float(request_payload['configuration']), "Incorrect latitude, expect %s, get %s" %(str(request_payload['configuration']), response.data['data'][0]["configuration"])
+    assert len(response.data) == 1, "Incorrect response length, expecting 1, get %d."%len(response.body['data'])
+    assert float(response.data[0]["longitude"]) == float(request_payload['longitude']), "Incorrect longitude, expect %s, get %s" %(str(request_payload['longitude']), response.data['data'][0]["longitude"])
+    assert float(response.data[0]["latitude"]) == float(request_payload['latitude']), "Incorrect latitude, expect %s, get %s" %(str(request_payload['latitude']), response.data['data'][0]["latitude"])
+    assert float(response.data[0]["configuration"]) == float(request_payload['configuration']), "Incorrect latitude, expect %s, get %s" %(str(request_payload['configuration']), response.data['data'][0]["configuration"])
     print("Pass!")

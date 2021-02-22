@@ -11,8 +11,10 @@ from django.core.mail import send_mail
 import datetime
 from emergency.models import *
 from emergency.serializers import *
-from channels.layers import get_channel_layer
-from asgiref.sync import async_to_sync
+from accounts.models import *
+from accounts.serializers import *
+#from channels.layers import get_channel_layer
+#from asgiref.sync import async_to_sync
 from configurations.models import Configuration
 from configurations.serializers import ConfigurationSerializer
 '''
@@ -35,6 +37,7 @@ class EmergencyEventAPI(APIView):
             "longitude": float,
             "latitude": float,
             "configuration": int,
+            "risk": int,
             ["time": String]
         } 
     - Response:
@@ -57,11 +60,16 @@ class EmergencyEventAPI(APIView):
         # add emergency events
         data = request.data
         data['patient'] = patient
+        status_data = {"patient": patient}
+        status_data['risk'] = data['risk']
         try:
             serializer = EmergencyEventSerializer(data=data)
-            if (serializer.is_valid()):
+            status_query = PatientStatus.objects.get(patient=patient)
+            status_serializer = PatientStatusSerializer(status_query,data=status_data)
+            if (serializer.is_valid() and status_serializer.is_valid()):
                 serializer.save()
-
+                status_serializer.save()
+                '''
                 # Send notification through channel layer
                 group_name = "0"
                 channel_layer = get_channel_layer()
@@ -77,6 +85,7 @@ class EmergencyEventAPI(APIView):
                 data['patient'] = patient_data
                 data = json.dumps(data)
                 async_to_sync(channel_layer.group_send)(group_name, {'type':'notification_message', 'data':data})
+                '''
                 return Response({}, status=200)
         except Exception as e:
             print(e)
@@ -115,7 +124,7 @@ class EmergencyEventAPI(APIView):
         data = EmergencyEventSerializer(query, many=True).data
         if (len(data) == 0):
             return Response({}, status=404)
-        return Response({'data':data}, status=200)
+        return Response(data, status=200)
 
 '''
 /api/emergencycontact/<uuid:pk>/

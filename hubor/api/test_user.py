@@ -4,36 +4,7 @@ import random
 import uuid
 import datetime
 from accounts.models import *
-
-def logout(client):
-    return client.post('/api/logout/', {})
-
-def login(client, user):
-    password = "Apple"
-    return client.post('/api/login/', {'username': user.username, 'password':password})
-
-def create_user(client, user_type):
-    username = str(random.random())
-    last7digits = str(random.randint(1000000,9999999))
-    email = str(random.randint(100000, 9999999)) + "@ualberta.ca"
-    password = "Apple"
-    request_payload = {   
-            "username": username,
-            "email": email,
-            'height': 175,
-            'weight': 63,
-            'user_type': user_type,
-            'first_name': 'Yizhou',
-            'last_name':'Zhao',
-            'phone':'780'+last7digits,
-            'date_of_birth': datetime.date(2010, 1, 1),
-            'gender':0,
-            'notes':'123123',
-            'password':password
-        }
-    response = client.post('/api/register/', request_payload)
-    user = User.objects.get(id=response.data['data']['id'])
-    return user
+from .test_util import *
  
 def run():
     client = APIClient()

@@ -360,7 +360,8 @@ class TakeCareOfAPI(APIView):
         try:
             patient_user = User.objects.get(id=doctor_id, user_type=1)
             User.objects.get(id=patient_id, user_type=0)
-        except:
+        except Exception as e:
+            print(e)
             return Response({}, status=404)
 
         try:

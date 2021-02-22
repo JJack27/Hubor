@@ -32,6 +32,7 @@
           />
         </a-col>
       </a-row>
+      <!-- End of header bar-->
   </div>
 </template>
 
@@ -47,6 +48,5 @@ export default {
 </script>
 
 <style>
-.info-card{
-}
+
 </style>

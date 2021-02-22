@@ -583,6 +583,7 @@ This will run at the IP address of your local machine with the port 8000
             "longitude": float *,
             "latitude": float *,
             "configuration": int *,
+            "risk" : int * (0="LOW", 1="MID", 2="HIGH")
             "time": String
         }
         ```

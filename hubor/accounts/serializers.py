@@ -42,6 +42,12 @@ class EmergencyUserSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name', 'last_name', 'user_type', 'gender', 'facility']
 
 
+class PatientStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PatientStatus
+        fields = '__all__'
+
+
 class ShortDoctorsSerializer(serializers.ModelSerializer):
     facility = serializers.SerializerMethodField('get_facility')
 
