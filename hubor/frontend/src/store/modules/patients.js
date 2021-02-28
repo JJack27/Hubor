@@ -22,6 +22,30 @@ const state = () => ({
 
     patientsHigh: (state) => {
       return state.patientsHigh;
+    },
+
+    patientsLowArray: (state) => {
+      var res = [];
+      for(var i in state.patientsLow){
+        res.push(state.patientsLow[i]);
+      }
+      return res;
+    },
+
+    patientsMidArray: (state) => {
+      var res = [];
+      for(var i in state.patientsMid){
+        res.push(state.patientsMid[i]);
+      }
+      return res;
+    },
+
+    patientsHighArray: (state) => {
+      var res = [];
+      for(var i in state.patientsHigh){
+        res.push(state.patientsHigh[i]);
+      }
+      return res;
     }
    
   

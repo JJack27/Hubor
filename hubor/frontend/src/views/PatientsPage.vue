@@ -17,8 +17,8 @@
           <summary-card
               headerImage="home/banner/home-patients.jpg"
               avatar="home/avatar/doctor-logo.jpg"
-              :title="(Object.keys(this.$store.getters.patientsHigh).length + Object.keys(this.$store.getters.patientsMid).length) + ' abnormals'"
-              :detail="Object.keys(this.$store.getters.patientsLow).length + ' normals'"
+              :title="(Object.keys(this.$store.getters.patientsHigh).length + Object.keys(this.$store.getters.patientsMid).length) + ' abnormal(s)'"
+              :detail="Object.keys(this.$store.getters.patientsLow).length + ' normal(s)'"
           />
         </a-col>
 
@@ -33,15 +33,37 @@
         </a-col>
       </a-row>
       <!-- End of header bar-->
+
+      <!-- Start of the patients table -->
+      <!-- High Risk Table -->
+      <patients-table v-if="Object.keys(this.$store.getters.patientsHigh).length>0"
+        title="High Risk"
+        :dataSource="this.$store.getters.patientsHighArray"
+      />
+
+      <!-- Mid Risk Table -->
+      <patients-table v-if="Object.keys(this.$store.getters.patientsMid).length>0"
+        title="Midium Risk"
+        :dataSource="this.$store.getters.patientsMidArray"
+      />
+
+      <!-- Low Risk Table -->
+      <patients-table v-if="Object.keys(this.$store.getters.patientsLow).length>0"
+        title="Low Risk"
+        :dataSource="this.$store.getters.patientsLowArray"
+      />
+      <!-- End of the patients table -->
   </div>
 </template>
 
 <script>
 import SummaryCard from '../components/SummaryCard.vue'
+import PatientsTable from '../components/PatientsTable.vue'
 export default {
     name: "PatientsPage",
     components:{
-        SummaryCard
+        SummaryCard,
+        PatientsTable,
     }
     
 }

@@ -2,6 +2,8 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.utils import timezone
 from accounts.models import *
+from data.models import *
+from data.serializers import *
 import datetime
 #class UserSerializer()
 
@@ -73,6 +75,38 @@ class PatientSerializer(serializers.ModelSerializer):
         slug_field='risk'
     )
     facility = serializers.SerializerMethodField('get_facility')
+    hr = serializers.SerializerMethodField('get_hr')
+    temp = serializers.SerializerMethodField('get_temp')
+    rr = serializers.SerializerMethodField('get_rr')
+    spo2 = serializers.SerializerMethodField('get_spo2')
+
+    def get_hr(self, obj):
+        try:
+            query = VitalSign.objects.filter(owner=obj.id).latest('time')
+            return VitalSignSerializer(query).data['hr']
+        except:
+            return 'null'
+
+    def get_temp(self, obj):
+        try:
+            query = VitalSign.objects.filter(owner=obj.id).latest('time')
+            return VitalSignSerializer(query).data['temp']
+        except:
+            return 'null'
+    
+    def get_rr(self, obj):
+        try:
+            query = VitalSign.objects.filter(owner=obj.id).latest('time')
+            return VitalSignSerializer(query).data['rr']
+        except:
+            return 'null'
+
+    def get_spo2(self, obj):
+        try:
+            query = VitalSign.objects.filter(owner=obj.id).latest('time')
+            return VitalSignSerializer(query).data['spo2']
+        except:
+            return 'null'
 
     def get_facility(self, obj):
         try:
@@ -83,7 +117,8 @@ class PatientSerializer(serializers.ModelSerializer):
             return {'id': 'null'}
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'user_type', 'height', 'weight', 'date_of_birth', 'notes', 'phone', 'status', 'facility']
+        fields = ['id', 'first_name', 'last_name', 'user_type', 'height', 'weight', 'date_of_birth', 'notes', 'phone', 'status', 'facility',
+            'hr', 'temp', 'rr', 'spo2']
 
 
 
