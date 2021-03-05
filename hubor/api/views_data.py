@@ -171,7 +171,7 @@ class VitalSignAPI(APIView):
         from_time = request.GET.get('from', None)
         to_time = request.GET.get('to', None)
         range_type = request.GET.get('type', None)
-
+        
         # if the request is invalid, return status 400
         if(from_time == None or to_time == None or range_type == None):
             return Response({}, status=400)
@@ -190,8 +190,43 @@ class VitalSignAPI(APIView):
             return Response ({}, status=403)
     
         # get the data 
-        query = AggregatedVitalSign.objects.filter(owner = owner, type=range_type, time__range=(from_time, to_time), many=True).order_by('id')
-        data = VitalSignSerializer(query, many=True).data
+        range_types = {'min':0, 'hr':1, 'day':2, 'month':3, 'year':4}
+        query = AggregatedVitalSign.objects.filter(owner = owner, type=range_types[range_type], time__range=(from_time, to_time)).order_by('id')
+        data = AggregatedVitalSignSerializer(query, many=True).data
         if(len(data) == 0):
-            return Response(response, status = 404)
+            return Response({}, status = 404)
         return Response(data, status=200)
+
+
+'''
+/api/aggregatedvs/<uuid:owner>/
+API for uplaoding and retrieving vital signs entries. All users can perform this action
+- POST
+- GET
+'''
+class AggregatedVitalSignAPI(APIView):
+    model = AggregatedVitalSign
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        owner = User.objects.get(id=kwargs['owner'])
+        range_types = {'min':0, 'hr':1, 'day':2, 'month':3, 'year':4}
+        try:
+            avs = AggregatedVitalSign(owner=owner, time = parser.parse(request.data['time']), type=range_types[request.data['type']], 
+                temp_mean=request.data['temp_mean'], temp_min=request.data['temp_min'], temp_max=request.data['temp_max'], 
+                temp_med=request.data['temp_med'], temp_std=request.data['temp_std'],
+                hr_mean=request.data['hr_mean'], hr_min=request.data['hr_min'], hr_max=request.data['hr_max'], 
+                hr_med=request.data['hr_med'], hr_std=request.data['hr_std'],
+                rr_mean=request.data['rr_mean'], rr_min=request.data['rr_min'], rr_max=request.data['rr_max'], 
+                rr_med=request.data['rr_med'], rr_std=request.data['rr_std'],
+                spo2_mean=request.data['spo2_mean'], spo2_min=request.data['spo2_min'], spo2_max=request.data['spo2_max'], 
+                spo2_med=request.data['spo2_med'], spo2_std=request.data['spo2_std'])
+            
+            avs.save()
+            return Response({}, status=200)
+        except Exception as e:
+            print(e)
+            return Response({}, status=400)

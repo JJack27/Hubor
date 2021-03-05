@@ -22,7 +22,7 @@ class AggregatedVitalSignSerializer(serializers.ModelSerializer):
     def get_temp(self, obj):
         return {
             'mean': obj.temp_mean,
-            'mid': obj.temp_mid,
+            'med': obj.temp_med,
             'min': obj.temp_min,
             'max': obj.temp_max,
             'std': obj.temp_std
@@ -31,7 +31,7 @@ class AggregatedVitalSignSerializer(serializers.ModelSerializer):
     def get_hr(self, obj):
         return {
             'mean': obj.hr_mean,
-            'mid': obj.hr_mid,
+            'med': obj.hr_med,
             'min': obj.hr_min,
             'max': obj.hr_max,
             'std': obj.hr_std
@@ -40,7 +40,7 @@ class AggregatedVitalSignSerializer(serializers.ModelSerializer):
     def get_rr(self, obj):
         return {
             'mean': obj.rr_mean,
-            'mid': obj.rr_mid,
+            'med': obj.rr_med,
             'min': obj.rr_min,
             'max': obj.rr_max,
             'std': obj.rr_std
@@ -49,7 +49,7 @@ class AggregatedVitalSignSerializer(serializers.ModelSerializer):
     def get_spo2(self, obj):
         return {
             'mean': obj.spo2_mean,
-            'mid': obj.spo2_mid,
+            'med': obj.spo2_med,
             'min': obj.spo2_min,
             'max': obj.spo2_max,
             'std': obj.spo2_std

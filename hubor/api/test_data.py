@@ -270,5 +270,5 @@ def run():
             'ir': random.random(),
         }
     response = client.post('/api/vs/%s/'%(str(unauthorized_user.username)), request_payload)
-    assert response.status_code == 404, "Incorrect status_code, expecting 403, get %d"%(response.status_code)
+    assert response.status_code == 403, "Incorrect status_code, expecting 403, get %d"%(response.status_code)
     print("Pass!")

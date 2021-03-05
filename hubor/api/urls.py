@@ -27,7 +27,9 @@ urlpatterns = [
 
     # Data related
     path('data/<uuid:pk>/', DataAPI.as_view()),
-    path('vs/<uuid:owner>/', VitalSignAPI.as_view()),
+    path('vitalsign/<uuid:owner>/', VitalSignAPI.as_view()),
+    path('aggregatedvs/<uuid:owner>/', AggregatedVitalSignAPI.as_view()),
+    
 
     # Emergency related
     path('emergency/<uuid:pk>/', EmergencyEventAPI.as_view()),
