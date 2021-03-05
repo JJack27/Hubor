@@ -108,7 +108,7 @@ class DataAPI(APIView):
         return Response(response, status=200)
 
 '''
-/api/vs/<uuid:owner>/
+/api/vitalsign/<uuid:owner>/?from=<time_with_time_zone>&to=<time_with_time_zone>&type=['min', 'hr', 'day', 'month']
 API for uplaoding and retrieving vital signs entries. All users can perform this action
 - POST
 - GET

@@ -509,7 +509,7 @@ This will run at the IP address of your local machine with the port 8000
 </details>
 
 
-[comment]: # ("/api/vs/<uuid:owner>/")
+[comment]: # ("/api/vitalsign/<uuid:owner>/?from=<time_with_time_zone>&to=<time_with_time_zone>&type=['min', 'hr', 'day', 'month']")
 <details><summary><code>/api/vs/[uuid:owner]/</code>
 </summary>
 <p>
@@ -532,38 +532,44 @@ This will run at the IP address of your local machine with the port 8000
         {}
         ```
 - `GET`
-    - Get all vital signs owned by the `owner` in the request URL
+    - Get all vital signs owned by the `owner` in the request URL within a specific time. 
+    - The array is in **ascending** order in terms of time.
     - Response
         ```json
-        {
-            "query": "bracelet"
-            "data": [
-                {
-                    "id": int,
-                    "owner": UUID,
-                    "bracelet": UUID,
-                    "bracelet": UUID,
-                    "temp": float,
-                    "spo2": float,
-                    "hr": float,
-                    "rr": float,
-                    "time": String
+        [
+            {
+                "time": datetime,
+                "hr": {
+                    "mean": float,
+                    "med": float,
+                    "min": float,
+                    "max": float,
+                    "std": float,
                 },
-                {
-                    "id": int,
-                    "owner": UUID,
-                    "bracelet": UUID,
-                    "bracelet": UUID,
-                    "temp": float,
-                    "spo2": float,
-                    "hr": float,
-                    "rr": float,
-                    "time": String
+                "rr": {
+                    "mean": float,
+                    "med": float,
+                    "min": float,
+                    "max": float,
+                    "std": float,
                 },
-                ...
-            ]
-        }
-            
+                "spo2": {
+                    "mean": float,
+                    "med": float,
+                    "min": float,
+                    "max": float,
+                    "std": float,
+                },
+                "temp": {
+                    "mean": float,
+                    "med": float,
+                    "min": float,
+                    "max": float,
+                    "std": float,
+                },
+            },
+            ...
+        ]   
         ```
 </p>
 </details>
