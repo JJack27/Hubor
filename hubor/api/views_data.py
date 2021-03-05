@@ -24,6 +24,7 @@ from rest_framework.permissions import IsAuthenticated
 import json
 import uuid
 import datetime
+from dateutil import parser
 
 # Project modules
 from accounts.models import User
@@ -165,18 +166,32 @@ class VitalSignAPI(APIView):
         }
     '''
     def get(self, request, *args, **kwargs):
+        # parsing the request
         owner = kwargs['owner']
-        response = {'query': 'data', 'data':[]}
+        from_time = request.GET.get('from', None)
+        to_time = request.GET.get('to', None)
+        range_type = request.GET.get('type', None)
+
+        # if the request is invalid, return status 400
+        if(from_time == None or to_time == None or range_type == None):
+            return Response({}, status=400)
+        
+        # update from_time and to_time to datetime object
+        try:
+            from_time = parser.parse(from_time)
+            to_time = parser.parse(to_time)
+        except Exception as e:
+            print(e)
+            return Response({}, 400)
         
         # check authority of request user
         # only owner of the data and doctors/admins can access
         if(str(request.user.id) != str(owner) and request.user.user_type == 0):
-            return Response (response, status=403)
+            return Response ({}, status=403)
     
         # get the data 
-        query = VitalSign.objects.filter(owner = owner).order_by('id')
+        query = AggregatedVitalSign.objects.filter(owner = owner, type=range_type, time__range=(from_time, to_time), many=True).order_by('id')
         data = VitalSignSerializer(query, many=True).data
         if(len(data) == 0):
             return Response(response, status = 404)
-        response['data'] = data
-        return Response(response, status=200)
+        return Response(data, status=200)
