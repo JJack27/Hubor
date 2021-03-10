@@ -29,6 +29,7 @@
               avatar="home/avatar/add-patient.jpg"
               title="Add a Patient"
               detail="to your facility"
+              @click="showAddPatientModal"
           />
         </a-col>
       </a-row>
@@ -53,18 +54,61 @@
         :dataSource="this.$store.getters.patientsLowArray"
       />
       <!-- End of the patients table -->
+
+      <a-modal 
+        v-model:visible="addPatientModelVisible" 
+        title="Add a Patient" 
+        :footer="null">
+        <AddPatientForm @register-success="handleFormClose"/>
+      </a-modal>
   </div>
 </template>
 
 <script>
 import SummaryCard from '../components/SummaryCard.vue'
 import PatientsTable from '../components/PatientsTable.vue'
+import AddPatientForm from '../components/AddPatientForm.vue'
 export default {
     name: "PatientsPage",
     components:{
         SummaryCard,
         PatientsTable,
+        AddPatientForm
+    },
+
+    data(){
+      return{
+        addPatientModelVisible: false,
+      }
+    },
+
+    methods:{
+      showAddPatientModal(){
+        this.addPatientModelVisible = true;
+      },
+
+      handleFormClose(patientId){
+        console.log('patientId', patientId);
+        // add patient to doctor's facility
+        this.$put('api/belongsto/'+this.$store.getters.currentUserInfo.facility.id+'/', {"user": patientId})
+          .then((response) => {
+            //console.log('belongsto', response);
+            // assign doctors to the patient
+            this.$post('api/takecareof/'+this.$store.getters.userId+"/"+patientId +"/", {})
+              .then((response) => {
+                // update front end page
+                this.$get('api/patientsof/'+this.$store.getters.userId + '/')
+                .then((response) =>{
+                  this.$store.dispatch('addPatients', response.data);
+                });
+            });
+        });
+        this.addPatientModelVisible = false;
+      },
+
     }
+
+
     
 }
 </script>

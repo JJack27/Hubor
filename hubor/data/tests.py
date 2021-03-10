@@ -19,7 +19,7 @@ user = create_user(client, 0)
 print("id =", str(user.id))
 print("username =", user.username)
 login(client, user)
-
+'''
 df = pd.read_csv("./data/dummy_vs_data.csv")
 df['time'] = pd.to_datetime(df['time'])
 
@@ -107,10 +107,11 @@ for i in range(len(means)):
         response = client.post('/api/aggregatedvs/%s/'%(str(user.id)), payload)
         assert response.status_code == 200, "Error!, expecting 200, get %d"%response.status_code
 print("Total of %d tuples added!"%counter)
+'''
 
-
-#user = User.objects.get(username='testuser1')
-#login(client, user)
+user = User.objects.get(username='testuser1')
+login(client, user)
+print(str(user.id))
 request = '/api/vitalsign/%s/?from=2021-03-04 00:00:00Z&to=2021-03-31 00:00:00Z&type=min'%(str(user.id))
 response = client.get(request)
 print(len(response.data))

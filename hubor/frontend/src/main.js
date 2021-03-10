@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import 'ant-design-vue/dist/antd.less';
 
-import {Button, Form, Input, Icon, Checkbox, Card, Row, Col, message, Layout, Menu, Avatar, Table} from 'ant-design-vue'
+import {Button, Form, Input, Icon, Checkbox, Card, Row, Col, message, Layout, Menu, Avatar, Table, Modal, DatePicker, Select} from 'ant-design-vue'
 import Axios from 'axios';
 
 
@@ -50,6 +50,18 @@ app.config.globalProperties.$post = async function(url, body) {
     )
 }
 
+app.config.globalProperties.$put = async function(url, body) {
+    return Axios.put(
+        url,
+        body,
+        {
+            headers:{
+                'X-CSRFToken': this.$getCookie('csrftoken'),
+            }
+        }
+    )
+}
+
 app.config.globalProperties.$get = async function(url) {
     return Axios.get(
         url,
@@ -69,6 +81,7 @@ app.use(store)
     .use(Card)
     .use(Checkbox)
     .use(Col)
+    .use(DatePicker)
     .use(Form)
     .use(Form.Item)
     .use(Icon)
@@ -77,8 +90,10 @@ app.use(store)
     .use(Layout.Footer)
     .use(Layout.Sider)
     .use(Layout.Header)
+    .use(Modal)
     .use(Menu)
     .use(router)
     .use(Row)
+    .use(Select)
     .use(Table)
     .mount('#app');

@@ -10,6 +10,8 @@ import re
 from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
 import datetime
+import dateutil
+import pytz
 from accounts.models import *
 from accounts.serializers import *
 # Create your views here.
@@ -85,11 +87,12 @@ class RegisterView(APIView):
         response = {"query": "registration"}
         
         # validate date of birth
-        date_of_birth = datetime.datetime.strptime(request_body['date_of_birth'], '%Y-%m-%d')
-        if date_of_birth > datetime.datetime.now():
+        date_of_birth = dateutil.parser.parse(request_body['date_of_birth'])
+          
+        if date_of_birth > datetime.datetime.now(tz=pytz.timezone("UTC")):
             return Response(response, status=400)
         
-        
+        date_of_birth = date_of_birth.strftime("%Y-%m-%d")
         # parse request
         user = User(
             username = request_body['username'],
@@ -98,7 +101,7 @@ class RegisterView(APIView):
             weight = float(request_body['weight']),
             user_type = int(request_body['user_type']),
             phone = request_body['phone'],
-            date_of_birth = request_body['date_of_birth'],
+            date_of_birth = date_of_birth,
             gender = int(request_body['gender']),
             notes = request_body['notes'],
             first_name = request_body['first_name'],
@@ -167,40 +170,47 @@ class LogoutAPI(APIView):
 class EmailValidation(APIView):
     
     # Receiving the email address and check if it's already exists
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         # parsing the request
-        request_body = request.data
-        response = {"query":'emailvalidation'}
-        email_address = request_body['email']
-        print(email_address)
+        email = kwargs['email']
         
         # retriving from database
-        users = User.objects.filter(email=email_address)
+        users = User.objects.filter(email=email)
         if len(users) == 0:
-            response["valid"] = "true"
+            return Response({}, status=200)
         else:
-            response["valid"] = "false"
-        
-        return Response(response, status=200)
+            return Response({}, status=409)
 
 # Check if given username is already exist
 class UsernameValidation(APIView):
     
     # Receiving the email address and check if it's already exists
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         # parsing the request
-        request_body = request.data
-        response = {"query":'usernamevalidation'}
-        username = request_body['username']
+        username = kwargs['username']
         
         # retriving from database
         users = User.objects.filter(username=username)
         if len(users) == 0:
-            response["valid"] = "true"
+            return Response({}, status=200)
         else:
-            response["valid"] = "false"
+            return Response({}, status=409)
+
+# Check if given phone number is already exist
+class PhoneValidation(APIView):
+    
+    # Receiving the email address and check if it's already exists
+    def get(self, request, *args, **kwargs):
+        # parsing the request
+        phone = kwargs['phone']
         
-        return Response(response, status=200)
+        # retriving from database
+        users = User.objects.filter(phone=phone)
+        if len(users) == 0:
+            return Response({}, status=200)
+        else:
+            return Response({}, status=409)
+        
 
 '''
 /api/bracelet/<uuid:owner>/

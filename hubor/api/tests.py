@@ -10,9 +10,9 @@ from . import test_data as data_test
 from . import test_emergency as emergency_test
 
 # Create your tests here.
-test_user = False
+test_user = True
 test_data = False
-test_emergency = True
+test_emergency = False
 test_config = False
 
 # Testing views_user.py

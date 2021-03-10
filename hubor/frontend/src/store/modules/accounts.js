@@ -8,7 +8,8 @@ const state = () => ({
     since: "",
     phone: "",
     email: "",
-    dateOfBirth: ""
+    dateOfBirth: "",
+    facility:""
   }
 
   
@@ -37,7 +38,8 @@ const mutations = {
     state.currentUser.since = userInfo.date_joined;
     state.currentUser.phone = userInfo.phone;
     state.currentUser.email = userInfo.email;
-    state.currentUser.dateOfBirth = userInfo.date_of_birth
+    state.currentUser.dateOfBirth = userInfo.date_of_birth;
+    state.currentUser.facility = userInfo.facility;
   },
 
   clearInfo: (state) => {
@@ -49,6 +51,7 @@ const mutations = {
     state.currentUser.phone = "",
     state.currentUser.email = "",
     state.currentUser.dateOfBirth = ""
+    state.currentUser.facility = ""
   }
   
 }

@@ -1,6 +1,6 @@
 <template>
-  
     <a-form
+      id='loginForm'
       ref='loginFormRef'
       :model="form" 
       :rules="rules"
@@ -109,22 +109,22 @@ export default {
 </script>
 
 <style>
-.ant-card-body{
+#loginForm .ant-card-body{
   padding-bottom:0px
 }
 
-.ant-input {
+#loginForm .ant-input {
 	border-radius: 90px !important;
 	height: 40pt !important ;
   z-index: 100;
 }
 
-.ant-input-affix-wrapper{
+#loginForm .ant-input-affix-wrapper{
   border-radius: 90px !important;
   z-index: 100; 
 }
 
-.ant-checkbox-wrapper {
+#loginForm .ant-checkbox-wrapper {
   z-index: 100;
 }
 
