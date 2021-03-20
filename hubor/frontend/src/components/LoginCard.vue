@@ -1,6 +1,6 @@
 <template>
+  <div id="login-form">
     <a-form
-      id='loginForm'
       ref='loginFormRef'
       :model="form" 
       :rules="rules"
@@ -31,7 +31,7 @@
         </a-button>
       </a-form-item>
     </a-form>
-  
+  </div>
 </template>
 
 
@@ -91,6 +91,7 @@ export default {
                 if(this.keeplogged){
                   this.$setCookie('keeplogged', 1, 30);
                 }
+                console.log(response.headers["set-cookie"]);
 
                 // Route to the dash board page
                 this.$router.push("dashboard");
@@ -109,22 +110,22 @@ export default {
 </script>
 
 <style>
-#loginForm .ant-card-body{
+#login-card .ant-card-body{
   padding-bottom:0px
 }
 
-#loginForm .ant-input {
+#login-card .ant-input {
 	border-radius: 90px !important;
 	height: 40pt !important ;
   z-index: 100;
 }
 
-#loginForm .ant-input-affix-wrapper{
+#login-card .ant-input-affix-wrapper{
   border-radius: 90px !important;
   z-index: 100; 
 }
 
-#loginForm .ant-checkbox-wrapper {
+#login-card .ant-checkbox-wrapper {
   z-index: 100;
 }
 

@@ -77,7 +77,7 @@ export default {
     },
 
     mounted(){
-        
+        console.log("dashboard");
         // redirect user to the login page if the sessionid and csrtoken doesn't exist
         if(this.$getCookie('sessionid') === null
             && this.$getCookie('csrftoken') === null){

@@ -8,7 +8,7 @@
             <div class="inner-header flex">
                 <a-row>
                   <a-col :span="24">
-                    <h1 id='header'> Vital Sign Project </h1>
+                    <h1 id='header'> LIFE ZENZERS </h1>
                   </a-col>
                 </a-row>
                 

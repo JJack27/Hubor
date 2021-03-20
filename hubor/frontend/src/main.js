@@ -9,6 +9,7 @@ import Axios from 'axios';
 
 
 const app = createApp(App);
+const baseURL = "";
 
 //app.config.globalProperties.$baseURL = "http://192.168.1.64:8000/";
 
@@ -40,11 +41,12 @@ app.config.globalProperties.$setCookie = function (name,value,days) {
 
 app.config.globalProperties.$post = async function(url, body) {
     return Axios.post(
-        url,
+        baseURL + url,
         body,
         {
             headers:{
                 'X-CSRFToken': this.$getCookie('csrftoken'),
+                'withCredentials': true
             }
         }
     )
@@ -52,11 +54,12 @@ app.config.globalProperties.$post = async function(url, body) {
 
 app.config.globalProperties.$put = async function(url, body) {
     return Axios.put(
-        url,
+        baseURL + url,
         body,
         {
             headers:{
                 'X-CSRFToken': this.$getCookie('csrftoken'),
+                'withCredentials': true
             }
         }
     )
@@ -64,10 +67,11 @@ app.config.globalProperties.$put = async function(url, body) {
 
 app.config.globalProperties.$get = async function(url) {
     return Axios.get(
-        url,
+        baseURL + url,
         {
             headers:{
                 'X-CSRFToken': this.$getCookie('csrftoken'),
+                'withCredentials': true
             }
         }
     )

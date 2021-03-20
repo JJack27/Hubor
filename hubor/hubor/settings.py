@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from corsheaders.defaults import default_headers
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'channels',
     'api',
     'emergency',
@@ -46,14 +50,18 @@ INSTALLED_APPS = [
     'data',
     'configurations',
     'notification',
+    
 
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django_cookies_samesite.middleware.CookiesSameSite',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',    
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',   
@@ -155,11 +163,35 @@ CHANNEL_LAYERS = {
     },
 }
 
-'''
+
 # Using for test
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://192.168.1.64:8080",
+    "http://192.168.31.143:8080",
 ]
-'''
+#CORS_ORIGIN_ALLOW_ALL = True
+#REST_FRAMEWORK = {
+#    'DEFAULT_PAGINATION_CLASS': 'Conet.posting.pagination',
+#    'PAGE_SIZE': 50
+#}
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+
+
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+DCS_SESSION_COOKIE_SAMESITE = 'none'
+DCS_CSRF_COOKIE_SAMESITE = 'None'
+#SESSION_COOKIE_SAMESITE = 'none'
 
 SESSION_COOKIE_HTTPONLY = False
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'withCredentials',
+]

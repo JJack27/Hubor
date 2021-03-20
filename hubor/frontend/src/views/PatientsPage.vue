@@ -88,7 +88,6 @@ export default {
       },
 
       handleFormClose(patientId){
-        console.log('patientId', patientId);
         // add patient to doctor's facility
         this.$put('api/belongsto/'+this.$store.getters.currentUserInfo.facility.id+'/', {"user": patientId})
           .then((response) => {
