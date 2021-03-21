@@ -37,23 +37,56 @@
 
       <!-- Start of the patients table -->
       <!-- High Risk Table -->
+      <PatientListCard v-if="Object.keys(this.$store.getters.patientsHigh).length>0"
+        title="High Risk"
+        :dataSource="this.$store.getters.patientsHighArray"
+        headerBackColor="#f14062"
+        headerFontColor="#ffffff"
+        bodyBackColor="#ffffff"
+        BodyFontColor="#333333"
+        style="width:92%; margin-top:5vh; margin-right: auto; margin-left:auto"
+      />
+
+      <!-- Mid Risk Table -->
+      <PatientListCard v-if="Object.keys(this.$store.getters.patientsMid).length>0"
+        title="Midium Risk"
+        :dataSource="this.$store.getters.patientsMidArray"
+        headerBackColor="#f2bf41"
+        headerFontColor="#ffffff"
+        bodyBackColor="#ffffff"
+        BodyFontColor="#333333"
+        style="width:92%; margin-top:5vh; margin-right: auto; margin-left:auto"
+      />
+
+      <!-- Low Risk Table -->
+      <PatientListCard v-if="Object.keys(this.$store.getters.patientsLow).length>0"
+        title="Low Risk"
+        :dataSource="this.$store.getters.patientsLowArray"
+        headerBackColor="#27ce79"
+        headerFontColor="#ffffff"
+        bodyBackColor="#ffffff"
+        BodyFontColor="#333333"
+        style="width:92%; margin-top:5vh; margin-right: auto; margin-left:auto"
+      />
+      <!-- End of the patients table -->
+
+      <!--
       <patients-table v-if="Object.keys(this.$store.getters.patientsHigh).length>0"
         title="High Risk"
         :dataSource="this.$store.getters.patientsHighArray"
       />
 
-      <!-- Mid Risk Table -->
       <patients-table v-if="Object.keys(this.$store.getters.patientsMid).length>0"
         title="Midium Risk"
         :dataSource="this.$store.getters.patientsMidArray"
       />
 
-      <!-- Low Risk Table -->
       <patients-table v-if="Object.keys(this.$store.getters.patientsLow).length>0"
         title="Low Risk"
         :dataSource="this.$store.getters.patientsLowArray"
       />
-      <!-- End of the patients table -->
+      -->
+
 
       <a-modal 
         v-model:visible="addPatientModelVisible" 
@@ -67,13 +100,15 @@
 <script>
 import SummaryCard from '../components/SummaryCard.vue'
 import PatientsTable from '../components/PatientsTable.vue'
+import PatientListCard from '../components/PatientListCard.vue'
 import AddPatientForm from '../components/AddPatientForm.vue'
 export default {
     name: "PatientsPage",
     components:{
         SummaryCard,
         PatientsTable,
-        AddPatientForm
+        AddPatientForm,
+        PatientListCard
     },
 
     data(){

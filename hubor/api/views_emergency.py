@@ -64,10 +64,14 @@ class EmergencyEventAPI(APIView):
         status_data['risk'] = data['risk']
         try:
             serializer = EmergencyEventSerializer(data=data)
+            # PatientStatus is updated, while EmergencyEvents are created
             status_query = PatientStatus.objects.get(patient=patient)
-            status_serializer = PatientStatusSerializer(status_query,data=status_data)
+            status_serializer = PatientStatusSerializer(status_query, data=status_data)
             if (serializer.is_valid() and status_serializer.is_valid()):
+                # creating EmergencyEvent
                 serializer.save()
+                
+                # updating current status
                 status_serializer.save()
                 '''
                 # Send notification through channel layer

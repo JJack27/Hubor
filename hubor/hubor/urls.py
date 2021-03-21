@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-from accounts.views import MyView
 from django.views.generic import TemplateView
 from hubor.settings import MEDIA_ROOT
 from django.views.static import serve

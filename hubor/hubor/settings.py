@@ -174,6 +174,7 @@ CORS_ALLOWED_ORIGINS = [
 #    'DEFAULT_PAGINATION_CLASS': 'Conet.posting.pagination',
 #    'PAGE_SIZE': 50
 #}
+'''
 CORS_ALLOW_METHODS = (
     'DELETE',
     'GET',
@@ -195,3 +196,4 @@ SESSION_COOKIE_HTTPONLY = False
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'withCredentials',
 ]
+'''

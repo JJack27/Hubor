@@ -49,6 +49,15 @@ class Bracelet(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     mac_addr = models.TextField(max_length=17, null=False)
 
+'''
+Represents the data permission request from a user to a patient. This is a temperory session. Entries will be deleted after the owner response
+'''
+class DataPermissionRequest(models.Model):
+    id = models.AutoField(primary_key=True)
+    requestor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='requestor')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='data_owner')
+    time = models.DateTimeField(auto_now_add=True)
+
 
 '''
 Represents the relationship between doctors and patients.

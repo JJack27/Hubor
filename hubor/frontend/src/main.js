@@ -3,8 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'ant-design-vue/dist/antd.less';
+import 'font-awesome/css/font-awesome.min.css';
 
-import {Button, Form, Input, Icon, Checkbox, Card, Row, Col, message, Layout, Menu, Avatar, Table, Modal, DatePicker, Select} from 'ant-design-vue'
+import {Button, Form, Input, Icon, Checkbox, Card, Row, Col, message, Layout, Menu, Avatar, Table, Modal, DatePicker, Select, List} from 'ant-design-vue'
 import Axios from 'axios';
 
 
@@ -94,6 +95,8 @@ app.use(store)
     .use(Layout.Footer)
     .use(Layout.Sider)
     .use(Layout.Header)
+    .use(List)
+    .use(List.Item)
     .use(Modal)
     .use(Menu)
     .use(router)

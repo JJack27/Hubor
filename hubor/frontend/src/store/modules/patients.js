@@ -1,6 +1,64 @@
 // initial state
 const state = () => ({
-    patientsLow: {},
+    patientsLow: {
+      
+      "589b13c6-a719-4a20-9928-825bbc1d48c7": {
+          "id": "589b13c6-a719-4a20-9928-825bbc1d48c7",
+          "first_name": "Yizhou",
+          "last_name": "Zhao",
+          "email": "example@exa.com",
+          "user_type": 0,
+          "height": 175,
+          "weight": 63,
+          "date_of_birth": "2010-01-01",
+          "notes": "123123",
+          "phone": "7806312714",
+          "status": [
+            0
+          ],
+          "facility": {
+            "id": "ebe49003-dbc9-4e1f-938a-8359ddf58745",
+            "name": "facility",
+            "address": "123123123",
+            "phone": "123123123",
+            "description": null
+          },
+          "hr": "68",
+          "temp": "36.5",
+          "rr": "40",
+          "spo2": "94"
+        },
+
+        
+        "82a81853-4f37-4617-8017-79a52cc28e8c": {
+            "id": "82a81853-4f37-4617-8017-79a52cc28e8c",
+            "first_name": "Jack",
+            "last_name": "Lee",
+            "email": "example@exa.ple",
+            "user_type": 0,
+            "height": 178,
+            "weight": 85,
+            "date_of_birth": "2010-01-01",
+            "notes": "123123",
+            "phone": "1238598492",
+            "status": [
+              0
+            ],
+            "facility": {
+              "id": "ebe49003-dbc9-4e1f-938a-8359ddf58745",
+              "name": "facility",
+              "address": "123123123",
+              "phone": "123123123",
+              "description": null
+            },
+            "hr": "90",
+            "temp": "34.8",
+            "rr": "37",
+            "spo2": "99"
+          }
+        
+      
+    },
     patientsHigh: {},
     patientsMid: {}
   });

@@ -1,5 +1,9 @@
 from django.urls import path
-from .views_user import *
+# accounts app
+from accounts.views import *
+from accounts.views_validation import *
+from accounts.views_authentication import *
+
 from .views_data import *
 from .views_test import *
 from .views_emergency import *
