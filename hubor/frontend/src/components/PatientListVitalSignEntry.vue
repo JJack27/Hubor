@@ -1,6 +1,6 @@
 <template>
     <a-row>
-        <a-col :span="6">
+        <a-col :span="8">
             <img
                 :src="require(`@/assets/icons/${this.icon}`)"
                 height="40"

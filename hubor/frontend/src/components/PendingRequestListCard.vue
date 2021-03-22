@@ -40,7 +40,7 @@
             </a-list>
         </a-card>
         <a-modal v-model:visible="modalVisible" title="Cancel Request" @ok="handleOk">
-            Do you want to cancel the request sent to <span style="font-style:bold">{{ this.selectedItem.owner.first_name + " " + this.selectedItem.owner.last_name}} </span>?
+            Do you want to cancel the request sent to <span style="font-style: bold">{{ this.selectedItem.owner.first_name + " " + this.selectedItem.owner.last_name}} </span>?
         </a-modal>
     </div>
 </template>

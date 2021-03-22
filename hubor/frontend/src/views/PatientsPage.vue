@@ -138,14 +138,15 @@ export default {
           .then((response) => {
             //console.log('belongsto', response);
             // assign doctors to the patient
-            this.$post('api/accessrequest/'+patientId +"/"+ this.$store.getters.userId +"/", {})
-              .then((response) => {
-                // update front end page
-                this.$get('api/mypendingrequests/')
-                .then((response) =>{
-                  this.$store.dispatch('addPendingRequests', response.data);
-                  console.log(response.data)
-                });
+            
+        });
+        this.$post('api/accessrequest/'+patientId +"/"+ this.$store.getters.userId +"/", {})
+          .then((response) => {
+            // update front end page
+            this.$get('api/mypendingrequests/')
+            .then((response) =>{
+              this.$store.dispatch('addPendingRequests', response.data);
+                console.log(response.data)
             });
         });
         this.addPatientModelVisible = false;

@@ -31,7 +31,7 @@
                             </template>
                         </a-list-item-meta>
                         <!-- content of the list item, showing the HR, RR, SPO2, TEMP-->
-                        <a-row style="width:83% !important">
+                        <a-row style="width:80% !important">
                             <a-col :span="2" >
                                 <p style="padding-top:8pt!important;">
                                     <i class="fa fa-arrows-v" aria-hidden="false"></i><sp/><sp/>   {{item.height}} KG 
