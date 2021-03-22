@@ -493,6 +493,52 @@ This will run at the IP address of your local machine with the port 8000
 </p>
 </details>
 
+[comment]: # ("/api/mypendingrequests/")
+<details><summary><code>/api/mypendingrequests/</code>
+</summary>
+<p>
+
+- API allows user to get a list of their pending requests
+- GET
+    - Get a list of their pending requests
+    - Response:
+        - status codes:
+            - `200`: Response with a list of pending requests
+            - `404`: no pending requests found
+        - response:
+            ```json
+            200:[
+                    {
+                        "id": int,
+                        "doctor" : {
+                            "id": UUID,
+                            "first_name": String,
+                            "last_name": String,
+                            "since": DateTime,
+                            "user_type": int,
+                            "gender": int  
+                        },
+                        "patient" : {
+                            "id": UUID,
+                            "first_name": String, 
+                            "last_name": String, 
+                            "user_type": int,
+                            "height": int, 
+                            "weigh"': int, 
+                            "date_of_birth": datetime, 
+                            "notes": String, 
+                            "phone": String,
+                            "status": List<int>     
+                        }
+                    },
+                    ...
+                ]
+            400:{
+                "message": string
+            }
+            ```
+</p>
+</details>
 
 ## Data & Vital Sign
 [comment]: # ("/api/data/<uuid:pk>/")

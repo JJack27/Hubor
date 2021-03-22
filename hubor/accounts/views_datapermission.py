@@ -104,9 +104,52 @@ class TakeCareOfAPI(APIView):
             return Response(data, status=200)
         except:
             return Response({"message": "Access not granted", "type":1}, status=404)
+    
+    '''
+    DELETE
+    - Remove a given TakeCareOf relationship
+    - Method can only be used by given patient or doctor
+    - Response:
+        - status code:
+            - 200: succeed
+            - 403: requestor is neither the given patient nor the doctor
+            - 404: the relationship between given patient and the doctor is not found.
+                   Or the given patient or the given doctor doens't exist
+        - response:
+            ```json
+            {
+                "message": string
+            }
+            ```
+    '''
+    def delete(self, request, *args, **kwargs):
+        # parsing the request
+        patient_id = kwargs['patient']
+        doctor_id = kwargs['doctor']
+
+        # validate authorization
+        if(patient_id != request.user.id and doctor_id != request.user.id):
+            return Response({"message": "Permission denied"}, status=403)
+        
+        # check if given patient and doctor exists
+        try:
+            User.objects.get(id=patient_id)
+            User.objects.get(id=doctor_id)
+        except:
+            return Response({"message": "Given doctor or patient doesn't exist"}, status=404)
+
+        # check if the relationship exists
+        # if so, delete it
+        # otherwise, return 404
+        try:
+            query = TakeCareOf.objects.get(patient=patient_id, doctor=doctor_id)
+            query.delete()
+            return Response({"message": "Succeed"}, status=200)
+        except:
+            return Response({"message": "Relathionship doesn't exist"}, status=404)
 
 '''
-/api/accessrequest/<uuid:owner>/<uuid:requestor>
+/api/accessrequest/<uuid:owner>/<uuid:requestor>/
 - API allows requestor to send a request to the data owner so that he/she can access the vital sign data
 - POST
     - requestor can be both requestor and the onwer.
@@ -147,10 +190,6 @@ class AccessRequestAPI(APIView):
                Or the request is sent by the owner, but there is no existing entry in the database.
     - Reponse:
         4XX:
-            {
-                "message": string
-            }
-        200 - requestor:
             {
                 "message": string
             }
@@ -268,3 +307,66 @@ class AccessRequestAPI(APIView):
         # delete the entry (reject the request)
         data_request.delete()
         return Response({"message": "Succeed"}, status=200)
+
+'''
+/api/mypendingrequests/
+- API allows user to get a list of their pending requests
+- GET
+    - Get a list of their pending requests
+    - Response:
+        - status codes:
+            - 200: Response with a list of pending requests
+            - 404: no pending requests found
+        - response:
+            ```json
+            200:[
+                    {
+                        "id": int,
+                        "doctor" : {
+                            "id": UUID,
+                            "first_name": String,
+                            "last_name": String,
+                            "since": DateTime,
+                            "user_type": int,
+                            "gender": int  
+                        },
+                        "patient" : {
+                            "id": UUID,
+                            "first_name": String, 
+                            "last_name": String, 
+                            "user_type": int,
+                            "height": int, 
+                            "weigh"': int, 
+                            "date_of_birth": datetime, 
+                            "notes": String, 
+                            "phone": String,
+                            "status": List<int>     
+                        }
+                    },
+                    ...
+                ]
+            400:{
+                "message": string
+            }
+            ```
+'''
+class MyPendingRequestsAPI(APIView):
+    model = TakeCareOf
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        # filtering the requests
+        # if user is a patient
+        if(request.user.user_type == 0):
+            query = DataPermissionRequest.objects.filter(owner=request.user.id)
+        else:
+            query = DataPermissionRequest.objects.filter(requestor=request.user.id)
+
+        # serialize the data
+        data = DataPermissionRequestSerializer(query, many=True).data
+        if(len(data) == 0):
+            return Response(data, status=404)
+        return Response(data, status=200)

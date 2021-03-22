@@ -31,6 +31,7 @@ urlpatterns = [
     path('belongsto/<uuid:facility>/', BelongsToAPI.as_view()),
     path('accessrequest/<uuid:owner>/<uuid:requestor>/', AccessRequestAPI.as_view()),
     path('myinfo/', MyInfoAPI.as_view()),
+    path('mypendingrequests/', MyPendingRequestsAPI.as_view()),
 
     # Data related
     path('data/<uuid:pk>/', DataAPI.as_view()),
