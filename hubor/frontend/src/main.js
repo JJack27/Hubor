@@ -5,7 +5,7 @@ import store from './store'
 import 'ant-design-vue/dist/antd.less';
 import 'font-awesome/css/font-awesome.min.css';
 
-import {message, Button, Form, Input, Icon, Checkbox, Card, Row, Col, Layout, Menu, Avatar, Table, Modal, DatePicker, Select, List} from 'ant-design-vue'
+import {message, Badge, Tabs, Button, Form, Input, Icon, Checkbox, Card, Row, Col, Layout, Menu, Avatar, Table, Modal, DatePicker, Select, List} from 'ant-design-vue'
 import Axios from 'axios';
 
 
@@ -94,6 +94,7 @@ app.config.globalProperties.$message = message;
 
 app.use(store)
     .use(Avatar)
+    .use(Badge)
     .use(Button)
     .use(Card)
     .use(Checkbox)
@@ -115,5 +116,7 @@ app.use(store)
     .use(router)
     .use(Row)
     .use(Select)
+    .use(Tabs)
+    .use(Tabs.TabPane)
     .use(Table)
     .mount('#app');

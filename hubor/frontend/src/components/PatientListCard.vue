@@ -2,15 +2,13 @@
     <div class="patient-list-card-wrapper">
         <a-card
             class="patient-list-card-wrapper-card"
-            :title="this.title"
-            :headStyle="{background:this.headerBackColor, color:this.headerFontColor}"
             :bodyStyle="{background:this.bodyBackColor, color:this.BodyFontColor, }"
             :hoverable="false"
         >
             <a-list 
                 item-layout="horizontal"
                 size="large" 
-                :pagination="pagination" 
+                :pagination="false" 
                 :data-source="this.dataSource"
                 class="patient-list"
             >
@@ -18,19 +16,23 @@
                     <a-list-item key="item.id">
                         <!-- actions -->
                         <template #actions>
-                            <a :href="'monitor/'+item.id">monitor</a>
+                            <a :href="'monitor/'+item.id">▶</a>
                         </template>
 
                         <!-- metas -->
-                        <a-list-item-meta :description="item.date_of_birth">
+                        <a-list-item-meta description="Click to know more">
                             <template #title>
                                 <a :href="'monitor/'+item.id">{{ item.first_name + " " + item.last_name }}</a>
                             </template>
                             <template #avatar>
-                                <a-avatar :src="item.avatar" />
+                                <a-badge dot :status="this.status">
+                                    <a-avatar :src="item.avatar">
+                                        <UserOutlined />
+                                    </a-avatar>
+                                </a-badge>
                             </template>
                         </a-list-item-meta>
-                        <!-- content of the list item, showing the HR, RR, SPO2, TEMP-->
+                        <!-- content of the list item, showing the HR, RR, SPO2, TEMP
                         <a-row style="width:80% !important">
                             <a-col :span="2" >
                                 <p style="padding-top:8pt!important;">
@@ -75,6 +77,7 @@
                                 />
                             </a-col>
                         </a-row>
+                        -->
                     </a-list-item>
                 </template>
             </a-list>
@@ -84,14 +87,17 @@
 </template>
 
 <script>
+import {UserOutlined} from '@ant-design/icons-vue';
 import PatientListVitalSignEntry from '../components/PatientListVitalSignEntry.vue';
 export default{
     name: "PatientListCard",
     components:{
         PatientListVitalSignEntry,
+        UserOutlined,
     },
     props:[
         'title',
+        'status',
         'dataSource',
         'headerBackColor',
         'headerFontColor',
