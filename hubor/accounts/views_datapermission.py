@@ -112,7 +112,8 @@ class TakeCareOfAPI(APIView):
     - requestor can be both requestor and the onwer.
         - Requestor POST: asking for the access.
         - Owner POST: Accept the request. this will delete the DataPermissionRequest tuple, but will create a 
-          TakeCareOf object instead.
+          TakeCareOf object instead. If there is not existing request, then a TakeCareOf object will be created
+          directly.
     - payload:
       ```json
         {
