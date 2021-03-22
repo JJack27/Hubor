@@ -41,7 +41,7 @@ class EmergencyUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'user_type', 'gender', 'facility']
+        fields = ['id', 'first_name', 'last_name', 'user_type', 'gender', 'facility', 'date_of_birth', 'date_joined', 'phone', 'email']
 
 
 class PatientStatusSerializer(serializers.ModelSerializer):
@@ -265,4 +265,4 @@ class DataPermissionRequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DataPermissionRequest
-        fields = ['id', 'owner', 'requestor']
+        fields = ['id', 'owner', 'requestor', 'time']

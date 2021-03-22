@@ -35,6 +35,13 @@
       </a-row>
       <!-- End of header bar-->
 
+      <!-- Start of the pending requests -->
+      <PendingRequestListCard 
+        v-if="Object.keys(this.$store.getters.pendingRequests).length>0"
+        style="width:92%; margin-top:5vh; margin-right: auto; margin-left:auto" 
+      />
+      <!-- End of the pending requests -->
+
       <!-- Start of the patients table -->
       <!-- High Risk Table -->
       <PatientListCard v-if="Object.keys(this.$store.getters.patientsHigh).length>0"
@@ -98,17 +105,20 @@
 </template>
 
 <script>
-import SummaryCard from '../components/SummaryCard.vue'
-import PatientsTable from '../components/PatientsTable.vue'
-import PatientListCard from '../components/PatientListCard.vue'
-import AddPatientForm from '../components/AddPatientForm.vue'
+import SummaryCard from '../components/SummaryCard.vue';
+import PatientsTable from '../components/PatientsTable.vue';
+import PatientListCard from '../components/PatientListCard.vue';
+import AddPatientForm from '../components/AddPatientForm.vue';
+import PendingRequestListCard from '../components/PendingRequestListCard.vue';
+
 export default {
     name: "PatientsPage",
     components:{
         SummaryCard,
         PatientsTable,
         AddPatientForm,
-        PatientListCard
+        PatientListCard,
+        PendingRequestListCard,
     },
 
     data(){
@@ -128,12 +138,13 @@ export default {
           .then((response) => {
             //console.log('belongsto', response);
             // assign doctors to the patient
-            this.$post('api/takecareof/'+this.$store.getters.userId+"/"+patientId +"/", {})
+            this.$post('api/accessrequest/'+patientId +"/"+ this.$store.getters.userId +"/", {})
               .then((response) => {
                 // update front end page
-                this.$get('api/patientsof/'+this.$store.getters.userId + '/')
+                this.$get('api/mypendingrequests/')
                 .then((response) =>{
-                  this.$store.dispatch('addPatients', response.data);
+                  this.$store.dispatch('addPendingRequests', response.data);
+                  console.log(response.data)
                 });
             });
         });

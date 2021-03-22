@@ -8,10 +8,10 @@
     >
       <div class="logo">
         <p id="logo-text">
-            MITACS<br>Vital Sign Project
+            Zenzers
         </p>
       </div>
-      <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
+      <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys" style="text-align:start">
         <a-menu-item key="1">
           <PieChartFilled />
           <span class="nav-text">Home</span>
@@ -21,6 +21,10 @@
           <span class="nav-text">Notifications</span>
         </a-menu-item>
         <a-menu-item key="3">
+          <MailFilled />
+          <span class="nav-text">Pending Requests</span>
+        </a-menu-item>
+        <a-menu-item key="4">
           <EditFilled />
           <span class="nav-text">My Info</span>
         </a-menu-item>
@@ -36,7 +40,8 @@
         <div :style="{ padding: '24px', background: '#fff', minHeight: '83vh'}">
           <patients-page v-if="selectedKeys=='1'"/>
           <notification-page v-else-if="selectedKeys=='2'"/>
-          <my-info-page v-else-if="selectedKeys=='3'"/>
+          <pending-requests-page v-else-if="selectedKeys=='3'"/>
+          <my-info-page v-else-if="selectedKeys=='4'"/>
         </div>
       </a-layout-content>
 
@@ -51,13 +56,13 @@
 
 <script>
 // Icons
-import { EditFilled, ExclamationCircleFilled, PieChartFilled, } from '@ant-design/icons-vue';
+import { EditFilled, ExclamationCircleFilled, PieChartFilled, MailFilled} from '@ant-design/icons-vue';
 
 // Components
 import MyInfoPage from './MyInfoPage.vue';
 import PatientsPage from './PatientsPage.vue';
 import NotificationPage from './NotificationPage.vue';
-
+import PendingRequestsPage from './PendingRequestsPage.vue';
 export default {
     name: "Dashboard",
 
@@ -70,10 +75,12 @@ export default {
         ExclamationCircleFilled,
         PieChartFilled,
         EditFilled,
+        MailFilled,
 
         MyInfoPage,
         PatientsPage,
         NotificationPage,
+        PendingRequestsPage,
     },
 
     mounted(){
@@ -96,6 +103,15 @@ export default {
                           }).catch((error) => {
                             console.log(error);
                           });
+                        
+                        // get a list of pending requests
+                        this.$get('api/mypendingrequests/')
+                          .then((response) => {
+                            this.$store.dispatch('addPendingRequests', response.data);
+                          }).catch((error) => {
+                            console.log(error);
+                          });
+                        
                       });
                 }).catch((error) =>{
                     // redirect it to the home page if getting error
@@ -110,10 +126,8 @@ export default {
 
     methods: {
     onCollapse(collapsed, type) {
-      console.log(collapsed, type);
     },
     onBreakpoint(broken) {
-      console.log(broken);
     },
   },
 }

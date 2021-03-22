@@ -5,7 +5,7 @@ import store from './store'
 import 'ant-design-vue/dist/antd.less';
 import 'font-awesome/css/font-awesome.min.css';
 
-import {Button, Form, Input, Icon, Checkbox, Card, Row, Col, message, Layout, Menu, Avatar, Table, Modal, DatePicker, Select, List} from 'ant-design-vue'
+import {message, Button, Form, Input, Icon, Checkbox, Card, Row, Col, Layout, Menu, Avatar, Table, Modal, DatePicker, Select, List} from 'ant-design-vue'
 import Axios from 'axios';
 
 
@@ -78,6 +78,18 @@ app.config.globalProperties.$get = async function(url) {
     )
 }
 
+app.config.globalProperties.$delete = async function(url) {
+    return Axios.delete(
+        baseURL + url,
+        {
+            headers:{
+                'X-CSRFToken': this.$getCookie('csrftoken'),
+                'withCredentials': true
+            }
+        }
+    )
+}
+
 app.config.globalProperties.$message = message;
 
 app.use(store)
@@ -99,6 +111,7 @@ app.use(store)
     .use(List.Item)
     .use(Modal)
     .use(Menu)
+    .use(message)
     .use(router)
     .use(Row)
     .use(Select)

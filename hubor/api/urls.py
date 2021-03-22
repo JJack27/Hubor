@@ -26,7 +26,7 @@ urlpatterns = [
     path('patientsof/<uuid:doctor>/', PatientsOfAPI.as_view()),
     path('doctorof/<uuid:patient>/', DoctorOfAPI.as_view()),
     path('doctors/', DoctorsAPI.as_view()),
-    path('shortdoctors/', ShortDoctorsAPI.as_view()),
+    #path('shortdoctors/', ShortDoctorsAPI.as_view()),
     path('facilities/', FacilitiesAPI.as_view()),
     path('belongsto/<uuid:facility>/', BelongsToAPI.as_view()),
     path('accessrequest/<uuid:owner>/<uuid:requestor>/', AccessRequestAPI.as_view()),

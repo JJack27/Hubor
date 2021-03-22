@@ -162,10 +162,16 @@ class DoctorOfAPI(APIView):
     - Get the doctor's information of the given patient
     - Response:
         {
-            id: UUID,
-            first_name: String, 
-            last_name: String, 
-            user_type: int
+            "id": UUID,
+            "first_name": String,
+            "last_name": String,
+            "date_joined": DateTime,
+            "date_of_birth": DateTime,
+            "user_type": int,
+            "gender": int,
+            "phone": String,
+            "email": String,
+            "facility": <Facility>
         }
     '''
     def get(self, request, *args, **kwargs):
@@ -379,7 +385,7 @@ class PatientsOfAPI(APIView):
 
 '''
 /api/doctors/
-Get the doctor's information of given patient
+Get the all doctors information
 - GET: Get a list of current doctors
 ''' 
 class DoctorsAPI(APIView):
@@ -397,15 +403,25 @@ class DoctorsAPI(APIView):
                 "id": UUID,
                 "first_name": String,
                 "last_name": String,
-                "since": DateTime,
-                "user_type": int  
+                "date_joined": DateTime,
+                "date_of_birth": DateTime,
+                "user_type": int,
+                "gender": int,
+                "phone": String,
+                "email": String,
+                "facility": <Facility> 
             },
             {
                 "id": UUID,
                 "first_name": String,
                 "last_name": String,
-                "since": DateTime,
-                "user_type": int  
+                "date_joined": DateTime,
+                "date_of_birth": DateTime,
+                "user_type": int,
+                "gender": int,
+                "phone": String,
+                "email": String,
+                "facility": <Facility>   
             }
         ]
     '''
@@ -429,47 +445,6 @@ class DoctorsAPI(APIView):
             return Response([], status=400)
 
 
-'''
-/api/shortdoctors/
-Get the patients' information of a given doctor
-- GET: Get the patients' information of a given doctor
-'''
-class ShortDoctorsAPI(APIView):
-
-    '''
-    GET
-    - Response:
-        [
-            {
-                "id": UUID,
-                "first_name": String,
-                "last_name": String,
-            },
-            {
-                "id": UUID,
-                "first_name": String,
-                "last_name": String,
-            }
-        ]
-    '''
-    def get(self, request, *args, **kwargs):
-        try:
-            # setting up the query
-            query = User.objects.filter(user_type=1)
-            '''
-            valid_query = []
-            for doctor in query:
-                try:
-                    BelongsToFacilities.objects.get(user=doctor.id)
-                    valid_query.append(doctor)
-                except:
-                    pass
-            '''
-            data = EmergencyUserSerializer(query, many=True).data
-            return Response(data, status=200)
-        except Exception as e:
-            print(e)
-            return Response([], status=400)
 
 
 '''
@@ -573,12 +548,16 @@ class BelongsToAPI(APIView):
             {
                 "id": UUID,
                 "user": {
-                    'id': UUID, 
-                    'first_name': String, 
-                    'last_name': String, 
-                    'user_type': int, 
-                    'gender': int, 
-                    'belongs_to': UUID
+                    "id": UUID,
+                    "first_name": String,
+                    "last_name": String,
+                    "date_joined": DateTime,
+                    "date_of_birth": DateTime,
+                    "user_type": int,
+                    "gender": int,
+                    "phone": String,
+                    "email": String,
+                    "facility": <Facility> 
                 },
                 "facility":{
                     "id": UUID,
@@ -619,12 +598,16 @@ class BelongsToAPI(APIView):
         {
             "id": UUID,
             "user": {
-                'id': UUID, 
-                'first_name': String, 
-                'last_name': String, 
-                'user_type': int, 
-                'gender': int, 
-                'belongs_to': UUID
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "date_joined": DateTime,
+                "date_of_birth": DateTime,
+                "user_type": int,
+                "gender": int,
+                "phone": String,
+                "email": String,
+                "facility": <Facility> 
             },
             "facility":{
                 "id": UUID,

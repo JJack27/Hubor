@@ -195,9 +195,13 @@ This will run at the IP address of your local machine with the port 8000
                     "id": UUID,
                     "first_name": String,
                     "last_name": String,
-                    "since": DateTime,
+                    "date_joined": DateTime,
+                    "date_of_birth": DateTime,
                     "user_type": int,
-                    "gender": int  
+                    "gender": int,
+                    "phone": String,
+                    "email": String,
+                    "facility": <Facility>
                 },
                 "patient" : {
                     "id": UUID,
@@ -283,10 +287,16 @@ This will run at the IP address of your local machine with the port 8000
     - Response
         ```json
         {
-            id: UUID,
-            first_name: String, 
-            last_name: String, 
-            user_type: int
+            "id": UUID,
+            "first_name": String,
+            "last_name": String,
+            "date_joined": DateTime,
+            "date_of_birth": DateTime,
+            "user_type": int,
+            "gender": int,
+            "phone": String,
+            "email": String,
+            "facility": <Facility>
         }
         ```
 </p>
@@ -306,18 +316,15 @@ This will run at the IP address of your local machine with the port 8000
                     "id": UUID,
                     "first_name": String,
                     "last_name": String,
-                    "since": DateTime,
-                    "user_type": int ,
+                    "date_joined": DateTime,
+                    "date_of_birth": DateTime,
+                    "user_type": int,
+                    "gender": int,
+                    "phone": String,
+                    "email": String,
                     "facility": <Facility>
                 },
-                {
-                    "id": UUID,
-                    "first_name": String,
-                    "last_name": String,
-                    "since": DateTime,
-                    "user_type": int ,
-                    "facility": <Facility>
-                }
+                ...
             ]
         ```
 </p>
@@ -388,12 +395,16 @@ This will run at the IP address of your local machine with the port 8000
             {
                 "id": UUID,
                 "user": {
-                    'id': UUID, 
-                    'first_name': String, 
-                    'last_name': String, 
-                    'user_type': int, 
-                    'gender': int, 
-                    'belongs_to': UUID
+                    "id": UUID,
+                    "first_name": String,
+                    "last_name": String,
+                    "date_joined": DateTime,
+                    "date_of_birth": DateTime,
+                    "user_type": int,
+                    "gender": int,
+                    "phone": String,
+                    "email": String,
+                    "facility": <Facility>
                 },
                 "facility":{
                     "id": UUID,
@@ -418,12 +429,16 @@ This will run at the IP address of your local machine with the port 8000
         {
             "id": UUID,
             "user": {
-                'id': UUID, 
-                'first_name': String, 
-                'last_name': String, 
-                'user_type': int, 
-                'gender': int, 
-                'belongs_to': UUID
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "date_joined": DateTime,
+                "date_of_birth": DateTime,
+                "user_type": int,
+                "gender": int,
+                "phone": String,
+                "email": String,
+                "facility": <Facility>
             },
             "facility":{
                 "id": UUID,
@@ -451,9 +466,7 @@ This will run at the IP address of your local machine with the port 8000
           directly.
     - payload:
       ```json
-        {
-          "message": string
-        }
+        {} - empty payload
       ```
     - Response:
         - 200: the request is sent or the TakeCareOf is created
@@ -475,9 +488,13 @@ This will run at the IP address of your local machine with the port 8000
                     "id": UUID,
                     "first_name": String,
                     "last_name": String,
-                    "since": DateTime,
+                    "date_joined": DateTime,
+                    "date_of_birth": DateTime,
                     "user_type": int,
-                    "gender": int  
+                    "gender": int,
+                    "phone": String,
+                    "email": String,
+                    "facility": <Facility>
                 },
                 "patient" : {
                     "id": UUID,
@@ -525,31 +542,65 @@ This will run at the IP address of your local machine with the port 8000
             200:[
                     {
                         "id": int,
-                        "doctor" : {
+                        "owner" : {
                             "id": UUID,
                             "first_name": String,
                             "last_name": String,
-                            "since": DateTime,
+                            "date_joined": DateTime,
+                            "date_of_birth": DateTime,
                             "user_type": int,
-                            "gender": int  
-                        },
-                        "patient" : {
-                            "id": UUID,
-                            "first_name": String, 
-                            "last_name": String, 
-                            "user_type": int,
-                            "height": int, 
-                            "weigh"': int, 
-                            "date_of_birth": datetime, 
-                            "notes": String, 
+                            "gender": int,
                             "phone": String,
-                            "status": List<int>     
+                            "email": String,
+                            "facility": <Facility>
+                        },
+                        "requestor": {
+                            "id": UUID,
+                            "first_name": String,
+                            "last_name": String,
+                            "date_joined": DateTime,
+                            "date_of_birth": DateTime,
+                            "user_type": int,
+                            "gender": int,
+                            "phone": String,
+                            "email": String,
+                            "facility": <Facility>
                         }
+                        ...
                     },
                     ...
                 ]
             400:{
                 "message": string
+            }
+            ```
+</p>
+</details>
+
+[comment]: # ("/api/myinfo/")
+<details><summary><code>/api/myinfo/</code>
+</summary>
+<p>
+
+- API allows user to get his/her basic info
+- GET
+    - Get an object of personal info
+    - Response:
+        - status codes:
+            - `200`: Response with a current user's info
+        - response:
+            ```json
+            {
+                "id": UUID,
+                "first_name": String,
+                "last_name": String,
+                "date_joined": DateTime,
+                "date_of_birth": DateTime,
+                "user_type": int,
+                "gender": int,
+                "phone": String,
+                "email": String,
+                "facility": <Facility>
             }
             ```
 </p>

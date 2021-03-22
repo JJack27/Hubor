@@ -56,9 +56,13 @@ class TakeCareOfAPI(APIView):
                     "id": UUID,
                     "first_name": String,
                     "last_name": String,
-                    "since": DateTime,
+                    "date_joined": DateTime,
+                    "date_of_birth": DateTime,
                     "user_type": int,
-                    "gender": int  
+                    "gender": int,
+                    "phone": String,
+                    "email": String,
+                    "facility": <Facility>  
                 },
                 "patient" : {
                     "id": UUID,
@@ -196,25 +200,29 @@ class AccessRequestAPI(APIView):
         200:
             {
                 "id": int,
-                "doctor" : {
+                "owner" : {
                     "id": UUID,
                     "first_name": String,
                     "last_name": String,
-                    "since": DateTime,
+                    "date_joined": DateTime,
+                    "date_of_birth": DateTime,
                     "user_type": int,
-                    "gender": int  
-                },
-                "patient" : {
-                    "id": UUID,
-                    "first_name": String, 
-                    "last_name": String, 
-                    "user_type": int,
-                    "height": int, 
-                    "weigh"': int, 
-                    "date_of_birth": datetime, 
-                    "notes": String, 
+                    "gender": int,
                     "phone": String,
-                    "status": List<int>     
+                    "email": String,
+                    "facility": <Facility> 
+                },
+                "requestor" : {
+                    "id": UUID,
+                    "first_name": String,
+                    "last_name": String,
+                    "date_joined": DateTime,
+                    "date_of_birth": DateTime,
+                    "user_type": int,
+                    "gender": int,
+                    "phone": String,
+                    "email": String,
+                    "facility": <Facility>      
                 }
             }
         
@@ -322,25 +330,29 @@ class AccessRequestAPI(APIView):
             200:[
                     {
                         "id": int,
-                        "doctor" : {
+                        "owner" : {
                             "id": UUID,
                             "first_name": String,
                             "last_name": String,
-                            "since": DateTime,
+                            "date_joined": DateTime,
+                            "date_of_birth": DateTime,
                             "user_type": int,
-                            "gender": int  
-                        },
-                        "patient" : {
-                            "id": UUID,
-                            "first_name": String, 
-                            "last_name": String, 
-                            "user_type": int,
-                            "height": int, 
-                            "weigh"': int, 
-                            "date_of_birth": datetime, 
-                            "notes": String, 
+                            "gender": int,
                             "phone": String,
-                            "status": List<int>     
+                            "email": String,
+                            "facility": <Facility> 
+                        },
+                        "requestor" : {
+                            "id": UUID,
+                            "first_name": String,
+                            "last_name": String,
+                            "date_joined": DateTime,
+                            "date_of_birth": DateTime,
+                            "user_type": int,
+                            "gender": int,
+                            "phone": String,
+                            "email": String,
+                            "facility": <Facility> 
                         }
                     },
                     ...
