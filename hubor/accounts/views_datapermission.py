@@ -124,10 +124,11 @@ class TakeCareOfAPI(APIView):
         - 404: either the requestor or the owner doesn't exist
         - 409: the request already exist in the database and the post is sent by the reqeustor not the owner
 - DELETE
-    - Only the owner can use this method.
-    - Response:
+    - Reject or cancel the request
+    - Status Code:
         - 200: the request is rejected.
-        - 403: the requestor is not the owner
+        - 403: the requestor is neither the owner nor the requestor
+        - 404: given request is not found
 '''
 class AccessRequestAPI(APIView):
     model = TakeCareOf
@@ -196,6 +197,14 @@ class AccessRequestAPI(APIView):
         except:
             return Response({"message": "The user you are requesting doesn't exist"}, status=404)
 
+        # check if the takeCareOf relationship already exists,
+        # if so, return 409
+        try:
+            TakeCareOf.objects.get(patient=owner_id, doctor=requestor_id)
+            return Response({"message": "access already granted"}, status=409)
+        except:
+            pass
+
         # check if there is already a request tuple. 
         #   if so, check if the request is sent the owner
         #       if so, return create a TakeCareOf object and save it to the database, return 200
@@ -203,22 +212,20 @@ class AccessRequestAPI(APIView):
         try:
             request_entry = DataPermissionRequest.objects.get(owner=owner, requestor=requestor)
             
-            # if the the request is sent by the owner
+            # if this request made by the owner, delete the existing request entry (later will handle the creation of the TakeCareOf object)
             if(request.user.id == owner_id):
-                take_care_of_obj = TakeCareOf.objects.create(patient=owner, doctor=requestor)
-                take_care_of_obj.save()
-                data = TakeCareOfSerializer(take_care_of_obj).data
                 request_entry.delete()
-                return Response(data, status=200)
             else:
                 return Response({"message": "The request has already been sent"}, status=409)
         except:
             pass
 
-        # if the request is sent by the owner and the request doesn't exist
-        # return 404
+        # if this post is made by owner, directly create a TakeCareOf object
         if(request.user.id == owner_id):
-            return Response({"message": "No given request found"}, status=404)
+            take_care_of_obj = TakeCareOf.objects.create(patient=owner, doctor=requestor)
+            take_care_of_obj.save()
+            data = TakeCareOfSerializer(take_care_of_obj).data
+            return Response(data, status=200)
 
         # create a DataPermissionRequest object
         # return 200
@@ -230,10 +237,10 @@ class AccessRequestAPI(APIView):
 
     '''
     DELETE
-    - Only the owner can use this method.
+    - Reject or cancel the request
     - Status Code:
         - 200: the request is rejected.
-        - 403: the requestor is not the owner
+        - 403: the requestor is neither the owner nor the requestor
         - 404: given request is not found
     - Response
         {
@@ -247,16 +254,16 @@ class AccessRequestAPI(APIView):
         
         # if the person who sent request is the owner
         # if not, return 403
-        if(not isSelf(request, owner_id)):
+        if(request.user.id != owner_id and request.user.id != requestor_id):
             return Response({"message":"Permission denied"}, status=403)
     
         # check if the given request exists
         # if not, return 404
         try:
-            data_request = DataPermissionRequest.objects.get(owenr=owner_id, requestor=requestor_id)
+            data_request = DataPermissionRequest.objects.get(owner=owner_id, requestor=requestor_id)
         except:
             return Response({"message": "Given request is not found"}, status=404)
 
         # delete the entry (reject the request)
         data_request.delete()
-        return Response({"message": "Rejection succeed"}, status=200)
+        return Response({"message": "Succeed"}, status=200)

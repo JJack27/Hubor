@@ -422,6 +422,77 @@ This will run at the IP address of your local machine with the port 8000
 </p>
 </details>
 
+[comment]: # ("/api/accessrequest/<uuid:owner>/<uuid:requestor>/")
+<details><summary><code>/api/accessrequest/[uuid:owner]/[uuid:requestor]/</code>
+</summary>
+<p>
+- API allows requestor to send a request to the data owner so that he/she can access the vital sign data
+
+- `POST`
+    - requestor can be both requestor and the onwer.
+        - Requestor POST: asking for the access.
+        - Owner POST: Accept the request. this will delete the DataPermissionRequest tuple, but will create a 
+          TakeCareOf object instead.
+    - payload:
+      ```json
+        {
+          "message": string
+        }
+      ```
+    - Response:
+        - 200: the request is sent or the TakeCareOf is created
+        - 404: either the requestor or the owner doesn't exist
+        - 409: the request already exist in the database and the post is sent by the reqeustor not the owner
+        ```json
+        4XX:
+            {
+                "message": string
+            }
+        200 - requestor:
+            {
+                "message": string
+            }
+        200:
+            {
+                "id": int,
+                "doctor" : {
+                    "id": UUID,
+                    "first_name": String,
+                    "last_name": String,
+                    "since": DateTime,
+                    "user_type": int,
+                    "gender": int  
+                },
+                "patient" : {
+                    "id": UUID,
+                    "first_name": String, 
+                    "last_name": String, 
+                    "user_type": int,
+                    "height": int, 
+                    "weigh"': int, 
+                    "date_of_birth": datetime, 
+                    "notes": String, 
+                    "phone": String,
+                    "status": List<int>     
+                }
+            }
+        ```
+- `DELETE`
+    - Reject or cancel the request
+    - Status Code:
+        - 200: the request is rejected.
+        - 403: the requestor is neither the owner nor the requestor
+        - 404: given request is not found
+    - Response
+        ```json
+        {
+            "message": string
+        }
+        ```
+</p>
+</details>
+
+
 ## Data & Vital Sign
 [comment]: # ("/api/data/<uuid:pk>/")
 <details><summary><code>/api/data/[uuid:pk]/</code>

@@ -27,17 +27,17 @@ print("======== Testing Data Permission Related ========")
 
 login(client, doctor1)
 
-print("doctor1 -> user1", end=" ")
+print("▮▮ doctor1 -> user1", end=" ")
 response = client.post('/api/accessrequest/%s/%s/'%(str(user1.id), str(doctor1.id)), {})
 assert response.status_code == 200, "Expecting status code 200, get %d" % response.status_code
 print("Pass!")
 
-print("(duplicated) doctor1 -> user1", end=" ")
+print("▮▮ (duplicated) doctor1 -> user1", end=" ")
 response = client.post('/api/accessrequest/%s/%s/'%(str(user1.id), str(doctor1.id)), {})
 assert response.status_code == 409, "Expecting status code 409, get %d" % response.status_code
 print("Pass!")
 
-print('api/takecareof/doctor1/user1/ (as doctor1)', end=" ")
+print('▮▮ api/takecareof/doctor1/user1/ (as doctor1)', end=" ")
 response = client.get('/api/takecareof/%s/%s/'%(str(doctor1.id), str(user1.id)), {})
 assert response.status_code == 409, "Expecting status code 409, get %d" % response.status_code
 print("Pass!")
@@ -45,37 +45,74 @@ print("Pass!")
 
 logout(client)
 login(client, user1)
-print('user1 -> user1 + doctor1', end=" ")
+print('▮▮ user1 -> user1 + doctor1', end=" ")
 response = client.post('/api/accessrequest/%s/%s/'%(str(user1.id), str(doctor1.id)), {})
 assert response.status_code == 200, "Expecting status code 200, get %d" % response.status_code
 print("Pass!")
 
-print('(duplicated) user1 -> user1 + doctor1', end=" ")
+print('▮▮ (duplicated) user1 -> user1 + doctor1', end=" ")
 response = client.post('/api/accessrequest/%s/%s/'%(str(user1.id), str(doctor1.id)), {})
-assert response.status_code == 404, "Expecting status code 404, get %d" % response.status_code
+assert response.status_code == 409, "Expecting status code 409, get %d" % response.status_code
 print("Pass!")
 
-print('api/takecareof/doctor1/user1/ (as user1)', end=" ")
+print('▮▮ api/takecareof/doctor1/user1/ (as user1)', end=" ")
 response = client.get('/api/takecareof/%s/%s/'%(str(doctor1.id), str(user1.id)))
 assert response.status_code == 200, "Expecting status code 200, get %d" % response.status_code
 print("Pass!")
 
 logout(client)
 login(client, doctor1)
-print('api/takecareof/doctor1/user1/ (as doctor1)', end=" ")
+print('▮▮ api/takecareof/doctor1/user1/ (as doctor1)', end=" ")
 response = client.get('/api/takecareof/%s/%s/'%(str(doctor1.id), str(user1.id)))
 assert response.status_code == 200, "Expecting status code 200, get %d" % response.status_code
 print("Pass!")
 
 logout(client)
 login(client, doctor2)
-print('doctor2 -> user1 + doctor1', end=" ")
+print('▮▮ doctor2 -> user1 + doctor1', end=" ")
 response = client.post('/api/accessrequest/%s/%s/'%(str(user1.id), str(doctor1.id)), {})
 assert response.status_code == 403, "Expecting status code 403, get %d" % response.status_code
 print("Pass!")
 
-print('api/takecareof/doctor1/user1/ (as doctor2)', end=" ")
+print('▮▮ api/takecareof/doctor1/user1/ (as doctor2)', end=" ")
 response = client.get('/api/takecareof/%s/%s/'%(str(doctor1.id), str(user1.id)))
 assert response.status_code == 403, "Expecting status code 403, get %d" % response.status_code
 print("Pass!")
+
+print('▮▮ doctor2 -> user1', end=" ")
+response = client.post('/api/accessrequest/%s/%s/'%(str(user1.id), str(doctor2.id)), {})
+assert response.status_code == 200, "Expecting status code 200, get %d" % response.status_code
+print("Pass!")
+
+print('▮▮ doctor2 -/-> user1', end=" ")
+response = client.delete('/api/accessrequest/%s/%s/'%(str(user1.id), str(doctor2.id)), {})
+assert response.status_code == 200, "Expecting status code 200, get %d" % response.status_code
+print("Pass!")
+
+print('▮▮ doctor2 -> user1', end=" ")
+response = client.post('/api/accessrequest/%s/%s/'%(str(user1.id), str(doctor2.id)), {})
+assert response.status_code == 200, "Expecting status code 200, get %d" % response.status_code
+print("Pass!")
+
+
+
+
+logout(client)
+login(client, user1)
+
+print('▮▮ user1 -/-> user1 + doctor2', end=" ")
+response = client.delete('/api/accessrequest/%s/%s/'%(str(user1.id), str(doctor2.id)), {})
+assert response.status_code == 200, "Expecting status code 200, get %d" % response.status_code
+print("Pass!")
+
+print('▮▮ user1 -> user1 + doctor2', end=" ")
+response = client.post('/api/accessrequest/%s/%s/'%(str(user1.id), str(doctor2.id)), {})
+assert response.status_code == 200, "Expecting status code 200, get %d" % response.status_code
+print("Pass!")
+
+print('▮▮ api/takecareof/doctor2/user1/ (as user1)', end=" ")
+response = client.get('/api/takecareof/%s/%s/'%(str(doctor2.id), str(user1.id)), {})
+assert response.status_code == 200, "Expecting status code 200, get %d" % response.status_code
+print("Pass!")
+
 logout(client)
