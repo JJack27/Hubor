@@ -8,6 +8,7 @@
     >
       <div class="logo">
         <p id="logo-text">
+            Life <br>
             Zenzers
         </p>
       </div>
