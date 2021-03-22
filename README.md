@@ -213,6 +213,21 @@ This will run at the IP address of your local machine with the port 8000
                 }
             }
         ```
+- `DELETE`
+    - Remove a given TakeCareOf relationship
+    - Method can only be used by given patient or doctor
+    - Response:
+        - status code:
+            - 200: succeed
+            - 403: requestor is neither the given patient nor the doctor
+            - 404: the relationship between given patient and the doctor is not found.
+                   Or the given patient or the given doctor doens't exist
+        - response:
+            ```json
+            {
+                "message": string
+            }
+            ```
 </p>
 </details>
 
