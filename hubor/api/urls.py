@@ -3,6 +3,7 @@ from django.urls import path
 from accounts.views import *
 from accounts.views_validation import *
 from accounts.views_authentication import *
+from accounts.views_datapermission import *
 
 from .views_data import *
 from .views_test import *
@@ -28,6 +29,7 @@ urlpatterns = [
     path('shortdoctors/', ShortDoctorsAPI.as_view()),
     path('facilities/', FacilitiesAPI.as_view()),
     path('belongsto/<uuid:facility>/', BelongsToAPI.as_view()),
+    path('accessrequest/<uuid:owner>/<uuid:requestor>/', AccessRequestAPI.as_view()),
     path('myinfo/', MyInfoAPI.as_view()),
 
     # Data related

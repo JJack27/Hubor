@@ -73,13 +73,11 @@ class TakeCareOfAPI(APIView):
                     "status": List<int>     
                 }
             }
-        
     '''
     def get(self, request, *args, **kwargs):
         # parsing request
         patient_id = kwargs['patient']
         doctor_id = kwargs['doctor']
-
         # check if given patients or doctors exists, return 404 if not so
         try:
             User.objects.get(id=patient_id)
@@ -94,16 +92,171 @@ class TakeCareOfAPI(APIView):
         
         # check if the data permission request is still on hold
         try:
-            DataPermissionRequest.objects.get(doctor=doctor_id, patient=patient_id)
+            DataPermissionRequest.objects.get(owner=patient_id, requestor=doctor_id)
             return Response({"message": "Permission request is still on hold"}, status=409)
-        except:
+        except :
             pass
 
         # check if the takecareof relationship exists
         try:
-            query = TakeCareof.objects.get(doctor=doctor_id, patient=patient_id)
+            query = TakeCareOf.objects.get(doctor=doctor_id, patient=patient_id)
             data = TakeCareOfSerializer(query).data
             return Response(data, status=200)
         except:
-            return Response({"message": "You do not have the permission", "type":1}, status=404)
+            return Response({"message": "Access not granted", "type":1}, status=404)
 
+'''
+/api/accessrequest/<uuid:owner>/<uuid:requestor>
+- API allows requestor to send a request to the data owner so that he/she can access the vital sign data
+- POST
+    - requestor can be both requestor and the onwer.
+        - Requestor POST: asking for the access.
+        - Owner POST: Accept the request. this will delete the DataPermissionRequest tuple, but will create a 
+          TakeCareOf object instead.
+    - payload:
+      ```json
+        {
+          "message": string
+        }
+      ```
+    - Response:
+        - 200: the request is sent or the TakeCareOf is created
+        - 404: either the requestor or the owner doesn't exist
+        - 409: the request already exist in the database and the post is sent by the reqeustor not the owner
+- DELETE
+    - Only the owner can use this method.
+    - Response:
+        - 200: the request is rejected.
+        - 403: the requestor is not the owner
+'''
+class AccessRequestAPI(APIView):
+    model = TakeCareOf
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    POST
+    - Allows requestor to send a request to the data owner so that he/she can access the vital sign data
+        - 200: the request is sent or the TakeCareOf is created
+        - 404: either the requestor or the owner doesn't exist
+        - 409: the request already exist in the database and the post is sent by the reqeustor not the owner.
+               Or the request is sent by the owner, but there is no existing entry in the database.
+    - Reponse:
+        4XX:
+            {
+                "message": string
+            }
+        200 - requestor:
+            {
+                "message": string
+            }
+        200:
+            {
+                "id": int,
+                "doctor" : {
+                    "id": UUID,
+                    "first_name": String,
+                    "last_name": String,
+                    "since": DateTime,
+                    "user_type": int,
+                    "gender": int  
+                },
+                "patient" : {
+                    "id": UUID,
+                    "first_name": String, 
+                    "last_name": String, 
+                    "user_type": int,
+                    "height": int, 
+                    "weigh"': int, 
+                    "date_of_birth": datetime, 
+                    "notes": String, 
+                    "phone": String,
+                    "status": List<int>     
+                }
+            }
+        
+    '''
+    def post(self, request, *args, **kwargs):
+        # parsing the request
+        owner_id = kwargs["owner"]
+        requestor_id = kwargs["requestor"]
+        
+
+        # make sure the person who sent request is one of owner or requestor
+        if(owner_id != request.user.id and requestor_id != request.user.id):
+            return Response({"message":"Permission denied"}, status=403)
+
+        # check if the owner exists.
+        # if not, return 404
+        try:
+            owner = User.objects.get(id=owner_id)
+            requestor = User.objects.get(id=requestor_id)
+        except:
+            return Response({"message": "The user you are requesting doesn't exist"}, status=404)
+
+        # check if there is already a request tuple. 
+        #   if so, check if the request is sent the owner
+        #       if so, return create a TakeCareOf object and save it to the database, return 200
+        #   if not (not sent by the owner and already eixst), return 409
+        try:
+            request_entry = DataPermissionRequest.objects.get(owner=owner, requestor=requestor)
+            
+            # if the the request is sent by the owner
+            if(request.user.id == owner_id):
+                take_care_of_obj = TakeCareOf.objects.create(patient=owner, doctor=requestor)
+                take_care_of_obj.save()
+                data = TakeCareOfSerializer(take_care_of_obj).data
+                request_entry.delete()
+                return Response(data, status=200)
+            else:
+                return Response({"message": "The request has already been sent"}, status=409)
+        except:
+            pass
+
+        # if the request is sent by the owner and the request doesn't exist
+        # return 404
+        if(request.user.id == owner_id):
+            return Response({"message": "No given request found"}, status=404)
+
+        # create a DataPermissionRequest object
+        # return 200
+        request_obj = DataPermissionRequest(owner=owner, requestor=requestor)
+        request_obj.save()
+        data = DataPermissionRequestSerializer(request_obj).data
+        return Response(data, status=200)
+
+
+    '''
+    DELETE
+    - Only the owner can use this method.
+    - Status Code:
+        - 200: the request is rejected.
+        - 403: the requestor is not the owner
+        - 404: given request is not found
+    - Response
+        {
+            "message": string
+        }
+    '''
+    def delete(self, request, *args, **kwargs):
+        # parsing the request
+        owner_id = kwargs["owner"]
+        requestor_id = kwargs["requestor"]
+        
+        # if the person who sent request is the owner
+        # if not, return 403
+        if(not isSelf(request, owner_id)):
+            return Response({"message":"Permission denied"}, status=403)
+    
+        # check if the given request exists
+        # if not, return 404
+        try:
+            data_request = DataPermissionRequest.objects.get(owenr=owner_id, requestor=requestor_id)
+        except:
+            return Response({"message": "Given request is not found"}, status=404)
+
+        # delete the entry (reject the request)
+        data_request.delete()
+        return Response({"message": "Rejection succeed"}, status=200)

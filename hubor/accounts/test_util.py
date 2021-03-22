@@ -1,6 +1,7 @@
 import random
 import uuid
 import datetime
+import pytz
 from accounts.models import *
 
 def logout(client):
@@ -24,7 +25,7 @@ def create_user(client, user_type):
             'first_name': 'Yizhou',
             'last_name':'Zhao',
             'phone':'780'+last7digits,
-            'date_of_birth': datetime.date(2010, 1, 1),
+            'date_of_birth': datetime.datetime.now(tz=pytz.timezone("UTC")) - datetime.timedelta(days=90),
             'gender':0,
             'notes':'123123',
             'password':password

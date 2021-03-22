@@ -132,7 +132,7 @@ class UserBelongsToSerializer(serializers.ModelSerializer):
             facility = FacilitySerializer(query).data
             return facility
         except:
-            return None
+            return {'id': 'null'}
     
     def get_user(self, obj):
         query = User.objects.get(id=obj.user_id)
@@ -236,3 +236,33 @@ class TakeCareOfSerializer(serializers.ModelSerializer):
     class Meta:
         model = TakeCareOf
         fields = ['id', 'doctor', 'patient']
+
+class DataPermissionRequestSerializer(serializers.ModelSerializer):
+    owner = serializers.SerializerMethodField('get_owner')
+    requestor = serializers.SerializerMethodField('get_requestor')
+
+    def get_owner(self, obj):
+        query = User.objects.get(id=obj.owner_id)
+        owner = EmergencyUserSerializer(query).data
+        return owner
+    
+    def get_requestor(self, obj):
+        query = User.objects.get(id=obj.requestor_id)
+        requestor = EmergencyUserSerializer(query).data
+        return requestor
+
+
+    def create(self, validated_data):
+        # parse data
+        #print(validated_data)
+        owner = User.objects.get(id=validated_data['owner'])
+        requestor = User.objects.get(id=validated_data['requestor'])
+        
+        # save the relation
+        relation = DataPermissionRequest.objects.create(owner=owner, requestor=requestor)  # pylint: disable=maybe-no-member
+        #relation.save()
+        return relation
+
+    class Meta:
+        model = DataPermissionRequest
+        fields = ['id', 'owner', 'requestor']

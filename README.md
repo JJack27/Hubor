@@ -168,38 +168,50 @@ This will run at the IP address of your local machine with the port 8000
 </summary>
 <p>
 
-- Assign `doctor` to take care of `patient`. Only doctors, admins, and patients him/herselves can do the post.
-- Patients cannot POST for other patients.
-- `POST`
-    - Request
-        ```json
-        {} - empty request
-        ```
+- Check if given doctor has the permission of accessing the data of the givien patient
+- `GET`
+    - Check if given doctor is taking care of given patient
+        - 200: if true
+        - 404: 
+            - `type=0`: either the doctor or the patient doesn't exist. 
+            - `type=1`: the relationship doesn't exist.
+        - 409: permission request still on hold
+        - 403: request is sent by neither the given doctor nor the given patient
     - Response
         ```json
-        {
-            "id": int,
-            "doctor" : {
-                "id": UUID,
-                "first_name": String,
-                "last_name": String,
-                "since": DateTime,
-                "user_type": int    
-            },
-            "patient" : {
-                "id": UUID,
-                "first_name": String, 
-                "last_name": String, 
-                "user_type": int,
-                "height": int, 
-                "weigh"': int, 
-                "date_of_birth": datetime, 
-                "notes": String, 
-                "phone": String,
-                "status": List<int>,
-                "facility": <Facility>
+        4XX:
+            {
+                "message": string
             }
-        }
+        404:
+            {
+                "message": string,
+                "type": int  [0 (user doesn't exist) / 1 (no permission)]
+            }
+        200:
+            {
+                "id": int,
+                "doctor" : {
+                    "id": UUID,
+                    "first_name": String,
+                    "last_name": String,
+                    "since": DateTime,
+                    "user_type": int,
+                    "gender": int  
+                },
+                "patient" : {
+                    "id": UUID,
+                    "first_name": String, 
+                    "last_name": String, 
+                    "user_type": int,
+                    "height": int, 
+                    "weigh"': int, 
+                    "date_of_birth": datetime, 
+                    "notes": String, 
+                    "phone": String,
+                    "status": List<int>     
+                }
+            }
         ```
 </p>
 </details>
@@ -260,40 +272,6 @@ This will run at the IP address of your local machine with the port 8000
             first_name: String, 
             last_name: String, 
             user_type: int
-        }
-        ```
-- `PUT`
-    - Update the doctor user takeCareOf relationship of given patient. 
-    - Request
-        ```json
-        {
-            doctor_id: UUID/String * 
-        }
-        ```
-    - Response
-        ```json
-        {
-            "id": int,
-            "doctor" : {
-                "id": UUID,
-                "first_name": String,
-                "last_name": String,
-                "since": DateTime,
-                "user_type": int    
-            },
-            "patient" : {
-                "id": UUID,
-                "first_name": String, 
-                "last_name": String, 
-                "user_type": int,
-                "height": int, 
-                "weigh"': int, 
-                "date_of_birth": datetime, 
-                "notes": String, 
-                "phone": String,
-                "status": List<int>,
-                "facility": <Facility>
-            }
         }
         ```
 </p>
