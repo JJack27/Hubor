@@ -6,7 +6,7 @@
       @collapse="onCollapse"
       @breakpoint="onBreakpoint"
     >
-      <div class="logo">
+      <div class="logo" style="text-align: start;">
         <p id="logo-text">
             Life <br>
             Zenzers
@@ -82,10 +82,12 @@ export default {
 
     watch:{
       selectedKeys(val){
+        this.$store.dispatch('updateDashboardKey', val);
+
         if(this.$route.path.includes('monitor')){
           this.$router.push('/dashboard');
         }
-      }
+      },
     },
 
     components: {
@@ -101,7 +103,8 @@ export default {
     },
 
     mounted(){
-        console.log("dashboard");
+        this.selectedKeys = this.$store.getters.dashboardKey;
+        
         // redirect user to the login page if the sessionid and csrtoken doesn't exist
         if(this.$getCookie('sessionid') === null
             && this.$getCookie('csrftoken') === null){

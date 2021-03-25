@@ -27,7 +27,7 @@
 
                 <!-- right triangle -->
                 <a-col :span="1" style="padding-top: 8pt!important">
-                    <a :href="'dashboard/monitor/'+item.id">▶</a>
+                    <a >▶</a>
                 </a-col>
             </a-row> 
         </a-card>
@@ -37,11 +37,9 @@
 
 <script>
 import {UserOutlined} from '@ant-design/icons-vue';
-import PatientListVitalSignEntry from '../components/PatientListVitalSignEntry.vue';
 export default{
     name: "PaitentCardList",
     components:{
-        PatientListVitalSignEntry,
         UserOutlined,
     },
     props:[

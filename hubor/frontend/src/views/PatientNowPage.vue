@@ -1,7 +1,17 @@
 <template>
     <div>
-        Now Page
-        {{ this.$route.params.id }}
+        
+        <a-row type="flex" justify="space-around">
+            <a-col class="current-status-card-cluster" :span="8">
+                <PatientNowStatusCard
+                    :id="this.id"
+                />
+            </a-col>
+
+            <a-col class="current-patient-info" :span="8">
+
+            </a-col>
+        </a-row>
     </div>
 </template>
 
@@ -15,10 +25,14 @@ export default{
         PatientNowStatusCard,
         PatientInfoCard,
     },
-
-    props:[
-        'id',
-    ]
+    data(){
+        return {
+            "id" : this.$route.params.id,
+        }
+    },
+    mounted(){
+        
+    }
 }
 </script>
 

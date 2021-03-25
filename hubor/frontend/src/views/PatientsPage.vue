@@ -69,15 +69,22 @@ export default {
         PendingRequestListCard,
     },
 
-    setup(){
-      return {
-        activeKey: ref('1'),
-      };
+    mounted(){
+      this.activeKey = this.$store.getters.patientPageTabKey;
     },
+
+    
 
     data(){
       return{
         addPatientModelVisible: false,
+        activeKey: this.$store.getters.patientPageTabKey,
+      }
+    },
+
+    watch:{
+      activeKey(val){
+        this.$store.dispatch('updatePatientPageTabKey', val);
       }
     },
 
@@ -88,22 +95,25 @@ export default {
 
       handleFormClose(patientId){
         // add patient to doctor's facility
+        /*
         this.$put('api/belongsto/'+this.$store.getters.currentUserInfo.facility.id+'/', {"user": patientId})
           .then((response) => {
             //console.log('belongsto', response);
             // assign doctors to the patient
             
         });
+        */
+        /*
         this.$post('api/accessrequest/'+patientId +"/"+ this.$store.getters.userId +"/", {})
           .then((response) => {
             // update front end page
             this.$get('api/mypendingrequests/')
             .then((response) =>{
               this.$store.dispatch('addPendingRequests', response.data);
-                console.log(response.data)
             });
         });
         this.addPatientModelVisible = false;
+        */
       },
 
     }
