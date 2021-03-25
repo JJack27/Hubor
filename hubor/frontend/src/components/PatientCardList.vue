@@ -6,6 +6,7 @@
             :hoverable="true"
             :key="item.id"
             v-for="item in this.dataSource"
+            @click="onClickListItem(item)"
         >
             <a-row>
                 <!-- avatar -->
@@ -26,7 +27,7 @@
 
                 <!-- right triangle -->
                 <a-col :span="1" style="padding-top: 8pt!important">
-                    <a :href="'monitor/'+item.id">▶</a>
+                    <a :href="'dashboard/monitor/'+item.id">▶</a>
                 </a-col>
             </a-row> 
         </a-card>
@@ -67,8 +68,8 @@ export default{
     },
 
     methods :{
-        onClickListItem(id){
-            console.log(id);
+        onClickListItem(item){
+            this.$router.push('/dashboard/monitor/'+item.id);
         },
     }
 }

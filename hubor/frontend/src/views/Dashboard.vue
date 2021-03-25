@@ -38,7 +38,14 @@
 
       <!-- Content -->
       <a-layout-content :style="{ margin: '24px 16px 0' }">
-        <div :style="{ padding: '24px', background: '#fff', minHeight: '83vh'}">
+        <router-view 
+          v-if="this.$route.path.includes('monitor')"
+          :style="{ padding: '24px', minHeight: '83vh'}">
+        </router-view>
+        <div 
+          :style="{ padding: '24px', minHeight: '83vh'}" 
+          v-else
+        >
           <patients-page v-if="selectedKeys=='1'"/>
           <notification-page v-else-if="selectedKeys=='2'"/>
           <pending-requests-page v-else-if="selectedKeys=='3'"/>
@@ -72,6 +79,15 @@ export default {
             selectedKeys: ['1'],
         };
     },
+
+    watch:{
+      selectedKeys(val){
+        if(this.$route.path.includes('monitor')){
+          this.$router.push('/dashboard');
+        }
+      }
+    },
+
     components: {
         ExclamationCircleFilled,
         PieChartFilled,
