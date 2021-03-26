@@ -1,6 +1,5 @@
 from emergency.models import *
 from rest_framework import serializers
-from accounts.serializers import EmergencyUserSerializer
 
 '''
 Serializer for EmergencyContact

@@ -4,8 +4,8 @@ from accounts.views import *
 from accounts.views_validation import *
 from accounts.views_authentication import *
 from accounts.views_datapermission import *
+from data.views import *
 
-from .views_data import *
 from .views_test import *
 from .views_emergency import *
 from .views_config import *

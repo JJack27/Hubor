@@ -19,7 +19,6 @@ user = create_user(client, 0)
 print("id =", str(user.id))
 print("username =", user.username)
 login(client, user)
-'''
 df = pd.read_csv("./data/dummy_vs_data.csv")
 df['time'] = pd.to_datetime(df['time'])
 
@@ -107,7 +106,7 @@ for i in range(len(means)):
         response = client.post('/api/aggregatedvs/%s/'%(str(user.id)), payload)
         assert response.status_code == 200, "Error!, expecting 200, get %d"%response.status_code
 print("Total of %d tuples added!"%counter)
-'''
+
 
 user = User.objects.get(username='testuser1')
 login(client, user)

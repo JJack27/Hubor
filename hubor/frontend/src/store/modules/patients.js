@@ -98,14 +98,31 @@ const state = () => ({
         delete state.patientsHigh[patients];
       }
     },
+
+    // append an emergency contact to a given user
+    appendEmergencyContact(state, emergencyContact){
+      if(emergencyContact.patient in state.patientsLow){
+        state.patientsLow[emergencyContact.patient].emergency_contacts.push(emergencyContact);
+      }else if(emergencyContact.patient in state.patientsMid){
+        state.patientsMid[emergencyContact.patient].emergency_contacts.push(emergencyContact);
+      }else{
+        state.patientsHigh[emergencyContact.patient].emergency_contacts.push(emergencyContact);
+        console.log(state.patientsHigh[emergencyContact.patient].emergency_contacts)
+        console.log(emergencyContact);
+      }
+    }
     // end of mutations
   }
   
   // actions
   const actions = {
-    addPatients: ({commit, state}, patients) => {
+    addPatients: ({commit}, patients) => {
       commit('addPatients', patients);
     },
+
+    appendEmergencyContact({commit}, emergencyContact){
+      commit('appendEmergencyContact', emergencyContact);
+    }
   }
     
   export default {

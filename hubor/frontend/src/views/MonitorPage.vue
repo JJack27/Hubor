@@ -1,7 +1,7 @@
 <template>
     <div>
         <div style="width:100%; text-align:start">
-            <ArrowLeftOutlined @click="backToDashboard"/>
+            <ArrowLeftOutlined @click="backToDashboard" height="2em"/>
         </div>
         
         <a-tabs v-model:activeKey="activeKey">

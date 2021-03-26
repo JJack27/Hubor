@@ -791,6 +791,42 @@ This will run at the IP address of your local machine with the port 8000
 </details>
 
 
+[comment]: # ("/api/emergencycontacts/<uuid:pk>/")
+<details><summary><code>/api/emergencycontacts/[uuid:pk]/</code>
+</summary>
+<p>
+
+- `POST`
+    - Create an emergency contact for given user
+    - Request
+        ```json
+        {
+            "first_name": string,
+            "last_name": string,
+            "phone": string,
+            "email": string,
+        }
+        ```
+    - response:
+        - status code:
+            - 200: success
+            - 404: given user not found
+            - 403: permission denied (the request is sent neither by the patient him/herself nor the doctor who's taking care of the given user)
+            - 409: the given patient already has 3 emergency contacts
+- `GET`
+    - Get a list of emergency contacts of given user
+    - Response
+        ```json
+        [
+                {emergency_contact_1},
+                {emergency_contact_2},
+                ...
+                {emergency_contact_3}
+        ]
+        ```
+</p>
+</details>
+
 ## Configuration
 [comment]: # ("/api/config/<int:version>/")
 <details><summary><code>/api/config/[int:version]/</code>

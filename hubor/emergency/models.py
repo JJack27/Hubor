@@ -8,11 +8,11 @@ Class holds emergency contacts relationship
 '''
 class EmergencyContact(models.Model):
     id = models.AutoField(primary_key = True)
-    paitent = models.ForeignKey(User, on_delete=models.CASCADE)
+    patient = models.ForeignKey(User, on_delete=models.CASCADE)
     first_name = models.TextField(max_length=30)
     last_name = models.TextField(max_length=30)
     phone = models.TextField(max_length=20)
-    email = models.EmailField(null=True, editable=True, unique=True)
+    email = models.EmailField(null=True)
     
 
 '''

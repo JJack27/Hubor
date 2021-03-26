@@ -4,6 +4,9 @@ from django.utils import timezone
 from accounts.models import *
 from data.models import *
 from data.serializers import *
+from emergency.models import EmergencyContact
+from emergency.serializers import EmergencyContactSerializer
+
 import datetime
 #class UserSerializer()
 
@@ -21,7 +24,7 @@ class BaseUserSerializer(serializers.ModelSerializer):
             facility = query.facility
             return FacilitySerializer(facility).data
         except:
-            return {'id': 'null'}
+            return 'null'
 
     class Meta:
         model = User
@@ -37,7 +40,7 @@ class EmergencyUserSerializer(serializers.ModelSerializer):
             facility = query.facility
             return FacilitySerializer(facility).data
         except:
-            return {'id': 'null'}
+            return 'null'
 
     class Meta:
         model = User
@@ -59,7 +62,7 @@ class ShortDoctorsSerializer(serializers.ModelSerializer):
             facility = query.facility
             return FacilitySerializer(facility).data
         except:
-            return {'id': 'null'}
+            return 'null'
 
     class Meta:
         model = User
@@ -79,6 +82,9 @@ class PatientSerializer(serializers.ModelSerializer):
     temp = serializers.SerializerMethodField('get_temp')
     rr = serializers.SerializerMethodField('get_rr')
     spo2 = serializers.SerializerMethodField('get_spo2')
+    bp_h = serializers.SerializerMethodField('get_bp_h')
+    bp_l = serializers.SerializerMethodField('get_bp_l')
+    emergency_contacts = serializers.SerializerMethodField('get_emergency_contacts')
 
     def get_hr(self, obj):
         try:
@@ -107,6 +113,20 @@ class PatientSerializer(serializers.ModelSerializer):
             return VitalSignSerializer(query).data['spo2']
         except:
             return 'null'
+    
+    def get_bp_h(self, obj):
+        try:
+            query = VitalSign.objects.filter(owner=obj.id).latest('time')
+            return VitalSignSerializer(query).data['bp_h']
+        except:
+            return 'null'
+    
+    def get_bp_l(self, obj):
+        try:
+            query = VitalSign.objects.filter(owner=obj.id).latest('time')
+            return VitalSignSerializer(query).data['bp_l']
+        except:
+            return 'null'
 
     def get_facility(self, obj):
         try:
@@ -114,11 +134,19 @@ class PatientSerializer(serializers.ModelSerializer):
             facility = query.facility
             return FacilitySerializer(facility).data
         except:
-            return {'id': 'null'}
+            return 'null'
+
+    def get_emergency_contacts(self, obj):
+        query = EmergencyContact.objects.filter(patient=obj)
+        data = EmergencyContactSerializer(query, many=True).data
+        return data
+        
+        
+
     class Meta:
         model = User
         fields = ['id', 'first_name', 'last_name', 'user_type', 'height', 'weight', 'date_of_birth', 'notes', 'phone', 'status', 'facility',
-            'hr', 'temp', 'rr', 'spo2', 'email']
+            'hr', 'temp', 'rr', 'spo2', 'email', 'bp_h', 'bp_l', 'emergency_contacts']
 
 
 
@@ -132,7 +160,7 @@ class UserBelongsToSerializer(serializers.ModelSerializer):
             facility = FacilitySerializer(query).data
             return facility
         except:
-            return {'id': 'null'}
+            return 'null'
     
     def get_user(self, obj):
         query = User.objects.get(id=obj.user_id)

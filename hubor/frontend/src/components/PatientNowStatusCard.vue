@@ -78,7 +78,6 @@ export default{
         'id',
     ],
     mounted(){
-        console.log(this.id);
     }
     //this.$store.getters.patients[this.id].bp_h + '/' + this.$store.getters.patients[this.id].bp_l
 }

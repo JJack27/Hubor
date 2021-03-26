@@ -26,6 +26,8 @@ class VitalSign(models.Model):
     spo2 = models.FloatField(default=0, null=True)
     hr = models.FloatField(default=0, null=True)
     rr = models.FloatField(default=0, null=True)
+    bp_h = models.FloatField(default=0, null=True)
+    bp_l = models.FloatField(default=0, null=True)
 
 
 class AggregatedVitalSign(models.Model):
@@ -62,4 +64,19 @@ class AggregatedVitalSign(models.Model):
     rr_max = models.FloatField(default=0)
     rr_min = models.FloatField(default=0)
     rr_std = models.FloatField(default=0)
+
+    # bp_h
+    bp_h_mean = models.FloatField(default=0, null=True)
+    bp_h_med = models.FloatField(default=0)
+    bp_h_max = models.FloatField(default=0)
+    bp_h_min = models.FloatField(default=0)
+    bp_h_std = models.FloatField(default=0)
+
+    # bp_l
+    bp_l_mean = models.FloatField(default=0, null=True)
+    bp_l_med = models.FloatField(default=0)
+    bp_l_max = models.FloatField(default=0)
+    bp_l_min = models.FloatField(default=0)
+    bp_l_std = models.FloatField(default=0)
+
 

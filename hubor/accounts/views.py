@@ -379,7 +379,9 @@ class PatientsOfAPI(APIView):
         try:
             patients_data = PatientSerializer(patient_users, many=True).data
             return Response(patients_data, status=200)
-        except:
+        except Exception as e:
+            print("error!!!!")
+            print(e)
             return Response({}, status=400)
 
 

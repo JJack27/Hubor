@@ -18,7 +18,8 @@ class AggregatedVitalSignSerializer(serializers.ModelSerializer):
     hr = serializers.SerializerMethodField('get_hr')
     rr = serializers.SerializerMethodField('get_rr')
     spo2 = serializers.SerializerMethodField('get_spo2')
-    
+    bp_h = serializers.SerializerMethodField('get_bp_h')
+    bp_l = serializers.SerializerMethodField('get_bp_l')
     def get_temp(self, obj):
         return {
             'mean': obj.temp_mean,
@@ -55,6 +56,24 @@ class AggregatedVitalSignSerializer(serializers.ModelSerializer):
             'std': obj.spo2_std
         }
 
+    def get_bp_h(self, obj):
+        return {
+            'mean': obj.bp_h_mean,
+            'med': obj.bp_h_med,
+            'min': obj.bp_h_min,
+            'max': obj.bp_h_max,
+            'std': obj.bp_h_std
+        }
+    
+    def get_bp_l(self, obj):
+        return {
+            'mean': obj.bp_l_mean,
+            'med': obj.bp_l_med,
+            'min': obj.bp_l_min,
+            'max': obj.bp_l_max,
+            'std': obj.bp_l_std
+        }
+
     class Meta:
         model = AggregatedVitalSign
-        fields = ['time', 'temp', 'hr', 'rr', 'spo2']
+        fields = ['time', 'temp', 'hr', 'rr', 'spo2', 'bp_h', 'bp_l']
