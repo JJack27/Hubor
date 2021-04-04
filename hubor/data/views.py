@@ -171,9 +171,13 @@ class VitalSignAPI(APIView):
         from_time = request.GET.get('from', None)
         to_time = request.GET.get('to', None)
         range_type = request.GET.get('type', None)
+        print(from_time)
+        print(to_time)
+        print(range_type)
         
         # if the request is invalid, return status 400
         if(from_time == None or to_time == None or range_type == None):
+            print("None in the request")
             return Response({}, status=400)
         
         # update from_time and to_time to datetime object

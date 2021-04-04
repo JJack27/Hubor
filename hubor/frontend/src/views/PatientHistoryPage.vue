@@ -1,6 +1,6 @@
 <template>
     <div>
-        History Page
+        <VSLineRangedChart />
     </div>
 </template>
 

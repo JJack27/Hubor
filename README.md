@@ -672,7 +672,7 @@ This will run at the IP address of your local machine with the port 8000
 
 
 [comment]: # ("/api/vitalsign/<uuid:owner>/?from=<time_with_time_zone>&to=<time_with_time_zone>&type=['min', 'hr', 'day', 'month']")
-<details><summary><code>/api/vitalsign/[uuid:owner]/</code>
+<details><summary><code>/api/vitalsign/[uuid:owner]/?from=[time_with_time_zone]&to=[time_with_time_zone]&type=['min', 'hr', 'day', 'month']</code>
 </summary>
 <p>
 
