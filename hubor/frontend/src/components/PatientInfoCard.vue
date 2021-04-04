@@ -6,14 +6,14 @@
                 {{this.$store.getters.patients[this.id].first_name + " " + this.$store.getters.patients[this.id].last_name}}
             </a-descriptions-item>
             <a-descriptions-item label="ID" :span="3">{{this.id}}</a-descriptions-item>
+            <a-descriptions-item label="Email" :span="3">{{this.$store.getters.patients[this.id].email}}</a-descriptions-item>
 
             <a-descriptions-item label="Height" :span="1">{{this.$store.getters.patients[this.id].height}} CM</a-descriptions-item>
             <a-descriptions-item label="Weight" :span="2">{{this.$store.getters.patients[this.id].weight}} KG</a-descriptions-item>
-
+            
             <a-descriptions-item label="Date of Birth">{{this.$store.getters.patients[this.id].date_of_birth}}</a-descriptions-item>
-            <a-descriptions-item label="Phone" >{{this.$store.getters.patients[this.id].phone}}</a-descriptions-item>
-            <a-descriptions-item label="Email">{{this.$store.getters.patients[this.id].email}}</a-descriptions-item>
-
+            <a-descriptions-item label="Phone" :span="2">{{this.$store.getters.patients[this.id].phone}}</a-descriptions-item>
+            
             <a-descriptions-item label="Facility" :span="3">
                 <div v-if="this.$store.getters.patients[this.id].facility != 'null'">
                     <span style="font-weight:bold">{{this.$store.getters.patients[this.id].facility.name}}</span>
@@ -75,9 +75,7 @@ import AddEmergencyContactForm from './AddEmergencyContactForm.vue';
 
 export default{
     name: "PatienInfoCard",
-    props:[
-        'id',
-    ],
+    inject:['id'],
 
     components:{
         PhoneFilled,

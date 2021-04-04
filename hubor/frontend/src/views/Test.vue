@@ -1,5 +1,5 @@
 <template>
-    <VSMultiViewChart/>
+    <VSLineRangedChart/>
 </template>
 
 <style>
@@ -9,11 +9,11 @@
 </style>
 
 <script>
-import VSMultiViewChart  from "../components/ChartsPlots/VSMultiViewChart.vue";
+import VSLineRangedChart  from "../components/ChartsPlots/VSLineRangedChart.vue";
 export default {
   name: "Home", 
   components: {
-      VSMultiViewChart,
+      VSLineRangedChart,
   },
 
   mounted(){

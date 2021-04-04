@@ -9,9 +9,11 @@ import { defineComponent } from 'vue';
 import { MultiView } from '@antv/g2plot';
 
 export default defineComponent({
-    name:"VSMultiViewChart",
+    name:"VSLineRangedChart",
+    inject:[
+        'userId',
+    ],
 
-    
     setup() {
         console.log("chart");
         const chart = fetch('https://gw.alipayobjects.com/os/antfincdn/qE48lpzwRc/range-area-data.json')

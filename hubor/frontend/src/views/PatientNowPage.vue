@@ -3,15 +3,11 @@
         
         <a-row type="flex" justify="space-around">
             <a-col class="current-status-card-cluster" :span="8">
-                <PatientNowStatusCard
-                    :id="this.id"
-                />
+                <PatientNowStatusCard />
             </a-col>
 
             <a-col class="current-patient-info" :span="12">
-                <PatientInfoCard 
-                    :id="this.id"
-                />
+                <PatientInfoCard />
             </a-col>
         </a-row>
     </div>
@@ -27,13 +23,8 @@ export default{
         PatientNowStatusCard,
         PatientInfoCard,
     },
-    data(){
-        return {
-            "id" : this.$route.params.id,
-        }
-    },
+    
     mounted(){
-        
     }
 }
 </script>

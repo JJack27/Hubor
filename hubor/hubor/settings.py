@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',
+    #'corsheaders',
     'channels',
     'api',
     'emergency',
@@ -50,8 +50,6 @@ INSTALLED_APPS = [
     'data',
     'configurations',
     'notification',
-    
-
 ]
 
 MIDDLEWARE = [

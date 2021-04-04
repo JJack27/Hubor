@@ -5,11 +5,23 @@
 </template>
 
 <script>
+import VSLineRangedChart from '../components/ChartsPlots/VSLineRangedChart.vue';
+
 export default{
     name:"PatientHistoryPage",
-    props:[
-        'id',
-    ]
+    inject:['id', ],
+
+    components:{
+        VSLineRangedChart,
+    },
+
+    setup(){
+
+    },
+
+    mounted(){
+        console.log(this.id);
+    }
 }
 </script>
 

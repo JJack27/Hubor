@@ -31,9 +31,11 @@ export default{
         PatientNowPage,
     },
     
-    props:[
-        
-    ],
+    provide(){
+        return{
+            'id': this.$route.params.id
+        }
+    },
 
     methods:{
         backToDashboard(){

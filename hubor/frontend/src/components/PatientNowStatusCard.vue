@@ -74,9 +74,8 @@ export default{
         VSEntryHorizontal,
     },
 
-    props:[
-        'id',
-    ],
+    inject:['id'],
+    
     mounted(){
     }
     //this.$store.getters.patients[this.id].bp_h + '/' + this.$store.getters.patients[this.id].bp_l

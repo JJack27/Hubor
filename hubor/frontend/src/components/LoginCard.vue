@@ -91,7 +91,6 @@ export default {
                 if(this.keeplogged){
                   this.$setCookie('keeplogged', 1, 30);
                 }
-                console.log(response.headers["set-cookie"]);
 
                 // Route to the dash board page
                 this.$router.push("dashboard");
