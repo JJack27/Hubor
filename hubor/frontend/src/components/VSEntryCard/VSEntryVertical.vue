@@ -5,14 +5,14 @@
         :hoverable="false"
     >
         <a-row type="flex" justify="center" align="bottom">
-            <a-col :span="12">
+            <a-col :span="4">
                 <img
                     :src="require(`@/assets/icons/${this.icon}`)"
                     height="30"
                     width="30"
                     class="list-item-icon">
             </a-col>
-            <a-col :span="12" class="vs-title">
+            <a-col :span="20" class="vs-title">
                 {{ this.title }}
             </a-col>
             

@@ -1,6 +1,6 @@
 <template>
     <div class="patient-now-status-card">
-        <h1 style="font-weight: bold">
+        <h1 style="font-weight: bold; text-align: start;">
             Current Status
         </h1>
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
@@ -69,8 +69,8 @@
 </template>
 
 <script>
-import VSEntryVertical from './PatientStatusEntryCard/VSEntryVertical.vue';
-import VSEntryHorizontal from './PatientStatusEntryCard/VSEntryHorizontal.vue';
+import VSEntryVertical from './VSEntryCard/VSEntryVertical.vue';
+import VSEntryHorizontal from './VSEntryCard/VSEntryHorizontal.vue';
 export default{
     name: "PatientNowStatusCard",
     components:{

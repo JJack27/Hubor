@@ -88,7 +88,7 @@
 
 <script>
 import {UserOutlined} from '@ant-design/icons-vue';
-import VSEntryHorizontal from '../components/PatientStatusEntryCard/VSEntryHorizontal.vue';
+import VSEntryHorizontal from '../components/VSEntryCard/VSEntryHorizontal.vue';
 export default{
     name: "PatientListCard",
     components:{

@@ -1,7 +1,7 @@
 <template>
     <div class="patient-info-cards-group">
         
-        <h1 style="font-weight: bold">
+        <h1 style="font-weight: bold; text-align: start;">
             {{ this.$store.getters.patients[this.id].first_name +
             " " + this.$store.getters.patients[this.id].last_name}}
         </h1>
@@ -48,9 +48,8 @@
 <script>
 
 import {PhoneFilled, HomeFilled} from '@ant-design/icons-vue';
-import AddEmergencyContactForm from './AddEmergencyContactForm.vue';
-import VSEntryVertical from './PatientStatusEntryCard/VSEntryVertical.vue';
-import VSEntryHorizontal from './PatientStatusEntryCard/VSEntryHorizontal.vue';
+import VSEntryVertical from './VSEntryCard/VSEntryVertical.vue';
+import VSEntryHorizontal from './VSEntryCard/VSEntryHorizontal.vue';
 import MedicationCardHorizontal from './MedicationCards/MedicationCardHorizontal.vue';
 import MedicationCardVertical from './MedicationCards/MedicationCardVertical.vue';
 import DiagnosisCardVertical from './DiagnosisCards/DiagnosisCardVertical.vue';
@@ -62,7 +61,6 @@ export default{
     components:{
         PhoneFilled,
         HomeFilled,
-        AddEmergencyContactForm,
         VSEntryVertical,
         VSEntryHorizontal,
         MedicationCardHorizontal,
