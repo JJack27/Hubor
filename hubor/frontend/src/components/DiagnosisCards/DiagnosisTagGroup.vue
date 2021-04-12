@@ -1,8 +1,13 @@
 <template>
     <div>
         <template v-for="(tag, index) in tags" :key="index">
-            <a-tag :closable="true" @close="handleClose(tag)">
-            {{ tag }}
+            <a-tooltip v-if="tag.length > 20" :title="tag">
+              <a-tag :key="tag" :closable="true" @close="handleClose(tag)">
+                {{ `${tag.slice(0, 20)}...` }}
+              </a-tag>
+            </a-tooltip>
+            <a-tag v-else :closable="true" @close="handleClose(tag)">
+              {{ tag }}
             </a-tag>
         </template>
         <a-input
