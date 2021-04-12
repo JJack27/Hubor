@@ -22,20 +22,18 @@
 
         <!-- SPO2 -->
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
-            <a-col :span="24">
-                <VSEntryHorizontal
+            <a-col :span="12">
+                <VSEntryVertical
                     icon="spo2_icon.png"
                     :value="this.$store.getters.patients[this.id].spo2"
                     unit="%"
                     title="Oxygen Saturation"
                 />
             </a-col>
-        </a-row>
 
-        <!-- RR -->
-        <a-row type="flex" justify="bottom" :gutter="[16,16]">
-            <a-col :span="24">
-                <VSEntryHorizontal
+            <!-- RR -->
+            <a-col :span="12">
+                <VSEntryVertical
                     icon="rr_icon.png"
                     :value="this.$store.getters.patients[this.id].rr"
                     unit="rpm"
@@ -43,6 +41,9 @@
                 />
             </a-col>
         </a-row>
+
+        
+        
 
         <!-- BP -->
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
