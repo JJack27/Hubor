@@ -1,5 +1,8 @@
 <template>
     <div class="patient-now-status-card">
+        <h1 style="font-weight: bold">
+            Current Status
+        </h1>
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
             <a-col :span="12">
                 <VSEntryVertical

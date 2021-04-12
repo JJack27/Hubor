@@ -1,8 +1,13 @@
 <template>
     <div>
         <template v-for="(tag, index) in tags" :key="index">
-            <a-tag :closable="true" @close="handleClose(tag)">
-            {{ tag }}
+            <a-tooltip v-if="tag.length > 20" :title="tag">
+              <a-tag :key="tag" :closable="true" @close="handleClose(tag)">
+                {{ `${tag.slice(0, 20)}...` }}
+              </a-tag>
+            </a-tooltip>
+            <a-tag v-else :closable="true" @close="handleClose(tag)">
+              {{ tag }}
             </a-tag>
         </template>
         <a-input
@@ -15,7 +20,7 @@
             @blur="handleInputConfirm"
             @keyup.enter="handleInputConfirm"
         />
-        <a-tag v-else @click="showInput" style="background: #fff; border-style: dashed">
+        <a-tag @click="showInput" style="background: #fff; border-style: dashed">
             <plus-outlined />
             New Medication
         </a-tag>
@@ -41,9 +46,8 @@ export default defineComponent({
     });
 
     const handleClose = removedTag => {
-      const tags = state.tags.filter(tag => tag !== removedTag);
-      console.log(tags);
-      state.tags = tags;
+      // TODO: send DELETE /prescription/user/medication/
+
     };
 
     const showInput = () => {

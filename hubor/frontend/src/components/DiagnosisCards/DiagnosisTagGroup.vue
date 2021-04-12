@@ -41,9 +41,7 @@ export default defineComponent({
     });
 
     const handleClose = removedTag => {
-      const tags = state.tags.filter(tag => tag !== removedTag);
-      console.log(tags);
-      state.tags = tags;
+      // TODO: send DELETE disgnosis/user/diagnosis/
     };
 
     const showInput = () => {

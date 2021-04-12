@@ -1,9 +1,6 @@
 <template>
     <div style="margin-top: 20pt;">
-        <h1 style="font-weight: bold">
-            {{ this.$store.getters.patients[this.id].first_name +
-            " " + this.$store.getters.patients[this.id].last_name}}
-        </h1>
+        
         <a-row type="flex" justify="space-around">
             <a-col class="current-status-card-cluster" :span="8">
                 <PatientNowStatusCard />
