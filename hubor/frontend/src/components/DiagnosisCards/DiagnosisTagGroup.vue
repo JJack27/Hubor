@@ -63,8 +63,6 @@ export default defineComponent({
       if (inputValue && tags.indexOf(inputValue) === -1) {
         tags = [...tags, inputValue];
       }
-
-      console.log(tags);
       Object.assign(state, {
         tags,
         inputVisible: false,

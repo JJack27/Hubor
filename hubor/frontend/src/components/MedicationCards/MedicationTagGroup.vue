@@ -20,9 +20,9 @@
             @blur="handleInputConfirm"
             @keyup.enter="handleInputConfirm"
         />
-        <a-tag @click="showInput" style="background: #fff; border-style: dashed">
+        <a-tag v-else @click="showInput" style="background: #fff; border-style: dashed">
             <plus-outlined />
-            New Medication
+            New Medicine
         </a-tag>
     </div>
   
@@ -65,7 +65,6 @@ export default defineComponent({
         tags = [...tags, inputValue];
       }
 
-      console.log(tags);
       Object.assign(state, {
         tags,
         inputVisible: false,

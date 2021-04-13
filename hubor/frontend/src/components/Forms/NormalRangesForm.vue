@@ -84,7 +84,9 @@
 
     <a-form-item>
       <a-button type="primary" @click="onSubmit">Submit</a-button>
-      <a-button style="margin-left: 10px" @click="resetForm">Reset</a-button>
+      <!--
+        <a-button style="margin-left: 10px" @click="resetForm">Reset</a-button>
+      -->
       <a-button style="margin-left: 10px" @click="cancelForm">Cancel</a-button>
     </a-form-item>
   </a-form>
@@ -100,11 +102,15 @@ export default defineComponent({
       'ranges',
     ],
 
+    props:[
+      'ranges',
+    ],
 
-    setup: () => {
+
+    setup(props){
         const formRef = ref();
         const formState = inject('ranges');
-        const initState = readonly('ranges');
+        const initState = props.ranges;
 
         const layout = {
           labelCol: {
@@ -116,6 +122,7 @@ export default defineComponent({
         };
 
         const resetForm = () => {
+          console.log(initState);
           formState = initState;
         };
 
@@ -137,6 +144,7 @@ export default defineComponent({
 
         cancelForm(){
           var rawState = toRaw(this.initState);
+          console.log(rawState);
           this.$emit("edited-normal-ranges", rawState);
         },
 

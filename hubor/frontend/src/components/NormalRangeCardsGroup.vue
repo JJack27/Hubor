@@ -78,6 +78,7 @@
         >
             <NormalRangesForm 
                 @edited-normal-ranges="handleFormClose"
+                :ranges="ranges"
             />
         </a-modal>
 
