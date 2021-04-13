@@ -38,6 +38,10 @@
             style="width:100%; margin-top:5vh; margin-right: auto; margin-left:auto"
           />
         </a-tab-pane>
+
+        <a-tab-pane key="4" tab="Pending">
+          <PendingRequestCardsGroup />
+        </a-tab-pane>
       </a-tabs>
 
       <a-modal 
@@ -55,7 +59,7 @@ import PatientsTable from '../components/PatientsTable.vue';
 import PatientListCard from '../components/PatientListCard.vue';
 import AddPatientForm from '../components/AddPatientForm.vue';
 import PatientCardList from '../components/PatientCardList.vue';
-import PendingRequestListCard from '../components/PendingRequestListCard.vue';
+import PendingRequestCardsGroup from '../components/PendingRequests/PendingRequestCardsGroup.vue';
 import {ref } from 'vue';
 
 export default {
@@ -66,7 +70,7 @@ export default {
         AddPatientForm,
         PatientListCard,
         PatientCardList,
-        PendingRequestListCard,
+        PendingRequestCardsGroup,
     },
 
     mounted(){

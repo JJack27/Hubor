@@ -1,5 +1,5 @@
 <template>
-    <PendingRequestListCard 
+    <PendingRequestCardsGroup 
         style="width:92%; margin-top:5vh; margin-right: auto; margin-left:auto" 
     />
 </template>
@@ -9,11 +9,11 @@
 </style>
 
 <script>
-import PendingRequestListCard from "../components/PendingRequestListCard.vue";
+import PendingRequestCardsGroup from "../components/PendingRequests/PendingRequestCardsGroup.vue";
 export default {
   name: "PendingRequestsPage", 
   components: {
-      PendingRequestListCard,
+      PendingRequestCardsGroup,
   },
 
   mounted(){

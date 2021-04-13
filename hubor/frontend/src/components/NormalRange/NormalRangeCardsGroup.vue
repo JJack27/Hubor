@@ -8,31 +8,40 @@
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
             <!-- HR -->
             <a-col :span="8">
-                <VSEntryVertical
+                <NormalRangeCard
                     icon="hr_icon.png"
-                    :value="this.ranges.hr_h + '/' + this.ranges.hr_l"
+                    :low="this.ranges.hr_l"
+                    :high="this.ranges.hr_h"
                     unit="bpm"
                     title="Heart Rate"
+                    prefix="hr"
+                    @save-normal-range="updateNormalRange"
                 />
             </a-col>
 
             <!-- TEMP -->
             <a-col :span="8">
-                <VSEntryVertical
+                <NormalRangeCard
                     icon="temp_icon.png"
-                    :value="this.ranges.temp_h + '/' + this.ranges.temp_l"
+                    :low="this.ranges.temp_l"
+                    :high="this.ranges.temp_h"
                     unit="°C"
                     title="Temperature"
+                    prefix="temp"
+                    @save-normal-range="updateNormalRange"
                 />
             </a-col>
 
             <!-- SPO2 -->
             <a-col :span="8">
-                <VSEntryVertical
+                <NormalRangeCard
                     icon="spo2_icon.png"
-                    :value="this.ranges.spo2_h + '/' + this.ranges.spo2_l"
+                    :low="this.ranges.spo2_l"
+                    :high="this.ranges.spo2_h"
                     unit="%"
                     title="Oxygen Saturation"
+                    prefix="spo2"
+                    @save-normal-range="updateNormalRange"
                 />
             </a-col>
         </a-row>
@@ -42,55 +51,36 @@
 
             <!-- RR -->
             <a-col :span="8">
-                <VSEntryVertical
+                <NormalRangeCard
                     icon="rr_icon.png"
-                    :value="this.ranges.rr_h + '/' + this.ranges.rr_l"
+                    :low="this.ranges.rr_l"
+                    :high="this.ranges.rr_h"
                     unit="rpm"
                     title="Respiration Rate"
+                    prefix="rr"
+                    @save-normal-range="updateNormalRange"
                 />
             </a-col>
 
             <!-- BP -->
             <a-col :span="16">
-                <VSEntryHorizontal
+                <NormalRangeCard
                     icon="bp_icon.png"
-                    :value="this.ranges.bp_h + '/' + this.ranges.bp_l"
+                    :low="this.ranges.bp_l"
+                    :high="this.ranges.bp_h"
                     unit="mmHg"
                     title="Blood Pressure"
+                    prefix="bp"
+                    @save-normal-range="updateNormalRange"
                 />
             </a-col>
         </a-row>
-        <br/>
-        <div style="text-align:end;">
-            <a-button 
-                @click="handleFormOpen"
-                type="primary"
-            >
-                Edit Normal Ranges
-            </a-button>
-        </div>
-
-        <a-modal 
-            v-model:visible="normalRangeVisiable" 
-            title="Edit Normal Ranges" 
-            :footer="null"
-            :closable="false"
-        >
-            <NormalRangesForm 
-                @edited-normal-ranges="handleFormClose"
-                :ranges="ranges"
-            />
-        </a-modal>
-
     </div>
 
 </template>
 
 <script>
-import VSEntryVertical from './VSEntryCard/VSEntryVertical.vue';
-import VSEntryHorizontal from './VSEntryCard/VSEntryHorizontal.vue';
-import NormalRangesForm from './Forms/NormalRangesForm.vue';
-
+import NormalRangeCard from './NormalRangeCard.vue';
 export default{
     name: "NormalRangeCardsGroup",
     
@@ -103,14 +93,9 @@ export default{
             'ranges': this.ranges,
         }
     },
-       
-        
-
 
     components:{
-        VSEntryVertical,
-        VSEntryHorizontal,
-        NormalRangesForm
+        NormalRangeCard
     },
 
     data(){
@@ -140,6 +125,15 @@ export default{
             // this.ranges = rawState;
             this.normalRangeVisiable = false;
         },
+
+        updateNormalRange(state){
+            console.log(this.ranges);
+            for(var i in state){
+                console.log(i);
+                console.log(this.ranges[i]);
+                this.ranges[i] = state[i];
+            }
+        }
     },
 
     setup() {

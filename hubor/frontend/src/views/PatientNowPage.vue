@@ -19,7 +19,7 @@
 //import PatientInfoCard from "../components/PatientInfoCard.vue";
 import PatientInfoCardsGroup from "../components/PatientInfoCardsGroup.vue";
 import PatientNowStatusCard from "../components/PatientNowStatusCard.vue";
-import NormalRangeCardsGroup from "../components/NormalRangeCardsGroup.vue";
+import NormalRangeCardsGroup from "../components/NormalRange/NormalRangeCardsGroup.vue";
 export default{
     name:"PatientNowPage",
     inject:["id"],
