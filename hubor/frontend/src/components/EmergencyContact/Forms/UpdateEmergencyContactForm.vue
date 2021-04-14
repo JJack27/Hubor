@@ -22,9 +22,14 @@
       <a-input placeholder="7809950000" v-model:value="formState.phone" type="number" autocomplete="off" />
     </a-form-item>
 
+    <a-form-item required has-feedback label="Relationship" name="relationship">
+      <a-input placeholder="child" v-model:value="formState.relationship" type="text" autocomplete="off" />
+    </a-form-item>
+
     <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-      <a-button type="primary" @click="onSubmit">Submit</a-button>
-      <a-button style="margin-left: 10px" @click="resetForm">Reset</a-button>
+      <a-button type="danger" @click="onDelete">Delete</a-button>
+      <a-button style="margin-left: 10px" type="primary" @click="onSubmit">Submit</a-button>
+      <a-button style="margin-left: 10px" type="bordered" @click="onCancel">Cancel</a-button>
     </a-form-item>
   </a-form>
 </template>
@@ -32,17 +37,23 @@
 import { defineComponent, reactive, ref, toRaw } from 'vue';
 import Axios from 'axios';
 export default defineComponent({
-    name:"AddEmergencyContactForm",
+    name:"UpdateEmergencyContactForm",
     //emits:['register-success'],
-    props:['patientId'],
+    props:[
+        'patientId',
+        'item',
+    ],
     setup: () => {
         const formRef = ref();
+        /*
         const formState = reactive({
             first_name: '',
             last_name: '',
             phone: '',
             email: '',
+            relationship: '',
         });
+        */
 
         let validatePhone = async (rule, value) => {
             if (value === '') {
@@ -68,28 +79,36 @@ export default defineComponent({
             ]
         };
         const layout = {
-        labelCol: {
-            span: 8,
-        },
-        wrapperCol: {
-            span: 14,
-        },
+            labelCol: {
+                span: 8,
+            },
+            wrapperCol: {
+                span: 14,
+            },
         };
 
-        const resetForm = () => {
-            formRef.value.resetFields();
-        };
 
 
         return {
-        formState,
-        formRef,
-        rules,
-        layout,
-        resetForm,
+          
+          formRef,
+          rules,
+          layout,
         };
     },
     /// end of setup()
+
+    data(){
+        return {
+            formState:{
+                first_name: this.item.first_name,
+                last_name: this.item.last_name,
+                phone: this.item.phone,
+                email: this.item.email,
+                relationship: this.item.relationship,
+            },
+        }
+    },
 
     methods: {
         onSubmit(){
@@ -97,20 +116,20 @@ export default defineComponent({
                 .validate()
                 .then(() => {
                     var rawState = toRaw(this.formState);
-                    this.$post('/api/emergencycontact/'+this.patientId + '/', rawState)
+                    this.$put('/api/emergencycontactop/'+this.patientId + '/' + this.item.id + '/', rawState)
                     .then((response) => {
                         
                         rawState['patient'] = this.patientId;
                         rawState['id'] = -1;
 
                         var emergencyContact = JSON.parse(JSON.stringify(rawState));
-                        this.$message.success("Emergency contact added!");
+                        this.$message.success("Emergency contact updated!");
 
                         // update the emergency contact for display
                         this.$store.dispatch('appendEmergencyContact', emergencyContact);
                         // parent components can use @add-emergency-contact-success=callback after patient was added
                         this.resetForm();
-                        this.$emit("add-emergency-contact-success", "");
+                        this.$emit("update-emergency-contact-success", "");
 
                     })
                     .catch((error) => {
@@ -123,8 +142,16 @@ export default defineComponent({
                 });
         },
 
-        
-  }
+        onCancel(){
+            console.log("canceled");
+            this.$emit("update-emergency-contact-success", "");
+        },
+
+        onDelete(){
+            console.log("deleted");
+            this.$emit("update-emergency-contact-success", "");
+        },
+    }
 });
 </script>
 

@@ -13,6 +13,7 @@ class EmergencyContact(models.Model):
     last_name = models.TextField(max_length=30)
     phone = models.TextField(max_length=20)
     email = models.EmailField(null=True)
+    relationship = models.TextField(max_length=20, default='')
     
 
 '''

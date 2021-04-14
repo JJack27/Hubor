@@ -4,6 +4,10 @@
         <a-row type="flex" justify="space-around">
             <a-col class="current-status-card-cluster" :span="8">
                 <PatientNowStatusCard />
+                <br />
+                <EmergencyContactCardsGroup 
+                    :dataSource=this.$store.getters.patients[this.id].emergency_contacts
+                />
             </a-col>
 
             <a-col class="current-patient-info" :span="12">
@@ -20,6 +24,8 @@
 import PatientInfoCardsGroup from "../components/PatientInfoCardsGroup.vue";
 import PatientNowStatusCard from "../components/PatientNowStatusCard.vue";
 import NormalRangeCardsGroup from "../components/NormalRange/NormalRangeCardsGroup.vue";
+import EmergencyContactCardsGroup from '../components/EmergencyContact/EmergencyContactCardsGroup.vue';
+
 export default{
     name:"PatientNowPage",
     inject:["id"],
@@ -28,6 +34,7 @@ export default{
         PatientNowStatusCard,
         NormalRangeCardsGroup,
         PatientInfoCardsGroup,
+        EmergencyContactCardsGroup,
     },
     
     mounted(){

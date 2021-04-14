@@ -5,7 +5,7 @@
         :hoverable="false"
     >
         <a-row align="middle">
-            <a-col :span="8">
+            <a-col :span="4">
                 <img
                     :src="require(`@/assets/icons/${this.icon}`)"
                     height="60"

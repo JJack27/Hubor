@@ -150,6 +150,17 @@ class PatientSerializer(serializers.ModelSerializer):
 
 
 
+'''
+Serializer for patients, without status, emergency contacts, and vital signs
+'''
+class BasePatientSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['id', 'gender', 'first_name', 'last_name', ]
+
+
+
 class UserBelongsToSerializer(serializers.ModelSerializer):
     facility = serializers.SerializerMethodField('get_facility')
     user = serializers.SerializerMethodField('get_user')

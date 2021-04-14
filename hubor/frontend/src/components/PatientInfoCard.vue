@@ -71,7 +71,7 @@
 <script>
 
 import {PhoneFilled, HomeFilled} from '@ant-design/icons-vue';
-import AddEmergencyContactForm from './Forms/AddEmergencyContactForm.vue';
+import AddEmergencyContactForm from '../EmergencyContact/Forms/AddEmergencyContactForm.vue';
 
 export default{
     name: "PatienInfoCard",
