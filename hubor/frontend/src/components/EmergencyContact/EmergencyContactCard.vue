@@ -4,7 +4,7 @@
             class="emergency-contact-wrapper-card"
             :bodyStyle="{background:this.bodyBackColor, color:this.BodyFontColor, }"
             :hoverable="true"
-            style="border-radius: 10px !important; height:100% !important;"
+            style="border-radius: 10px !important;"
             :key="item.id"
             @click="handleFormOpen"
         > 
