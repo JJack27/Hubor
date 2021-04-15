@@ -39,7 +39,7 @@
           />
         </a-tab-pane>
 
-        <a-tab-pane key="4" tab="Pending">
+        <a-tab-pane key="4" tab="Pending Requests">
           <PendingRequestCardsGroup />
         </a-tab-pane>
       </a-tabs>

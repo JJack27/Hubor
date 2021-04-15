@@ -21,11 +21,13 @@
           <ExclamationCircleFilled />
           <span class="nav-text">Notifications</span>
         </a-menu-item>
+        <!--
         <a-menu-item key="3">
           <MailFilled />
           <span class="nav-text">Pending Requests</span>
         </a-menu-item>
-        <a-menu-item key="4">
+        -->
+        <a-menu-item key="3">
           <EditFilled />
           <span class="nav-text">My Info</span>
         </a-menu-item>

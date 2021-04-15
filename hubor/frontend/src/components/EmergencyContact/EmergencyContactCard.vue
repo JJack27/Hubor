@@ -12,9 +12,9 @@
             <p style="font-style:italic;">{{ item.relationship }}</p>
 
             <!-- email -->
-            <a-tooltip v-if="item.email.length > 18" :title="item.email">
+            <a-tooltip v-if="item.email.length > 10" :title="item.email">
                 <a :key="item.email" style="margin-top: -25pt !important" :href="'mailto:'+ item.email">
-                    {{ `${item.email.slice(0, 18)}...` }}
+                    {{ `${item.email.slice(0, 10)}...` }}
                 </a>
             </a-tooltip>
             <a v-else style="margin-top: -25pt !important" :href="'mailto:'+ item.email">{{ item.email }}</a>
