@@ -7,7 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import {message, Badge, Tabs, Button, Form, Input, Icon, Checkbox, 
     Card, Row, Col, Layout, Menu, Avatar, Table, Modal, DatePicker, 
-    Select, List, Descriptions, Tag, Tooltip
+    Select, List, Descriptions, Tag, Tooltip, Empty
 } from 'ant-design-vue'
 import Axios from 'axios';
 import { DescriptionsItem } from 'ant-design-vue/lib/descriptions';
@@ -106,6 +106,7 @@ app.use(store)
     .use(DatePicker)
     .use(Descriptions)
     .use(Descriptions.Item)
+    .use(Empty)
     .use(Form)
     .use(Form.Item)
     .use(Icon)

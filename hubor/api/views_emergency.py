@@ -217,7 +217,7 @@ class EmergencyContactAPI(APIView):
 
         # check if given patient already has 3 emergency contacts
         contacts = EmergencyContact.objects.filter(patient=patient_id)
-        if(len(contacts) >= 3):
+        if(len(contacts) >= 200):
             return Response({}, status=409)
         
         # add the emergency contact

@@ -17,20 +17,17 @@
           <PieChartFilled />
           <span class="nav-text">Home</span>
         </a-menu-item>
+
         <a-menu-item key="2">
           <ExclamationCircleFilled />
           <span class="nav-text">Notifications</span>
         </a-menu-item>
-        <!--
-        <a-menu-item key="3">
-          <MailFilled />
-          <span class="nav-text">Pending Requests</span>
-        </a-menu-item>
-        -->
+
         <a-menu-item key="3">
           <EditFilled />
           <span class="nav-text">My Info</span>
         </a-menu-item>
+        
       </a-menu>
     </a-layout-sider>
     <a-layout>
@@ -49,7 +46,7 @@
         </router-view>
 
         <router-view 
-          v-if="this.$route.path.includes('emergencycontact')"
+          v-else-if="this.$route.path.includes('emergencycontact')"
           :style="{ padding: '24px', minHeight: '83vh'}">
         </router-view>
         <!-- end of registeration zone -->

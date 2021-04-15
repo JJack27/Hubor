@@ -9,11 +9,11 @@
         <div style="margin-top: 20pt;">
             <a-row type="flex" justify="space-around">
                 <a-col class="" :span="8">
-                    
+                    <PatientContactCardsGroup />
                 </a-col>
 
                 <a-col class="" :span="12">
-                    
+                    <EmergencyContactCardsGroupVertical />
                 </a-col>
             </a-row>
         </div>
@@ -22,16 +22,16 @@
 </template>
 
 <script>
-//import PatientContact from '../components/EmergencyContact/PatientContactCardsGroup.vue';
-//import EmergencyContactCardsGroupVertical from '../components/EmergencyContact/EmergencyContactCardsGroupVertical.vue';
+import PatientContactCardsGroup from '../components/EmergencyContact/PatientContactCardsGroup.vue';
+import EmergencyContactCardsGroupVertical from '../components/EmergencyContact/EmergencyContactCardsGroupVertical.vue';
 import {ArrowLeftOutlined} from "@ant-design/icons-vue";
 export default{
     name:"EmergencyContactPage",
     
     components:{
         ArrowLeftOutlined,
-        //PatientContact,
-        //EmergencyContactCardsGroupVertical,
+        PatientContactCardsGroup,
+        EmergencyContactCardsGroupVertical,
     },
 
     data(){
