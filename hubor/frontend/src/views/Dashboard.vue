@@ -40,10 +40,20 @@
 
       <!-- Content -->
       <a-layout-content :style="{ margin: '24px 16px 0' }">
+        <!-- registeration zone. new pages that is displaying on the dashboard, has to be
+          registered here
+        -->
         <router-view 
           v-if="this.$route.path.includes('monitor')"
           :style="{ padding: '24px', minHeight: '83vh'}">
         </router-view>
+
+        <router-view 
+          v-if="this.$route.path.includes('emergencycontact')"
+          :style="{ padding: '24px', minHeight: '83vh'}">
+        </router-view>
+        <!-- end of registeration zone -->
+
         <div 
           :style="{ padding: '24px', minHeight: '83vh'}" 
           v-else
@@ -85,10 +95,19 @@ export default {
     watch:{
       selectedKeys(val){
         this.$store.dispatch('updateDashboardKey', val);
-
+        
+        /*
+          NOTE: new pages has to be registered here. 
+                Otherwise, the page will not be updated when user switching between pages via the sidebar.
+        */
         if(this.$route.path.includes('monitor')){
           this.$router.push('/dashboard');
         }
+
+        if(this.$route.path.includes('emergencycontact')){
+          this.$router.push('/dashboard');
+        }
+        
       },
     },
 

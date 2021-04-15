@@ -3,7 +3,7 @@ import Home from '../views/Home.vue'
 import Test from '../views/Test.vue'
 import Dashboard from '../views/Dashboard.vue';
 import MonitorPage from '../views/MonitorPage.vue';
-
+import EmergencyContactPage from '../views/EmergencyContactPage.vue';
 
 const routes = [
   {
@@ -25,6 +25,12 @@ const routes = [
         path: 'monitor/:id',
         name: 'monitor',
         component: MonitorPage,
+      },
+
+      {
+        path: 'emergencycontact/:id',
+        name: 'emergencycontact',
+        component: EmergencyContactPage,
       }
     ],
   },

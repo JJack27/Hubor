@@ -8,7 +8,7 @@
             :key="item.id"
             @click="handleFormOpen"
         > 
-        <h4>{{item.first_name + " " + item.last_name}}</h4>
+            <h4>{{item.first_name + " " + item.last_name}}</h4>
             <p style="font-style:italic;">{{ item.relationship }}</p>
 
             <!-- email -->
