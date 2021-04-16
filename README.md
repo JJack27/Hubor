@@ -736,6 +736,71 @@ This will run at the IP address of your local machine with the port 8000
 </p>
 </details>
 
+[comment]: # ("/api/vitalsign/<uuid:owner>/?from=<time_with_time_zone>&to=<time_with_time_zone>&type=['min', 'hr', 'day', 'month']")
+<details><summary><code>/api/vitalsign/[uuid:owner]/?from=[time_with_time_zone]&to=[time_with_time_zone]&type=['min', 'hr', 'day', 'month']</code>
+</summary>
+<p>
+
+- `POST`
+    - Add an entry of vital sign for the `owner` in the request URL
+    - Request
+        ```json
+        {
+            "bracelet": UUID *,
+            "temp": float *,
+            "spo2": float *,
+            "hr": float *,
+            "rr": float *,
+            "time": String
+        }
+        ```
+    - Response
+        ```json
+        {}
+        ```
+- `GET`
+    - Get all vital signs owned by the `owner` in the request URL within a specific time. 
+    - The array is in **ascending** order in terms of time.
+    - Response
+        ```json
+        [
+            {
+                "time": datetime,
+                "hr": {
+                    "mean": float,
+                    "med": float,
+                    "min": float,
+                    "max": float,
+                    "std": float,
+                },
+                "rr": {
+                    "mean": float,
+                    "med": float,
+                    "min": float,
+                    "max": float,
+                    "std": float,
+                },
+                "spo2": {
+                    "mean": float,
+                    "med": float,
+                    "min": float,
+                    "max": float,
+                    "std": float,
+                },
+                "temp": {
+                    "mean": float,
+                    "med": float,
+                    "min": float,
+                    "max": float,
+                    "std": float,
+                },
+            },
+            ...
+        ]   
+        ```
+</p>
+</details>
+
 
 ## Emergency
 [comment]: # ("/api/emergency/<uuid:pk>/")

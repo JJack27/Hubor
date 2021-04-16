@@ -15,6 +15,7 @@ import pytz
 from accounts.models import *
 from accounts.serializers import *
 from .views_utils import *
+from data.models import NormalRange
 
 
 '''
@@ -74,9 +75,25 @@ class RegisterView(APIView):
             )
         
         user.set_password(request_body['password'])
-        
+        # Create accompany status and normal ranges of current patient
+        if(user.user_type == 0):
+            status = PatientStatus(patient = user, risk=0)
+            temp_h = NormalRange(patient=user, vs="temp", type_of_range="h", value=37.2)
+            temp_l = NormalRange(patient=user, vs="temp", type_of_range="l", value=34.0)
+            hr_h = NormalRange(patient=user, vs="hr", type_of_range="h", value=130)
+            hr_l = NormalRange(patient=user, vs="hr", type_of_range="l", value=60)
+            rr_h = NormalRange(patient=user, vs="rr", type_of_range="h", value=60)
+            rr_l = NormalRange(patient=user, vs="rr", type_of_range="l", value=16)
+            spo2_h = NormalRange(patient=user, vs="spo2", type_of_range="h", value=100)
+            spo2_l = NormalRange(patient=user, vs="spo2", type_of_range="l", value=90)
+            bp_h = NormalRange(patient=user, vs="bp", type_of_range="h", value=130)
+            bp_l = NormalRange(patient=user, vs="bp", type_of_range="l", value=60)
+            unsaved = [user, status, temp_h, temp_l, hr_h, hr_l, rr_h, rr_l, spo2_h, spo2_l, bp_h, bp_l]
+        else:
+            unsaved = [user]
+        saved = []
         try:
-            user.save()
+            counter = 0
             response['data'] = {
                 'id': user.id,
                 'email': user.email,
@@ -90,13 +107,18 @@ class RegisterView(APIView):
                 'first_name': user.first_name,
                 'last_name': user.last_name
             }
-            # Create accompany status of current patient
-            if(user.user_type == 0):
-                status = PatientStatus(patient = user, risk=0)
-                status.save()
+            
+            # save user and accompany status and normal ranges
+            for item in unsaved:
+                item.save()
+                saved.append(item)
+
             return Response(response, status=200)
         except Exception as e:
             print(e)
+            # if save failed, rollback
+            for item in unsaved:
+                item.delete()
             return Response(response, status=400)
     
 

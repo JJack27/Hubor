@@ -29,6 +29,15 @@ class VitalSign(models.Model):
     bp_h = models.FloatField(default=0, null=True)
     bp_l = models.FloatField(default=0, null=True)
 
+class NormalRange(models.Model):
+    VS_CHOICES = [('hr', 'hr'), ('rr', 'rr'), ('temp', 'temp'), ('spo2','spo2'), ('bp','bp')]
+    TYPE_CHOICES = [('h', 'h'), ('l', 'l')]
+
+    id = models.AutoField(primary_key=True)
+    patient = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    vs = models.TextField(choices=VS_CHOICES, null=False, max_length=5)
+    type_of_range = models.TextField(choices=TYPE_CHOICES, null=False, max_length=1)
+    value = models.FloatField(null=True, default=0)
 
 class AggregatedVitalSign(models.Model):
     CHOICES = [(0,'min'), (1, 'hr'), (2, 'day'), (3, 'month')]
