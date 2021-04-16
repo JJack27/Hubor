@@ -85,6 +85,7 @@ class PatientSerializer(serializers.ModelSerializer):
     bp_h = serializers.SerializerMethodField('get_bp_h')
     bp_l = serializers.SerializerMethodField('get_bp_l')
     emergency_contacts = serializers.SerializerMethodField('get_emergency_contacts')
+    normal_range = serializers.SerializerMethodField('get_normal_range')
 
     def get_hr(self, obj):
         try:
@@ -141,12 +142,13 @@ class PatientSerializer(serializers.ModelSerializer):
         data = EmergencyContactSerializer(query, many=True).data
         return data
         
-        
+    def get_normal_range(self, obj):
+        return NormalRangeSerializer(obj).data
 
     class Meta:
         model = User
         fields = ['id', 'gender', 'first_name', 'last_name', 'user_type', 'height', 'weight', 'date_of_birth', 'notes', 'phone', 'status', 'facility',
-            'hr', 'temp', 'rr', 'spo2', 'email', 'bp_h', 'bp_l', 'emergency_contacts']
+            'hr', 'temp', 'rr', 'spo2', 'email', 'bp_h', 'bp_l', 'emergency_contacts', 'normal_range']
 
 
 

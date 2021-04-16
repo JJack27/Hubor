@@ -16,6 +16,7 @@ APIs which are data-related.
     + POST: accpeting uploaded vital signs from given uuid
 '''
 from django.shortcuts import render
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -27,7 +28,7 @@ import datetime
 from dateutil import parser
 
 # Project modules
-from accounts.models import User
+from accounts.models import User, TakeCareOf
 from data.models import *
 from data.serializers import *
 
@@ -139,7 +140,7 @@ class VitalSignAPI(APIView):
         response = {}
         
         # check if user exists
-        if(str(request_user) != str(request.user.id)):
+        if(str(request_user.id) != str(request.user.id)):
             return Response(response, status=403)
 
         request_body['owner'] = request_user
@@ -234,3 +235,156 @@ class AggregatedVitalSignAPI(APIView):
         except Exception as e:
             print(e)
             return Response({}, status=400)
+
+'''
+/api/normalrange/<patient:uuid>/<type_range:string>/
+API for uplaoding/creating and retrieving normal ranges
+- PUT: Updating and creating a normal range
+    - 400: request is invalid
+    - 403: the request is forbidened
+    - 200: success
+'''
+class NormalRangeAPI(APIView):
+    model = NormalRange
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    PUT:
+    - API for updating and creating an entry of a normal range
+    - request:
+        ```json
+        {
+            "value": number
+        }
+        ```
+    - response:
+        - 400: request is invalid
+        - 403: the request is forbidened
+        - 200: success
+            ```json
+            {
+                "hr_l": number,
+                "hr_h": number,
+                "temp_l": number,
+                "temp_h": number,
+                "rr_l": number,
+                "rr_h": number,
+                "spo2_l": number,
+                "spo2_h": number,
+                "bp_l": number,
+                "bp_h": number
+            }
+            ```
+    '''
+    def put(self, request, *args, **kwargs):
+        # parsing the request
+        request_body = request.data
+        patient_id = kwargs['patient']
+        patient = User.objects.get(id=patient_id)
+        request_user = request.user
+        type_range = kwargs['typerange'].split("_")
+        if(len(type_range) != 2):
+            return Response(status=400)
+        vs = type_range[0]
+        type_of_range = type_range[1]
+
+        # check if vs and type_of_range is valid
+        if(vs not in ["hr", "rr", "temp", "bp", "spo2"]):
+            return Response(status=400)
+        if(type_of_range not in ["h", "l"]):
+            return Response(status=400)
+
+        # check the validity of the value
+        if(request_body['value'] < 0):
+            return Response(status=400)
+
+        # check authorization
+        # check if the request is patient him/herself,
+        #   if not, check if the requestor is having access to the patient's data
+        if(patient != request_user):
+            try:
+                TakeCareOf.objects.get(doctor=request_user, patient=patient)
+            except Exception as e:
+                return Response(status=403)
+
+        # check if given normal range exists
+        try:
+            normal_range = NormalRange.objects.get(patient=patient, vs=vs, type_of_range=type_of_range)
+            normal_range.value = request_body['value']
+            normal_range.save()
+        except ObjectDoesNotExist:
+            # create a new entry for given normal range
+            normal_range = NormalRange(
+                patient=patient,
+                vs=vs,
+                type_of_range=type_of_range,
+                value=request_body['value']
+            )
+            normal_range.save()
+        except:
+            return Response(status=500)
+
+        # return all the normal ranges of given patient
+        data = NormalRangeSerializer(patient).data
+
+        return Response(data, status=200)
+
+'''
+/api/allnormalrange/<uuid:patient>/
+- GET: get all normal ranges of given patient
+    - 404: given patient is not found or given patient has no normal ranges
+    - 403: the request is forbidened
+    - 200: success
+'''
+class AllNormalRangeAPI(APIView):
+    model = NormalRange
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+    
+    '''
+    GET:
+    - get all normal ranges of given patient
+    - response:
+        - 404: given patient is not found or given patient has no normal ranges
+        - 403: the request is forbidened
+        - 200: success
+            ```json
+            {
+                "hr_l": number,
+                "hr_h": number,
+                "temp_l": number,
+                "temp_h": number,
+                "rr_l": number,
+                "rr_h": number,
+                "spo2_l": number,
+                "spo2_h": number,
+                "bp_l": number,
+                "bp_h": number
+            }
+            ```
+    '''
+    def get(self, request, *args, **kwargs):
+        # parse the request
+        try:
+            patient = User.objects.get(id=kwargs['patient'])
+        except:
+            return Response(status=404)
+        
+        # check authorization
+        # check if the request is patient him/herself,
+        #   if not, check if the requestor is having access to the patient's data
+        if(patient != request.user):
+            try:
+                TakeCareOf.objects.get(doctor=request.user, patient=patient)
+            except Exception as e:
+                return Response(status=403)
+        
+        # return all the normal ranges of given patient
+        data = NormalRangeSerializer(patient).data
+        return Response(data, status=200)
+

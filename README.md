@@ -471,7 +471,7 @@ This will run at the IP address of your local machine with the port 8000
     - Response:
         - 200: the request is sent or the TakeCareOf is created
         - 404: either the requestor or the owner doesn't exist
-        - 409: the request already exist in the database and the post is sent by the reqeustor not the owner
+        - 409: the request already exist in the database and the post is sent by the reqeustor not by the owner
         ```json
         4XX:
             {
@@ -736,71 +736,70 @@ This will run at the IP address of your local machine with the port 8000
 </p>
 </details>
 
-[comment]: # ("/api/vitalsign/<uuid:owner>/?from=<time_with_time_zone>&to=<time_with_time_zone>&type=['min', 'hr', 'day', 'month']")
-<details><summary><code>/api/vitalsign/[uuid:owner]/?from=[time_with_time_zone]&to=[time_with_time_zone]&type=['min', 'hr', 'day', 'month']</code>
+[comment]: # ("normalrange/<uuid:patient>/<str:typerange>/")
+<details><summary><code>/api/normalrange/[uuid:patient]/[str:typerange]/</code>
 </summary>
 <p>
 
-- `POST`
-    - Add an entry of vital sign for the `owner` in the request URL
-    - Request
+- `PUT`:
+    - API for updating and creating an entry of a normal range
+    - request:
         ```json
         {
-            "bracelet": UUID *,
-            "temp": float *,
-            "spo2": float *,
-            "hr": float *,
-            "rr": float *,
-            "time": String
+            "value": number
         }
         ```
-    - Response
-        ```json
-        {}
-        ```
-- `GET`
-    - Get all vital signs owned by the `owner` in the request URL within a specific time. 
-    - The array is in **ascending** order in terms of time.
-    - Response
-        ```json
-        [
+    - response:
+        - 400: request is invalid
+        - 403: the request is forbidened
+        - 200: success
+            ```json
             {
-                "time": datetime,
-                "hr": {
-                    "mean": float,
-                    "med": float,
-                    "min": float,
-                    "max": float,
-                    "std": float,
-                },
-                "rr": {
-                    "mean": float,
-                    "med": float,
-                    "min": float,
-                    "max": float,
-                    "std": float,
-                },
-                "spo2": {
-                    "mean": float,
-                    "med": float,
-                    "min": float,
-                    "max": float,
-                    "std": float,
-                },
-                "temp": {
-                    "mean": float,
-                    "med": float,
-                    "min": float,
-                    "max": float,
-                    "std": float,
-                },
-            },
-            ...
-        ]   
-        ```
+                "hr_l": number,
+                "hr_h": number,
+                "temp_l": number,
+                "temp_h": number,
+                "rr_l": number,
+                "rr_h": number,
+                "spo2_l": number,
+                "spo2_h": number,
+                "bp_l": number,
+                "bp_h": number
+            }
+            ```
+
 </p>
 </details>
 
+
+[comment]: # ("/api/allnormalrange/<uuid:patient>/")
+<details><summary><code>/api/allnormalrange/[uuid:patient]/</code>
+</summary>
+<p>
+
+- `GET`:
+    - get all normal ranges of given patient
+    - response:
+        - 404: given patient is not found or given patient has no normal ranges
+        - 403: the request is forbidened
+        - 200: success
+            ```json
+            {
+                "hr_l": number,
+                "hr_h": number,
+                "temp_l": number,
+                "temp_h": number,
+                "rr_l": number,
+                "rr_h": number,
+                "spo2_l": number,
+                "spo2_h": number,
+                "bp_l": number,
+                "bp_h": number
+            }
+            ```
+            
+</p>
+</details>
 
 ## Emergency
 [comment]: # ("/api/emergency/<uuid:pk>/")

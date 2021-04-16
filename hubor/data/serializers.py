@@ -77,3 +77,90 @@ class AggregatedVitalSignSerializer(serializers.ModelSerializer):
     class Meta:
         model = AggregatedVitalSign
         fields = ['time', 'temp', 'hr', 'rr', 'spo2', 'bp_h', 'bp_l']
+
+
+class NormalRangeSerializer(serializers.ModelSerializer):
+    hr_l = serializers.SerializerMethodField("get_hr_l")
+    hr_h = serializers.SerializerMethodField("get_hr_h")
+    rr_l = serializers.SerializerMethodField("get_rr_l")
+    rr_h = serializers.SerializerMethodField("get_rr_h")
+    temp_l = serializers.SerializerMethodField("get_temp_l")
+    temp_h = serializers.SerializerMethodField("get_temp_h")
+    spo2_l = serializers.SerializerMethodField("get_spo2_l")
+    spo2_h = serializers.SerializerMethodField("get_spo2_h")
+    bp_l = serializers.SerializerMethodField("get_bp_l")
+    bp_h = serializers.SerializerMethodField("get_bp_h")
+
+    def get_hr_l(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="hr", type_of_range="l")
+            return nr.value
+        except:
+            return "null"
+    
+    def get_hr_h(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="hr", type_of_range="h")
+            return nr.value
+        except:
+            return "null"
+
+    def get_temp_l(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="temp", type_of_range="l")
+            return nr.value
+        except:
+            return "null"
+
+    def get_temp_h(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="temp", type_of_range="h")
+            return nr.value
+        except:
+            return "null"
+
+    def get_rr_l(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="rr", type_of_range="l")
+            return nr.value
+        except:
+            return "null"
+
+    def get_rr_h(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="rr", type_of_range="h")
+            return nr.value
+        except:
+            return "null"
+
+    def get_spo2_l(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="spo2", type_of_range="l")
+            return nr.value
+        except:
+            return "null"
+
+    def get_spo2_h(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="spo2", type_of_range="h")
+            return nr.value
+        except:
+            return "null"
+    
+    def get_bp_l(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="bp", type_of_range="l")
+            return nr.value
+        except:
+            return "null"
+
+    def get_bp_h(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="bp", type_of_range="h")
+            return nr.value
+        except:
+            return "null"
+
+    class Meta:
+        model = User
+        fields= ['temp_h', 'temp_l', 'hr_h', 'hr_l', 'rr_h', 'rr_l', 'spo2_h', 'spo2_l', 'bp_h', 'bp_l']

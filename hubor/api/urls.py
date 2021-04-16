@@ -37,7 +37,8 @@ urlpatterns = [
     path('data/<uuid:pk>/', DataAPI.as_view()),
     path('vitalsign/<uuid:owner>/', VitalSignAPI.as_view()),
     path('aggregatedvs/<uuid:owner>/', AggregatedVitalSignAPI.as_view()),
-    
+    path('normalrange/<uuid:patient>/<str:typerange>/', NormalRangeAPI.as_view()),
+    path('allnormalrange/<uuid:patient>/', AllNormalRangeAPI.as_view()),
 
     # Emergency related
     path('emergency/<uuid:pk>/', EmergencyEventAPI.as_view()),

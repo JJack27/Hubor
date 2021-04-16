@@ -9,6 +9,8 @@ from accounts.serializers import *
 from api.test_util import *
 import pandas as pd
 import os
+
+'''
 client = APIClient()
 
 
@@ -114,3 +116,4 @@ print(str(user.id))
 request = '/api/vitalsign/%s/?from=2021-03-04 00:00:00Z&to=2021-03-31 00:00:00Z&type=min'%(str(user.id))
 response = client.get(request)
 print(len(response.data))
+'''
