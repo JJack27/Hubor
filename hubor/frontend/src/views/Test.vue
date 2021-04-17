@@ -1,5 +1,5 @@
 <template>
-    <VSLineRangedChart/>
+    <VSAreaChart/>
 </template>
 
 <style>
@@ -9,11 +9,11 @@
 </style>
 
 <script>
-import VSLineRangedChart  from "../components/ChartsPlots/VSLineRangedChart.vue";
+import VSAreaChart  from "../components/ChartsPlots/VSAreaChart.vue";
 export default {
   name: "Home", 
   components: {
-      VSLineRangedChart,
+      VSAreaChart,
   },
 
   mounted(){

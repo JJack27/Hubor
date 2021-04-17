@@ -153,14 +153,14 @@ class TakeCareOfAPI(APIView):
             return Response({"message": "Relathionship doesn't exist"}, status=404)
 
 '''
-/api/accessrequest/<uuid:owner>/<uuid:requestor>/
+/api/accessrequest/<uuid:owner>/<uuid:doctor>/
 - API allows requestor to send a request to the data owner so that he/she can access the vital sign data
 - POST
-    - requestor can be both requestor and the onwer.
-        - Requestor POST: asking for the access.
-        - Owner POST: Accept the request. this will delete the DataPermissionRequest tuple, but will create a 
+    - requestor can be the onwer and the doctor.
+        - Doctor POST: Accept the request. this will delete the DataPermissionRequest tuple, but will create a 
           TakeCareOf object instead. If there is not existing request, then a TakeCareOf object will be created
           directly.
+        - Owner POST: Asking for request
     - payload:
       ```json
         {
@@ -170,7 +170,7 @@ class TakeCareOfAPI(APIView):
     - Response:
         - 200: the request is sent or the TakeCareOf is created
         - 404: either the requestor or the owner doesn't exist
-        - 409: the request already exist in the database and the post is sent by the reqeustor not the owner
+        - 409: the request already exist in the database and the post is sent by the owner
 - DELETE
     - Reject or cancel the request
     - Status Code:
@@ -187,11 +187,11 @@ class AccessRequestAPI(APIView):
 
     '''
     POST
-    - Allows requestor to send a request to the data owner so that he/she can access the vital sign data
+    - Allows owner to send a notification to the doctor so that the doctor can access the vital sign data
         - 200: the request is sent or the TakeCareOf is created
         - 404: either the requestor or the owner doesn't exist
-        - 409: the request already exist in the database and the post is sent by the reqeustor not the owner.
-               Or the request is sent by the owner, but there is no existing entry in the database.
+        - 409: the request already exist in the database and the post is sent by the the owner.
+               If there is not existing request, then a TakeCareOf object will be created directly.
     - Reponse:
         4XX:
             {
@@ -257,22 +257,26 @@ class AccessRequestAPI(APIView):
         #   if so, check if the request is sent the owner
         #       if so, return create a TakeCareOf object and save it to the database, return 200
         #   if not (not sent by the owner and already eixst), return 409
+        delete = False
         try:
             request_entry = DataPermissionRequest.objects.get(owner=owner, requestor=requestor)
             
-            # if this request made by the owner, delete the existing request entry (later will handle the creation of the TakeCareOf object)
-            if(request.user.id == owner_id):
-                request_entry.delete()
+            # if this request made by the requestor (doctor), delete the existing request entry (later will handle the creation of the TakeCareOf object)
+            if(request.user.id == requestor_id):
+                delete = True
             else:
                 return Response({"message": "The request has already been sent"}, status=409)
         except:
             pass
 
-        # if this post is made by owner, directly create a TakeCareOf object
-        if(request.user.id == owner_id):
+        # if this post is made by requestor, directly create a TakeCareOf object
+        if(request.user.id == requestor_id):
             take_care_of_obj = TakeCareOf.objects.create(patient=owner, doctor=requestor)
             take_care_of_obj.save()
+            if(delete):
+                request_entry.delete()
             data = TakeCareOfSerializer(take_care_of_obj).data
+            
             return Response(data, status=200)
 
         # create a DataPermissionRequest object

@@ -5,7 +5,7 @@ from rest_framework.test import APIRequestFactory, APIClient
 from api.test_util import *
 import uuid
 
-
+'''
 client = APIClient()
 
 # login as user 1
@@ -105,4 +105,4 @@ print("GET UNAUTHORIZED  /api/allnormalrange/<patient:uuid>/", end=" ")
 response = client.get('/api/allnormalrange/%s/'%(str(user2.id)))
 assert response.status_code == 403, "Error!, expecting 403, get %d"%response.status_code
 print("PASS!")
-
+'''

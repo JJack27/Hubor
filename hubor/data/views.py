@@ -388,3 +388,42 @@ class AllNormalRangeAPI(APIView):
         data = NormalRangeSerializer(patient).data
         return Response(data, status=200)
 
+'''
+Return vs of the latest one hour of the given user
+- GET 
+'''
+class LatestOneHourVSAPI(APIView):
+    model = NormalRange
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    
+    # ensure requst user is logged in
+    permission_classes = (IsAuthenticated,)
+
+    '''
+    GET
+    - Return a list of data of given user
+    - return:
+        [
+                {data_1},
+                {data_2},
+                ...
+                {data_n}
+        ]
+    '''
+    def get(self, request, *args, **kwargs):
+    # parsing the request
+        owner = kwargs['owner']
+        range_type = "min"
+        
+        # check authority of request user
+        # only owner of the data and doctors/admins can access
+        if(str(request.user.id) != str(owner) and request.user.user_type == 0):
+            return Response ({}, status=403)
+    
+        # get the data 
+        range_types = {'min':0, 'hr':1, 'day':2, 'month':3, 'year':4}
+        query = AggregatedVitalSign.objects.filter(owner = owner, type=range_types[range_type]).order_by('id')[:60]
+        data = AggregatedVitalSignSerializer(query, many=True).data
+        if(len(data) == 0):
+            return Response({}, status = 404)
+        return Response(data, status=200)
