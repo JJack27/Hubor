@@ -22,6 +22,9 @@ export default defineComponent({
             toTime: null,
             fromTime: null,
             area: null,
+            dataDisplay: [],
+            valueMin: 10000,
+            valueMax: -10000,
         }
     },
 
@@ -43,15 +46,37 @@ export default defineComponent({
     beforeUnmount(){
         this.area.destroy();
     },
+
+    updated(){
+        this.valueMin = this.vsData[0]['hr']['mean'];
+        this.valueMax = this.vsData[0]['hr']['mean'];
+        for(var i in this.vsData){
+            if(this.vsData[i]['hr']['mean'] < this.valueMin){
+                this.valueMin = this.vsData[i]['hr']['mean'];
+            }
+
+            if(this.vsData[i]['hr']['mean'] > this.valueMax){
+                this.valueMax = this.vsData[i]['hr']['mean'];
+            }
+
+            this.dataDisplay.push(
+                {time: this.vsData[i].time, value: this.vsData[i].hr.mean}
+            )
+        }
+        console.log(this.dataDisplay);
+        this.area.changeData(this.dataDisplay);
+    },
+
     mounted(){
-        //console.log(`api/vitalsign/${this.id}/?from=${fromTime._rawValue}&to=${toTime._rawValue}&time=${type._rawValue}`);
-        fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
-        .then((res) => res.json())
-        .then((data) => {
-            this.area = new Area('container', {
-            data,
-            xField: 'Date',
-            yField: 'scales',
+        this.area = new Area('container', {
+            data: this.vsData,
+            xField: 'time',
+            yField: 'value',
+            smooth: true,
+            yAxis:{
+                min: this.valueMin - 5,
+                max: this.valueMax + 5,
+            },
             annotations: [
                 {
                     type: 'text',
@@ -72,14 +97,15 @@ export default defineComponent({
                     },
                 },
             ],
-            });
-            this.area.render();
         });
+        this.area.render();
+        
     },
     
 
     methods:{
         test(){
+            this.area.update();
             console.log(this.vsData);
         }
     }

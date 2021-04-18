@@ -10,7 +10,7 @@ from api.test_util import *
 import pandas as pd
 import os
 
-'''
+
 client = APIClient()
 
 
@@ -110,10 +110,9 @@ for i in range(len(means)):
 print("Total of %d tuples added!"%counter)
 
 
-user = User.objects.get(username='testuser1')
+user = User.objects.get(username=user.username)
 login(client, user)
 print(str(user.id))
 request = '/api/vitalsign/%s/?from=2021-03-04 00:00:00Z&to=2021-03-31 00:00:00Z&type=min'%(str(user.id))
 response = client.get(request)
 print(len(response.data))
-'''

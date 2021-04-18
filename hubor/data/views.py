@@ -422,8 +422,8 @@ class LatestOneHourVSAPI(APIView):
     
         # get the data 
         range_types = {'min':0, 'hr':1, 'day':2, 'month':3, 'year':4}
-        query = AggregatedVitalSign.objects.filter(owner = owner, type=range_types[range_type]).order_by('id')[:60]
-        data = AggregatedVitalSignSerializer(query, many=True).data
+        query = AggregatedVitalSign.objects.filter(owner = owner, type=range_types[range_type]).order_by('id').reverse()[:60]
+        data = AggregatedVitalSignSerializer(query, many=True).data[::-1]
         if(len(data) == 0):
             return Response({}, status = 404)
         return Response(data, status=200)
