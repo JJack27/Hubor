@@ -1,23 +1,27 @@
 <template>
-    <div id="container">
+    <div>
+        <div id="container">
 
+        </div>
+        <a-button @click="test">test</a-button>
     </div>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, inject } from 'vue';
 import { Area } from '@antv/g2plot';
 
 export default defineComponent({
     name:"VSAreaChart",
-    inject:[
-        'id',
+    props:[
+        'vsData',
     ],
     data(){
         return{
             aType: "min",
             toTime: null,
             fromTime: null,
+            area: null,
         }
     },
 
@@ -36,20 +40,15 @@ export default defineComponent({
         }
 
     },
-
-    mounted(){
-        this.$get(`/api/latest1hourvs/${this.id}/`)
-            .then(response => {
-                console.log(response);
-            });
+    beforeUnmount(){
+        this.area.destroy();
     },
-
-    setup() {
+    mounted(){
         //console.log(`api/vitalsign/${this.id}/?from=${fromTime._rawValue}&to=${toTime._rawValue}&time=${type._rawValue}`);
         fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
         .then((res) => res.json())
         .then((data) => {
-            const area = new Area('container', {
+            this.area = new Area('container', {
             data,
             xField: 'Date',
             yField: 'scales',
@@ -57,7 +56,7 @@ export default defineComponent({
                 {
                     type: 'text',
                     position: ['min', 'median'],
-                    content: '中位数',
+                    content: 'Median',
                     offsetY: -4,
                     style: {
                         textBaseline: 'bottom',
@@ -74,12 +73,16 @@ export default defineComponent({
                 },
             ],
             });
-            area.render();
+            this.area.render();
         });
-        return {
-        };
     },
+    
 
+    methods:{
+        test(){
+            console.log(this.vsData);
+        }
+    }
 
 })
 </script>

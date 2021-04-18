@@ -39,7 +39,9 @@
           />
         </a-tab-pane>
 
-        <a-tab-pane key="4" tab="Pending Requests">
+        <a-tab-pane key="4" tab="Pending"
+          v-if="this.$store.getters.pendingRequestsArray.length > 0"
+        >
           <PendingRequestCardsGroup />
         </a-tab-pane>
       </a-tabs>

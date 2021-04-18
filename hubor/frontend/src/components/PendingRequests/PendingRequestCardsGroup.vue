@@ -4,10 +4,9 @@
         <a-card
             class="patient-card-list-wrapper-card"
             :bodyStyle="{background:this.bodyBackColor, color:this.BodyFontColor, }"
-            :hoverable="true"
+            :hoverable="false"
             :key="item.id"
             v-for="item in this.$store.getters.pendingRequestsArray"
-            @click="onClickListItem(item)"
         >
             <a-row>
                 <!-- avatar -->
@@ -18,7 +17,7 @@
                 </a-col>
 
                 <!-- Name and click to know more -->
-                <a-col :span="18">
+                <a-col :span="17">
                     <h4>{{item.owner.first_name + " " + item.owner.last_name}}</h4>
                     <br>
                     <p style="margin-top: -25pt !important">{{ 'DoB: ' + item.owner.date_of_birth }}</p>
@@ -31,16 +30,26 @@
                     </span>
                 </a-col>
 
-                <!-- cancel button -->
+                <!-- accept button -->
                 <a-col :span="1" style="padding-top: 8pt!important">
-                    <a @click="cancelRequest(item)">cancel</a>
+                    <a @click="acceptRequest(item)">accept</a>
+                </a-col>
+
+                <!-- deny button -->
+                <a-col :span="1" style="padding-top: 8pt!important">
+                    <a @click="denyRequest(item)">deny</a>
                 </a-col>
             </a-row> 
         </a-card>   
 
-        <!-- Modal for canceling the pending request-->
-        <a-modal v-model:visible="modalVisible" title="Cancel Request" @ok="handleOk">
-            Do you want to cancel the request sent to <span style="font-style: bold">{{ this.selectedItem.owner.first_name + " " + this.selectedItem.owner.last_name}} </span>?
+        <!-- Modal for accepting the pending request-->
+        <a-modal v-model:visible="acceptModalVisible" title="Accept the Request" @ok="handleAcceptOk">
+            Do you want to accept the request from <span style="font-style: bold">{{ this.selectedItem.owner.first_name + " " + this.selectedItem.owner.last_name}} </span>?
+        </a-modal>
+
+        <!-- Modal for denying the pending request-->
+        <a-modal v-model:visible="denyModalVisible" title="Deny the Request" @ok="handleDenyOk">
+            Do you want to deny the request from <span style="font-style: bold">{{ this.selectedItem.owner.first_name + " " + this.selectedItem.owner.last_name}} </span>?
         </a-modal>
     </div>
 </template>
@@ -65,7 +74,8 @@ export default{
 
     data(){
         return{
-            modalVisible: false,
+            denyModalVisible: false,
+            acceptModalVisible: false,
             selectedItem:{
                 owner:{
                     first_name: null,
@@ -83,18 +93,40 @@ export default{
     },
 
     methods:{
-        cancelRequest(item){
-            this.modalVisible = true;
+        denyRequest(item){
+            this.denyModalVisible = true;
             this.selectedItem = item;
         },
 
-        handleOk(e){
+        handleDenyOk(e){
             console.log(e);
-            this.modalVisible = false;
+            this.denyModalVisible = false;
             this.$delete('api/accessrequest/'+this.selectedItem.owner.id+'/'+this.selectedItem.requestor.id+'/')
                 .then(response => {
                     this.$message.success("Request canceled!");
                     this.$store.dispatch('removePendingRequests', this.selectedItem.id);
+                }).catch(err => {
+                    this.$message.error("Request not canceled!");
+                })
+        },
+
+        acceptRequest(item){
+            this.acceptModalVisible = true;
+            this.selectedItem = item;
+        },
+
+        handleAcceptOk(e){
+            console.log(e);
+            this.acceptModalVisible = false;
+            this.$post('api/accessrequest/'+this.selectedItem.owner.id+'/'+this.selectedItem.requestor.id+'/')
+                .then(response => {
+                    this.$message.success("Request accepted!");
+                    this.$store.dispatch('removePendingRequests', this.selectedItem.id);
+                    // fetch the newest patient information
+                    this.$get(`api/patientsof/${this.$store.getters.userId}/`)
+                        .then(response => {
+                            this.$store.dispatch('addPatients', response.data);
+                        });
                 }).catch(err => {
                     this.$message.error("Request not canceled!");
                 })
