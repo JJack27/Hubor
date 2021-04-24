@@ -10,16 +10,28 @@
               {{ tag }}
             </a-tag>
         </template>
-        <a-input
+        <a-auto-complete
             v-if="inputVisible"
             ref="inputRef"
             type="text"
             size="small"
-            :style="{ width: '78px' }"
+            :style="{ width: '180px' }"
             v-model:value="inputValue"
             @blur="handleInputConfirm"
             @keyup.enter="handleInputConfirm"
-        />
+            @search="handleSearch"
+        >
+          <template #dataSource>
+            <a-select-option v-for="result in autoResult" :key="result">
+              <a-tooltip v-if="result.length > 20" :title="result">
+                  {{ `${result.slice(0, 20)}...` }}
+              </a-tooltip>
+              <div v-else>
+                {{ result }}
+              </div>
+            </a-select-option>
+          </template>
+        </a-auto-complete>
         <a-tag v-else @click="showInput" style="background: #fff; border-style: dashed">
             <plus-outlined />
             New Diagnosis
@@ -30,6 +42,7 @@
 <script>
 import { defineComponent, ref, reactive, toRefs, nextTick } from 'vue';
 import { PlusOutlined } from '@ant-design/icons-vue';
+
 export default defineComponent({
   name: "DiagnosisTagGroup",
   components: {
@@ -44,6 +57,21 @@ export default defineComponent({
       inputVisible: false,
       inputValue: '',
     });
+
+    // load auto-complete options
+    const options = reactive([]);
+    const autoResult = ref([]);
+    const handleSearch = (val) => {
+      let resObj = {};
+      let res = [];
+      resObj = options.value.filter(option => option["DISEASE_NAME"].toLowerCase().includes(val.toLowerCase()));
+      for(var i in resObj){
+        res.push(resObj[i].DISEASE_NAME);
+      }
+      
+      autoResult.value = res;
+    };
+
 
     const handleClose = removedTag => {
       // TODO: send DELETE disgnosis/user/diagnosis/
@@ -70,7 +98,15 @@ export default defineComponent({
       });
     };
 
-    return { ...toRefs(state), handleClose, showInput, handleInputConfirm, inputRef };
+    return { ...toRefs(state), handleClose, showInput, handleInputConfirm, inputRef, options, handleSearch, autoResult };
+  },
+
+  mounted(){
+    // get all diagnoses options
+    this.$get('/api/alldiagnoses/')
+      .then(response =>{
+        this.options.value = response.data;
+      });
   },
 });
 </script>

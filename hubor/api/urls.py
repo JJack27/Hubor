@@ -5,10 +5,12 @@ from accounts.views_validation import *
 from accounts.views_authentication import *
 from accounts.views_datapermission import *
 from data.views import *
-
+from diagnosis.views import *
+from medicine.views import *
 from .views_test import *
 from .views_emergency import *
 from .views_config import *
+
 
 
 
@@ -47,6 +49,12 @@ urlpatterns = [
 
     # Configuration
     path('latestconfig/', LatestConfigAPI.as_view()),
+
+    # Diagnosis
+    path('alldiagnoses/', AllDiagnosisAPI.as_view()),
+
+    # Medicines
+    path('allmedicines/', AllMedicinesAPI.as_view()),
 
     # test
     path('test/', TestView.as_view()),

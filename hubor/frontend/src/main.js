@@ -5,7 +5,7 @@ import store from './store'
 import 'ant-design-vue/dist/antd.less';
 import 'font-awesome/css/font-awesome.min.css';
 
-import {message, Badge, Tabs, Button, Form, Input, Icon, Checkbox, 
+import {AutoComplete, message, Badge, Tabs, Button, Form, Input, Icon, Checkbox, 
     Card, Row, Col, Layout, Menu, Avatar, Table, Modal, DatePicker, 
     Select, List, Descriptions, Tag, Tooltip, Empty, Radio, Switch
 } from 'ant-design-vue'
@@ -97,6 +97,8 @@ app.config.globalProperties.$delete = async function(url) {
 app.config.globalProperties.$message = message;
 
 app.use(store)
+    .use(AutoComplete)
+    .use(AutoComplete.Option)
     .use(Avatar)
     .use(Badge)
     .use(Button)

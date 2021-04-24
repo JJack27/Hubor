@@ -10,19 +10,28 @@
               {{ tag }}
             </a-tag>
         </template>
-        <a-input
+        <a-auto-complete
             v-if="inputVisible"
             ref="inputRef"
             type="text"
             size="small"
-            :style="{ width: '78px' }"
+            :style="{ width: '180px' }"
             v-model:value="inputValue"
             @blur="handleInputConfirm"
             @keyup.enter="handleInputConfirm"
-        />
+            @search="handleSearch"
+            @select="handleSelect"
+        >
+          <template #dataSource>
+            <a-select-option v-for="result in autoResult" :key="result">
+              <p style="font-weight:bold; font-size:11pt;">{{result.GENERIC_NAME}}</p>
+              <p style="font-style:italic; font-size:8pt; padding:0;">{{result.BRAND_NAMES}}</p>
+            </a-select-option>
+          </template>
+        </a-auto-complete>
         <a-tag v-else @click="showInput" style="background: #fff; border-style: dashed">
             <plus-outlined />
-            New Medicine
+            New Medication
         </a-tag>
     </div>
   
@@ -44,7 +53,6 @@ export default defineComponent({
       inputVisible: false,
       inputValue: '',
     });
-
     const handleClose = removedTag => {
       // TODO: send DELETE /prescription/user/medication/
 
@@ -70,9 +78,36 @@ export default defineComponent({
         inputVisible: false,
         inputValue: '',
       });
+    }
+
+    // load auto-complete options
+    const options = reactive([]);
+    const autoResult = ref([]);
+
+    const handleSearch = (val) => {
+      let resObj = {};
+      let res = [];
+      // will filter by both GENERIC_NAME and BRAND_NAMES
+      resObj = options.value.filter(option => option["BRAND_NAMES"].toLowerCase().includes(val.toLowerCase()) 
+              || option["GENERIC_NAME"].toLowerCase().includes(val.toLowerCase()) 
+      );
+      autoResult.value = resObj;
+    };
+    // only display GENERIC_NAME when user select an option
+    const handleSelect = (val, option) =>{
+      state.inputValue = val.GENERIC_NAME;
+      handleInputConfirm();
     };
 
-    return { ...toRefs(state), handleClose, showInput, handleInputConfirm, inputRef };
+    return { ...toRefs(state), handleClose, showInput, handleInputConfirm, inputRef, options, autoResult, handleSearch, handleSelect };
+  },
+
+  mounted(){
+    // get all diagnoses options
+    this.$get('/api/allmedicines/')
+      .then(response =>{
+        this.options.value = response.data;
+      });
   },
 });
 </script>

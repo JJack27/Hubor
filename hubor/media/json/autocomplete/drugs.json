@@ -1,0 +1,4878 @@
+[
+  {
+    "GENERIC_NAME": "Abacavir",
+    "BRAND_NAMES": "ZIAGEN"
+  },
+  {
+    "GENERIC_NAME": "Abaloparatide",
+    "BRAND_NAMES": "TYMLOS"
+  },
+  {
+    "GENERIC_NAME": "Abatacept",
+    "BRAND_NAMES": "ORENCIA"
+  },
+  {
+    "GENERIC_NAME": "Abciximab",
+    "BRAND_NAMES": "REOPRO"
+  },
+  {
+    "GENERIC_NAME": "Acamprosate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Acarbose",
+    "BRAND_NAMES": "PRECOSE"
+  },
+  {
+    "GENERIC_NAME": "Acebutolol",
+    "BRAND_NAMES": "SECTRAL"
+  },
+  {
+    "GENERIC_NAME": "Acetaminophen",
+    "BRAND_NAMES": "TYLENOL"
+  },
+  {
+    "GENERIC_NAME": "Acetazolamide",
+    "BRAND_NAMES": "DIAMOX"
+  },
+  {
+    "GENERIC_NAME": "Acetohydroxamic acid",
+    "BRAND_NAMES": "LITHOSTAT"
+  },
+  {
+    "GENERIC_NAME": "Acetylcysteine",
+    "BRAND_NAMES": "ACETADOTE"
+  },
+  {
+    "GENERIC_NAME": "Acetylprocainamide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Acitretin",
+    "BRAND_NAMES": "SORIATANE"
+  },
+  {
+    "GENERIC_NAME": "Aclidinium",
+    "BRAND_NAMES": "TUDORZA PRESSAIR"
+  },
+  {
+    "GENERIC_NAME": "Acyclovir",
+    "BRAND_NAMES": "ZOVIRAX"
+  },
+  {
+    "GENERIC_NAME": "Adalimumab",
+    "BRAND_NAMES": "HUMIRA"
+  },
+  {
+    "GENERIC_NAME": "Adapalene",
+    "BRAND_NAMES": "DIFFERIN"
+  },
+  {
+    "GENERIC_NAME": "Adefovir",
+    "BRAND_NAMES": "HEPSERA"
+  },
+  {
+    "GENERIC_NAME": "Adenosine",
+    "BRAND_NAMES": "ADENOCARD"
+  },
+  {
+    "GENERIC_NAME": "Aflibercept",
+    "BRAND_NAMES": "EYLEA"
+  },
+  {
+    "GENERIC_NAME": "Agalsidase beta",
+    "BRAND_NAMES": "FABRAZYME"
+  },
+  {
+    "GENERIC_NAME": "Albendazole",
+    "BRAND_NAMES": "ALBENZA"
+  },
+  {
+    "GENERIC_NAME": "Albiglutide",
+    "BRAND_NAMES": "TANZEUM"
+  },
+  {
+    "GENERIC_NAME": "Albuterol",
+    "BRAND_NAMES": "PROVENTIL-HFA, VENTOLIN-HFA"
+  },
+  {
+    "GENERIC_NAME": "Alcaftadine",
+    "BRAND_NAMES": "LASTACAFT"
+  },
+  {
+    "GENERIC_NAME": "Aldesleukin",
+    "BRAND_NAMES": "PROLEUKIN"
+  },
+  {
+    "GENERIC_NAME": "Alectinib",
+    "BRAND_NAMES": "ALECENSA"
+  },
+  {
+    "GENERIC_NAME": "Alemtuzumab",
+    "BRAND_NAMES": "CAMPATH"
+  },
+  {
+    "GENERIC_NAME": "Alendronate",
+    "BRAND_NAMES": "FOSAMAX"
+  },
+  {
+    "GENERIC_NAME": "Alfuzosin",
+    "BRAND_NAMES": "UROXATRAL"
+  },
+  {
+    "GENERIC_NAME": "Alirocumab",
+    "BRAND_NAMES": "PRALUENT"
+  },
+  {
+    "GENERIC_NAME": "Aliskiren",
+    "BRAND_NAMES": "TEKTURNA"
+  },
+  {
+    "GENERIC_NAME": "Allopurinol",
+    "BRAND_NAMES": "ZYLOPRIM"
+  },
+  {
+    "GENERIC_NAME": "Almotriptan",
+    "BRAND_NAMES": "AXERT"
+  },
+  {
+    "GENERIC_NAME": "Alogliptin",
+    "BRAND_NAMES": "NESINA"
+  },
+  {
+    "GENERIC_NAME": "Alosetron",
+    "BRAND_NAMES": "LOTRONEX"
+  },
+  {
+    "GENERIC_NAME": "Alprazolam",
+    "BRAND_NAMES": "XANAX"
+  },
+  {
+    "GENERIC_NAME": "Alprostadil",
+    "BRAND_NAMES": "CAVERJECT, EDEX, MUSE"
+  },
+  {
+    "GENERIC_NAME": "Alteplase",
+    "BRAND_NAMES": "ACTIVASE"
+  },
+  {
+    "GENERIC_NAME": "Amantadine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ambrisentan",
+    "BRAND_NAMES": "LETAIRIS"
+  },
+  {
+    "GENERIC_NAME": "Amifostine",
+    "BRAND_NAMES": "ETHYOL"
+  },
+  {
+    "GENERIC_NAME": "Amikacin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Amiloride",
+    "BRAND_NAMES": "MIDAMOR"
+  },
+  {
+    "GENERIC_NAME": "Aminocaproic acid",
+    "BRAND_NAMES": "AMICAR"
+  },
+  {
+    "GENERIC_NAME": "Aminophylline",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Amiodarone",
+    "BRAND_NAMES": "NEXTERONE"
+  },
+  {
+    "GENERIC_NAME": "Amitriptyline",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Amlodipine",
+    "BRAND_NAMES": "NORVASC"
+  },
+  {
+    "GENERIC_NAME": "Amobarbital",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Amoxapine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Amoxicillin",
+    "BRAND_NAMES": "AMOXIL"
+  },
+  {
+    "GENERIC_NAME": "Amoxicillin/clavulanate",
+    "BRAND_NAMES": "AUGMENTIN"
+  },
+  {
+    "GENERIC_NAME": "Amphetamine",
+    "BRAND_NAMES": "ADDERALL XR 10"
+  },
+  {
+    "GENERIC_NAME": "Amphotericin B",
+    "BRAND_NAMES": "ABELCET, AMBISOME"
+  },
+  {
+    "GENERIC_NAME": "Ampicillin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ampicillin/sulbactam",
+    "BRAND_NAMES": "UNASYN"
+  },
+  {
+    "GENERIC_NAME": "Anagrelide",
+    "BRAND_NAMES": "AGRYLIN"
+  },
+  {
+    "GENERIC_NAME": "Anakinra",
+    "BRAND_NAMES": "KINERET"
+  },
+  {
+    "GENERIC_NAME": "Anastrozole",
+    "BRAND_NAMES": "ARIMIDEX"
+  },
+  {
+    "GENERIC_NAME": "Andexanet Alfa",
+    "BRAND_NAMES": "Andexxa"
+  },
+  {
+    "GENERIC_NAME": "Anidulafungin",
+    "BRAND_NAMES": "ERAXIS"
+  },
+  {
+    "GENERIC_NAME": "Anthralin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Antihemophilic Factor (Human)",
+    "BRAND_NAMES": "MONOCLATE-P"
+  },
+  {
+    "GENERIC_NAME": "Antihemophilic Factor (Recombinant)",
+    "BRAND_NAMES": "RECOMBINATE"
+  },
+  {
+    "GENERIC_NAME": "Antihemophilic Factor/von Willebrand Factor Complex (Human)",
+    "BRAND_NAMES": "ALPHANATE"
+  },
+  {
+    "GENERIC_NAME": "Apalutamide",
+    "BRAND_NAMES": "ERLEADA"
+  },
+  {
+    "GENERIC_NAME": "Apixaban",
+    "BRAND_NAMES": "ELIQUIS"
+  },
+  {
+    "GENERIC_NAME": "Apomorphine",
+    "BRAND_NAMES": "APOKYN"
+  },
+  {
+    "GENERIC_NAME": "Apraclonidine",
+    "BRAND_NAMES": "IOPIDINE"
+  },
+  {
+    "GENERIC_NAME": "Apremilast",
+    "BRAND_NAMES": "OTEZLA"
+  },
+  {
+    "GENERIC_NAME": "Aprepitant",
+    "BRAND_NAMES": "EMEND"
+  },
+  {
+    "GENERIC_NAME": "Aprotinin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Arformoterol",
+    "BRAND_NAMES": "BROVANA"
+  },
+  {
+    "GENERIC_NAME": "Argatroban",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Arginine",
+    "BRAND_NAMES": "R-GENE 10"
+  },
+  {
+    "GENERIC_NAME": "Aripiprazole",
+    "BRAND_NAMES": "ABILIFY"
+  },
+  {
+    "GENERIC_NAME": "Armodafinil",
+    "BRAND_NAMES": "NUVIGIL"
+  },
+  {
+    "GENERIC_NAME": "Artemether/lumefantrine",
+    "BRAND_NAMES": "COARTEM"
+  },
+  {
+    "GENERIC_NAME": "Artesunate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Asparaginase",
+    "BRAND_NAMES": "ELSPAR"
+  },
+  {
+    "GENERIC_NAME": "Aspirin",
+    "BRAND_NAMES": "DURLAZA"
+  },
+  {
+    "GENERIC_NAME": "Atazanavir",
+    "BRAND_NAMES": "REYATAZ"
+  },
+  {
+    "GENERIC_NAME": "Atenolol",
+    "BRAND_NAMES": "TENORMIN"
+  },
+  {
+    "GENERIC_NAME": "Atezolizumab",
+    "BRAND_NAMES": "TECENTRIQ"
+  },
+  {
+    "GENERIC_NAME": "Atomoxetine",
+    "BRAND_NAMES": "STRATTERA"
+  },
+  {
+    "GENERIC_NAME": "Atorvastatin",
+    "BRAND_NAMES": "LIPITOR"
+  },
+  {
+    "GENERIC_NAME": "Atovaquone",
+    "BRAND_NAMES": "MEPRON"
+  },
+  {
+    "GENERIC_NAME": "Atovaquone/proguanil",
+    "BRAND_NAMES": "MALARONE"
+  },
+  {
+    "GENERIC_NAME": "Atracurium",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Atracurium",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Atropine",
+    "BRAND_NAMES": "ATROPEN"
+  },
+  {
+    "GENERIC_NAME": "Auranofin",
+    "BRAND_NAMES": "RIDAURA"
+  },
+  {
+    "GENERIC_NAME": "Avanafil",
+    "BRAND_NAMES": "STENDRA"
+  },
+  {
+    "GENERIC_NAME": "Avelumab",
+    "BRAND_NAMES": "BAVENCIO"
+  },
+  {
+    "GENERIC_NAME": "Axicabtagene ciloleucel",
+    "BRAND_NAMES": "YESCARTA"
+  },
+  {
+    "GENERIC_NAME": "Azacitidine",
+    "BRAND_NAMES": "VIDAZA"
+  },
+  {
+    "GENERIC_NAME": "Azathioprine",
+    "BRAND_NAMES": "IMURAN"
+  },
+  {
+    "GENERIC_NAME": "Azelaic acid",
+    "BRAND_NAMES": "AZELEX, FINACEA"
+  },
+  {
+    "GENERIC_NAME": "Azelastine",
+    "BRAND_NAMES": "ASTELIN, OPTIVAR"
+  },
+  {
+    "GENERIC_NAME": "Azilsartan",
+    "BRAND_NAMES": "EDARBI"
+  },
+  {
+    "GENERIC_NAME": "Azithromycin",
+    "BRAND_NAMES": "ZITHROMAX"
+  },
+  {
+    "GENERIC_NAME": "Aztreonam",
+    "BRAND_NAMES": "AZACTAM"
+  },
+  {
+    "GENERIC_NAME": "Bacitracin",
+    "BRAND_NAMES": "BACIIM"
+  },
+  {
+    "GENERIC_NAME": "Bacitracin/neomycin/polymyxin B",
+    "BRAND_NAMES": "NEOSPORIN"
+  },
+  {
+    "GENERIC_NAME": "Baclofen",
+    "BRAND_NAMES": "LIORESAL"
+  },
+  {
+    "GENERIC_NAME": "Baloxavir marboxil",
+    "BRAND_NAMES": "XOFLUZA"
+  },
+  {
+    "GENERIC_NAME": "Balsalazide",
+    "BRAND_NAMES": "COLAZAL"
+  },
+  {
+    "GENERIC_NAME": "Baricitinib",
+    "BRAND_NAMES": "OLUMIANT"
+  },
+  {
+    "GENERIC_NAME": "Basiliximab",
+    "BRAND_NAMES": "SIMULECT"
+  },
+  {
+    "GENERIC_NAME": "Beclomethasone",
+    "BRAND_NAMES": "BECONASE"
+  },
+  {
+    "GENERIC_NAME": "Belatacept",
+    "BRAND_NAMES": "NULOJIX"
+  },
+  {
+    "GENERIC_NAME": "Belimumab",
+    "BRAND_NAMES": "BENLYSTA"
+  },
+  {
+    "GENERIC_NAME": "Benazepril",
+    "BRAND_NAMES": "LOTENSIN"
+  },
+  {
+    "GENERIC_NAME": "Bendamustine",
+    "BRAND_NAMES": "TREANDA"
+  },
+  {
+    "GENERIC_NAME": "Benralizumab",
+    "BRAND_NAMES": "FASENRA"
+  },
+  {
+    "GENERIC_NAME": "Benzocaine",
+    "BRAND_NAMES": "ANBESOL"
+  },
+  {
+    "GENERIC_NAME": "Benzonatate",
+    "BRAND_NAMES": "TESSALON"
+  },
+  {
+    "GENERIC_NAME": "Benzoyl peroxide",
+    "BRAND_NAMES": "No US brand names"
+  },
+  {
+    "GENERIC_NAME": "Benztropine",
+    "BRAND_NAMES": "COGENTIN"
+  },
+  {
+    "GENERIC_NAME": "Beractant",
+    "BRAND_NAMES": "SURVANTA"
+  },
+  {
+    "GENERIC_NAME": "Betaine",
+    "BRAND_NAMES": "CYSTADANE"
+  },
+  {
+    "GENERIC_NAME": "Betamethasone",
+    "BRAND_NAMES": "CELESTONE SOLUSPAN, DIPROLENE, LUXIQ"
+  },
+  {
+    "GENERIC_NAME": "Betaxolol",
+    "BRAND_NAMES": "BETOPTIC"
+  },
+  {
+    "GENERIC_NAME": "Bethanechol",
+    "BRAND_NAMES": "DUVOID, URECHOLINE"
+  },
+  {
+    "GENERIC_NAME": "Betrixaban",
+    "BRAND_NAMES": "BEVYXXA"
+  },
+  {
+    "GENERIC_NAME": "Bevacizumab",
+    "BRAND_NAMES": "AVASTIN"
+  },
+  {
+    "GENERIC_NAME": "Bezafibrate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Bezlotoxumab",
+    "BRAND_NAMES": "ZINPLAVA"
+  },
+  {
+    "GENERIC_NAME": "Bicalutamide",
+    "BRAND_NAMES": "CASODEX"
+  },
+  {
+    "GENERIC_NAME": "Bictegravir",
+    "BRAND_NAMES": "BIKTARVY"
+  },
+  {
+    "GENERIC_NAME": "Bimatoprost",
+    "BRAND_NAMES": "LUMIGAN"
+  },
+  {
+    "GENERIC_NAME": "Binimetinib",
+    "BRAND_NAMES": "MEKTOVI"
+  },
+  {
+    "GENERIC_NAME": "Bisacodyl",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Bisoprolol",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Bivalirudin",
+    "BRAND_NAMES": "ANGIOMAX"
+  },
+  {
+    "GENERIC_NAME": "Bleomycin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Blinatumomab",
+    "BRAND_NAMES": "BLINCYTO"
+  },
+  {
+    "GENERIC_NAME": "Boceprevir",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Bortezomib",
+    "BRAND_NAMES": "VELCADE"
+  },
+  {
+    "GENERIC_NAME": "Bosentan",
+    "BRAND_NAMES": "TRACLEER"
+  },
+  {
+    "GENERIC_NAME": "Bosutinib",
+    "BRAND_NAMES": "BOSULIF"
+  },
+  {
+    "GENERIC_NAME": "Botulism antitoxin, heptavalent",
+    "BRAND_NAMES": "BAT"
+  },
+  {
+    "GENERIC_NAME": "Botulism Immune Globulin (Intravenous-Human)",
+    "BRAND_NAMES": "Baby BIG"
+  },
+  {
+    "GENERIC_NAME": "Brentuximab vedotin",
+    "BRAND_NAMES": "ADCETRIS"
+  },
+  {
+    "GENERIC_NAME": "Brexpiprazole",
+    "BRAND_NAMES": "REXULTI"
+  },
+  {
+    "GENERIC_NAME": "Brimonidine",
+    "BRAND_NAMES": "ALPHAGAN P"
+  },
+  {
+    "GENERIC_NAME": "Brinzolamide",
+    "BRAND_NAMES": "AZOPT"
+  },
+  {
+    "GENERIC_NAME": "Brodalumab",
+    "BRAND_NAMES": "SILIQ"
+  },
+  {
+    "GENERIC_NAME": "Bromocriptine",
+    "BRAND_NAMES": "PARLODEL"
+  },
+  {
+    "GENERIC_NAME": "Brompheniramine",
+    "BRAND_NAMES": "VELTANE"
+  },
+  {
+    "GENERIC_NAME": "Budesonide",
+    "BRAND_NAMES": "PULMICORT, RHINOCORT"
+  },
+  {
+    "GENERIC_NAME": "Bumetanide",
+    "BRAND_NAMES": "BUMEX"
+  },
+  {
+    "GENERIC_NAME": "Bupivacaine",
+    "BRAND_NAMES": "MARCAINE"
+  },
+  {
+    "GENERIC_NAME": "Buprenorphine",
+    "BRAND_NAMES": "BUPRENEX"
+  },
+  {
+    "GENERIC_NAME": "Bupropion",
+    "BRAND_NAMES": "WELLBUTRIN, ZYBAN"
+  },
+  {
+    "GENERIC_NAME": "Burosumab",
+    "BRAND_NAMES": "CRYSVITA"
+  },
+  {
+    "GENERIC_NAME": "Buserelin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Buspirone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Busulfan",
+    "BRAND_NAMES": "MYLERAN"
+  },
+  {
+    "GENERIC_NAME": "Butabarbital",
+    "BRAND_NAMES": "BUTISOL SODIUM"
+  },
+  {
+    "GENERIC_NAME": "Butalbital",
+    "BRAND_NAMES": "ALLZITAL"
+  },
+  {
+    "GENERIC_NAME": "Butenafine",
+    "BRAND_NAMES": "MENTAX"
+  },
+  {
+    "GENERIC_NAME": "Butoconazole",
+    "BRAND_NAMES": "FEMSTAT 3"
+  },
+  {
+    "GENERIC_NAME": "Butorphanol",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "C1 Inhibitor (Human)",
+    "BRAND_NAMES": "Berinert"
+  },
+  {
+    "GENERIC_NAME": "Cabazitaxel",
+    "BRAND_NAMES": "JEVTANA KIT"
+  },
+  {
+    "GENERIC_NAME": "Cabergoline",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cabozantinib",
+    "BRAND_NAMES": "COMETRIQ"
+  },
+  {
+    "GENERIC_NAME": "Calcipotriene",
+    "BRAND_NAMES": "DOVONEX"
+  },
+  {
+    "GENERIC_NAME": "Calcitonin",
+    "BRAND_NAMES": "MIACALCIN"
+  },
+  {
+    "GENERIC_NAME": "Calcitriol",
+    "BRAND_NAMES": "ROCALTROL"
+  },
+  {
+    "GENERIC_NAME": "Calcium chloride",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Calcium gluconate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Calfactant",
+    "BRAND_NAMES": "INFASURF"
+  },
+  {
+    "GENERIC_NAME": "Canagliflozin",
+    "BRAND_NAMES": "INVOKANA"
+  },
+  {
+    "GENERIC_NAME": "Canakinumab",
+    "BRAND_NAMES": "ILARIS"
+  },
+  {
+    "GENERIC_NAME": "Candesartan",
+    "BRAND_NAMES": "ATACAND"
+  },
+  {
+    "GENERIC_NAME": "Cangrelor",
+    "BRAND_NAMES": "KENGREAL"
+  },
+  {
+    "GENERIC_NAME": "Cantharidin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Capecitabine",
+    "BRAND_NAMES": "XELODA"
+  },
+  {
+    "GENERIC_NAME": "Caplacizumab",
+    "BRAND_NAMES": "CABLIVI"
+  },
+  {
+    "GENERIC_NAME": "Capreomycin",
+    "BRAND_NAMES": "CAPASTAT"
+  },
+  {
+    "GENERIC_NAME": "Capsaicin",
+    "BRAND_NAMES": "QUTENZA"
+  },
+  {
+    "GENERIC_NAME": "Captopril",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Carbachol",
+    "BRAND_NAMES": "MIOSTAT"
+  },
+  {
+    "GENERIC_NAME": "Carbamazepine",
+    "BRAND_NAMES": "TEGRETOL"
+  },
+  {
+    "GENERIC_NAME": "Carbidopa",
+    "BRAND_NAMES": "LODOSYN"
+  },
+  {
+    "GENERIC_NAME": "Carbidopa/levodopa",
+    "BRAND_NAMES": "SINEMET"
+  },
+  {
+    "GENERIC_NAME": "Carbinoxamine",
+    "BRAND_NAMES": "KARBINAL ER"
+  },
+  {
+    "GENERIC_NAME": "Carboplatin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Carfilzomib",
+    "BRAND_NAMES": "KYPROLIS"
+  },
+  {
+    "GENERIC_NAME": "Cariprazine",
+    "BRAND_NAMES": "VRAYLAR"
+  },
+  {
+    "GENERIC_NAME": "Carisoprodol",
+    "BRAND_NAMES": "SOMA"
+  },
+  {
+    "GENERIC_NAME": "Carmustine",
+    "BRAND_NAMES": "BICNU, GLIADEL"
+  },
+  {
+    "GENERIC_NAME": "Carteolol",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Carvedilol",
+    "BRAND_NAMES": "COREG"
+  },
+  {
+    "GENERIC_NAME": "Caspofungin",
+    "BRAND_NAMES": "CANCIDAS"
+  },
+  {
+    "GENERIC_NAME": "Cefaclor",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cefadroxil",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cefazolin",
+    "BRAND_NAMES": "ANCEF, KEFZOL"
+  },
+  {
+    "GENERIC_NAME": "Cefdinir",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cefditoren",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cefepime",
+    "BRAND_NAMES": "MAXIPIME"
+  },
+  {
+    "GENERIC_NAME": "Cefixime",
+    "BRAND_NAMES": "SUPRAX"
+  },
+  {
+    "GENERIC_NAME": "Cefotaxime",
+    "BRAND_NAMES": "CLAFORAN"
+  },
+  {
+    "GENERIC_NAME": "Cefotetan",
+    "BRAND_NAMES": "CEFOTAN"
+  },
+  {
+    "GENERIC_NAME": "Cefoxitin",
+    "BRAND_NAMES": "MEFOXIN"
+  },
+  {
+    "GENERIC_NAME": "Cefpodoxime",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cefprozil",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ceftaroline fosamil",
+    "BRAND_NAMES": "TEFLARO"
+  },
+  {
+    "GENERIC_NAME": "Ceftazidime",
+    "BRAND_NAMES": "FORTAZ, TAZICEF"
+  },
+  {
+    "GENERIC_NAME": "Ceftazidime/Avibactam",
+    "BRAND_NAMES": "AVYCAZ"
+  },
+  {
+    "GENERIC_NAME": "Ceftibuten",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ceftobiprole",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ceftriaxone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cefuroxime",
+    "BRAND_NAMES": "CEFTIN, ZINACEF"
+  },
+  {
+    "GENERIC_NAME": "Celecoxib",
+    "BRAND_NAMES": "CELEBREX"
+  },
+  {
+    "GENERIC_NAME": "Cephalexin",
+    "BRAND_NAMES": "KEFLEX"
+  },
+  {
+    "GENERIC_NAME": "Ceritinib",
+    "BRAND_NAMES": "ZYKADIA"
+  },
+  {
+    "GENERIC_NAME": "Certolizumab pegol",
+    "BRAND_NAMES": "CIMZIA"
+  },
+  {
+    "GENERIC_NAME": "Cetirizine",
+    "BRAND_NAMES": "ZYRTEC"
+  },
+  {
+    "GENERIC_NAME": "Cetuximab",
+    "BRAND_NAMES": "ERBITUX"
+  },
+  {
+    "GENERIC_NAME": "Cevimeline",
+    "BRAND_NAMES": "EVOXAC"
+  },
+  {
+    "GENERIC_NAME": "Chlorambucil",
+    "BRAND_NAMES": "LEUKERAN"
+  },
+  {
+    "GENERIC_NAME": "Chloramphenicol",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Chlordiazepoxide",
+    "BRAND_NAMES": "LIBRIUM"
+  },
+  {
+    "GENERIC_NAME": "Chloroquine",
+    "BRAND_NAMES": "ARALEN"
+  },
+  {
+    "GENERIC_NAME": "Chlorothiazide",
+    "BRAND_NAMES": "DIURIL"
+  },
+  {
+    "GENERIC_NAME": "Chlorpheniramine",
+    "BRAND_NAMES": "CHLOR-TRIMETON"
+  },
+  {
+    "GENERIC_NAME": "Chlorpromazine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Chlorpropamide",
+    "BRAND_NAMES": "DIABINESE"
+  },
+  {
+    "GENERIC_NAME": "Chlorthalidone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Chlorzoxazone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cholecalciferol",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cholestyramine resin",
+    "BRAND_NAMES": "PREVALITE"
+  },
+  {
+    "GENERIC_NAME": "Choline magnesium trisalicylate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ciclesonide",
+    "BRAND_NAMES": "ALVESCO"
+  },
+  {
+    "GENERIC_NAME": "Ciclopirox",
+    "BRAND_NAMES": "LOPROX, PENLAC"
+  },
+  {
+    "GENERIC_NAME": "Cidofovir",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cilostazol",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cimetidine",
+    "BRAND_NAMES": "TAGAMET HB"
+  },
+  {
+    "GENERIC_NAME": "Cinacalcet",
+    "BRAND_NAMES": "SENSIPAR"
+  },
+  {
+    "GENERIC_NAME": "Ciprofloxacin",
+    "BRAND_NAMES": "CILOXAN, CIPRO"
+  },
+  {
+    "GENERIC_NAME": "Cisapride",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cisplatin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Citalopram",
+    "BRAND_NAMES": "CELEXA"
+  },
+  {
+    "GENERIC_NAME": "Cladribine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Clarithromycin",
+    "BRAND_NAMES": "BIAXIN"
+  },
+  {
+    "GENERIC_NAME": "Clemastine",
+    "BRAND_NAMES": "TAVIST-1"
+  },
+  {
+    "GENERIC_NAME": "Clevidipine",
+    "BRAND_NAMES": "CLEVIPREX"
+  },
+  {
+    "GENERIC_NAME": "Clidinium/chlordiazepoxide",
+    "BRAND_NAMES": "LIBRAX"
+  },
+  {
+    "GENERIC_NAME": "Clindamycin",
+    "BRAND_NAMES": "CLEOCIN"
+  },
+  {
+    "GENERIC_NAME": "CloBAZam",
+    "BRAND_NAMES": "ONFI"
+  },
+  {
+    "GENERIC_NAME": "Clobetasol",
+    "BRAND_NAMES": "CLOBEX"
+  },
+  {
+    "GENERIC_NAME": "Clomiphene",
+    "BRAND_NAMES": "CLOMID"
+  },
+  {
+    "GENERIC_NAME": "Clomipramine",
+    "BRAND_NAMES": "ANAFRANIL"
+  },
+  {
+    "GENERIC_NAME": "Clonazepam",
+    "BRAND_NAMES": "KLONOPIN"
+  },
+  {
+    "GENERIC_NAME": "Clonidine",
+    "BRAND_NAMES": "CATAPRES"
+  },
+  {
+    "GENERIC_NAME": "Clopidogrel",
+    "BRAND_NAMES": "PLAVIX"
+  },
+  {
+    "GENERIC_NAME": "Clorazepate",
+    "BRAND_NAMES": "TRANXENE"
+  },
+  {
+    "GENERIC_NAME": "Clotrimazole",
+    "BRAND_NAMES": "MYCELEX"
+  },
+  {
+    "GENERIC_NAME": "Clozapine",
+    "BRAND_NAMES": "CLOZARIL"
+  },
+  {
+    "GENERIC_NAME": "Codeine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Colchicine",
+    "BRAND_NAMES": "COLCRYS"
+  },
+  {
+    "GENERIC_NAME": "Colesevelam",
+    "BRAND_NAMES": "WELCHOL"
+  },
+  {
+    "GENERIC_NAME": "Colestipol",
+    "BRAND_NAMES": "COLESTID"
+  },
+  {
+    "GENERIC_NAME": "Colistimethate",
+    "BRAND_NAMES": "COLY-MYCIN M"
+  },
+  {
+    "GENERIC_NAME": "Collagenase",
+    "BRAND_NAMES": "SANTYL"
+  },
+  {
+    "GENERIC_NAME": "Concizumab",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Conivaptan",
+    "BRAND_NAMES": "VAPRISOL"
+  },
+  {
+    "GENERIC_NAME": "Corticotropin",
+    "BRAND_NAMES": "H.P. ACTHAR GEL"
+  },
+  {
+    "GENERIC_NAME": "Crizotinib",
+    "BRAND_NAMES": "XALKORI"
+  },
+  {
+    "GENERIC_NAME": "Cromolyn",
+    "BRAND_NAMES": "CROLOM"
+  },
+  {
+    "GENERIC_NAME": "Crotalidae Polyvalent Immune FAB (Ovine)",
+    "BRAND_NAMES": "CroFab"
+  },
+  {
+    "GENERIC_NAME": "Crotamiton",
+    "BRAND_NAMES": "EURAX"
+  },
+  {
+    "GENERIC_NAME": "Cyclizine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cyclobenzaprine",
+    "BRAND_NAMES": "AMRIX"
+  },
+  {
+    "GENERIC_NAME": "Cyclopentolate",
+    "BRAND_NAMES": "AKPENTOLATE, CYCLOGYL"
+  },
+  {
+    "GENERIC_NAME": "Cyclophosphamide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cycloserine",
+    "BRAND_NAMES": "SEROMYCIN"
+  },
+  {
+    "GENERIC_NAME": "Cyclosporine",
+    "BRAND_NAMES": "NEORAL, SANDIMMUNE"
+  },
+  {
+    "GENERIC_NAME": "Cyproheptadine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cyproterone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cytarabine (Conventional)",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Cytomegalovirus Immune Globulin (Intravenous-Human)",
+    "BRAND_NAMES": "Cytogam"
+  },
+  {
+    "GENERIC_NAME": "Dabigatran etexilate",
+    "BRAND_NAMES": "PRADAXA"
+  },
+  {
+    "GENERIC_NAME": "Dabrafenib",
+    "BRAND_NAMES": "TAFINLAR"
+  },
+  {
+    "GENERIC_NAME": "Dacarbazine",
+    "BRAND_NAMES": "DTIC-DOME"
+  },
+  {
+    "GENERIC_NAME": "Daclatsvir",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Dactinomycin",
+    "BRAND_NAMES": "COSMEGEN"
+  },
+  {
+    "GENERIC_NAME": "Dalbavancin",
+    "BRAND_NAMES": "DALVANCE"
+  },
+  {
+    "GENERIC_NAME": "Dalfampridine",
+    "BRAND_NAMES": "AMPYRA"
+  },
+  {
+    "GENERIC_NAME": "Dalteparin",
+    "BRAND_NAMES": "FRAGMIN"
+  },
+  {
+    "GENERIC_NAME": "Danazol",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Dantrolene",
+    "BRAND_NAMES": "DANTRIUM"
+  },
+  {
+    "GENERIC_NAME": "Dapagliflozin",
+    "BRAND_NAMES": "FARXIGA"
+  },
+  {
+    "GENERIC_NAME": "Dapsone",
+    "BRAND_NAMES": "ACZONE"
+  },
+  {
+    "GENERIC_NAME": "Daptomycin",
+    "BRAND_NAMES": "CUBICIN"
+  },
+  {
+    "GENERIC_NAME": "Daratumumab",
+    "BRAND_NAMES": "DARZALEX"
+  },
+  {
+    "GENERIC_NAME": "Darbepoetin alfa",
+    "BRAND_NAMES": "ARANESP"
+  },
+  {
+    "GENERIC_NAME": "Darifenacin",
+    "BRAND_NAMES": "ENABLEX"
+  },
+  {
+    "GENERIC_NAME": "Darunavir",
+    "BRAND_NAMES": "PREZISTA"
+  },
+  {
+    "GENERIC_NAME": "Dasatinib",
+    "BRAND_NAMES": "SPRYCEL"
+  },
+  {
+    "GENERIC_NAME": "Daunorubicin (Conventional)",
+    "BRAND_NAMES": "CERUBIDINE"
+  },
+  {
+    "GENERIC_NAME": "DAUNOrubicin (Liposomal)",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Deferasirox",
+    "BRAND_NAMES": "EXJADE"
+  },
+  {
+    "GENERIC_NAME": "Deferiprone",
+    "BRAND_NAMES": "FERRIPROX"
+  },
+  {
+    "GENERIC_NAME": "Deferoxamine",
+    "BRAND_NAMES": "DESFERAL"
+  },
+  {
+    "GENERIC_NAME": "Delafloxacin",
+    "BRAND_NAMES": "BAXDELA"
+  },
+  {
+    "GENERIC_NAME": "Delavirdine",
+    "BRAND_NAMES": "RESCRIPTOR"
+  },
+  {
+    "GENERIC_NAME": "Demeclocycline",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Denileukin diftitox",
+    "BRAND_NAMES": "ONTAK"
+  },
+  {
+    "GENERIC_NAME": "Denosumab",
+    "BRAND_NAMES": "PROLIA"
+  },
+  {
+    "GENERIC_NAME": "Desipramine",
+    "BRAND_NAMES": "NORPRAMIN"
+  },
+  {
+    "GENERIC_NAME": "Desirudin",
+    "BRAND_NAMES": "IPRIVASK"
+  },
+  {
+    "GENERIC_NAME": "Desloratadine",
+    "BRAND_NAMES": "CLARINEX"
+  },
+  {
+    "GENERIC_NAME": "Desmopressin",
+    "BRAND_NAMES": "DDAVP, STIMATE"
+  },
+  {
+    "GENERIC_NAME": "Desoximetasone",
+    "BRAND_NAMES": "TOPICORT"
+  },
+  {
+    "GENERIC_NAME": "Desvenlafaxine",
+    "BRAND_NAMES": "PRISTIQ"
+  },
+  {
+    "GENERIC_NAME": "Dexamethasone",
+    "BRAND_NAMES": "OZURDEX"
+  },
+  {
+    "GENERIC_NAME": "Dexbrompheniramine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Dexchlorpheniramine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Dexlansoprazole",
+    "BRAND_NAMES": "DEXILANT"
+  },
+  {
+    "GENERIC_NAME": "Dexmedetomidine",
+    "BRAND_NAMES": "PRECEDEX"
+  },
+  {
+    "GENERIC_NAME": "Dextroamphetamine",
+    "BRAND_NAMES": "DEXEDRINE"
+  },
+  {
+    "GENERIC_NAME": "Dextromethorphan",
+    "BRAND_NAMES": "DELSYM"
+  },
+  {
+    "GENERIC_NAME": "Diazepam",
+    "BRAND_NAMES": "VALIUM"
+  },
+  {
+    "GENERIC_NAME": "Diazoxide",
+    "BRAND_NAMES": "PROGLYCEM"
+  },
+  {
+    "GENERIC_NAME": "Diclofenac",
+    "BRAND_NAMES": "VOLTAREN"
+  },
+  {
+    "GENERIC_NAME": "Dicloxacillin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Dicyclomine",
+    "BRAND_NAMES": "BENTYL"
+  },
+  {
+    "GENERIC_NAME": "Didanosine",
+    "BRAND_NAMES": "VIDEX"
+  },
+  {
+    "GENERIC_NAME": "Dienogest",
+    "BRAND_NAMES": "NATAZIA"
+  },
+  {
+    "GENERIC_NAME": "Diethylcarbamazine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Diethylpropion",
+    "BRAND_NAMES": "TENUATE"
+  },
+  {
+    "GENERIC_NAME": "Diflunisal",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Digoxin",
+    "BRAND_NAMES": "LANOXIN"
+  },
+  {
+    "GENERIC_NAME": "Digoxin immune Fab",
+    "BRAND_NAMES": "DigiFab"
+  },
+  {
+    "GENERIC_NAME": "Dihydroergotamine",
+    "BRAND_NAMES": "D.H.E. 45, MIGRANAL"
+  },
+  {
+    "GENERIC_NAME": "Diloxanide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Diltiazem",
+    "BRAND_NAMES": "CARDIZEM, CARTIA XT"
+  },
+  {
+    "GENERIC_NAME": "Dimenhydrinate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Dimercaprol",
+    "BRAND_NAMES": "BAL"
+  },
+  {
+    "GENERIC_NAME": "Dimethyl sulfoxide",
+    "BRAND_NAMES": "RIMSO-50"
+  },
+  {
+    "GENERIC_NAME": "Dinoprostone",
+    "BRAND_NAMES": "CERVIDIL, PREPIDIL, PROSTIN E2"
+  },
+  {
+    "GENERIC_NAME": "Dinutuximab",
+    "BRAND_NAMES": "UNITUXIN"
+  },
+  {
+    "GENERIC_NAME": "Diphenhydramine",
+    "BRAND_NAMES": "Benadryl"
+  },
+  {
+    "GENERIC_NAME": "Diphenoxylate/atropine",
+    "BRAND_NAMES": "LOMOTIL"
+  },
+  {
+    "GENERIC_NAME": "Dipyridamole",
+    "BRAND_NAMES": "PERSANTINE"
+  },
+  {
+    "GENERIC_NAME": "Disopyramide",
+    "BRAND_NAMES": "NORPACE"
+  },
+  {
+    "GENERIC_NAME": "Disulfiram",
+    "BRAND_NAMES": "ANTABUSE"
+  },
+  {
+    "GENERIC_NAME": "Divalproex",
+    "BRAND_NAMES": "DEPAKOTE"
+  },
+  {
+    "GENERIC_NAME": "Dobutamine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Docetaxel",
+    "BRAND_NAMES": "TAXOTERE"
+  },
+  {
+    "GENERIC_NAME": "Docosanol",
+    "BRAND_NAMES": "ABREVA"
+  },
+  {
+    "GENERIC_NAME": "Dofetilide",
+    "BRAND_NAMES": "TIKOSYN"
+  },
+  {
+    "GENERIC_NAME": "Dolasetron",
+    "BRAND_NAMES": "ANZEMET"
+  },
+  {
+    "GENERIC_NAME": "Dolutegravir",
+    "BRAND_NAMES": "TIVICAY"
+  },
+  {
+    "GENERIC_NAME": "Donepezil",
+    "BRAND_NAMES": "ARICEPT"
+  },
+  {
+    "GENERIC_NAME": "Dopamine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Doravirine",
+    "BRAND_NAMES": "PIFELTRO"
+  },
+  {
+    "GENERIC_NAME": "Doripenem",
+    "BRAND_NAMES": "DORIBAX"
+  },
+  {
+    "GENERIC_NAME": "Dornase alfa",
+    "BRAND_NAMES": "PULMOZYME"
+  },
+  {
+    "GENERIC_NAME": "Dorzolamide",
+    "BRAND_NAMES": "TRUSOPT"
+  },
+  {
+    "GENERIC_NAME": "Doxazosin",
+    "BRAND_NAMES": "CARDURA"
+  },
+  {
+    "GENERIC_NAME": "Doxepin",
+    "BRAND_NAMES": "ZONALON"
+  },
+  {
+    "GENERIC_NAME": "Doxercalciferol",
+    "BRAND_NAMES": "HECTOROL"
+  },
+  {
+    "GENERIC_NAME": "Doxorubicin (conventional)",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Doxorubicin (liposomal)",
+    "BRAND_NAMES": "DOXIL (LIPOSOMAL)"
+  },
+  {
+    "GENERIC_NAME": "Doxycycline",
+    "BRAND_NAMES": "VIBRAMYCIN"
+  },
+  {
+    "GENERIC_NAME": "Doxylamine",
+    "BRAND_NAMES": "UNISOM"
+  },
+  {
+    "GENERIC_NAME": "Dronabinol",
+    "BRAND_NAMES": "MARINOL"
+  },
+  {
+    "GENERIC_NAME": "Dronedarone",
+    "BRAND_NAMES": "MULTAQ"
+  },
+  {
+    "GENERIC_NAME": "Droperidol",
+    "BRAND_NAMES": "INAPSINE"
+  },
+  {
+    "GENERIC_NAME": "Droxidopa",
+    "BRAND_NAMES": "NORTHERA"
+  },
+  {
+    "GENERIC_NAME": "Dulaglutide",
+    "BRAND_NAMES": "TRULICITY"
+  },
+  {
+    "GENERIC_NAME": "Duloxetine",
+    "BRAND_NAMES": "CYMBALTA"
+  },
+  {
+    "GENERIC_NAME": "Dupilumab",
+    "BRAND_NAMES": "DUPIXENT"
+  },
+  {
+    "GENERIC_NAME": "Durvalumab",
+    "BRAND_NAMES": "IMFINZI"
+  },
+  {
+    "GENERIC_NAME": "Dutasteride",
+    "BRAND_NAMES": "AVODART"
+  },
+  {
+    "GENERIC_NAME": "Dyclonine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ecallantide",
+    "BRAND_NAMES": "KALBITOR"
+  },
+  {
+    "GENERIC_NAME": "Echothiophate iodide",
+    "BRAND_NAMES": "PHOSPHOLINE IODIDE"
+  },
+  {
+    "GENERIC_NAME": "Econazole",
+    "BRAND_NAMES": "ECOZA"
+  },
+  {
+    "GENERIC_NAME": "Eculizumab",
+    "BRAND_NAMES": "SOLIRIS"
+  },
+  {
+    "GENERIC_NAME": "Edetate calcium disodium",
+    "BRAND_NAMES": "CALCIUM DISODIUM VERSENATE"
+  },
+  {
+    "GENERIC_NAME": "Edoxaban",
+    "BRAND_NAMES": "SAVAYSA"
+  },
+  {
+    "GENERIC_NAME": "Edrophonium",
+    "BRAND_NAMES": "ENLON"
+  },
+  {
+    "GENERIC_NAME": "Efavirenz",
+    "BRAND_NAMES": "SUSTIVA"
+  },
+  {
+    "GENERIC_NAME": "Eflornithine",
+    "BRAND_NAMES": "VANIQA"
+  },
+  {
+    "GENERIC_NAME": "Elagolix",
+    "BRAND_NAMES": "ORILISSA"
+  },
+  {
+    "GENERIC_NAME": "Elbasvir and Grazoprevir",
+    "BRAND_NAMES": "ZEPATIER"
+  },
+  {
+    "GENERIC_NAME": "Eletriptan",
+    "BRAND_NAMES": "RELPAX"
+  },
+  {
+    "GENERIC_NAME": "Eliglustat",
+    "BRAND_NAMES": "CERDELGA"
+  },
+  {
+    "GENERIC_NAME": "Elotuzumab",
+    "BRAND_NAMES": "EMPLICITI"
+  },
+  {
+    "GENERIC_NAME": "Eltrombopag",
+    "BRAND_NAMES": "PROMACTA"
+  },
+  {
+    "GENERIC_NAME": "Eluxadoline",
+    "BRAND_NAMES": "VIBERZI"
+  },
+  {
+    "GENERIC_NAME": "Elvitegravir",
+    "BRAND_NAMES": "GENVOYA"
+  },
+  {
+    "GENERIC_NAME": "Emapalumab",
+    "BRAND_NAMES": "GAMIFANT"
+  },
+  {
+    "GENERIC_NAME": "Emedastine",
+    "BRAND_NAMES": "EMADINE"
+  },
+  {
+    "GENERIC_NAME": "Emicizumab",
+    "BRAND_NAMES": "HEMLIBRA"
+  },
+  {
+    "GENERIC_NAME": "Empagliflozin",
+    "BRAND_NAMES": "JARDIANCE"
+  },
+  {
+    "GENERIC_NAME": "Emtricitabine",
+    "BRAND_NAMES": "EMTRIVA"
+  },
+  {
+    "GENERIC_NAME": "Enalapril",
+    "BRAND_NAMES": "VASOTEC"
+  },
+  {
+    "GENERIC_NAME": "Enalaprilat",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Enasidenib",
+    "BRAND_NAMES": "IDHIFA"
+  },
+  {
+    "GENERIC_NAME": "Encorafenib",
+    "BRAND_NAMES": "BRAFTOVI"
+  },
+  {
+    "GENERIC_NAME": "Enfuvirtide",
+    "BRAND_NAMES": "FUZEON"
+  },
+  {
+    "GENERIC_NAME": "Enoxaparin",
+    "BRAND_NAMES": "LOVENOX"
+  },
+  {
+    "GENERIC_NAME": "Entacapone",
+    "BRAND_NAMES": "COMTAN"
+  },
+  {
+    "GENERIC_NAME": "Entecavir",
+    "BRAND_NAMES": "BARACLUDE"
+  },
+  {
+    "GENERIC_NAME": "Enzalutamide",
+    "BRAND_NAMES": "XTANDI"
+  },
+  {
+    "GENERIC_NAME": "Epinephrine",
+    "BRAND_NAMES": "ADRENALIN"
+  },
+  {
+    "GENERIC_NAME": "Epirubicin",
+    "BRAND_NAMES": "ELLENCE"
+  },
+  {
+    "GENERIC_NAME": "Eplerenone",
+    "BRAND_NAMES": "INSPRA"
+  },
+  {
+    "GENERIC_NAME": "Epoetin alfa",
+    "BRAND_NAMES": "EPOGEN/PROCRIT"
+  },
+  {
+    "GENERIC_NAME": "Epoprostenol",
+    "BRAND_NAMES": "FLOLAN"
+  },
+  {
+    "GENERIC_NAME": "Eprosartan",
+    "BRAND_NAMES": "TEVETEN"
+  },
+  {
+    "GENERIC_NAME": "Eptifibatide",
+    "BRAND_NAMES": "INTEGRILIN"
+  },
+  {
+    "GENERIC_NAME": "Eravacycline",
+    "BRAND_NAMES": "XERAVA"
+  },
+  {
+    "GENERIC_NAME": "Erenumab",
+    "BRAND_NAMES": "AIMOVIG"
+  },
+  {
+    "GENERIC_NAME": "Ergocalciferol",
+    "BRAND_NAMES": "DRISDOL"
+  },
+  {
+    "GENERIC_NAME": "Ergoloid mesylates",
+    "BRAND_NAMES": "HYDERGINE"
+  },
+  {
+    "GENERIC_NAME": "Ergonovine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ergotamine",
+    "BRAND_NAMES": "ERGOMAR"
+  },
+  {
+    "GENERIC_NAME": "Erlotinib",
+    "BRAND_NAMES": "TARCEVA"
+  },
+  {
+    "GENERIC_NAME": "Ertapenem",
+    "BRAND_NAMES": "INVANZ"
+  },
+  {
+    "GENERIC_NAME": "Ertugliflozin",
+    "BRAND_NAMES": "STEGLATRO"
+  },
+  {
+    "GENERIC_NAME": "Erythromycin",
+    "BRAND_NAMES": "ERY-TAB, ERYTHROCIN"
+  },
+  {
+    "GENERIC_NAME": "Erythromycin/sulfisoxazole",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Escitalopram",
+    "BRAND_NAMES": "LEXAPRO"
+  },
+  {
+    "GENERIC_NAME": "Esketamine",
+    "BRAND_NAMES": "SPRAVATO"
+  },
+  {
+    "GENERIC_NAME": "Eslicarbazepine",
+    "BRAND_NAMES": "APTIOM"
+  },
+  {
+    "GENERIC_NAME": "Esmolol",
+    "BRAND_NAMES": "BREVIBLOC"
+  },
+  {
+    "GENERIC_NAME": "Esomeprazole",
+    "BRAND_NAMES": "NEXIUM"
+  },
+  {
+    "GENERIC_NAME": "Estazolam",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Estradiol",
+    "BRAND_NAMES": "ESTRADERM, ESTROGEL, VIVELLE"
+  },
+  {
+    "GENERIC_NAME": "Estrogens",
+    "BRAND_NAMES": "PREMARIN"
+  },
+  {
+    "GENERIC_NAME": "Eszopiclone",
+    "BRAND_NAMES": "LUNESTA"
+  },
+  {
+    "GENERIC_NAME": "Etanercept",
+    "BRAND_NAMES": "ENBREL"
+  },
+  {
+    "GENERIC_NAME": "Ethacrynic acid",
+    "BRAND_NAMES": "EDECRIN"
+  },
+  {
+    "GENERIC_NAME": "Ethambutol",
+    "BRAND_NAMES": "MYAMBUTOL"
+  },
+  {
+    "GENERIC_NAME": "Ethionamide",
+    "BRAND_NAMES": "TRECATOR"
+  },
+  {
+    "GENERIC_NAME": "Ethosuximide",
+    "BRAND_NAMES": "ZARONTIN"
+  },
+  {
+    "GENERIC_NAME": "Etidronate",
+    "BRAND_NAMES": "DIDRONEL"
+  },
+  {
+    "GENERIC_NAME": "Etodolac",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Etomidate",
+    "BRAND_NAMES": "AMIDATE"
+  },
+  {
+    "GENERIC_NAME": "Etonogestrel",
+    "BRAND_NAMES": "IMPLANON"
+  },
+  {
+    "GENERIC_NAME": "Etoposide",
+    "BRAND_NAMES": "ETOPOPHOS"
+  },
+  {
+    "GENERIC_NAME": "Etravirine",
+    "BRAND_NAMES": "INTELENCE"
+  },
+  {
+    "GENERIC_NAME": "Everolimus",
+    "BRAND_NAMES": "AFINITOR"
+  },
+  {
+    "GENERIC_NAME": "Evolocumab",
+    "BRAND_NAMES": "REPATHA"
+  },
+  {
+    "GENERIC_NAME": "Exemestane",
+    "BRAND_NAMES": "AROMASIN"
+  },
+  {
+    "GENERIC_NAME": "Exenatide",
+    "BRAND_NAMES": "BYETTA"
+  },
+  {
+    "GENERIC_NAME": "Ezetimibe",
+    "BRAND_NAMES": "ZETIA"
+  },
+  {
+    "GENERIC_NAME": "Ezogabine",
+    "BRAND_NAMES": "POTIGA"
+  },
+  {
+    "GENERIC_NAME": "Factor IX (Human)",
+    "BRAND_NAMES": "MONONINE"
+  },
+  {
+    "GENERIC_NAME": "Factor IX (Recombinant)",
+    "BRAND_NAMES": "RIXUBIS"
+  },
+  {
+    "GENERIC_NAME": "Factor IX Complex (Human) [(Factors II, IX, X)]",
+    "BRAND_NAMES": "Bebulin"
+  },
+  {
+    "GENERIC_NAME": "Factor VIIa (Recombinant)",
+    "BRAND_NAMES": "NovoSeven"
+  },
+  {
+    "GENERIC_NAME": "Factor XIII Concentrate (Human)",
+    "BRAND_NAMES": "Corifact"
+  },
+  {
+    "GENERIC_NAME": "Famciclovir",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Famotidine",
+    "BRAND_NAMES": "PEPCID"
+  },
+  {
+    "GENERIC_NAME": "Febuxostat",
+    "BRAND_NAMES": "ULORIC"
+  },
+  {
+    "GENERIC_NAME": "Felbamate",
+    "BRAND_NAMES": "FELBATOL"
+  },
+  {
+    "GENERIC_NAME": "Felodipine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Fenofibrate and Derivatives",
+    "BRAND_NAMES": "ANTARA, LIPOFEN, TRICOR, TRIGLIDE"
+  },
+  {
+    "GENERIC_NAME": "Fenoldopam",
+    "BRAND_NAMES": "CORLOPAM"
+  },
+  {
+    "GENERIC_NAME": "Fenoprofen",
+    "BRAND_NAMES": "NALFON"
+  },
+  {
+    "GENERIC_NAME": "Fentanyl",
+    "BRAND_NAMES": "ACTIQ, DURAGESIC, SUBLIMAZE"
+  },
+  {
+    "GENERIC_NAME": "Ferric gluconate",
+    "BRAND_NAMES": "FERRLECIT"
+  },
+  {
+    "GENERIC_NAME": "Ferrous fumarate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ferrous gluconate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ferrous sulfate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Fesoterodine",
+    "BRAND_NAMES": "TOVIAZ"
+  },
+  {
+    "GENERIC_NAME": "Fexofenadine",
+    "BRAND_NAMES": "ALLEGRA"
+  },
+  {
+    "GENERIC_NAME": "Fidaxomicin",
+    "BRAND_NAMES": "DIFICID"
+  },
+  {
+    "GENERIC_NAME": "Filgrastim",
+    "BRAND_NAMES": "NEUPOGEN"
+  },
+  {
+    "GENERIC_NAME": "Finasteride",
+    "BRAND_NAMES": "PROPECIA, PROSCAR"
+  },
+  {
+    "GENERIC_NAME": "Fitusiran",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Flavocoxid",
+    "BRAND_NAMES": "LIMBREL"
+  },
+  {
+    "GENERIC_NAME": "Flavoxate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Flecainide",
+    "BRAND_NAMES": "TAMBOCOR"
+  },
+  {
+    "GENERIC_NAME": "Floxuridine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Fluconazole",
+    "BRAND_NAMES": "DIFLUCAN"
+  },
+  {
+    "GENERIC_NAME": "Flucytosine",
+    "BRAND_NAMES": "ANCOBON"
+  },
+  {
+    "GENERIC_NAME": "Fludarabine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Fludrocortisone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Flumazenil",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Flunisolide",
+    "BRAND_NAMES": "AEROSPAN HFA"
+  },
+  {
+    "GENERIC_NAME": "Fluocinolone",
+    "BRAND_NAMES": "CAPEX"
+  },
+  {
+    "GENERIC_NAME": "Fluocinonide",
+    "BRAND_NAMES": "VANOS"
+  },
+  {
+    "GENERIC_NAME": "Fluorouracil",
+    "BRAND_NAMES": "CARAC"
+  },
+  {
+    "GENERIC_NAME": "Fluoxetine",
+    "BRAND_NAMES": "PROZAC, SARAFEM"
+  },
+  {
+    "GENERIC_NAME": "Fluphenazine",
+    "BRAND_NAMES": "No US brand names"
+  },
+  {
+    "GENERIC_NAME": "Flurandrenolide",
+    "BRAND_NAMES": "CORDRAN"
+  },
+  {
+    "GENERIC_NAME": "Flurazepam",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Flurbiprofen",
+    "BRAND_NAMES": "OCUFEN"
+  },
+  {
+    "GENERIC_NAME": "Flutamide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Fluticasone",
+    "BRAND_NAMES": "CUTIVATE, FLONASE"
+  },
+  {
+    "GENERIC_NAME": "Fluvastatin",
+    "BRAND_NAMES": "LESCOL"
+  },
+  {
+    "GENERIC_NAME": "Fluvoxamine",
+    "BRAND_NAMES": "LUVOX"
+  },
+  {
+    "GENERIC_NAME": "Fomepizole",
+    "BRAND_NAMES": "ANTIZOL"
+  },
+  {
+    "GENERIC_NAME": "Fondaparinux",
+    "BRAND_NAMES": "ARIXTRA"
+  },
+  {
+    "GENERIC_NAME": "Formoterol",
+    "BRAND_NAMES": "FORADIL, PERFOROMIST"
+  },
+  {
+    "GENERIC_NAME": "Fosamprenavir",
+    "BRAND_NAMES": "LEXIVA"
+  },
+  {
+    "GENERIC_NAME": "Foscarnet",
+    "BRAND_NAMES": "FOSCAVIR"
+  },
+  {
+    "GENERIC_NAME": "Fosfomycin",
+    "BRAND_NAMES": "MONUROL"
+  },
+  {
+    "GENERIC_NAME": "Fosinopril",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Fosphenytoin",
+    "BRAND_NAMES": "CEREBYX"
+  },
+  {
+    "GENERIC_NAME": "Fostamatinib",
+    "BRAND_NAMES": "TAVALISSE"
+  },
+  {
+    "GENERIC_NAME": "Frovatriptan",
+    "BRAND_NAMES": "FROVA"
+  },
+  {
+    "GENERIC_NAME": "Fulvestrant",
+    "BRAND_NAMES": "FASLODEX"
+  },
+  {
+    "GENERIC_NAME": "Furosemide",
+    "BRAND_NAMES": "LASIX"
+  },
+  {
+    "GENERIC_NAME": "Fusidic acid",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Gabapentin",
+    "BRAND_NAMES": "NEURONTIN"
+  },
+  {
+    "GENERIC_NAME": "Galantamine",
+    "BRAND_NAMES": "RAZADYNE"
+  },
+  {
+    "GENERIC_NAME": "Ganciclovir",
+    "BRAND_NAMES": "CYTOVENE"
+  },
+  {
+    "GENERIC_NAME": "Gatifloxacin",
+    "BRAND_NAMES": "ZYMAR"
+  },
+  {
+    "GENERIC_NAME": "Gefitinib",
+    "BRAND_NAMES": "IRESSA"
+  },
+  {
+    "GENERIC_NAME": "Gemcitabine",
+    "BRAND_NAMES": "GEMZAR"
+  },
+  {
+    "GENERIC_NAME": "Gemfibrozil",
+    "BRAND_NAMES": "LOPID"
+  },
+  {
+    "GENERIC_NAME": "Gemifloxacin",
+    "BRAND_NAMES": "FACTIVE"
+  },
+  {
+    "GENERIC_NAME": "Gemtuzumab ozogamicin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Gentamicin",
+    "BRAND_NAMES": "GENOPTIC"
+  },
+  {
+    "GENERIC_NAME": "Glatiramer acetate",
+    "BRAND_NAMES": "COPAXONE"
+  },
+  {
+    "GENERIC_NAME": "Glecaprevir",
+    "BRAND_NAMES": "MAVYRET"
+  },
+  {
+    "GENERIC_NAME": "Glimepiride",
+    "BRAND_NAMES": "AMARYL"
+  },
+  {
+    "GENERIC_NAME": "Glipizide",
+    "BRAND_NAMES": "GLUCOTROL"
+  },
+  {
+    "GENERIC_NAME": "Glucagon",
+    "BRAND_NAMES": "GLUCAGEN"
+  },
+  {
+    "GENERIC_NAME": "Glucarpidase",
+    "BRAND_NAMES": "VORAXAZE"
+  },
+  {
+    "GENERIC_NAME": "Glyburide",
+    "BRAND_NAMES": "DIABETA, GLYNASE"
+  },
+  {
+    "GENERIC_NAME": "Glycopyrrolate",
+    "BRAND_NAMES": "ROBINUL FORTE, ROBINUL"
+  },
+  {
+    "GENERIC_NAME": "Golimumab",
+    "BRAND_NAMES": "SIMPONI"
+  },
+  {
+    "GENERIC_NAME": "Gonadorelin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Goserelin",
+    "BRAND_NAMES": "ZOLADEX"
+  },
+  {
+    "GENERIC_NAME": "Granisetron",
+    "BRAND_NAMES": "SANCUSO"
+  },
+  {
+    "GENERIC_NAME": "Griseofulvin",
+    "BRAND_NAMES": "GRIS-PEG"
+  },
+  {
+    "GENERIC_NAME": "Guanabenz",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Guanfacine",
+    "BRAND_NAMES": "TENEX"
+  },
+  {
+    "GENERIC_NAME": "Guanidine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Guselkumab",
+    "BRAND_NAMES": "TREMFYA"
+  },
+  {
+    "GENERIC_NAME": "Haloperidol",
+    "BRAND_NAMES": "HALDOL"
+  },
+  {
+    "GENERIC_NAME": "Hemin",
+    "BRAND_NAMES": "PANHEMATIN"
+  },
+  {
+    "GENERIC_NAME": "Heparin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Hepatitis B Immune Globulin (Human)",
+    "BRAND_NAMES": "HEPAGAM B"
+  },
+  {
+    "GENERIC_NAME": "Histrelin",
+    "BRAND_NAMES": "VANTAS"
+  },
+  {
+    "GENERIC_NAME": "Homatropine",
+    "BRAND_NAMES": "TUSSIGON"
+  },
+  {
+    "GENERIC_NAME": "Hydralazine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Hydrochlorothiazide",
+    "BRAND_NAMES": "MICROZIDE"
+  },
+  {
+    "GENERIC_NAME": "Hydrocodone/acetaminophen",
+    "BRAND_NAMES": "ANEXSIA 5/325"
+  },
+  {
+    "GENERIC_NAME": "Hydrocodone/ibuprofen",
+    "BRAND_NAMES": "REPREXAIN"
+  },
+  {
+    "GENERIC_NAME": "Hydrocortisone",
+    "BRAND_NAMES": "CORTEF, SOLU-CORTEF"
+  },
+  {
+    "GENERIC_NAME": "Hydromorphone",
+    "BRAND_NAMES": "DILAUDID"
+  },
+  {
+    "GENERIC_NAME": "Hydroquinone",
+    "BRAND_NAMES": "TRI-LUMA"
+  },
+  {
+    "GENERIC_NAME": "Hydroxocobalamin",
+    "BRAND_NAMES": "CYANOKIT"
+  },
+  {
+    "GENERIC_NAME": "Hydroxychloroquine",
+    "BRAND_NAMES": "PLAQUENIL"
+  },
+  {
+    "GENERIC_NAME": "Hydroxyurea",
+    "BRAND_NAMES": "HYDREA"
+  },
+  {
+    "GENERIC_NAME": "Hydroxyzine",
+    "BRAND_NAMES": "VISTARIL"
+  },
+  {
+    "GENERIC_NAME": "Hyoscyamine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ibalizumab",
+    "BRAND_NAMES": "TROGARZO"
+  },
+  {
+    "GENERIC_NAME": "Ibandronate",
+    "BRAND_NAMES": "BONIVA"
+  },
+  {
+    "GENERIC_NAME": "Ibritumomab",
+    "BRAND_NAMES": "ZEVALIN"
+  },
+  {
+    "GENERIC_NAME": "Ibrutinib",
+    "BRAND_NAMES": "IMBRUVICA"
+  },
+  {
+    "GENERIC_NAME": "Ibuprofen",
+    "BRAND_NAMES": "ADVIL, MOTRIN IB"
+  },
+  {
+    "GENERIC_NAME": "Ibutilide",
+    "BRAND_NAMES": "CORVERT"
+  },
+  {
+    "GENERIC_NAME": "Icatibant",
+    "BRAND_NAMES": "FIRAZYR"
+  },
+  {
+    "GENERIC_NAME": "Idarubicin",
+    "BRAND_NAMES": "IDAMYCIN PFS"
+  },
+  {
+    "GENERIC_NAME": "Idarucizumab",
+    "BRAND_NAMES": "PRAXBIND"
+  },
+  {
+    "GENERIC_NAME": "Idelalisib",
+    "BRAND_NAMES": "ZYDELIG"
+  },
+  {
+    "GENERIC_NAME": "Idoxuridine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ifosfamide",
+    "BRAND_NAMES": "IFEX"
+  },
+  {
+    "GENERIC_NAME": "Iloperidone",
+    "BRAND_NAMES": "FANAPT"
+  },
+  {
+    "GENERIC_NAME": "Iloprost",
+    "BRAND_NAMES": "VENTAVIS"
+  },
+  {
+    "GENERIC_NAME": "Imatinib",
+    "BRAND_NAMES": "GLEEVEC"
+  },
+  {
+    "GENERIC_NAME": "Imipenem/cilastatin",
+    "BRAND_NAMES": "PRIMAXIN"
+  },
+  {
+    "GENERIC_NAME": "Imipenem/relebactam",
+    "BRAND_NAMES": "RECARBRIO"
+  },
+  {
+    "GENERIC_NAME": "Imipramine",
+    "BRAND_NAMES": "TOFRANIL"
+  },
+  {
+    "GENERIC_NAME": "Imiquimod",
+    "BRAND_NAMES": "ALDARA"
+  },
+  {
+    "GENERIC_NAME": "Immune globulin",
+    "BRAND_NAMES": "Gammagard S/D"
+  },
+  {
+    "GENERIC_NAME": "Indacaterol",
+    "BRAND_NAMES": "ARCAPTA NEOHALER"
+  },
+  {
+    "GENERIC_NAME": "Indapamide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Indinavir",
+    "BRAND_NAMES": "CRIXIVAN"
+  },
+  {
+    "GENERIC_NAME": "Indomethacin",
+    "BRAND_NAMES": "INDOCIN"
+  },
+  {
+    "GENERIC_NAME": "Infliximab",
+    "BRAND_NAMES": "REMICADE"
+  },
+  {
+    "GENERIC_NAME": "Ingenol mebutate",
+    "BRAND_NAMES": "PICATO"
+  },
+  {
+    "GENERIC_NAME": "Inotersen",
+    "BRAND_NAMES": "TEGSEDI"
+  },
+  {
+    "GENERIC_NAME": "Inotuzumab ozogamicin",
+    "BRAND_NAMES": "BESPONSA"
+  },
+  {
+    "GENERIC_NAME": "Interferon Alfa - 2b",
+    "BRAND_NAMES": "INTRON A"
+  },
+  {
+    "GENERIC_NAME": "Interferon Alfa - n3",
+    "BRAND_NAMES": "ALFERON"
+  },
+  {
+    "GENERIC_NAME": "Interferon Beta-1a",
+    "BRAND_NAMES": "AVONEX"
+  },
+  {
+    "GENERIC_NAME": "Interferon Beta-1b",
+    "BRAND_NAMES": "EXTAVIA"
+  },
+  {
+    "GENERIC_NAME": "Interferon gamma -1b",
+    "BRAND_NAMES": "ACTIMMUNE"
+  },
+  {
+    "GENERIC_NAME": "Iodoquinol",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ipilimumab",
+    "BRAND_NAMES": "YERVOY"
+  },
+  {
+    "GENERIC_NAME": "Ipratropium",
+    "BRAND_NAMES": "ATROVENT"
+  },
+  {
+    "GENERIC_NAME": "Irbesartan",
+    "BRAND_NAMES": "AVAPRO"
+  },
+  {
+    "GENERIC_NAME": "Irinotecan",
+    "BRAND_NAMES": "CAMPTOSAR"
+  },
+  {
+    "GENERIC_NAME": "Isocarboxazid",
+    "BRAND_NAMES": "MARPLAN"
+  },
+  {
+    "GENERIC_NAME": "Isoniazid",
+    "BRAND_NAMES": "LANIAZID"
+  },
+  {
+    "GENERIC_NAME": "Isoproterenol",
+    "BRAND_NAMES": "ISUPREL"
+  },
+  {
+    "GENERIC_NAME": "Isosorbide dinitrate",
+    "BRAND_NAMES": "ISORDIL"
+  },
+  {
+    "GENERIC_NAME": "Isosorbide mononitrate",
+    "BRAND_NAMES": "MONOKET"
+  },
+  {
+    "GENERIC_NAME": "Isotretinoin",
+    "BRAND_NAMES": "ABSORICA"
+  },
+  {
+    "GENERIC_NAME": "Isoxsuprine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Isradipine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Itraconazole",
+    "BRAND_NAMES": "SPORANOX"
+  },
+  {
+    "GENERIC_NAME": "Ivabradine",
+    "BRAND_NAMES": "CORLANOR"
+  },
+  {
+    "GENERIC_NAME": "Ivacaftor",
+    "BRAND_NAMES": "KALYDECO"
+  },
+  {
+    "GENERIC_NAME": "Ivermectin",
+    "BRAND_NAMES": "STROMECTOL"
+  },
+  {
+    "GENERIC_NAME": "Ivosidenib",
+    "BRAND_NAMES": "TIBSOVO"
+  },
+  {
+    "GENERIC_NAME": "Ixazomib",
+    "BRAND_NAMES": "NINLARO"
+  },
+  {
+    "GENERIC_NAME": "Ixekizumab",
+    "BRAND_NAMES": "TALTZ"
+  },
+  {
+    "GENERIC_NAME": "Kanamycin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ketamine",
+    "BRAND_NAMES": "KETALAR"
+  },
+  {
+    "GENERIC_NAME": "Ketoconazole",
+    "BRAND_NAMES": "NIZORAL"
+  },
+  {
+    "GENERIC_NAME": "Ketoprofen",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ketorolac",
+    "BRAND_NAMES": "SPRIX"
+  },
+  {
+    "GENERIC_NAME": "Ketotifen",
+    "BRAND_NAMES": "ALAWAY"
+  },
+  {
+    "GENERIC_NAME": "Labetalol",
+    "BRAND_NAMES": "TRANDATE"
+  },
+  {
+    "GENERIC_NAME": "Lacosamide",
+    "BRAND_NAMES": "VIMPAT"
+  },
+  {
+    "GENERIC_NAME": "Lactulose",
+    "BRAND_NAMES": "CHOLAC"
+  },
+  {
+    "GENERIC_NAME": "Lamivudine",
+    "BRAND_NAMES": "EPIVIR"
+  },
+  {
+    "GENERIC_NAME": "Lamotrigine",
+    "BRAND_NAMES": "LAMICTAL"
+  },
+  {
+    "GENERIC_NAME": "Lanreotide",
+    "BRAND_NAMES": "SOMATULINE DEPOT"
+  },
+  {
+    "GENERIC_NAME": "Lansoprazole",
+    "BRAND_NAMES": "PREVACID"
+  },
+  {
+    "GENERIC_NAME": "Lanthanum",
+    "BRAND_NAMES": "FOSRENOL"
+  },
+  {
+    "GENERIC_NAME": "Lapatinib",
+    "BRAND_NAMES": "TYKERB"
+  },
+  {
+    "GENERIC_NAME": "Latanoprost",
+    "BRAND_NAMES": "XALATAN"
+  },
+  {
+    "GENERIC_NAME": "Ledipasvir",
+    "BRAND_NAMES": "HARVONI"
+  },
+  {
+    "GENERIC_NAME": "Leflunomide",
+    "BRAND_NAMES": "ARAVA"
+  },
+  {
+    "GENERIC_NAME": "Lenalidomide",
+    "BRAND_NAMES": "REVLIMID"
+  },
+  {
+    "GENERIC_NAME": "Lenvatinib",
+    "BRAND_NAMES": "LENVIMA"
+  },
+  {
+    "GENERIC_NAME": "Lepirudin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Letrozole",
+    "BRAND_NAMES": "FEMARA"
+  },
+  {
+    "GENERIC_NAME": "Leucovorin calcium",
+    "BRAND_NAMES": "FUSILEV"
+  },
+  {
+    "GENERIC_NAME": "Leuprolide",
+    "BRAND_NAMES": "LUPRON"
+  },
+  {
+    "GENERIC_NAME": "Levalbuterol",
+    "BRAND_NAMES": "XOPENEX"
+  },
+  {
+    "GENERIC_NAME": "Levetiracetam",
+    "BRAND_NAMES": "KEPPRA"
+  },
+  {
+    "GENERIC_NAME": "Levobunolol",
+    "BRAND_NAMES": "BETAGAN"
+  },
+  {
+    "GENERIC_NAME": "Levocabastine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Levocetirizine",
+    "BRAND_NAMES": "XYZAL"
+  },
+  {
+    "GENERIC_NAME": "Levodopa",
+    "BRAND_NAMES": "INBRIJA"
+  },
+  {
+    "GENERIC_NAME": "Levofloxacin",
+    "BRAND_NAMES": "LEVAQUIN"
+  },
+  {
+    "GENERIC_NAME": "Levomilnacipran",
+    "BRAND_NAMES": "FETZIMA"
+  },
+  {
+    "GENERIC_NAME": "Levonorgestrel",
+    "BRAND_NAMES": "MIRENA, PLAN B"
+  },
+  {
+    "GENERIC_NAME": "Levorphanol",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Levothyroxine",
+    "BRAND_NAMES": "LEVOXYL, SYNTHROID"
+  },
+  {
+    "GENERIC_NAME": "Lidocaine",
+    "BRAND_NAMES": "XYLOCAINE"
+  },
+  {
+    "GENERIC_NAME": "Lidocaine/tetracaine",
+    "BRAND_NAMES": "PLIAGLIS"
+  },
+  {
+    "GENERIC_NAME": "Linaclotide",
+    "BRAND_NAMES": "LINZESS"
+  },
+  {
+    "GENERIC_NAME": "Linagliptin",
+    "BRAND_NAMES": "TRADJENTA"
+  },
+  {
+    "GENERIC_NAME": "Lindane",
+    "BRAND_NAMES": "No US brand names"
+  },
+  {
+    "GENERIC_NAME": "Linezolid",
+    "BRAND_NAMES": "ZYVOX"
+  },
+  {
+    "GENERIC_NAME": "Liothyronine",
+    "BRAND_NAMES": "CYTOMEL"
+  },
+  {
+    "GENERIC_NAME": "Liraglutide",
+    "BRAND_NAMES": "VICTOZA"
+  },
+  {
+    "GENERIC_NAME": "Lisinopril",
+    "BRAND_NAMES": "PRINIVIL, ZESTRIL"
+  },
+  {
+    "GENERIC_NAME": "Lithium",
+    "BRAND_NAMES": "LITHOBID"
+  },
+  {
+    "GENERIC_NAME": "Lixisenatide",
+    "BRAND_NAMES": "ADLYXIN"
+  },
+  {
+    "GENERIC_NAME": "Lodoxamide",
+    "BRAND_NAMES": "ALOMIDE"
+  },
+  {
+    "GENERIC_NAME": "Lomitapide",
+    "BRAND_NAMES": "JUXTAPID"
+  },
+  {
+    "GENERIC_NAME": "Lomustine",
+    "BRAND_NAMES": "GLEOSTINE"
+  },
+  {
+    "GENERIC_NAME": "Loperamide",
+    "BRAND_NAMES": "IMODIUM"
+  },
+  {
+    "GENERIC_NAME": "Lopinavir/ritonavir",
+    "BRAND_NAMES": "KALETRA"
+  },
+  {
+    "GENERIC_NAME": "Loratadine",
+    "BRAND_NAMES": "ALAVERT, CLARITIN"
+  },
+  {
+    "GENERIC_NAME": "Lorazepam",
+    "BRAND_NAMES": "ATIVAN"
+  },
+  {
+    "GENERIC_NAME": "Lorcaserin",
+    "BRAND_NAMES": "BELVIQ"
+  },
+  {
+    "GENERIC_NAME": "Losartan",
+    "BRAND_NAMES": "COZAAR"
+  },
+  {
+    "GENERIC_NAME": "Loteprednol",
+    "BRAND_NAMES": "ALREX, LOTEMAX"
+  },
+  {
+    "GENERIC_NAME": "Lovastatin",
+    "BRAND_NAMES": "ALTOPREV"
+  },
+  {
+    "GENERIC_NAME": "Loxapine",
+    "BRAND_NAMES": "ADASUVE"
+  },
+  {
+    "GENERIC_NAME": "Lubiprostone",
+    "BRAND_NAMES": "AMITIZA"
+  },
+  {
+    "GENERIC_NAME": "Lurasidone",
+    "BRAND_NAMES": "LATUDA"
+  },
+  {
+    "GENERIC_NAME": "Macitentan",
+    "BRAND_NAMES": "OPSUMIT"
+  },
+  {
+    "GENERIC_NAME": "Mafenide",
+    "BRAND_NAMES": "SULFAMYLON"
+  },
+  {
+    "GENERIC_NAME": "Magnesium salicylate",
+    "BRAND_NAMES": "DOAN'S EXTRA STRENGTH"
+  },
+  {
+    "GENERIC_NAME": "Magnesium sulfate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Mannitol",
+    "BRAND_NAMES": "OSMITROL, RESECTISOL"
+  },
+  {
+    "GENERIC_NAME": "Maprotiline",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Maraviroc",
+    "BRAND_NAMES": "SELZENTRY"
+  },
+  {
+    "GENERIC_NAME": "Mebendazole",
+    "BRAND_NAMES": "EMVERM"
+  },
+  {
+    "GENERIC_NAME": "Mechlorethamine",
+    "BRAND_NAMES": "MUSTARGEN"
+  },
+  {
+    "GENERIC_NAME": "Meclizine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Meclofenamate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Medroxyprogesterone",
+    "BRAND_NAMES": "PROVERA"
+  },
+  {
+    "GENERIC_NAME": "Mefenamic acid",
+    "BRAND_NAMES": "PONSTEL"
+  },
+  {
+    "GENERIC_NAME": "Mefloquine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Megestrol",
+    "BRAND_NAMES": "MEGACE"
+  },
+  {
+    "GENERIC_NAME": "Meloxicam",
+    "BRAND_NAMES": "MOBIC"
+  },
+  {
+    "GENERIC_NAME": "Melphalan",
+    "BRAND_NAMES": "ALKERAN"
+  },
+  {
+    "GENERIC_NAME": "Memantine",
+    "BRAND_NAMES": "NAMENDA"
+  },
+  {
+    "GENERIC_NAME": "Meperidine",
+    "BRAND_NAMES": "DEMEROL"
+  },
+  {
+    "GENERIC_NAME": "Mephobarbital",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Mepolizumab",
+    "BRAND_NAMES": "NUCALA"
+  },
+  {
+    "GENERIC_NAME": "Meprobamate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Mercaptopurine",
+    "BRAND_NAMES": "PURINETHOL"
+  },
+  {
+    "GENERIC_NAME": "Meropenem",
+    "BRAND_NAMES": "MERREM"
+  },
+  {
+    "GENERIC_NAME": "Meropenem/vaborbactam",
+    "BRAND_NAMES": "VABOMERE"
+  },
+  {
+    "GENERIC_NAME": "Mesalamine",
+    "BRAND_NAMES": "ASACOL, ROWASA"
+  },
+  {
+    "GENERIC_NAME": "Mesna",
+    "BRAND_NAMES": "MESNEX"
+  },
+  {
+    "GENERIC_NAME": "Metaxalone",
+    "BRAND_NAMES": "SKELAXIN"
+  },
+  {
+    "GENERIC_NAME": "Metformin",
+    "BRAND_NAMES": "GLUCOPHAGE"
+  },
+  {
+    "GENERIC_NAME": "Methadone",
+    "BRAND_NAMES": "DOLOPHINE"
+  },
+  {
+    "GENERIC_NAME": "Methamphetamine",
+    "BRAND_NAMES": "DESOXYN"
+  },
+  {
+    "GENERIC_NAME": "Methazolamide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Methenamine",
+    "BRAND_NAMES": "HIPREX, UREX"
+  },
+  {
+    "GENERIC_NAME": "Methimazole",
+    "BRAND_NAMES": "TAPAZOLE"
+  },
+  {
+    "GENERIC_NAME": "Methocarbamol",
+    "BRAND_NAMES": "ROBAXIN"
+  },
+  {
+    "GENERIC_NAME": "Methohexital",
+    "BRAND_NAMES": "BREVITAL SODIUM"
+  },
+  {
+    "GENERIC_NAME": "Methotrexate",
+    "BRAND_NAMES": "OTREXUP"
+  },
+  {
+    "GENERIC_NAME": "Methoxsalen",
+    "BRAND_NAMES": "OXSORALEN, UVADEX"
+  },
+  {
+    "GENERIC_NAME": "Methsuximide",
+    "BRAND_NAMES": "CELONTIN"
+  },
+  {
+    "GENERIC_NAME": "Methyclothiazide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Methyldopa",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Methylene blue",
+    "BRAND_NAMES": "PROVAYBLUE"
+  },
+  {
+    "GENERIC_NAME": "Methylergonovine",
+    "BRAND_NAMES": "METHERGINE"
+  },
+  {
+    "GENERIC_NAME": "Methylphenidate",
+    "BRAND_NAMES": "CONCERTA, RITALIN"
+  },
+  {
+    "GENERIC_NAME": "Methylprednisolone",
+    "BRAND_NAMES": "MEDROL"
+  },
+  {
+    "GENERIC_NAME": "Methyltestosterone",
+    "BRAND_NAMES": "TESTRED"
+  },
+  {
+    "GENERIC_NAME": "Metipranolol",
+    "BRAND_NAMES": "OPTIPRANOLOL"
+  },
+  {
+    "GENERIC_NAME": "Metoclopramide",
+    "BRAND_NAMES": "REGLAN"
+  },
+  {
+    "GENERIC_NAME": "Metolazone",
+    "BRAND_NAMES": "ZAROXOLYN"
+  },
+  {
+    "GENERIC_NAME": "Metoprolol",
+    "BRAND_NAMES": "LOPRESSOR, TOPROL-XL"
+  },
+  {
+    "GENERIC_NAME": "Metronidazole",
+    "BRAND_NAMES": "FLAGYL"
+  },
+  {
+    "GENERIC_NAME": "Metyrapone",
+    "BRAND_NAMES": "METOPIRONE"
+  },
+  {
+    "GENERIC_NAME": "Metyrosine",
+    "BRAND_NAMES": "DEMSER"
+  },
+  {
+    "GENERIC_NAME": "Mexiletine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Micafungin",
+    "BRAND_NAMES": "MYCAMINE"
+  },
+  {
+    "GENERIC_NAME": "Miconazole",
+    "BRAND_NAMES": "MONISTAT 3"
+  },
+  {
+    "GENERIC_NAME": "Midazolam",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Midodrine",
+    "BRAND_NAMES": "ORVATEN"
+  },
+  {
+    "GENERIC_NAME": "Midostaurin",
+    "BRAND_NAMES": "RYDAPT"
+  },
+  {
+    "GENERIC_NAME": "Mifepristone",
+    "BRAND_NAMES": "MIFEPREX"
+  },
+  {
+    "GENERIC_NAME": "Miglitol",
+    "BRAND_NAMES": "GLYSET"
+  },
+  {
+    "GENERIC_NAME": "Miglustat",
+    "BRAND_NAMES": "ZAVESCA"
+  },
+  {
+    "GENERIC_NAME": "Milnacipran",
+    "BRAND_NAMES": "SAVELLA"
+  },
+  {
+    "GENERIC_NAME": "Milrinone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Minocycline",
+    "BRAND_NAMES": "MINOCIN"
+  },
+  {
+    "GENERIC_NAME": "Minoxidil",
+    "BRAND_NAMES": "ROGAINE"
+  },
+  {
+    "GENERIC_NAME": "Mipomersen",
+    "BRAND_NAMES": "KYNAMRO"
+  },
+  {
+    "GENERIC_NAME": "Mirabegron",
+    "BRAND_NAMES": "MYRBETRIQ"
+  },
+  {
+    "GENERIC_NAME": "Mirtazapine",
+    "BRAND_NAMES": "REMERON"
+  },
+  {
+    "GENERIC_NAME": "Misoprostol",
+    "BRAND_NAMES": "CYTOTEC"
+  },
+  {
+    "GENERIC_NAME": "Mitomycin",
+    "BRAND_NAMES": "MITOSOL"
+  },
+  {
+    "GENERIC_NAME": "Mitotane",
+    "BRAND_NAMES": "LYSODREN"
+  },
+  {
+    "GENERIC_NAME": "Mitoxantrone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Moclobemide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Modafinil",
+    "BRAND_NAMES": "PROVIGIL"
+  },
+  {
+    "GENERIC_NAME": "Moexipril",
+    "BRAND_NAMES": "No USbrand name"
+  },
+  {
+    "GENERIC_NAME": "Mometasone",
+    "BRAND_NAMES": "ELOCON, NASONEX"
+  },
+  {
+    "GENERIC_NAME": "Montelukast",
+    "BRAND_NAMES": "SINGULAIR"
+  },
+  {
+    "GENERIC_NAME": "Morphine",
+    "BRAND_NAMES": "DURAMORPH PF, MS CONTIN"
+  },
+  {
+    "GENERIC_NAME": "Moxifloxacin",
+    "BRAND_NAMES": "AVELOX"
+  },
+  {
+    "GENERIC_NAME": "Mupirocin",
+    "BRAND_NAMES": "BACTROBAN"
+  },
+  {
+    "GENERIC_NAME": "Mycophenolate",
+    "BRAND_NAMES": "CELLCEPT"
+  },
+  {
+    "GENERIC_NAME": "Nabumetone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Nadolol",
+    "BRAND_NAMES": "CORGARD"
+  },
+  {
+    "GENERIC_NAME": "Nadroparin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Nafarelin",
+    "BRAND_NAMES": "SYNAREL"
+  },
+  {
+    "GENERIC_NAME": "Nafcillin",
+    "BRAND_NAMES": "NALLPEN IN PLASTIC CONTAINER"
+  },
+  {
+    "GENERIC_NAME": "Naloxone",
+    "BRAND_NAMES": "EVZIO"
+  },
+  {
+    "GENERIC_NAME": "Naltrexone",
+    "BRAND_NAMES": "VIVITROL"
+  },
+  {
+    "GENERIC_NAME": "Naphazoline",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Naproxen",
+    "BRAND_NAMES": "ALEVE, NAPROSYN"
+  },
+  {
+    "GENERIC_NAME": "Naratriptan",
+    "BRAND_NAMES": "AMERGE"
+  },
+  {
+    "GENERIC_NAME": "Natalizumab",
+    "BRAND_NAMES": "TYSABRI"
+  },
+  {
+    "GENERIC_NAME": "Natamycin",
+    "BRAND_NAMES": "NATACYN"
+  },
+  {
+    "GENERIC_NAME": "Nateglinide",
+    "BRAND_NAMES": "STARLIX"
+  },
+  {
+    "GENERIC_NAME": "Nebivolol",
+    "BRAND_NAMES": "BYSTOLIC"
+  },
+  {
+    "GENERIC_NAME": "Necitumumab",
+    "BRAND_NAMES": "PORTRAZZA"
+  },
+  {
+    "GENERIC_NAME": "Nedocromil",
+    "BRAND_NAMES": "ALOCRIL"
+  },
+  {
+    "GENERIC_NAME": "Nefazodone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Nelarabine",
+    "BRAND_NAMES": "ARRANON"
+  },
+  {
+    "GENERIC_NAME": "Nelfinavir",
+    "BRAND_NAMES": "VIRACEPT"
+  },
+  {
+    "GENERIC_NAME": "Neomycin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Neostigmine",
+    "BRAND_NAMES": "BLOXIVERZ"
+  },
+  {
+    "GENERIC_NAME": "Neratinib",
+    "BRAND_NAMES": "NERLYNX"
+  },
+  {
+    "GENERIC_NAME": "Nesiritide",
+    "BRAND_NAMES": "NATRECOR"
+  },
+  {
+    "GENERIC_NAME": "Nevirapine",
+    "BRAND_NAMES": "VIRAMUNE"
+  },
+  {
+    "GENERIC_NAME": "Niacin",
+    "BRAND_NAMES": "NIACOR, NIASPAN"
+  },
+  {
+    "GENERIC_NAME": "Niacinamide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Nicardipine",
+    "BRAND_NAMES": "CARDENE"
+  },
+  {
+    "GENERIC_NAME": "Nicotine",
+    "BRAND_NAMES": "COMMIT, NICORETTE, NICOTROL"
+  },
+  {
+    "GENERIC_NAME": "Nifedipine",
+    "BRAND_NAMES": "ADALAT CC, PROCARDIA"
+  },
+  {
+    "GENERIC_NAME": "Nilotinib",
+    "BRAND_NAMES": "TASIGNA"
+  },
+  {
+    "GENERIC_NAME": "Nilutamide",
+    "BRAND_NAMES": "NILANDRON"
+  },
+  {
+    "GENERIC_NAME": "Nimodipine",
+    "BRAND_NAMES": "NYMALIZE"
+  },
+  {
+    "GENERIC_NAME": "Nintedanib",
+    "BRAND_NAMES": "OFEV"
+  },
+  {
+    "GENERIC_NAME": "Niraparib",
+    "BRAND_NAMES": "ZEJULA"
+  },
+  {
+    "GENERIC_NAME": "Nisoldipine",
+    "BRAND_NAMES": "SULAR"
+  },
+  {
+    "GENERIC_NAME": "Nitazoxanide",
+    "BRAND_NAMES": "ALINIA"
+  },
+  {
+    "GENERIC_NAME": "Nitrofurantoin",
+    "BRAND_NAMES": "FURADANTIN, MACROBID, MACRODANTIN"
+  },
+  {
+    "GENERIC_NAME": "Nitroglycerin",
+    "BRAND_NAMES": "NITRO-DUR"
+  },
+  {
+    "GENERIC_NAME": "Nitroprusside",
+    "BRAND_NAMES": "NITROPRESS"
+  },
+  {
+    "GENERIC_NAME": "Nivolumab",
+    "BRAND_NAMES": "OPDIVO"
+  },
+  {
+    "GENERIC_NAME": "Nizatidine",
+    "BRAND_NAMES": "AXID AR"
+  },
+  {
+    "GENERIC_NAME": "Norepinephrine",
+    "BRAND_NAMES": "LEVOPHED"
+  },
+  {
+    "GENERIC_NAME": "Norethindrone",
+    "BRAND_NAMES": "AYGESTIN, CAMILA"
+  },
+  {
+    "GENERIC_NAME": "Norfloxacin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Nortriptyline",
+    "BRAND_NAMES": "PAMELOR"
+  },
+  {
+    "GENERIC_NAME": "Nusinersen",
+    "BRAND_NAMES": "SPINRAZA"
+  },
+  {
+    "GENERIC_NAME": "Nylidrin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Nystatin",
+    "BRAND_NAMES": "NYSTOP"
+  },
+  {
+    "GENERIC_NAME": "Obeticholic Acid",
+    "BRAND_NAMES": "OCALIVA"
+  },
+  {
+    "GENERIC_NAME": "Obiltoxaximab",
+    "BRAND_NAMES": "ANTHIM"
+  },
+  {
+    "GENERIC_NAME": "Obinutuzumab",
+    "BRAND_NAMES": "GAZYVA"
+  },
+  {
+    "GENERIC_NAME": "Ocrelizumab",
+    "BRAND_NAMES": "OCREVUS"
+  },
+  {
+    "GENERIC_NAME": "Octreotide",
+    "BRAND_NAMES": "SANDOSTATIN"
+  },
+  {
+    "GENERIC_NAME": "Ofatumumab",
+    "BRAND_NAMES": "ARZERRA"
+  },
+  {
+    "GENERIC_NAME": "Ofloxacin",
+    "BRAND_NAMES": "OCUFLOX"
+  },
+  {
+    "GENERIC_NAME": "Olanzapine",
+    "BRAND_NAMES": "ZYPREXA"
+  },
+  {
+    "GENERIC_NAME": "Olaparib",
+    "BRAND_NAMES": "LYNPARZA"
+  },
+  {
+    "GENERIC_NAME": "Olaratumab",
+    "BRAND_NAMES": "LARTRUVO"
+  },
+  {
+    "GENERIC_NAME": "Olmesartan",
+    "BRAND_NAMES": "BENICAR"
+  },
+  {
+    "GENERIC_NAME": "Olodaterol",
+    "BRAND_NAMES": "STRIVERDI RESPIMAT"
+  },
+  {
+    "GENERIC_NAME": "Olopatadine",
+    "BRAND_NAMES": "PATANOL"
+  },
+  {
+    "GENERIC_NAME": "Olsalazine",
+    "BRAND_NAMES": "DIPENTUM"
+  },
+  {
+    "GENERIC_NAME": "Omalizumab",
+    "BRAND_NAMES": "XOLAIR"
+  },
+  {
+    "GENERIC_NAME": "Ombitasvir, Paritaprevir, and Ritonavir",
+    "BRAND_NAMES": "TECHNIVIE"
+  },
+  {
+    "GENERIC_NAME": "Ombitasvir, Paritaprevir, Ritonavir, and Dasabuvir",
+    "BRAND_NAMES": "VIEKIRA PAK"
+  },
+  {
+    "GENERIC_NAME": "Omeprazole",
+    "BRAND_NAMES": "PRILOSEC"
+  },
+  {
+    "GENERIC_NAME": "OnabotulinumtoxinA",
+    "BRAND_NAMES": "BOTOX"
+  },
+  {
+    "GENERIC_NAME": "Ondansetron",
+    "BRAND_NAMES": "ZOFRAN"
+  },
+  {
+    "GENERIC_NAME": "Opium tincture",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Oprelvekin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Oritavancin",
+    "BRAND_NAMES": "ORBACTIV"
+  },
+  {
+    "GENERIC_NAME": "Orlistat",
+    "BRAND_NAMES": "ALLI, XENICAL"
+  },
+  {
+    "GENERIC_NAME": "Orphenadrine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Oseltamivir",
+    "BRAND_NAMES": "TAMIFLU"
+  },
+  {
+    "GENERIC_NAME": "Osimertinib",
+    "BRAND_NAMES": "TAGRISSO"
+  },
+  {
+    "GENERIC_NAME": "Oxacillin",
+    "BRAND_NAMES": "BACTOCILL IN PLASTIC CONTAINER"
+  },
+  {
+    "GENERIC_NAME": "Oxaliplatin",
+    "BRAND_NAMES": "ELOXATIN"
+  },
+  {
+    "GENERIC_NAME": "Oxaprozin",
+    "BRAND_NAMES": "DAYPRO"
+  },
+  {
+    "GENERIC_NAME": "Oxazepam",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Oxcarbazepine",
+    "BRAND_NAMES": "TRILEPTAL"
+  },
+  {
+    "GENERIC_NAME": "Oxiconazole",
+    "BRAND_NAMES": "OXISTAT"
+  },
+  {
+    "GENERIC_NAME": "Oxybutynin",
+    "BRAND_NAMES": "DITROPAN XL"
+  },
+  {
+    "GENERIC_NAME": "Oxycodone",
+    "BRAND_NAMES": "OXYCONTIN"
+  },
+  {
+    "GENERIC_NAME": "Oxycodone/acetaminophen",
+    "BRAND_NAMES": "PERCOCET"
+  },
+  {
+    "GENERIC_NAME": "Oxymetazoline",
+    "BRAND_NAMES": "RHOFADE"
+  },
+  {
+    "GENERIC_NAME": "Oxymetholone",
+    "BRAND_NAMES": "ANADROL-50"
+  },
+  {
+    "GENERIC_NAME": "Oxytocin",
+    "BRAND_NAMES": "PITOCIN"
+  },
+  {
+    "GENERIC_NAME": "Ozenoxacin",
+    "BRAND_NAMES": "XEPI"
+  },
+  {
+    "GENERIC_NAME": "Paclitaxel",
+    "BRAND_NAMES": "TAXOL"
+  },
+  {
+    "GENERIC_NAME": "Paliperidone",
+    "BRAND_NAMES": "INVEGA"
+  },
+  {
+    "GENERIC_NAME": "Palivizumab",
+    "BRAND_NAMES": "SYNAGIS"
+  },
+  {
+    "GENERIC_NAME": "Palonosetron",
+    "BRAND_NAMES": "ALOXI"
+  },
+  {
+    "GENERIC_NAME": "Pamidronate",
+    "BRAND_NAMES": "AREDIA"
+  },
+  {
+    "GENERIC_NAME": "Pancrelipase",
+    "BRAND_NAMES": "PANCREAZE"
+  },
+  {
+    "GENERIC_NAME": "Pancuronium",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Panitumumab",
+    "BRAND_NAMES": "VECTIBIX"
+  },
+  {
+    "GENERIC_NAME": "Pantoprazole",
+    "BRAND_NAMES": "PROTONIX"
+  },
+  {
+    "GENERIC_NAME": "Papaverine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Paregoric",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Paromomycin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Paroxetine",
+    "BRAND_NAMES": "PAXIL"
+  },
+  {
+    "GENERIC_NAME": "Pasireotide",
+    "BRAND_NAMES": "SIGNIFOR"
+  },
+  {
+    "GENERIC_NAME": "Patiromer",
+    "BRAND_NAMES": "VELTASSA"
+  },
+  {
+    "GENERIC_NAME": "Patisiran",
+    "BRAND_NAMES": "ONPATTRO"
+  },
+  {
+    "GENERIC_NAME": "Pazopanib",
+    "BRAND_NAMES": "VOTRIENT"
+  },
+  {
+    "GENERIC_NAME": "Pegaptanib",
+    "BRAND_NAMES": "MACUGEN"
+  },
+  {
+    "GENERIC_NAME": "Pegfilgrastim",
+    "BRAND_NAMES": "NEULASTA"
+  },
+  {
+    "GENERIC_NAME": "Peginterferon Alfa - 2a",
+    "BRAND_NAMES": "PEGASYS"
+  },
+  {
+    "GENERIC_NAME": "Peginterferon Alfa - 2b",
+    "BRAND_NAMES": "PEGINTRON"
+  },
+  {
+    "GENERIC_NAME": "Pegloticase",
+    "BRAND_NAMES": "KRYSTEXXA"
+  },
+  {
+    "GENERIC_NAME": "Pegvisomant",
+    "BRAND_NAMES": "SOMAVERT"
+  },
+  {
+    "GENERIC_NAME": "Pembrolizumab",
+    "BRAND_NAMES": "KEYTRUDA"
+  },
+  {
+    "GENERIC_NAME": "Pemetrexed",
+    "BRAND_NAMES": "ALIMTA"
+  },
+  {
+    "GENERIC_NAME": "Penciclovir",
+    "BRAND_NAMES": "DENAVIR"
+  },
+  {
+    "GENERIC_NAME": "Penicillamine",
+    "BRAND_NAMES": "CUPRIMINE"
+  },
+  {
+    "GENERIC_NAME": "Penicillin G (parenteral/aqueous)",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Penicillin G benzathine",
+    "BRAND_NAMES": "BICILLIN L-A"
+  },
+  {
+    "GENERIC_NAME": "Penicillin G procaine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Penicillin V potassium",
+    "BRAND_NAMES": "PENICILLIN-VK"
+  },
+  {
+    "GENERIC_NAME": "Pentamidine",
+    "BRAND_NAMES": "NEBUPENT"
+  },
+  {
+    "GENERIC_NAME": "Pentazocine",
+    "BRAND_NAMES": "TALWIN"
+  },
+  {
+    "GENERIC_NAME": "Pentobarbital",
+    "BRAND_NAMES": "NEMBUTAL SODIUM"
+  },
+  {
+    "GENERIC_NAME": "Pentosan polysulfate sodium",
+    "BRAND_NAMES": "ELMIRON"
+  },
+  {
+    "GENERIC_NAME": "Pentostatin",
+    "BRAND_NAMES": "NIPENT"
+  },
+  {
+    "GENERIC_NAME": "Pentoxifylline",
+    "BRAND_NAMES": "PENTOXILL"
+  },
+  {
+    "GENERIC_NAME": "Peramivir",
+    "BRAND_NAMES": "RAPIVAB"
+  },
+  {
+    "GENERIC_NAME": "Perindopril erbumine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Permethrin",
+    "BRAND_NAMES": "ELIMITE, NIX"
+  },
+  {
+    "GENERIC_NAME": "Perphenazine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Pertuzumab",
+    "BRAND_NAMES": "PERJETA"
+  },
+  {
+    "GENERIC_NAME": "Phenazopyridine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Phenelzine",
+    "BRAND_NAMES": "NARDIL"
+  },
+  {
+    "GENERIC_NAME": "Phenobarbital",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Phenoxybenzamine",
+    "BRAND_NAMES": "DIBENZYLINE"
+  },
+  {
+    "GENERIC_NAME": "Phentermine",
+    "BRAND_NAMES": "ADIPEX-P"
+  },
+  {
+    "GENERIC_NAME": "Phentolamine",
+    "BRAND_NAMES": "ORAVERSE"
+  },
+  {
+    "GENERIC_NAME": "Phenylephrine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Phenytoin",
+    "BRAND_NAMES": "DILANTIN"
+  },
+  {
+    "GENERIC_NAME": "Physostigmine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Phytonadione",
+    "BRAND_NAMES": "MEPHYTON"
+  },
+  {
+    "GENERIC_NAME": "Pibrentasvir",
+    "BRAND_NAMES": "MAVYRET"
+  },
+  {
+    "GENERIC_NAME": "Pilocarpine",
+    "BRAND_NAMES": "ISOPTO CARPINE, SALAGEN"
+  },
+  {
+    "GENERIC_NAME": "Pimecrolimus",
+    "BRAND_NAMES": "ELIDEL"
+  },
+  {
+    "GENERIC_NAME": "Pimozide",
+    "BRAND_NAMES": "ORAP"
+  },
+  {
+    "GENERIC_NAME": "Pindolol",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Pioglitazone",
+    "BRAND_NAMES": "ACTOS"
+  },
+  {
+    "GENERIC_NAME": "Piperacillin/tazobactam",
+    "BRAND_NAMES": "ZOSYN"
+  },
+  {
+    "GENERIC_NAME": "Pirbuterol",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Pirfenidone",
+    "BRAND_NAMES": "ESBRIET"
+  },
+  {
+    "GENERIC_NAME": "Piroxicam",
+    "BRAND_NAMES": "FELDENE"
+  },
+  {
+    "GENERIC_NAME": "Pitavastatin",
+    "BRAND_NAMES": "LIVALO"
+  },
+  {
+    "GENERIC_NAME": "Podophyllum resin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Polidocanol",
+    "BRAND_NAMES": "ASCLERA"
+  },
+  {
+    "GENERIC_NAME": "Polyethylene Glycol - Electrolyte Solution",
+    "BRAND_NAMES": "COLYTE"
+  },
+  {
+    "GENERIC_NAME": "Polymyxin B",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Pomalidomide",
+    "BRAND_NAMES": "POMALYST"
+  },
+  {
+    "GENERIC_NAME": "Ponatinib",
+    "BRAND_NAMES": "ICLUSIG"
+  },
+  {
+    "GENERIC_NAME": "Poractant alfa",
+    "BRAND_NAMES": "CUROSURF"
+  },
+  {
+    "GENERIC_NAME": "Posaconazole",
+    "BRAND_NAMES": "NOXAFIL"
+  },
+  {
+    "GENERIC_NAME": "Potassium chloride",
+    "BRAND_NAMES": "K-TAB, KLOR-CON"
+  },
+  {
+    "GENERIC_NAME": "Potassium iodide",
+    "BRAND_NAMES": "THYROSHIELD"
+  },
+  {
+    "GENERIC_NAME": "Povidone-iodine",
+    "BRAND_NAMES": "BETADINE"
+  },
+  {
+    "GENERIC_NAME": "Pralidoxime",
+    "BRAND_NAMES": "PROTOPAM CHLORIDE"
+  },
+  {
+    "GENERIC_NAME": "Pramipexole",
+    "BRAND_NAMES": "MIRAPEX"
+  },
+  {
+    "GENERIC_NAME": "Pramlintide",
+    "BRAND_NAMES": "SYMLIN"
+  },
+  {
+    "GENERIC_NAME": "Pramoxine",
+    "BRAND_NAMES": "EPIFOAM"
+  },
+  {
+    "GENERIC_NAME": "Prasugrel",
+    "BRAND_NAMES": "EFFIENT"
+  },
+  {
+    "GENERIC_NAME": "Pravastatin",
+    "BRAND_NAMES": "PRAVACHOL"
+  },
+  {
+    "GENERIC_NAME": "Praziquantel",
+    "BRAND_NAMES": "BILTRICIDE"
+  },
+  {
+    "GENERIC_NAME": "Prazosin",
+    "BRAND_NAMES": "MINIPRESS"
+  },
+  {
+    "GENERIC_NAME": "Prednisolone",
+    "BRAND_NAMES": "ORAPRED ODT, PRELONE"
+  },
+  {
+    "GENERIC_NAME": "Prednisone",
+    "BRAND_NAMES": "RAYOS"
+  },
+  {
+    "GENERIC_NAME": "Pregabalin",
+    "BRAND_NAMES": "LYRICA"
+  },
+  {
+    "GENERIC_NAME": "Primaquine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Primidone",
+    "BRAND_NAMES": "MYSOLINE"
+  },
+  {
+    "GENERIC_NAME": "Probenecid",
+    "BRAND_NAMES": "PROBALAN"
+  },
+  {
+    "GENERIC_NAME": "Procainamide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Procarbazine",
+    "BRAND_NAMES": "MATULANE"
+  },
+  {
+    "GENERIC_NAME": "Prochlorperazine",
+    "BRAND_NAMES": "COMPRO"
+  },
+  {
+    "GENERIC_NAME": "Procyclidine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Progesterone",
+    "BRAND_NAMES": "CRINONE"
+  },
+  {
+    "GENERIC_NAME": "Promethazine",
+    "BRAND_NAMES": "PROMETHEGAN"
+  },
+  {
+    "GENERIC_NAME": "Propafenone",
+    "BRAND_NAMES": "RYTHMOL"
+  },
+  {
+    "GENERIC_NAME": "Propantheline",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Proparacaine",
+    "BRAND_NAMES": "ALCAINE"
+  },
+  {
+    "GENERIC_NAME": "Propofol",
+    "BRAND_NAMES": "DIPRIVAN"
+  },
+  {
+    "GENERIC_NAME": "Propranolol",
+    "BRAND_NAMES": "INDERAL"
+  },
+  {
+    "GENERIC_NAME": "Propylthiouracil",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Protamine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Protein C Concentrate (Human)",
+    "BRAND_NAMES": "Ceprotin"
+  },
+  {
+    "GENERIC_NAME": "Prothrombin complex concentrate (human) ([Factors II, VII, IX, X], Protein C, and Protein S)",
+    "BRAND_NAMES": "Kcentra"
+  },
+  {
+    "GENERIC_NAME": "Protriptyline",
+    "BRAND_NAMES": "VIVACTIL"
+  },
+  {
+    "GENERIC_NAME": "Pseudoephedrine",
+    "BRAND_NAMES": "AFRINOL, SUDAFED"
+  },
+  {
+    "GENERIC_NAME": "Pyrantel pamoate",
+    "BRAND_NAMES": "PIN-X"
+  },
+  {
+    "GENERIC_NAME": "Pyrazinamide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Pyrethrins/piperonyl butoxide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Pyridostigmine",
+    "BRAND_NAMES": "MESTINON"
+  },
+  {
+    "GENERIC_NAME": "Pyrimethamine",
+    "BRAND_NAMES": "DARAPRIM"
+  },
+  {
+    "GENERIC_NAME": "Quazepam",
+    "BRAND_NAMES": "DORAL"
+  },
+  {
+    "GENERIC_NAME": "Quetiapine",
+    "BRAND_NAMES": "SEROQUEL"
+  },
+  {
+    "GENERIC_NAME": "Quinagolide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Quinapril",
+    "BRAND_NAMES": "ACCUPRIL"
+  },
+  {
+    "GENERIC_NAME": "Quinidine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Quinine",
+    "BRAND_NAMES": "QUALAQUIN"
+  },
+  {
+    "GENERIC_NAME": "Quinupristin/dalfopristin",
+    "BRAND_NAMES": "SYNERCID"
+  },
+  {
+    "GENERIC_NAME": "Rabeprazole",
+    "BRAND_NAMES": "ACIPHEX"
+  },
+  {
+    "GENERIC_NAME": "Raloxifene",
+    "BRAND_NAMES": "EVISTA"
+  },
+  {
+    "GENERIC_NAME": "Raltegravir",
+    "BRAND_NAMES": "ISENTRESS"
+  },
+  {
+    "GENERIC_NAME": "Ramelteon",
+    "BRAND_NAMES": "ROZEREM"
+  },
+  {
+    "GENERIC_NAME": "Ramipril",
+    "BRAND_NAMES": "ALTACE"
+  },
+  {
+    "GENERIC_NAME": "Ramucirumab",
+    "BRAND_NAMES": "CYRAMZA"
+  },
+  {
+    "GENERIC_NAME": "Ranibizumab",
+    "BRAND_NAMES": "LUCENTIS"
+  },
+  {
+    "GENERIC_NAME": "Ranitidine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ranolazine",
+    "BRAND_NAMES": "RANEXA"
+  },
+  {
+    "GENERIC_NAME": "Rasagiline",
+    "BRAND_NAMES": "AZILECT"
+  },
+  {
+    "GENERIC_NAME": "Rasburicase",
+    "BRAND_NAMES": "ELITEK"
+  },
+  {
+    "GENERIC_NAME": "Raxibacumab",
+    "BRAND_NAMES": "RAXIBACUMAB"
+  },
+  {
+    "GENERIC_NAME": "Regorafenib",
+    "BRAND_NAMES": "STIVARGA"
+  },
+  {
+    "GENERIC_NAME": "Repaglinide",
+    "BRAND_NAMES": "PRANDIN"
+  },
+  {
+    "GENERIC_NAME": "Reserpine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Reslizumab",
+    "BRAND_NAMES": "CINQAIR"
+  },
+  {
+    "GENERIC_NAME": "Retapamulin",
+    "BRAND_NAMES": "ALTABAX"
+  },
+  {
+    "GENERIC_NAME": "Reteplase",
+    "BRAND_NAMES": "RETAVASE"
+  },
+  {
+    "GENERIC_NAME": "Rho(D) immune globulin",
+    "BRAND_NAMES": "RhoGAM"
+  },
+  {
+    "GENERIC_NAME": "Ribavirin",
+    "BRAND_NAMES": "VIRAZOLE"
+  },
+  {
+    "GENERIC_NAME": "Rifabutin",
+    "BRAND_NAMES": "MYCOBUTIN"
+  },
+  {
+    "GENERIC_NAME": "Rifampin",
+    "BRAND_NAMES": "RIFADIN, RIMACTANE"
+  },
+  {
+    "GENERIC_NAME": "Rifamycin",
+    "BRAND_NAMES": "AEMCOLO"
+  },
+  {
+    "GENERIC_NAME": "Rifapentine",
+    "BRAND_NAMES": "PRIFTIN"
+  },
+  {
+    "GENERIC_NAME": "Rifaximin",
+    "BRAND_NAMES": "XIFAXAN"
+  },
+  {
+    "GENERIC_NAME": "Rilonacept",
+    "BRAND_NAMES": "ARCALYST"
+  },
+  {
+    "GENERIC_NAME": "Rilpivirine",
+    "BRAND_NAMES": "EDURANT"
+  },
+  {
+    "GENERIC_NAME": "Riluzole",
+    "BRAND_NAMES": "RILUTEK"
+  },
+  {
+    "GENERIC_NAME": "RimabotulinumtoxinB",
+    "BRAND_NAMES": "MYOBLOC"
+  },
+  {
+    "GENERIC_NAME": "Rimantadine",
+    "BRAND_NAMES": "FLUMADINE"
+  },
+  {
+    "GENERIC_NAME": "Riociguat",
+    "BRAND_NAMES": "ADEMPAS"
+  },
+  {
+    "GENERIC_NAME": "Risedronate",
+    "BRAND_NAMES": "ACTONEL"
+  },
+  {
+    "GENERIC_NAME": "Risperidone",
+    "BRAND_NAMES": "RISPERDAL"
+  },
+  {
+    "GENERIC_NAME": "Ritonavir",
+    "BRAND_NAMES": "NORVIR"
+  },
+  {
+    "GENERIC_NAME": "Rituximab",
+    "BRAND_NAMES": "RITUXAN"
+  },
+  {
+    "GENERIC_NAME": "Rivaroxaban",
+    "BRAND_NAMES": "XARELTO"
+  },
+  {
+    "GENERIC_NAME": "Rivastigmine",
+    "BRAND_NAMES": "EXELON"
+  },
+  {
+    "GENERIC_NAME": "Rizatriptan",
+    "BRAND_NAMES": "MAXALT"
+  },
+  {
+    "GENERIC_NAME": "Rocuronium",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Roflumilast",
+    "BRAND_NAMES": "DALIRESP"
+  },
+  {
+    "GENERIC_NAME": "Romiplostim",
+    "BRAND_NAMES": "NPLATE"
+  },
+  {
+    "GENERIC_NAME": "Ropinirole",
+    "BRAND_NAMES": "REQUIP"
+  },
+  {
+    "GENERIC_NAME": "Rosiglitazone",
+    "BRAND_NAMES": "AVANDIA"
+  },
+  {
+    "GENERIC_NAME": "Rosuvastatin",
+    "BRAND_NAMES": "CRESTOR"
+  },
+  {
+    "GENERIC_NAME": "Rotigotine",
+    "BRAND_NAMES": "NEUPRO"
+  },
+  {
+    "GENERIC_NAME": "Ruxolitinib",
+    "BRAND_NAMES": "JAKAFI"
+  },
+  {
+    "GENERIC_NAME": "Sacubitril/Valsartan",
+    "BRAND_NAMES": "ENTRESTO"
+  },
+  {
+    "GENERIC_NAME": "Salicylic acid",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Salmeterol",
+    "BRAND_NAMES": "SEREVENT"
+  },
+  {
+    "GENERIC_NAME": "Salsalate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Sapropterin",
+    "BRAND_NAMES": "KUVAN"
+  },
+  {
+    "GENERIC_NAME": "Saquinavir",
+    "BRAND_NAMES": "INVIRASE"
+  },
+  {
+    "GENERIC_NAME": "Sargramostim",
+    "BRAND_NAMES": "LEUKINE"
+  },
+  {
+    "GENERIC_NAME": "Sarilumab",
+    "BRAND_NAMES": "KEVZARA"
+  },
+  {
+    "GENERIC_NAME": "Saxagliptin",
+    "BRAND_NAMES": "ONGLYZA"
+  },
+  {
+    "GENERIC_NAME": "Scopolamine",
+    "BRAND_NAMES": "TRANSDERM SCOP"
+  },
+  {
+    "GENERIC_NAME": "Secnidazole",
+    "BRAND_NAMES": "SOLOSEC"
+  },
+  {
+    "GENERIC_NAME": "Secobarbital",
+    "BRAND_NAMES": "SECONAL"
+  },
+  {
+    "GENERIC_NAME": "Secukinumab",
+    "BRAND_NAMES": "COSENTYX"
+  },
+  {
+    "GENERIC_NAME": "Selegiline",
+    "BRAND_NAMES": "ELDEPRYL"
+  },
+  {
+    "GENERIC_NAME": "Selenium sulfide",
+    "BRAND_NAMES": "SELSUN"
+  },
+  {
+    "GENERIC_NAME": "Selexipag",
+    "BRAND_NAMES": "UPTRAVI"
+  },
+  {
+    "GENERIC_NAME": "Selinexor",
+    "BRAND_NAMES": "XPOVIO"
+  },
+  {
+    "GENERIC_NAME": "Semaglutide",
+    "BRAND_NAMES": "OZEMPIC"
+  },
+  {
+    "GENERIC_NAME": "Sertraline",
+    "BRAND_NAMES": "ZOLOFT"
+  },
+  {
+    "GENERIC_NAME": "Sevelamer",
+    "BRAND_NAMES": "RENAGEL"
+  },
+  {
+    "GENERIC_NAME": "Sildenafil",
+    "BRAND_NAMES": "VIAGRA"
+  },
+  {
+    "GENERIC_NAME": "Silodosin",
+    "BRAND_NAMES": "RAPAFLO"
+  },
+  {
+    "GENERIC_NAME": "Siltuximab",
+    "BRAND_NAMES": "SYLVANT"
+  },
+  {
+    "GENERIC_NAME": "Silver nitrate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Silver sulfadiazine",
+    "BRAND_NAMES": "SILVADENE"
+  },
+  {
+    "GENERIC_NAME": "Simeprevir",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Simethicone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Simvastatin",
+    "BRAND_NAMES": "ZOCOR"
+  },
+  {
+    "GENERIC_NAME": "Sipuleucel-T",
+    "BRAND_NAMES": "PROVENGE"
+  },
+  {
+    "GENERIC_NAME": "Sirolimus",
+    "BRAND_NAMES": "RAPAMUNE"
+  },
+  {
+    "GENERIC_NAME": "Sitagliptin",
+    "BRAND_NAMES": "JANUVIA"
+  },
+  {
+    "GENERIC_NAME": "Sodium bicarbonate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Sodium oxybate",
+    "BRAND_NAMES": "XYREM"
+  },
+  {
+    "GENERIC_NAME": "Sodium phosphates",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Sodium polystyrene sulfonate",
+    "BRAND_NAMES": "KALEXATE"
+  },
+  {
+    "GENERIC_NAME": "Sodium tetradecyl sulfate",
+    "BRAND_NAMES": "SOTRADECOL"
+  },
+  {
+    "GENERIC_NAME": "Sodium thiosulfate",
+    "BRAND_NAMES": "NITHIODOTE"
+  },
+  {
+    "GENERIC_NAME": "Sofosbuvir",
+    "BRAND_NAMES": "SOVALDI"
+  },
+  {
+    "GENERIC_NAME": "Sofosbuvir/velpatasvir",
+    "BRAND_NAMES": "EPCLUSA"
+  },
+  {
+    "GENERIC_NAME": "Sofosbuvir/velpatasvir/voxilaprevir",
+    "BRAND_NAMES": "VOSEVI"
+  },
+  {
+    "GENERIC_NAME": "Solifenacin",
+    "BRAND_NAMES": "VESICARE"
+  },
+  {
+    "GENERIC_NAME": "Somatropin",
+    "BRAND_NAMES": "HUMATROPE"
+  },
+  {
+    "GENERIC_NAME": "Sonidegib",
+    "BRAND_NAMES": "ODOMZO"
+  },
+  {
+    "GENERIC_NAME": "Sorafenib",
+    "BRAND_NAMES": "NEXAVAR"
+  },
+  {
+    "GENERIC_NAME": "Sotalol",
+    "BRAND_NAMES": "BETAPACE"
+  },
+  {
+    "GENERIC_NAME": "Spiramycin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Spironolactone",
+    "BRAND_NAMES": "ALDACTONE"
+  },
+  {
+    "GENERIC_NAME": "Stavudine",
+    "BRAND_NAMES": "ZERIT"
+  },
+  {
+    "GENERIC_NAME": "Streptomycin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Streptozocin",
+    "BRAND_NAMES": "ZANOSAR"
+  },
+  {
+    "GENERIC_NAME": "Succimer",
+    "BRAND_NAMES": "CHEMET"
+  },
+  {
+    "GENERIC_NAME": "Succinylcholine",
+    "BRAND_NAMES": "ANECTINE, QUELICIN"
+  },
+  {
+    "GENERIC_NAME": "Sucralfate",
+    "BRAND_NAMES": "CARAFATE"
+  },
+  {
+    "GENERIC_NAME": "Sufentanil",
+    "BRAND_NAMES": "DSUVIA"
+  },
+  {
+    "GENERIC_NAME": "Sulconazole",
+    "BRAND_NAMES": "EXELDERM"
+  },
+  {
+    "GENERIC_NAME": "Sulfacetamide",
+    "BRAND_NAMES": "BLEPH-10"
+  },
+  {
+    "GENERIC_NAME": "Sulfadiazine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Sulfadoxine/pyrimethamine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Sulfasalazine",
+    "BRAND_NAMES": "AZULFIDINE"
+  },
+  {
+    "GENERIC_NAME": "Sulindac",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Sumatriptan",
+    "BRAND_NAMES": "IMITREX"
+  },
+  {
+    "GENERIC_NAME": "Sunitinib",
+    "BRAND_NAMES": "SUTENT"
+  },
+  {
+    "GENERIC_NAME": "Suramin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Suvorexant",
+    "BRAND_NAMES": "BELSOMRA"
+  },
+  {
+    "GENERIC_NAME": "Tacrolimus",
+    "BRAND_NAMES": "PROGRAF"
+  },
+  {
+    "GENERIC_NAME": "Tadalafil",
+    "BRAND_NAMES": "CIALIS"
+  },
+  {
+    "GENERIC_NAME": "Tafamidis",
+    "BRAND_NAMES": "VYNDAMAX"
+  },
+  {
+    "GENERIC_NAME": "Tafluprost",
+    "BRAND_NAMES": "ZIOPTAN"
+  },
+  {
+    "GENERIC_NAME": "Tamoxifen",
+    "BRAND_NAMES": "SOLTAMOX"
+  },
+  {
+    "GENERIC_NAME": "Tamsulosin",
+    "BRAND_NAMES": "FLOMAX"
+  },
+  {
+    "GENERIC_NAME": "Tazarotene",
+    "BRAND_NAMES": "AVAGE, TAZORAC"
+  },
+  {
+    "GENERIC_NAME": "Tecovirimat",
+    "BRAND_NAMES": "TPOXX"
+  },
+  {
+    "GENERIC_NAME": "Tedizolid",
+    "BRAND_NAMES": "SIVEXTRO"
+  },
+  {
+    "GENERIC_NAME": "Teduglutide",
+    "BRAND_NAMES": "GATTEX"
+  },
+  {
+    "GENERIC_NAME": "Tegaserod",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Telavancin",
+    "BRAND_NAMES": "VIBATIV"
+  },
+  {
+    "GENERIC_NAME": "Telbivudine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Telithromycin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Telmisartan",
+    "BRAND_NAMES": "MICARDIS"
+  },
+  {
+    "GENERIC_NAME": "Temazepam",
+    "BRAND_NAMES": "RESTORIL"
+  },
+  {
+    "GENERIC_NAME": "Temozolomide",
+    "BRAND_NAMES": "TEMODAR"
+  },
+  {
+    "GENERIC_NAME": "Temsirolimus",
+    "BRAND_NAMES": "TORISEL"
+  },
+  {
+    "GENERIC_NAME": "Tenecteplase",
+    "BRAND_NAMES": "TNKASE"
+  },
+  {
+    "GENERIC_NAME": "Teniposide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tenofovir disoproxil fumarate",
+    "BRAND_NAMES": "VIREAD"
+  },
+  {
+    "GENERIC_NAME": "Terazosin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Terbinafine",
+    "BRAND_NAMES": "LAMISIL"
+  },
+  {
+    "GENERIC_NAME": "Terbutaline",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Terconazole",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Teriparatide",
+    "BRAND_NAMES": "FORTEO"
+  },
+  {
+    "GENERIC_NAME": "Testosterone",
+    "BRAND_NAMES": "DELATESTRYL"
+  },
+  {
+    "GENERIC_NAME": "Tetanus immune globulin",
+    "BRAND_NAMES": "Hypertet"
+  },
+  {
+    "GENERIC_NAME": "Tetracaine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tetracaine/lidocaine",
+    "BRAND_NAMES": "SYNERA"
+  },
+  {
+    "GENERIC_NAME": "Tetracycline",
+    "BRAND_NAMES": "ACHROMYCIN V"
+  },
+  {
+    "GENERIC_NAME": "Tetrahydrozoline",
+    "BRAND_NAMES": "TYZINE"
+  },
+  {
+    "GENERIC_NAME": "Tezacaftor",
+    "BRAND_NAMES": "SYMDEKO"
+  },
+  {
+    "GENERIC_NAME": "Thalidomide",
+    "BRAND_NAMES": "THALOMID"
+  },
+  {
+    "GENERIC_NAME": "Theophylline",
+    "BRAND_NAMES": "ELIXOPHYLLIN"
+  },
+  {
+    "GENERIC_NAME": "Thioguanine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Thiopental",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Thioridazine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Thiotepa",
+    "BRAND_NAMES": "TEPADINA"
+  },
+  {
+    "GENERIC_NAME": "Thiothixene",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Thyrotropin alfa",
+    "BRAND_NAMES": "THYROGEN"
+  },
+  {
+    "GENERIC_NAME": "Tiagabine",
+    "BRAND_NAMES": "GABITRIL"
+  },
+  {
+    "GENERIC_NAME": "Ticagrelor",
+    "BRAND_NAMES": "BRILINTA"
+  },
+  {
+    "GENERIC_NAME": "Ticarcillin/clavulanate potassium",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ticlopidine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tigecycline",
+    "BRAND_NAMES": "TYGACIL"
+  },
+  {
+    "GENERIC_NAME": "Tildrakizumab",
+    "BRAND_NAMES": "ILUMYA"
+  },
+  {
+    "GENERIC_NAME": "Tiludronate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Timolol",
+    "BRAND_NAMES": "TIMOPTIC"
+  },
+  {
+    "GENERIC_NAME": "Tinidazole",
+    "BRAND_NAMES": "TINDAMAX"
+  },
+  {
+    "GENERIC_NAME": "Tinzaparin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tioconazole",
+    "BRAND_NAMES": "VAGISTAT-1"
+  },
+  {
+    "GENERIC_NAME": "Tiopronin",
+    "BRAND_NAMES": "THIOLA"
+  },
+  {
+    "GENERIC_NAME": "Tiotropium",
+    "BRAND_NAMES": "SPIRIVA"
+  },
+  {
+    "GENERIC_NAME": "Tipranavir",
+    "BRAND_NAMES": "APTIVUS"
+  },
+  {
+    "GENERIC_NAME": "Tirofiban",
+    "BRAND_NAMES": "AGGRASTAT"
+  },
+  {
+    "GENERIC_NAME": "Tisagenlecleucel",
+    "BRAND_NAMES": "KYMRIAH"
+  },
+  {
+    "GENERIC_NAME": "Tizanidine",
+    "BRAND_NAMES": "ZANAFLEX"
+  },
+  {
+    "GENERIC_NAME": "Tobramycin",
+    "BRAND_NAMES": "TOBI, TOBREX"
+  },
+  {
+    "GENERIC_NAME": "Tocilizumab",
+    "BRAND_NAMES": "ACTEMRA"
+  },
+  {
+    "GENERIC_NAME": "Tofacitinib",
+    "BRAND_NAMES": "XELJANZ"
+  },
+  {
+    "GENERIC_NAME": "Tolazamide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tolbutamide",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tolcapone",
+    "BRAND_NAMES": "TASMAR"
+  },
+  {
+    "GENERIC_NAME": "Tolmetin",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tolnaftate",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tolterodine",
+    "BRAND_NAMES": "DETROL"
+  },
+  {
+    "GENERIC_NAME": "Tolvaptan",
+    "BRAND_NAMES": "SAMSCA"
+  },
+  {
+    "GENERIC_NAME": "Topiramate",
+    "BRAND_NAMES": "TOPAMAX"
+  },
+  {
+    "GENERIC_NAME": "Topotecan",
+    "BRAND_NAMES": "HYCAMTIN"
+  },
+  {
+    "GENERIC_NAME": "Torsemide",
+    "BRAND_NAMES": "DEMADEX"
+  },
+  {
+    "GENERIC_NAME": "Tositumomab and Iodine I 131 Tositumomab",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tramadol",
+    "BRAND_NAMES": "ULTRAM"
+  },
+  {
+    "GENERIC_NAME": "Trametinib",
+    "BRAND_NAMES": "MEKINIST"
+  },
+  {
+    "GENERIC_NAME": "Trandolapril",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tranexamic acid",
+    "BRAND_NAMES": "CYKLOKAPRON"
+  },
+  {
+    "GENERIC_NAME": "Tranylcypromine",
+    "BRAND_NAMES": "PARNATE"
+  },
+  {
+    "GENERIC_NAME": "Trastuzumab",
+    "BRAND_NAMES": "HERCEPTIN"
+  },
+  {
+    "GENERIC_NAME": "Travoprost",
+    "BRAND_NAMES": "TRAVATAN Z"
+  },
+  {
+    "GENERIC_NAME": "Trazodone",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tremelimumab",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Treprostinil",
+    "BRAND_NAMES": "REMODULIN"
+  },
+  {
+    "GENERIC_NAME": "Tretinoin",
+    "BRAND_NAMES": "RETIN-A"
+  },
+  {
+    "GENERIC_NAME": "Triamcinolone",
+    "BRAND_NAMES": "KENALOG"
+  },
+  {
+    "GENERIC_NAME": "Triamterene",
+    "BRAND_NAMES": "DYRENIUM"
+  },
+  {
+    "GENERIC_NAME": "Triazolam",
+    "BRAND_NAMES": "HALCION"
+  },
+  {
+    "GENERIC_NAME": "Triclabendazole",
+    "BRAND_NAMES": "EGATEN"
+  },
+  {
+    "GENERIC_NAME": "Trientine",
+    "BRAND_NAMES": "SYPRINE"
+  },
+  {
+    "GENERIC_NAME": "Trifluridine",
+    "BRAND_NAMES": "VIROPTIC"
+  },
+  {
+    "GENERIC_NAME": "Trihexyphenidyl",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Trimethadione",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Trimethobenzamide",
+    "BRAND_NAMES": "TIGAN"
+  },
+  {
+    "GENERIC_NAME": "Trimethoprim",
+    "BRAND_NAMES": "PRIMSOL"
+  },
+  {
+    "GENERIC_NAME": "Trimethoprim/polymixin B",
+    "BRAND_NAMES": "POLYTRIM"
+  },
+  {
+    "GENERIC_NAME": "Trimethoprim/sulfamethoxazole",
+    "BRAND_NAMES": "BACTRIM, SEPTRA"
+  },
+  {
+    "GENERIC_NAME": "Trimipramine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Triprolidine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Tromethamine",
+    "BRAND_NAMES": "THAM"
+  },
+  {
+    "GENERIC_NAME": "Tropicamide",
+    "BRAND_NAMES": "MYDRIACYL, TROPICACYL"
+  },
+  {
+    "GENERIC_NAME": "Trospium",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Ulipristal",
+    "BRAND_NAMES": "ELLA"
+  },
+  {
+    "GENERIC_NAME": "Umeclidinium",
+    "BRAND_NAMES": "INCRUSE ELLIPTA"
+  },
+  {
+    "GENERIC_NAME": "Umeclidinium/vilanterol",
+    "BRAND_NAMES": "ANORO ELLIPTA"
+  },
+  {
+    "GENERIC_NAME": "Undecylenic Acid and Derivatives",
+    "BRAND_NAMES": "No US brand names"
+  },
+  {
+    "GENERIC_NAME": "Unoprostone",
+    "BRAND_NAMES": "No US brand names"
+  },
+  {
+    "GENERIC_NAME": "Ursodiol",
+    "BRAND_NAMES": "ACTIGALL"
+  },
+  {
+    "GENERIC_NAME": "Ustekinumab",
+    "BRAND_NAMES": "STELARA"
+  },
+  {
+    "GENERIC_NAME": "Vaccinia Immune Globulin (Intravenous)",
+    "BRAND_NAMES": "CNJ-016"
+  },
+  {
+    "GENERIC_NAME": "Valacyclovir",
+    "BRAND_NAMES": "VALTREX"
+  },
+  {
+    "GENERIC_NAME": "Valganciclovir",
+    "BRAND_NAMES": "VALCYTE"
+  },
+  {
+    "GENERIC_NAME": "Valproic Acid and Derivatives",
+    "BRAND_NAMES": "DEPACON"
+  },
+  {
+    "GENERIC_NAME": "Valsartan",
+    "BRAND_NAMES": "DIOVAN"
+  },
+  {
+    "GENERIC_NAME": "Vancomycin",
+    "BRAND_NAMES": "VANCOCIN"
+  },
+  {
+    "GENERIC_NAME": "Vandetanib",
+    "BRAND_NAMES": "CAPRELSA"
+  },
+  {
+    "GENERIC_NAME": "Vardenafil",
+    "BRAND_NAMES": "LEVITRA"
+  },
+  {
+    "GENERIC_NAME": "Varenicline",
+    "BRAND_NAMES": "CHANTIX"
+  },
+  {
+    "GENERIC_NAME": "Varicella-Zoster Immune Globulin (Human)",
+    "BRAND_NAMES": "VariZIG"
+  },
+  {
+    "GENERIC_NAME": "Vasopressin",
+    "BRAND_NAMES": "VASOSTRICT"
+  },
+  {
+    "GENERIC_NAME": "Vecuronium",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Vedolizumab",
+    "BRAND_NAMES": "ENTYVIO"
+  },
+  {
+    "GENERIC_NAME": "Vemurafenib",
+    "BRAND_NAMES": "ZELBORAF"
+  },
+  {
+    "GENERIC_NAME": "Venetoclax",
+    "BRAND_NAMES": "VENCLEXTA"
+  },
+  {
+    "GENERIC_NAME": "Venlafaxine",
+    "BRAND_NAMES": "EFFEXOR XR"
+  },
+  {
+    "GENERIC_NAME": "Verapamil",
+    "BRAND_NAMES": "CALAN"
+  },
+  {
+    "GENERIC_NAME": "Vernakalant",
+    "BRAND_NAMES": "Brinavess"
+  },
+  {
+    "GENERIC_NAME": "Vidarabine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Vigabatrin",
+    "BRAND_NAMES": "SABRIL"
+  },
+  {
+    "GENERIC_NAME": "Vilazodone",
+    "BRAND_NAMES": "VIIBRYD"
+  },
+  {
+    "GENERIC_NAME": "Vinblastine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Vincristine",
+    "BRAND_NAMES": "MARQIBO KIT"
+  },
+  {
+    "GENERIC_NAME": "Vindesine",
+    "BRAND_NAMES": "No US brand name"
+  },
+  {
+    "GENERIC_NAME": "Vinorelbine",
+    "BRAND_NAMES": "NAVELBINE"
+  },
+  {
+    "GENERIC_NAME": "Vismodegib",
+    "BRAND_NAMES": "ERIVEDGE"
+  },
+  {
+    "GENERIC_NAME": "Voriconazole",
+    "BRAND_NAMES": "VFEND"
+  },
+  {
+    "GENERIC_NAME": "Vortioxetine",
+    "BRAND_NAMES": "TRINTELLIX"
+  },
+  {
+    "GENERIC_NAME": "Warfarin",
+    "BRAND_NAMES": "COUMADIN"
+  },
+  {
+    "GENERIC_NAME": "Zafirlukast",
+    "BRAND_NAMES": "ACCOLATE"
+  },
+  {
+    "GENERIC_NAME": "Zaleplon",
+    "BRAND_NAMES": "SONATA"
+  },
+  {
+    "GENERIC_NAME": "Zanamivir",
+    "BRAND_NAMES": "RELENZA"
+  },
+  {
+    "GENERIC_NAME": "Ziconotide",
+    "BRAND_NAMES": "PRIALT"
+  },
+  {
+    "GENERIC_NAME": "Zidovudine",
+    "BRAND_NAMES": "RETROVIR"
+  },
+  {
+    "GENERIC_NAME": "Zileuton",
+    "BRAND_NAMES": "ZYFLO"
+  },
+  {
+    "GENERIC_NAME": "Ziprasidone",
+    "BRAND_NAMES": "GEODON"
+  },
+  {
+    "GENERIC_NAME": "Zoledronic acid",
+    "BRAND_NAMES": "ZOMETA"
+  },
+  {
+    "GENERIC_NAME": "Zolmitriptan",
+    "BRAND_NAMES": "ZOMIG"
+  },
+  {
+    "GENERIC_NAME": "Zolpidem",
+    "BRAND_NAMES": "AMBIEN"
+  },
+  {
+    "GENERIC_NAME": "Zonisamide",
+    "BRAND_NAMES": "ZONEGRAN"
+  },
+  {
+    "GENERIC_NAME": "Zotarolimus",
+    "BRAND_NAMES": "No US brand name"
+  }
+]

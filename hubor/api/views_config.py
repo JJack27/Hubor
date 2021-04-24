@@ -13,6 +13,7 @@ APIs which are data-related.
   /api/latestconfig/
     + GET: Get the latest version of configuration
 '''
+
 from django.shortcuts import render
 from django.db.models import Max
 from rest_framework.views import APIView
@@ -21,6 +22,7 @@ from rest_framework import status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 import json
+import os
 import uuid
 import datetime
 
@@ -110,3 +112,4 @@ class LatestConfigAPI(APIView):
         
         response = {'config': rules}
         return Response(response, status=200)
+

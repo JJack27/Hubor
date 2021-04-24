@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'data',
     'configurations',
     'notification',
+    'medicine',
+    'diagnosis',
 ]
 
 MIDDLEWARE = [
