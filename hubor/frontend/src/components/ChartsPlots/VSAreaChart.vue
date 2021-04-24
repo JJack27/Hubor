@@ -107,7 +107,6 @@ export default defineComponent({
         this.valueMin = this.vsData[0][this.vs][this.stat];
         this.valueMax = this.vsData[0][this.vs][this.stat];
         this.date = new Date(this.vsData[0].time).toLocaleDateString();
-        console.log(this.date);
         for(var i in this.vsData){
             if(this.vsData[i][this.vs][this.stat] < this.valueMin){
                 this.valueMin = this.vsData[i][this.vs][this.stat];
@@ -211,7 +210,7 @@ export default defineComponent({
                 max: this.valueMax + 2,
             },
         }
-        console.log(range);
+        
         var viewData = {
                     data: this.dataDisplay,
                     axes: range,

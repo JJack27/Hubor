@@ -3,14 +3,26 @@
         <div style="margin-top: 20pt;">
         
             <a-row type="flex" justify="space-around">
-                <a-col class="current-status-card-cluster" :span="9">
+                <a-col class="vs-history-card-cluster" :span="9">
+                    <!-- top row: sort and filter -->
+                    <a-row type="flex" justify="space-between">
+                        <a-col :span="1" style="text-align:start">
+                            <i class="fa fa-sort-amount-asc" aria-hidden="true" v-if="this.ascending" @click="changeSortOrder"></i>
+                            <i class="fa fa-sort-amount-desc" aria-hidden="true" v-else @click="changeSortOrder"></i>
+                        </a-col>
+                        <a-col :span="1" style="text-align:end">
+                            <i class="fa fa-filter" aria-hidden="true"></i>
+                        </a-col>
+                    </a-row>
+                    
                     <div
                         style="overflow-y:auto; overflow-x:hidden; height:65vh; padding-right:10pt;"
-                    >
-                        <div
+                    >   
+                        <a-timeline>
+                        <a-timeline-item
                             v-for="vs in this.dataSource"
                             :key="vs.time"
-                            style="margin-top:5pt;"
+                            style=""
                         >
                             <VSHistoryCardGroup
                                 :hr="vs.hr.mean"
@@ -21,7 +33,8 @@
                                 :bph="vs.bp_h.mean"
                                 :time="vs.time"
                             />
-                        </div>
+                        </a-timeline-item>
+                        </a-timeline>
                     </div>
                 </a-col>
 
@@ -72,7 +85,8 @@ export default{
             dataSource:[],
             vs: this.vsProp,
             stat: "mean",
-            title: this.titleProp
+            title: this.titleProp,
+            ascending: true,
         }
     },
 
@@ -93,7 +107,6 @@ export default{
     },
 
     mounted(){
-        console.log(this.vsProp);
         this.$get(`/api/latest1hourvs/${this.id}/`)
             .then(response => {
                 this.dataSource = response.data;
@@ -101,18 +114,18 @@ export default{
     },
 
     methods:{
-        update(){
-            this.$get(`/api/latest1hourvs/${this.id}/`)
-                .then(response => {
-                    this.dataSource = response.data;
-                    
-                });
-            console.log(this.dataSource);
+        changeSortOrder(){
+            this.ascending = !this.ascending;
+            var list = this.dataSource;
+            list.reverse(this.ascending);
+            this.$forceUpdate();
         }
     }
 }
 </script>
 
 <style>
-
+.vs-history-card-cluster .ant-timeline-item-tail{
+    border-left: 2px solid #c5c4db;
+}
 </style>
