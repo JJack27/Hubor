@@ -1,6 +1,7 @@
 <template>
     <div>
-        <a-row type="flex" justify="center" align="middle">
+        <a-row type="flex" justify="center" align="middle" :gutter="[16,16]">
+            
             <a-col :span="1">
                 <img
                     :src="require(`@/assets/icons/${this.vs}_icon.png`)"
@@ -9,8 +10,12 @@
                     style="margin-top:-7pt;"
                 >
             </a-col>
-            <a-col :span="5">
+            <a-col :span="18" style="text-align:start">
                 <h1 style="text-transform: capitalize;"> <span v-html="this.title"></span> </h1>
+            </a-col>
+
+            <a-col :span="5" style="text-align:end">
+                <h1> {{this.date}} </h1>
             </a-col>
         </a-row>
         <div style="text-align:end">
@@ -75,6 +80,7 @@ export default defineComponent({
             showMinMax: false,
             showStdev: false,
             showAbnormal: false,
+            date: "",
         }
     },
 
@@ -100,6 +106,8 @@ export default defineComponent({
         this.dataDisplay = []
         this.valueMin = this.vsData[0][this.vs][this.stat];
         this.valueMax = this.vsData[0][this.vs][this.stat];
+        this.date = new Date(this.vsData[0].time).toLocaleDateString();
+        console.log(this.date);
         for(var i in this.vsData){
             if(this.vsData[i][this.vs][this.stat] < this.valueMin){
                 this.valueMin = this.vsData[i][this.vs][this.stat];
@@ -210,7 +218,7 @@ export default defineComponent({
                     meta: {
                         time: {
                             type: 'time',
-                            mask: 'MM-DD HH:mm',
+                            mask: 'HH:mm',
                             nice: true,
                             range: [0, 1],
                         },
@@ -259,7 +267,7 @@ export default defineComponent({
                     meta: {
                         time: {
                             type: 'time',
-                            mask: 'MM-DD HH:mm',
+                            mask: 'HH:mm',
                             nice: true,
                             range: [0, 1],
                         },
@@ -287,7 +295,7 @@ export default defineComponent({
                     meta: {
                         time: {
                             type: 'time',
-                            mask: 'MM-DD HH:mm',
+                            mask: 'HH:mm',
                             nice: true,
                             range: [0, 1],
                         },

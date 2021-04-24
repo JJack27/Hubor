@@ -3,11 +3,29 @@
         <div style="margin-top: 20pt;">
         
             <a-row type="flex" justify="space-around">
-                <a-col class="current-status-card-cluster" :span="8">
-                    <a-button @click="update">Update</a-button>
+                <a-col class="current-status-card-cluster" :span="9">
+                    <div
+                        style="overflow-y:auto; overflow-x:hidden; height:65vh; padding-right:10pt;"
+                    >
+                        <div
+                            v-for="vs in this.dataSource"
+                            :key="vs.time"
+                            style="margin-top:5pt;"
+                        >
+                            <VSHistoryCardGroup
+                                :hr="vs.hr.mean"
+                                :rr="vs.rr.mean"
+                                :spo="vs.spo2.mean"
+                                :temp="vs.temp.mean"
+                                :bpl="vs.bp_l.mean"
+                                :bph="vs.bp_h.mean"
+                                :time="vs.time"
+                            />
+                        </div>
+                    </div>
                 </a-col>
 
-                <a-col class="current-patient-info" :span="12">
+                <a-col class="current-patient-info" :span="11">
                     
                     <VSAreaChart 
                         :vsData="this.dataSource"
@@ -33,6 +51,7 @@
   
 <script>
 import VSAreaChart from '../components/ChartsPlots/VSAreaChart.vue';
+import VSHistoryCardGroup from '../components/VSHistory/VSHistoryCardGroup.vue';
 import {provide, ref, reactive, inject} from 'vue';
 const map={
     "hr": "heart rate",
@@ -46,6 +65,7 @@ export default{
     props:['vsProp', 'titleProp'],
     components:{
         VSAreaChart,
+        VSHistoryCardGroup
     },
     data(){
         return {
