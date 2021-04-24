@@ -88,8 +88,10 @@ class NormalRangeSerializer(serializers.ModelSerializer):
     temp_h = serializers.SerializerMethodField("get_temp_h")
     spo2_l = serializers.SerializerMethodField("get_spo2_l")
     spo2_h = serializers.SerializerMethodField("get_spo2_h")
-    bp_l = serializers.SerializerMethodField("get_bp_l")
-    bp_h = serializers.SerializerMethodField("get_bp_h")
+    bpl_l = serializers.SerializerMethodField("get_bpl_l")
+    bpl_h = serializers.SerializerMethodField("get_bpl_h")
+    bph_l = serializers.SerializerMethodField("get_bph_l")
+    bph_h = serializers.SerializerMethodField("get_bph_h")
 
     def get_hr_l(self, obj):
         try:
@@ -147,20 +149,34 @@ class NormalRangeSerializer(serializers.ModelSerializer):
         except:
             return "null"
     
-    def get_bp_l(self, obj):
+    def get_bpl_l(self, obj):
         try:
-            nr = NormalRange.objects.get(patient=obj, vs="bp", type_of_range="l")
+            nr = NormalRange.objects.get(patient=obj, vs="bpl", type_of_range="l")
             return nr.value
         except:
             return "null"
 
-    def get_bp_h(self, obj):
+    def get_bpl_h(self, obj):
         try:
-            nr = NormalRange.objects.get(patient=obj, vs="bp", type_of_range="h")
+            nr = NormalRange.objects.get(patient=obj, vs="bpl", type_of_range="h")
+            return nr.value
+        except:
+            return "null"
+    
+    def get_bph_l(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="bph", type_of_range="l")
+            return nr.value
+        except:
+            return "null"
+
+    def get_bph_h(self, obj):
+        try:
+            nr = NormalRange.objects.get(patient=obj, vs="bph", type_of_range="h")
             return nr.value
         except:
             return "null"
 
     class Meta:
         model = User
-        fields= ['temp_h', 'temp_l', 'hr_h', 'hr_l', 'rr_h', 'rr_l', 'spo2_h', 'spo2_l', 'bp_h', 'bp_l']
+        fields= ['temp_h', 'temp_l', 'hr_h', 'hr_l', 'rr_h', 'rr_l', 'spo2_h', 'spo2_l', 'bpl_h', 'bpl_l', 'bph_h', 'bph_l']

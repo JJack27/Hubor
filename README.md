@@ -763,8 +763,10 @@ This will run at the IP address of your local machine with the port 8000
                 "rr_h": number,
                 "spo2_l": number,
                 "spo2_h": number,
-                "bp_l": number,
-                "bp_h": number
+                "bplh_l": number,
+                "bph_h": number,
+                "bpl_l": number,
+                "bpl_h": number
             }
             ```
 
@@ -793,8 +795,10 @@ This will run at the IP address of your local machine with the port 8000
                 "rr_h": number,
                 "spo2_l": number,
                 "spo2_h": number,
-                "bp_l": number,
-                "bp_h": number
+                "bplh_l": number,
+                "bph_h": number,
+                "bpl_l": number,
+                "bpl_h": number
             }
             ```
             

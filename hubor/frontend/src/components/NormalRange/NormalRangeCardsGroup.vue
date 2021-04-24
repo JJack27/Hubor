@@ -64,10 +64,12 @@
 
             <!-- BP -->
             <a-col :span="16">
-                <NormalRangeCard
+                <BPNormalRangeCard
                     icon="bp_icon.png"
-                    :low="this.ranges.bp_l"
-                    :high="this.ranges.bp_h"
+                    :diastolicLow="this.ranges.bpl_l"
+                    :diastolicHigh="this.ranges.bpl_h"
+                    :systolicLow="this.ranges.bph_l"
+                    :systolicHigh="this.ranges.bph_h"
                     unit="mmHg"
                     title="Blood Pressure"
                     prefix="bp"
@@ -81,6 +83,8 @@
 
 <script>
 import NormalRangeCard from './NormalRangeCard.vue';
+import BPNormalRangeCard from './BPNormalRangeCard.vue';
+
 export default{
     name: "NormalRangeCardsGroup",
     
@@ -95,7 +99,8 @@ export default{
     },
 
     components:{
-        NormalRangeCard
+        NormalRangeCard,
+        BPNormalRangeCard
     },
 
     data(){
@@ -106,21 +111,8 @@ export default{
     },
 
     methods:{
-        /*
-        handleFormOpen(){
-            this.normalRangeVisiable = true;
-        },
-
-        handleFormClose(rawState){
-            // this.ranges = rawState;
-            this.normalRangeVisiable = false;
-        },
-        */
-
         updateNormalRange(state){
             for(var i in state){
-                console.log(i);
-                console.log(this.ranges[i]);
                 this.ranges[i] = state[i];
             }
         }

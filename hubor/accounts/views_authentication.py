@@ -86,14 +86,15 @@ class RegisterView(APIView):
             rr_l = NormalRange(patient=user, vs="rr", type_of_range="l", value=16)
             spo2_h = NormalRange(patient=user, vs="spo2", type_of_range="h", value=100)
             spo2_l = NormalRange(patient=user, vs="spo2", type_of_range="l", value=90)
-            bp_h = NormalRange(patient=user, vs="bp", type_of_range="h", value=130)
-            bp_l = NormalRange(patient=user, vs="bp", type_of_range="l", value=60)
-            unsaved = [user, status, temp_h, temp_l, hr_h, hr_l, rr_h, rr_l, spo2_h, spo2_l, bp_h, bp_l]
+            bpl_h = NormalRange(patient=user, vs="bpl", type_of_range="h", value=80)
+            bpl_l = NormalRange(patient=user, vs="bpl", type_of_range="l", value=60)
+            bph_h = NormalRange(patient=user, vs="bph", type_of_range="h", value=130)
+            bph_l = NormalRange(patient=user, vs="bph", type_of_range="l", value=100)
+            unsaved = [user, status, temp_h, temp_l, hr_h, hr_l, rr_h, rr_l, spo2_h, spo2_l, bpl_l, bpl_h, bph_l, bph_h]
         else:
             unsaved = [user]
         saved = []
         try:
-            counter = 0
             response['data'] = {
                 'id': user.id,
                 'email': user.email,

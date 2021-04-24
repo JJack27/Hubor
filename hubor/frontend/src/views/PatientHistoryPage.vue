@@ -11,8 +11,8 @@
                     
                     <VSAreaChart 
                         :vsData="this.dataSource"
-                        :vs="this.vsProp"
-                        :title="this.titleProp"
+                        :vs="this.vs"
+                        :title="this.title"
                         stat="mean"
                     />
                     <br/>

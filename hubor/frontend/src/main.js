@@ -7,10 +7,9 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import {AutoComplete, message, Badge, Tabs, Button, Form, Input, Icon, Checkbox, 
     Card, Row, Col, Layout, Menu, Avatar, Table, Modal, DatePicker, 
-    Select, List, Descriptions, Tag, Tooltip, Empty, Radio, Switch
+    Select, List, Descriptions, Tag, Tooltip, Empty, Radio, Switch, Timeline, Divider
 } from 'ant-design-vue'
 import Axios from 'axios';
-import { DescriptionsItem } from 'ant-design-vue/lib/descriptions';
 
 
 const app = createApp(App);
@@ -109,6 +108,7 @@ app.use(store)
     .use(DatePicker)
     .use(Descriptions)
     .use(Descriptions.Item)
+    .use(Divider)
     .use(Empty)
     .use(Form)
     .use(Form.Item)
@@ -134,5 +134,7 @@ app.use(store)
     .use(Tabs.TabPane)
     .use(Table)
     .use(Tag)
+    .use(Timeline)
+    .use(Timeline.Item)
     .use(Tooltip)
     .mount('#app');

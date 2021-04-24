@@ -274,8 +274,10 @@ class NormalRangeAPI(APIView):
                 "rr_h": number,
                 "spo2_l": number,
                 "spo2_h": number,
-                "bp_l": number,
-                "bp_h": number
+                "bpl_l": number,
+                "bpl_h": number,
+                "bph_l": number,
+                "bph_h": number,
             }
             ```
     '''
@@ -292,7 +294,7 @@ class NormalRangeAPI(APIView):
         type_of_range = type_range[1]
 
         # check if vs and type_of_range is valid
-        if(vs not in ["hr", "rr", "temp", "bp", "spo2"]):
+        if(vs not in ["hr", "rr", "temp", "bpl","bph", "spo2"]):
             return Response(status=400)
         if(type_of_range not in ["h", "l"]):
             return Response(status=400)
@@ -363,8 +365,10 @@ class AllNormalRangeAPI(APIView):
                 "rr_h": number,
                 "spo2_l": number,
                 "spo2_h": number,
-                "bp_l": number,
-                "bp_h": number
+                "bplh_l": number,
+                "bph_h": number,
+                "bpl_l": number,
+                "bpl_h": number
             }
             ```
     '''
