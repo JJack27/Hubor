@@ -298,7 +298,7 @@ class NormalRangeAPI(APIView):
             return Response(status=400)
 
         # check the validity of the value
-        if(request_body['value'] < 0):
+        if(float(request_body['value']) < 0):
             return Response(status=400)
 
         # check authorization

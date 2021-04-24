@@ -3,7 +3,9 @@
         
         <a-row type="flex" justify="space-around">
             <a-col class="current-status-card-cluster" :span="8">
-                <PatientNowStatusCard />
+                <PatientNowStatusCard 
+                    @switch-to-history="handleSwitch"
+                />
                 <br />
                 <EmergencyContactButtonCardsGroup />
             </a-col>
@@ -34,8 +36,15 @@ export default{
         PatientInfoCardsGroup,
         EmergencyContactButtonCardsGroup,
     },
+
+    methods:{
+        handleSwitch(vs){
+            this.$emit("switch-to-history", vs);
+        }
+    },
     
     mounted(){
+
     }
 }
 </script>

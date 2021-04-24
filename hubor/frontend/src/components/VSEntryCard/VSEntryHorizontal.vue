@@ -3,6 +3,7 @@
         class="vs-entry-wrapper-card"
         :bodyStyle="{background:this.bodyBackColor, color:this.BodyFontColor}"
         :hoverable="false"
+        @click="switchToHistory"
     >
         <a-row align="middle">
             <a-col :span="4">
@@ -13,7 +14,7 @@
                     class="list-item-icon">
             </a-col>
             <a-col :span="4">
-                <span class="vs-title">{{this.title}}</span>
+                <span class="vs-title" v-html="this.title"></span>
                 <br>
                 <span class="vs-data">{{this.value}}</span> 
                 <span class="vs-unit">{{this.unit}}</span>
@@ -25,7 +26,12 @@
 <script>
 export default {
     name: "VSEntryHorizontal",
-    props: ['icon', 'value', 'unit', 'background', 'color', 'title']
+    props: ['icon', 'value', 'unit', 'background', 'color', 'title', 'vs'],
+    methods:{
+        switchToHistory(){
+            this.$emit("switch-to-history", this.vs);
+        },
+    }
 }
 </script>
 

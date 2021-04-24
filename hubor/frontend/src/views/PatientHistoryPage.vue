@@ -12,7 +12,8 @@
                     <VSAreaChart 
                         :vsData="this.dataSource"
                         :vs="this.vs"
-                        :stat="this.stat"
+                        :title="this.title"
+                        stat="mean"
                     />
                     <br/>
                     <!-- button group - vs -->
@@ -22,15 +23,7 @@
                         <a-radio-button value="rr">RR</a-radio-button>
                         <a-radio-button value="spo2">SPO2</a-radio-button>
                     </a-radio-group>
-                    <br/>
-                    <!-- button group - stat -->
-                    <a-radio-group v-model:value="stat" button-style="solid" style="margin-top:10pt">
-                        <a-radio-button value="mean">Mean</a-radio-button>
-                        <a-radio-button value="med">Median</a-radio-button>
-                        <a-radio-button value="min">Min</a-radio-button>
-                        <a-radio-button value="max">Max</a-radio-button>
-                        <a-radio-button value="std">Variance</a-radio-button>
-                    </a-radio-group>
+                    
                 </a-col>
             </a-row>
         </div>
@@ -41,18 +34,35 @@
 <script>
 import VSAreaChart from '../components/ChartsPlots/VSAreaChart.vue';
 import {provide, ref, reactive, inject} from 'vue';
+const map={
+    "hr": "heart rate",
+    "rr": "respiration rate",
+    "spo2": `O${"2".sub()} Saturation`,
+    "temp": "temperature"
+}
 export default{
     name:"PatientHistoryPage",
     inject:['id'],
-
+    props:['vsProp', 'titleProp'],
     components:{
         VSAreaChart,
     },
     data(){
         return {
             dataSource:[],
-            vs: "hr",
+            vs: this.vsProp,
             stat: "mean",
+            title: this.titleProp
+        }
+    },
+
+    watch:{
+        vs: function(newVal, oldVal){
+            this.title = map[newVal];
+        },
+
+        vsProp(newVal, oldVal){
+            this.vs = newVal;
         }
     },
 
@@ -63,6 +73,7 @@ export default{
     },
 
     mounted(){
+        console.log(this.vsProp);
         this.$get(`/api/latest1hourvs/${this.id}/`)
             .then(response => {
                 this.dataSource = response.data;

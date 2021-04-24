@@ -15,13 +15,20 @@
                         class="list-item-icon">
                 </a-col>
                 <a-col :span="20" class="vs-title">
-                    {{ this.title }}
+                    <span v-html="this.title"></span>
                 </a-col>
                 
             </a-row>
             <a-row type="flex" justify="center" align="bottom">
                 <a-col class="vs-data" :span="24">
-                    <span >{{this.low + '/' + this.high}}</span>
+                    <a-row type="flex" justify="space-between">
+                        <a-col :span="10">
+                            {{ this.low }}
+                        </a-col>
+                        <a-col :span="10" style="text-align:end;">
+                            {{ this.high }}
+                        </a-col>
+                    </a-row>
                 </a-col>
             </a-row>
         </a-card>
@@ -64,7 +71,7 @@
                         type="bordered"
                         @click="closeModal"
                     >
-                        cancel
+                        Cancel
                     </a-button>
                 </a-col>
                 
@@ -108,8 +115,21 @@ export default {
             var state = {};
             state[this.prefix + '_l'] = this.l;
             state[this.prefix + '_h'] = this.h;
-            this.$emit('save-normal-range', state);
-            closeModal();
+            this.$put(`/api/normalrange/${this.id}/${this.prefix + '_l'}/`, {"value": this.l})
+            .then((response) =>{
+                this.$put(`/api/normalrange/${this.id}/${this.prefix + '_h'}/`, {"value": this.h})
+                .then((response)=>{
+                    this.$message.success("Updating normal range is successful");
+                    this.$emit('save-normal-range', state);
+                    this.normalRangeVisiable = false;
+                })
+                .catch((error) =>{
+                    this.$message.error("Updating normal range is unsuccessful")
+                });
+            })
+            .catch((error) =>{
+                this.$message.error("Updating normal range is unsuccessful")
+            });
         }
     }
 }

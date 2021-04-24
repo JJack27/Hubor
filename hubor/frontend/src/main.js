@@ -7,7 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import {message, Badge, Tabs, Button, Form, Input, Icon, Checkbox, 
     Card, Row, Col, Layout, Menu, Avatar, Table, Modal, DatePicker, 
-    Select, List, Descriptions, Tag, Tooltip, Empty, Radio,
+    Select, List, Descriptions, Tag, Tooltip, Empty, Radio, Switch
 } from 'ant-design-vue'
 import Axios from 'axios';
 import { DescriptionsItem } from 'ant-design-vue/lib/descriptions';
@@ -102,6 +102,7 @@ app.use(store)
     .use(Button)
     .use(Card)
     .use(Checkbox)
+    .use(Checkbox.Group)
     .use(Col)
     .use(DatePicker)
     .use(Descriptions)
@@ -126,6 +127,7 @@ app.use(store)
     .use(router)
     .use(Row)
     .use(Select)
+    .use(Switch)
     .use(Tabs)
     .use(Tabs.TabPane)
     .use(Table)

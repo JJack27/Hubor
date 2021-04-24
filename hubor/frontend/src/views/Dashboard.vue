@@ -14,8 +14,8 @@
       </div>
       <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys" style="text-align:start">
         <a-menu-item key="1">
-          <PieChartFilled />
-          <span class="nav-text">Home</span>
+          <ProfileFilled />
+          <span class="nav-text">Patients</span>
         </a-menu-item>
 
         <a-menu-item key="2">
@@ -73,7 +73,7 @@
 
 <script>
 // Icons
-import { EditFilled, ExclamationCircleFilled, PieChartFilled, MailFilled} from '@ant-design/icons-vue';
+import { EditFilled, ExclamationCircleFilled, ProfileFilled, PieChartFilled, MailFilled} from '@ant-design/icons-vue';
 
 // Components
 import MyInfoPage from './MyInfoPage.vue';
@@ -113,11 +113,13 @@ export default {
         PieChartFilled,
         EditFilled,
         MailFilled,
+        ProfileFilled,
 
         MyInfoPage,
         PatientsPage,
         NotificationPage,
         PendingRequestsPage,
+        
     },
 
     mounted(){

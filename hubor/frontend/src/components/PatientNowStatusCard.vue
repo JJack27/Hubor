@@ -1,16 +1,22 @@
 <template>
     <div class="patient-now-status-card">
-        <h1 style="font-weight: bold; text-align: start;">
-            Current Status
-        </h1>
+        
+        <a-row type="flex" justify="space-between"
+            style="font-weight: bold; font-size:14pt;"
+        >
+            <a-col :span="8" style="text-align: start">Current Vitals</a-col>
+            <a-col :span="14" style="text-align: end">{{ this.currentTime }}</a-col>
+        </a-row>
         <!-- this.$store.getters.patients[this.id].hr -->
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
             <a-col :span="12">
                 <VSEntryVertical
                     icon="hr_icon.png"
                     :value="this.auto['hr']"
+                    vs="hr"
                     unit="bpm"
                     title="Heart Rate"
+                    @switch-to-history="handleSwitch"
                 />
             </a-col>
 
@@ -18,8 +24,10 @@
                 <VSEntryVertical
                     icon="temp_icon.png"
                     :value="this.auto['temp']"
+                    vs="temp"
                     unit="°C"
                     title="Temperature"
+                    @switch-to-history="handleSwitch"
                 />
             </a-col>
         </a-row>
@@ -30,8 +38,10 @@
                 <VSEntryVertical
                     icon="spo2_icon.png"
                     :value="this.auto['spo2']"
+                    vs="spo2"
                     unit="%"
-                    title="Oxygen Saturation"
+                    title="O<sub>2</sub> Saturation"
+                    @switch-to-history="handleSwitch"
                 />
             </a-col>
 
@@ -40,8 +50,10 @@
                 <VSEntryVertical
                     icon="rr_icon.png"
                     :value="this.auto['rr']"
+                    vs="rr"
                     unit="rpm"
                     title="Respiration Rate"
+                    @switch-to-history="handleSwitch"
                 />
             </a-col>
         </a-row>
@@ -56,7 +68,9 @@
                     icon="bp_icon.png"
                     :value="this.auto['bp_l'] + '/' + this.auto['bp_h']"
                     unit="mmHg"
+                    vs="bp"
                     title="Blood Pressure"
+                    @switch-to-history="handleSwitch"
                 />
             </a-col>
         </a-row>
@@ -88,12 +102,22 @@ export default{
                 bp_h: 67,
                 bp_l: 110
             },
+            timeTask: null,
+            currentTime: new Date().toLocaleString('en-us'),
             autoTask: null,
         }
     },
 
     inject:['id'],
     methods:{
+        updateTime(){
+            this.currentTime = new Date().toLocaleString('en-us');
+        },
+        // method to handle event when user click on now-status-card
+        // switch to history
+        handleSwitch(vs){
+            this.$emit('switch-to-history',vs);
+        },
         updateVS(){
             var range = {
                 hr:{l:70, h:5},
@@ -125,12 +149,15 @@ export default{
     },
     mounted(){
         this.autoTask = setInterval(this.updateVS, 3000);
+        this.timeTask = setInterval(this.updateTime, 1000);
     },
 
     beforeUnmounted(){
         clearInterval(this.autoTask);
         this.autoTask = null;
-    }
+    },
+
+    
     //this.$store.getters.patients[this.id].bp_h + '/' + this.$store.getters.patients[this.id].bp_l
 }
 </script>

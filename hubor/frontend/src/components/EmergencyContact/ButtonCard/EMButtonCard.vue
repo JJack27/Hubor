@@ -9,7 +9,7 @@
             <br/>
             <i class="fa fa-phone" aria-hidden="true" style="font-size:40pt"></i>
             <br/>
-            <span style="font-size:11pt; ">Relatives / Caregivers</span>
+            <span style="font-size:11pt; ">Caregivers</span>
         </a-card>
     </div>
 </template>

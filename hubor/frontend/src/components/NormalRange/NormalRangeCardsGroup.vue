@@ -2,7 +2,7 @@
     <div class="patient-info-cards-group">
         
         <h1 style="font-weight: bold; text-align: start;">
-            Normal Range
+            Customize Normal Range
         </h1>
 
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
@@ -39,7 +39,7 @@
                     :low="this.ranges.spo2_l"
                     :high="this.ranges.spo2_h"
                     unit="%"
-                    title="Oxygen Saturation"
+                    title="O<sub>2</sub> Saturation"
                     prefix="spo2"
                     @save-normal-range="updateNormalRange"
                 />
@@ -101,22 +101,12 @@ export default{
     data(){
         return {
             normalRangeVisiable: false,
-            ranges:{
-                temp_h: '37.5',
-                temp_l: '35',
-                hr_h: '130',
-                hr_l: '60',
-                rr_h: '60',
-                rr_l: '30',
-                spo2_h: '100',
-                spo2_l: '90',
-                bp_h: '140',
-                bp_l: '86',
-            }
+            ranges: this.$store.getters.patients[this.id].normal_range,
         }
     },
 
     methods:{
+        /*
         handleFormOpen(){
             this.normalRangeVisiable = true;
         },
@@ -125,9 +115,9 @@ export default{
             // this.ranges = rawState;
             this.normalRangeVisiable = false;
         },
+        */
 
         updateNormalRange(state){
-            console.log(this.ranges);
             for(var i in state){
                 console.log(i);
                 console.log(this.ranges[i]);

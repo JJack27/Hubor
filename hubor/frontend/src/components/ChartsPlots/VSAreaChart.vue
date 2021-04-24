@@ -10,11 +10,38 @@
                 >
             </a-col>
             <a-col :span="5">
-                <h1 style="text-transform: capitalize;"> {{this.vs}} - {{this.stat}} </h1>
+                <h1 style="text-transform: capitalize;"> <span v-html="this.title"></span> </h1>
             </a-col>
         </a-row>
-        
-        
+        <div style="text-align:end">
+            <a-row type="flex" justify="end">
+                <a-col :span="1">
+                    <a-switch size="small" v-model:checked="showMinMax" @click="$forceUpdate"/>
+                </a-col>
+                <a-col :span="2">
+                    Min-Max
+                </a-col>
+            </a-row>
+
+            <a-row type="flex" justify="end">
+                <a-col :span="1">
+                    <a-switch size="small" v-model:checked="showStdev" @click="$forceUpdate"/>
+                </a-col>
+                <a-col :span="2">
+                    Stdev
+                </a-col>
+            </a-row>
+
+            <a-row type="flex" justify="end">
+                <a-col :span="1">
+                    <a-switch size="small" v-model:checked="showAbnormal" @click="$forceUpdate"/>
+                </a-col>
+                <a-col :span="2">
+                    Abnormal
+                </a-col>
+            </a-row>
+            
+        </div>
         <div id="container">
         </div>
     </div>
@@ -22,7 +49,7 @@
 
 <script>
 import { defineComponent, ref, inject } from 'vue';
-import { Area } from '@antv/g2plot';
+import { MultiView } from '@antv/g2plot';
 
 export default defineComponent({
     name:"VSAreaChart",
@@ -30,17 +57,24 @@ export default defineComponent({
         'vsData',
         'vs',    // hr, rr, spo2...
         'stat',     // mean, max, min, median, stdev
-        'timeSpan', // min, hr, day,   
+        'timeSpan', // min, hr, day, 
+        'title'  
     ],
+    inject:['id'],
     data(){
         return{
             aType: "min",
             toTime: null,
             fromTime: null,
-            area: null,
+            chart: null,
             dataDisplay: [],
+            dataRange: [],
+            dataStdev: [],
             valueMin: 10000,
             valueMax: -10000,
+            showMinMax: false,
+            showStdev: false,
+            showAbnormal: false,
         }
     },
 
@@ -53,17 +87,16 @@ export default defineComponent({
             var now = new Date()
             var oneHr = 3600000;
             var anHrBeforeNow = new Date(now - oneHr);
-            console.log(oneHr);
-            console.log(anHrBeforeNow.toJSON())
             return anHrBeforeNow.toJSON();
         }
 
     },
     beforeUnmount(){
-        this.area.destroy();
+        this.chart.destroy();
     },
 
     updated(){
+        // update DataDisplay
         this.dataDisplay = []
         this.valueMin = this.vsData[0][this.vs][this.stat];
         this.valueMax = this.vsData[0][this.vs][this.stat];
@@ -80,60 +113,235 @@ export default defineComponent({
             tuple['value'] = this.vsData[i][this.vs][this.stat];
             this.dataDisplay.push(tuple)
         }
-        console.log(this.dataDisplay);
+        
+
+        // update this.dataRange
+        if(this.showMinMax == true){
+            this.dataRange = [];
+            for(var i in this.vsData){
+                var tuple = {time: this.vsData[i].time};
+                tuple['value'] = [
+                    this.vsData[i][this.vs]['min'],
+                    this.vsData[i][this.vs]['max'],
+                ];
+                this.dataRange.push(tuple)
+            }
+        }
+
+        // update this.dataStdev
+        if(this.showStdev== true){
+            this.dataStdev = [];
+            for(var i in this.vsData){
+                var tuple = {time: this.vsData[i].time};
+                tuple['value'] = [
+                    parseFloat((this.vsData[i][this.vs][this.stat] - this.vsData[i][this.vs]['std'] / 2).toFixed(2)),
+                    parseFloat((this.vsData[i][this.vs][this.stat] + this.vsData[i][this.vs]['std'] / 2).toFixed(2))
+                ];
+                this.dataStdev.push(tuple)
+            }
+        }
+
+
+        var views = [];
+
+        var annotations = [];
+        if(this.showAbnormal){
+            annotations = [
+                        // min
+                        {
+                            type: 'text',
+                            position: ['min', this.$store.getters.patients[this.id].normal_range[this.vs + "_l"] ],
+                            content: 'Low',
+                            offsetY: -4,
+                            style: {
+                                textBaseline: 'bottom',
+                            },
+                        },
+                        {
+                            type: 'line',
+                            start: ['min', this.$store.getters.patients[this.id].normal_range[this.vs + "_l"] ],
+                            end: ['max', this.$store.getters.patients[this.id].normal_range[this.vs + "_l"] ],
+                            style: {
+                                stroke: '#F4664A',
+                                lineDash: [2, 2],
+                            },
+                        },
+
+                        // max
+                        {
+                            type: 'text',
+                            position: ['min', this.$store.getters.patients[this.id].normal_range[this.vs + "_h"] ],
+                            content: 'High',
+                            offsetY: -4,
+                            style: {
+                                textBaseline: 'bottom',
+                            },
+                        },
+                        {
+                            type: 'line',
+                            start: ['min', this.$store.getters.patients[this.id].normal_range[this.vs + "_h"] ],
+                            end: ['max', this.$store.getters.patients[this.id].normal_range[this.vs + "_h"] ],
+                            style: {
+                                stroke: '#F4664A',
+                                lineDash: [2, 2],
+                            },
+                        },
+                    ];
+            // update this.valueMin 
+            if(this.valueMin > this.$store.getters.patients[this.id].normal_range[this.vs + "_l"]){
+                this.valueMin = this.$store.getters.patients[this.id].normal_range[this.vs + "_l"];
+            }
+
+            // update this.valueMax 
+            if(this.valueMax < this.$store.getters.patients[this.id].normal_range[this.vs + "_h"]){
+                this.valueMax = this.$store.getters.patients[this.id].normal_range[this.vs + "_h"];
+            }
+        }
         var range = {
             yAxis:{
                 min: this.valueMin - 2,
                 max: this.valueMax + 2,
             },
         }
+        console.log(range);
+        var viewData = {
+                    data: this.dataDisplay,
+                    axes: range,
+                    meta: {
+                        time: {
+                            type: 'time',
+                            mask: 'MM-DD HH:mm',
+                            nice: true,
+                            range: [0, 1],
+                        },
+                        value: {
+                            nice: true,
+                            sync: true,
+                            alias: 'Value',
+                        },
+                    },
+                    annotations: annotations,
+                    // view2: prepare a line plot, mapping position to `time*temperature`
+                    geometries: [
+                        {
+                            type: 'line',
+                            xField: 'time',
+                            yField: 'value',
+                            mapping: {},
+                        },
+                        {
+                            type: 'point',
+                            xField: 'time',
+                            yField: 'value',
+                            colorField: 'value', // 
+                            mapping: {
+                                color: ({ value }) => {
+                                    if((value < this.$store.getters.patients[this.id].normal_range[this.vs + "_l"] 
+                                        || value > this.$store.getters.patients[this.id].normal_range[this.vs + "_h"] )
+                                        && this.showAbnormal
+                                    ){
+                                        return '#ed1558';
+                                    }
+                                    return '#165aed';
+                                },
+                                shape: 'circle',
+                                style: {
+                                    fillOpacity: 1,
+                                },
+                            },
+                        },
+                    ],
+                };
+
+        var viewRange = {
+                    data: this.dataRange,
+                    axes: range,
+                    meta: {
+                        time: {
+                            type: 'time',
+                            mask: 'MM-DD HH:mm',
+                            nice: true,
+                            range: [0, 1],
+                        },
+                        value: {
+                            nice: true,
+                            sync: true,
+                            alias: 'Min-Max Range',
+                        },
+                    },
+                    // view1: prepare a area plot, mapping position to `time*temperature`
+                    geometries: [
+                        {
+                            type: 'area',
+                            xField: 'time',
+                            yField: 'value',
+                            mapping: {},
+                        },
+                    ],
+                };
         
-        this.area.changeData(this.dataDisplay);
-        this.area.update(range);
+        
+        var viewStdev = {
+                    data: this.dataStdev,
+                    axes: range,
+                    meta: {
+                        time: {
+                            type: 'time',
+                            mask: 'MM-DD HH:mm',
+                            nice: true,
+                            range: [0, 1],
+                        },
+                        value: {
+                            nice: true,
+                            sync: true,
+                            alias: 'Stdev Range',
+                        },
+                    },
+                    // view3: prepare a interval plot, mapping position to `time*temperature`
+                    geometries: [
+                        {
+                            type: 'area',
+                            xField: 'time',
+                            yField: 'value',
+                            mapping: {
+                                color: "#ff8c00"
+                            },
+                            
+                        },
+                    ],
+                };
+        views.push(viewData);
+        if(this.showMinMax){
+            views.push(viewRange);
+        }
+        if(this.showStdev){
+            views.push(viewStdev);
+        }
+
+        // update the chart
+        this.chart.update({
+            views:views
+        })
+        //this.chart.update(range);
     },
 
     mounted(){
-        this.area = new Area('container', {
-            data: this.vsData,
-            xField: 'time',
-            yField: 'value',
-            smooth: true,
-            yAxis:{
-                min: this.valueMin - 5,
-                max: this.valueMax + 5,
-            },
-            annotations: [
-                {
-                    type: 'text',
-                    position: ['min', 'median'],
-                    content: 'Median',
-                    offsetY: -4,
-                    style: {
-                        textBaseline: 'bottom',
-                },
-                },
-                {
-                    type: 'line',
-                    start: ['min', 'median'],
-                    end: ['max', 'median'],
-                    style: {
-                        stroke: 'red',
-                        lineDash: [2, 2],
-                    },
-                },
-            ],
+        this.chart = new MultiView('container', {
+            appendPadding: 2,
+            syncViewPadding: true,
+            tooltip: { shared: true, showMarkers: false, showCrosshairs: true, offsetY: -50 },
+            
         });
-        this.area.render();
+        this.chart.render();
         
     },
     
 
     methods:{
-        test(){
-            this.area.update();
-            console.log(this.vsData);
-        }
-    }
+        forceUpdatePage(){
+            this.$forceUpdate();
+        },
+    },
 
 })
 </script>
