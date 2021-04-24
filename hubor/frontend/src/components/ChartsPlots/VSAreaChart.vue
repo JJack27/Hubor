@@ -28,7 +28,7 @@
                     <a-switch size="small" v-model:checked="showStdev" @click="$forceUpdate"/>
                 </a-col>
                 <a-col :span="2">
-                    Stdev
+                    Variance
                 </a-col>
             </a-row>
 
