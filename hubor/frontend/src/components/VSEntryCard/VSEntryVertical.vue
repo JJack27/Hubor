@@ -45,7 +45,7 @@ export default {
 
 <style>
 .vs-data{
-    font-size: 26pt;
+    font-size: 22pt;
     font-weight:bold;
     color: #0a0956;
     margin-top:10px;

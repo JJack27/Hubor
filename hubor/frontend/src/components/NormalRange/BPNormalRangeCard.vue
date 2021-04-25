@@ -41,7 +41,7 @@
                         <a-col :span="6">
                             {{ this.systolicLow }}
                         </a-col>
-                        <a-col :span="11">
+                        <a-col :span="10">
                             <a-divider style="color: #aaaaaa; font-size:9pt; font-style:italic">SBP</a-divider>
                         </a-col>
                         <a-col :span="6" style="text-align:end;">
@@ -186,7 +186,7 @@ export default {
 
 <style>
 .vs-data{
-    font-size: 26pt;
+    font-size: 22pt;
     font-weight:bold;
     color: #0a0956;
     margin-top:10px;

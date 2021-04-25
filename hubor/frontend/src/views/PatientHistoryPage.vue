@@ -2,8 +2,8 @@
     <div>
         <div style="margin-top: 20pt;">
         
-            <a-row type="flex" justify="space-around">
-                <a-col class="vs-history-card-cluster" :span="9">
+            <a-row type="flex" justify="space-around" :gutter="[16,16]">
+                <a-col class="vs-history-card-cluster" :span="11">
                     <!-- top row: sort and filter -->
                     <a-row type="flex" justify="space-between">
                         <a-col :span="1" style="text-align:start">
@@ -37,7 +37,7 @@
                     </div>
                 </a-col>
 
-                <a-col class="current-patient-info" :span="11">
+                <a-col class="current-patient-info" :span="13">
                     
                     <VSAreaChart 
                         :vsData="this.dataSource"
