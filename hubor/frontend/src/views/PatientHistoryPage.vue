@@ -22,7 +22,6 @@
                         <a-timeline-item
                             v-for="vs in this.dataSource"
                             :key="vs.time"
-                            style=""
                         >
                             <VSHistoryCardGroup
                                 :hr="vs.hr.mean"

@@ -42,6 +42,12 @@ export default{
             this.$emit("switch-to-history", vs);
         }
     },
+    watch:{
+        '$route.params.id': function(newv, old){
+            console.log("now", newv)
+            this.$forceUpdate()
+        },
+    },
     
     mounted(){
 

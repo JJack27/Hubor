@@ -86,7 +86,6 @@ export default defineComponent({
 
     const handleSearch = (val) => {
       let resObj = {};
-      let res = [];
       // will filter by both GENERIC_NAME and BRAND_NAMES
       resObj = options.value.filter(option => option["BRAND_NAMES"].toLowerCase().includes(val.toLowerCase()) 
               || option["GENERIC_NAME"].toLowerCase().includes(val.toLowerCase()) 

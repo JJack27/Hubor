@@ -33,6 +33,7 @@
     <a-layout>
       <!-- Header -->
       <a-layout-header :style="{ background: '#fff', padding: 0 }">
+        <SearchBarPatient/>
       </a-layout-header>
 
       <!-- Content -->
@@ -76,6 +77,7 @@
 import { EditFilled, ExclamationCircleFilled, ProfileFilled, PieChartFilled, MailFilled} from '@ant-design/icons-vue';
 
 // Components
+import SearchBarPatient from '../components/SearchBar/SearchBarPatient.vue';
 import MyInfoPage from './MyInfoPage.vue';
 import PatientsPage from './PatientsPage.vue';
 import NotificationPage from './NotificationPage.vue';
@@ -120,6 +122,7 @@ export default {
         NotificationPage,
         PendingRequestsPage,
         
+        SearchBarPatient,
     },
 
     mounted(){

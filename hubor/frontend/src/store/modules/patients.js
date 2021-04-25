@@ -12,6 +12,15 @@ const state = () => ({
       return ans;
     },
 
+    patientsArray: (state) =>{
+      var obj = Object.assign({}, state.patientsLow, state.patientsMid, state.patientsHigh);
+      var ans = [];
+      for(var i in obj){
+        ans.push(obj[i]);
+      }
+      return ans;
+    },
+
     patientsLow: (state) => {
       return state.patientsLow;
     },
