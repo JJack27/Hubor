@@ -7,7 +7,7 @@
             <a-col :span="8" style="text-align: start">Current Vitals</a-col>
             <a-col :span="14" style="text-align: end">{{ this.currentTime }}</a-col>
         </a-row>
-        <!-- this.$store.getters.patients[this.id].hr -->
+        <!-- this.$store.getters.patients[this.$route.params.id].hr -->
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
             <a-col :span="12">
                 <VSEntryVertical
@@ -100,10 +100,11 @@ export default{
             timeTask: null,
             currentTime: new Date().toLocaleString('en-us'),
             autoTask: null,
+            id: this.$route.params.id,
         }
     },
 
-    inject:['id'],
+    
     methods:{
         updateTime(){
             this.currentTime = new Date().toLocaleString('en-us');
@@ -153,7 +154,7 @@ export default{
     },
 
     
-    //this.$store.getters.patients[this.id].bp_h + '/' + this.$store.getters.patients[this.id].bp_l
+    //this.$store.getters.patients[this.$route.params.id].bp_h + '/' + this.$store.getters.patients[this.$route.params.id].bp_l
 }
 </script>
 

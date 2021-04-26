@@ -6,7 +6,7 @@
         >
             <a-col :span="14" style="text-align: start">{{ new Date(this.time).toLocaleString() }}</a-col>
         </a-row>
-        <!-- this.$store.getters.patients[this.id].hr -->
+        <!-- this.$store.getters.patients[this.$route.params.id].hr -->
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
             <a-col :span="8">
                 <VSEntryVertical
@@ -106,7 +106,7 @@ export default{
     },
 
     
-    //this.$store.getters.patients[this.id].bp_h + '/' + this.$store.getters.patients[this.id].bp_l
+    //this.$store.getters.patients[this.$route.params.id].bp_h + '/' + this.$store.getters.patients[this.$route.params.id].bp_l
 }
 </script>
 

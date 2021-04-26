@@ -28,7 +28,6 @@
 import DiagnosisTagGroup from './DiagnosisTagGroup.vue'
 export default {
     name: "DiagnosisCardVertical",
-    injects:['id'],
     components:{
         DiagnosisTagGroup,
     }

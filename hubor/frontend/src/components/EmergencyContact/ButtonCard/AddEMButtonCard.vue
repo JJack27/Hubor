@@ -19,7 +19,7 @@
             :footer="null">
             <AddEmergencyContactForm 
                 @add-emergency-contact-success="handleFormClose"
-                :patientId = "this.id"    
+                :patientId = "this.$route.params.id"    
             />
         </a-modal>
     </div>
@@ -32,11 +32,10 @@ export default{
     components:{
         AddEmergencyContactForm,
     },
-
-    inject: ['id'],
     data(){
         return{
             addEmergencyContactVisible: false,
+            id: this.$route.params.id,
         };
     },
 

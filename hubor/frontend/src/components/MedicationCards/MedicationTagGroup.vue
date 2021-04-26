@@ -39,12 +39,17 @@
 <script>
 import { defineComponent, ref, reactive, toRefs, nextTick } from 'vue';
 import { PlusOutlined } from '@ant-design/icons-vue';
+import { useRoute } from 'vue-router';
 export default defineComponent({
   name: "MedicationTagGroup",
   components: {
     PlusOutlined,
   },
-  inject:['id'],
+  data(){
+    return{
+      id: this.$route.params.id,
+    }
+  },
 
   setup() {
     const inputRef = ref();
@@ -53,6 +58,9 @@ export default defineComponent({
       inputVisible: false,
       inputValue: '',
     });
+    const route = useRoute();
+    const id = route.params.id;
+    
     const handleClose = removedTag => {
       // TODO: send DELETE /prescription/user/medication/
 

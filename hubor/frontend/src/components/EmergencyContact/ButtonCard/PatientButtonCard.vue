@@ -16,10 +16,10 @@
 export default{
     name: "PatientButtonCard.vue",
     components:{},
-    inject:['id'],
+    data(){return {id: this.$route.params.id,}},
     methods:{
         toEMPage(){
-            this.$router.push('/dashboard/emergencycontact/'+ this.id);
+            this.$router.push('/dashboard/emergencycontact/'+ this.$route.params.id);
         },
 
     }

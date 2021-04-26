@@ -88,13 +88,13 @@ export default {
     name: "BPNormalRangeCard",
     // prefix: one of ['hr', 'rr', 'spo2', 'bp', 'temp']
     props: ['icon', 'low', 'high', 'background', 'color', 'title', 'prefix'],
-    inject:['id'],
     emit:['save-normal-range'],
     data(){
         return {
             normalRangeVisiable: false,
             h: 0,
             l: 0,
+            id: this.$route.params.id,
         }
     },
 
@@ -117,9 +117,9 @@ export default {
             var state = {};
             state[this.prefix + '_l'] = this.l;
             state[this.prefix + '_h'] = this.h;
-            this.$put(`/api/normalrange/${this.id}/${this.prefix + '_l'}/`, {"value": this.l})
+            this.$put(`/api/normalrange/${this.$route.params.id}/${this.prefix + '_l'}/`, {"value": this.l})
             .then((response) =>{
-                this.$put(`/api/normalrange/${this.id}/${this.prefix + '_h'}/`, {"value": this.h})
+                this.$put(`/api/normalrange/${this.$route.params.id}/${this.prefix + '_h'}/`, {"value": this.h})
                 .then((response)=>{
                     this.$message.success("Updating normal range is successful");
                     this.$emit('save-normal-range', state);

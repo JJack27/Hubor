@@ -25,7 +25,6 @@
 import MedicationTagGroup from './MedicationTagGroup.vue'
 export default {
     name: "MedicationCardHorizontal",
-    injects:['id'],
     components:{
         MedicationTagGroup,
     }

@@ -98,7 +98,6 @@ export default defineComponent({
     name:"NormalRangesForm",
     emits:['edited-normal-ranges'],
     inject:[
-      'id',
       'ranges',
     ],
 

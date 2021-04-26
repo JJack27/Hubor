@@ -54,7 +54,11 @@ export default{
         PatientButtonCard,
         EMButtonCard,
     },
-    inject:['id'],
+    data(){
+        return{
+            id: this.$route.params.id,
+        }
+    },
 
 }
 </script>

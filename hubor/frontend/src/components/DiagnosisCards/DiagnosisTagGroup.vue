@@ -42,13 +42,13 @@
 <script>
 import { defineComponent, ref, reactive, toRefs, nextTick } from 'vue';
 import { PlusOutlined } from '@ant-design/icons-vue';
-
+import { useRoute } from 'vue-router';
 export default defineComponent({
   name: "DiagnosisTagGroup",
   components: {
     PlusOutlined,
   },
-  inject:['id'],
+
 
   setup() {
     const inputRef = ref();
@@ -57,7 +57,9 @@ export default defineComponent({
       inputVisible: false,
       inputValue: '',
     });
-
+    const route = useRoute();
+    const id = route.params.id;
+    console.log("diagnosis ", id);
     // load auto-complete options
     const options = reactive([]);
     const autoResult = ref([]);

@@ -5,8 +5,8 @@
         </h1>
         <!-- a list of emergency contacts cards -->
         <div
-            v-if="this.$store.getters.patients[this.id].emergency_contacts.length > 0"
-            v-for="item in this.$store.getters.patients[this.id].emergency_contacts"
+            v-if="this.$store.getters.patients[this.$route.params.id].emergency_contacts.length > 0"
+            v-for="item in this.$store.getters.patients[this.$route.params.id].emergency_contacts"
             :key="item.id"
         >
             <EMContactInformationCard 
@@ -30,7 +30,6 @@ import EMContactInformationCard from './Cards/EMContactInformationCard.vue';
 import AddEMButtonCard from './ButtonCard/AddEMButtonCard.vue';
 export default{
     name:"EmergencyContactCardsGroupVertical",
-    inject:['id'],
     components:{
         EMContactInformationCard,
         AddEMButtonCard,
@@ -38,7 +37,8 @@ export default{
 
     data(){
         return {
-            contacts: this.$store.getters.patients[this.id].emergency_contacts,
+            contacts: this.$store.getters.patients[this.$route.params.id].emergency_contacts,
+            id: this.$route.params.id,
         }
     },
 

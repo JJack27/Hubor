@@ -87,26 +87,25 @@ import BPNormalRangeCard from './BPNormalRangeCard.vue';
 
 export default{
     name: "NormalRangeCardsGroup",
-    
-    inject: [
-        'id'
-    ],
-
-    provide(){
-        return {
-            'ranges': this.ranges,
-        }
-    },
 
     components:{
         NormalRangeCard,
         BPNormalRangeCard
     },
-
+    mounted(){
+        this.ranges = this.$store.getters.patients[this.$route.params.id].normal_range;
+        console.log(this.ranges);
+    },
     data(){
         return {
             normalRangeVisiable: false,
-            ranges: this.$store.getters.patients[this.id].normal_range,
+            ranges: this.$store.getters.patients[this.$route.params.id].normal_range,
+            id: this.$route.params.id,
+        }
+    },
+    watch:{
+        '$route.params.id':function(n, o){
+            this.ranges = this.$store.getters.patients[n].normal_range
         }
     },
 
@@ -116,10 +115,6 @@ export default{
                 this.ranges[i] = state[i];
             }
         }
-    },
-
-    setup() {
-        
     },
 
 }

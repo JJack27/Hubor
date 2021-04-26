@@ -2,15 +2,15 @@
     <div class="patient-info-cards-group">
         
         <h1 style="font-weight: bold; text-align: start;">
-            {{ this.$store.getters.patients[this.id].first_name +
-            " " + this.$store.getters.patients[this.id].last_name}}
+            {{ this.$store.getters.patients[this.$route.params.id].first_name +
+            " " + this.$store.getters.patients[this.$route.params.id].last_name}}
         </h1>
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
             <!-- Gender -->
             <a-col :span="12">
                 <VSEntryVertical
-                    :icon="this.$store.getters.patients[this.id].gender == 0 ? 'male-icon.png' : 'female-icon.png' "
-                    :value="this.$store.getters.patients[this.id].gender == 0 ? 'Male' : 'Female' "
+                    :icon="this.$store.getters.patients[this.$route.params.id].gender == 0 ? 'male-icon.png' : 'female-icon.png' "
+                    :value="this.$store.getters.patients[this.$route.params.id].gender == 0 ? 'Male' : 'Female' "
                     unit=" "
                     title="Gender"
                 />
@@ -20,7 +20,7 @@
             <a-col :span="12">
                 <VSEntryVertical
                     icon="calendar-icon.png"
-                    :value="this.$store.getters.patients[this.id].date_of_birth"
+                    :value="this.$store.getters.patients[this.$route.params.id].date_of_birth"
                     unit=" "
                     title="Date of Birth"
                 />
@@ -56,7 +56,6 @@ import DiagnosisCardVertical from './DiagnosisCards/DiagnosisCardVertical.vue';
 
 export default{
     name: "PatienInfoCardsGroup",
-    inject: ['id'],
 
     components:{
         PhoneFilled,
@@ -70,19 +69,17 @@ export default{
 
     data(){
         return {
-            addEmergencyContactVisible: false,
+            id: this.$route.params.id,
+        }
+    },
+    watch:{
+        id(newv, oldv){
+            this.$forceUpdate();
+            console.log(newv);
         }
     },
 
     methods:{
-        showAddEmergencyContactModal(){
-            this.addEmergencyContactVisible = true;
-        },
-
-        handleFormClose(patientId){
-            this.addEmergencyContactVisible = false;
-        },
-
     },
 
     setup() {

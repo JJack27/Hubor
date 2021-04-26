@@ -27,14 +27,15 @@ import ContactInformationCard from "./Cards/ContactInformationCard.vue";
 
 export default{
     name:"PatientContactCardsGroup",
-    inject:['id'],
+
     components:{
         ContactInformationCard,
     },
 
     data(){
         return {
-            item: this.$store.getters.patients[this.id],
+            id: this.$route.params.id,
+            item: this.$store.getters.patients[this.$route.params.id],
         }
     },
 

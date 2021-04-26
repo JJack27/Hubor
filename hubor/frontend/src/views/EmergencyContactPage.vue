@@ -40,11 +40,6 @@ export default{
         }
     },
 
-    provide(){
-        return {
-            "id": this.id,
-        }
-    },
     
     mounted(){
         console.log("emergency contact page");
@@ -52,7 +47,7 @@ export default{
 
     methods : {
         backToMonitor(){
-            this.$router.push("/dashboard/monitor/"+ this.id);
+            this.$router.push("/dashboard/monitor/"+ this.$route.params.id);
         }
     }
 }

@@ -28,7 +28,6 @@ import EmergencyContactButtonCardsGroup from '../components/EmergencyContact/Eme
 
 export default{
     name:"PatientNowPage",
-    inject:["id"],
 
     components:{
         PatientNowStatusCard,
@@ -41,12 +40,6 @@ export default{
         handleSwitch(vs){
             this.$emit("switch-to-history", vs);
         }
-    },
-    watch:{
-        '$route.params.id': function(newv, old){
-            console.log("now", newv)
-            this.$forceUpdate()
-        },
     },
     
     mounted(){

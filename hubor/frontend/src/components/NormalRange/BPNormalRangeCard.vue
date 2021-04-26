@@ -129,6 +129,7 @@ export default {
             ll: 0,
             hh: 0,
             lh: 0,
+            id: this.$route.params.id,
         }
     },
 
@@ -155,13 +156,13 @@ export default {
             state['bpl_h'] = this.lh;
             state['bph_l'] = this.hl;
             state['bph_h'] = this.hh;
-            this.$put(`/api/normalrange/${this.id}/bpl_l/`, {"value": this.ll})
+            this.$put(`/api/normalrange/${this.$route.params.id}/bpl_l/`, {"value": this.ll})
             .then((response) =>{
-                this.$put(`/api/normalrange/${this.id}/bpl_h/`, {"value": this.lh})
+                this.$put(`/api/normalrange/${this.$route.params.id}/bpl_h/`, {"value": this.lh})
                 .then((response)=>{
-                    this.$put(`/api/normalrange/${this.id}/bph_h/`, {"value": this.hh})
+                    this.$put(`/api/normalrange/${this.$route.params.id}/bph_h/`, {"value": this.hh})
                     .then((response) =>{
-                        this.$put(`/api/normalrange/${this.id}/bph_l/`, {"value": this.hl})
+                        this.$put(`/api/normalrange/${this.$route.params.id}/bph_l/`, {"value": this.hl})
                         .then(response =>{
                             this.$message.success("Updating normal range is successful");
                             this.$emit('save-normal-range', state);

@@ -3,25 +3,25 @@
     <a-card >
         <a-descriptions title="User Info" bordered>
             <a-descriptions-item label="Name" :span="3">
-                {{this.$store.getters.patients[this.id].first_name + " " + this.$store.getters.patients[this.id].last_name}}
+                {{this.$store.getters.patients[this.$route.params.id].first_name + " " + this.$store.getters.patients[this.$route.params.id].last_name}}
             </a-descriptions-item>
-            <a-descriptions-item label="ID" :span="3">{{this.id}}</a-descriptions-item>
-            <a-descriptions-item label="Email" :span="3">{{this.$store.getters.patients[this.id].email}}</a-descriptions-item>
+            <a-descriptions-item label="ID" :span="3">{{this.$route.params.id}}</a-descriptions-item>
+            <a-descriptions-item label="Email" :span="3">{{this.$store.getters.patients[this.$route.params.id].email}}</a-descriptions-item>
 
-            <a-descriptions-item label="Height" :span="1">{{this.$store.getters.patients[this.id].height}} CM</a-descriptions-item>
-            <a-descriptions-item label="Weight" :span="2">{{this.$store.getters.patients[this.id].weight}} KG</a-descriptions-item>
+            <a-descriptions-item label="Height" :span="1">{{this.$store.getters.patients[this.$route.params.id].height}} CM</a-descriptions-item>
+            <a-descriptions-item label="Weight" :span="2">{{this.$store.getters.patients[this.$route.params.id].weight}} KG</a-descriptions-item>
             
-            <a-descriptions-item label="Date of Birth">{{this.$store.getters.patients[this.id].date_of_birth}}</a-descriptions-item>
-            <a-descriptions-item label="Phone" :span="2">{{this.$store.getters.patients[this.id].phone}}</a-descriptions-item>
+            <a-descriptions-item label="Date of Birth">{{this.$store.getters.patients[this.$route.params.id].date_of_birth}}</a-descriptions-item>
+            <a-descriptions-item label="Phone" :span="2">{{this.$store.getters.patients[this.$route.params.id].phone}}</a-descriptions-item>
             
             <a-descriptions-item label="Facility" :span="3">
-                <div v-if="this.$store.getters.patients[this.id].facility != 'null'">
-                    <span style="font-weight:bold">{{this.$store.getters.patients[this.id].facility.name}}</span>
+                <div v-if="this.$store.getters.patients[this.$route.params.id].facility != 'null'">
+                    <span style="font-weight:bold">{{this.$store.getters.patients[this.$route.params.id].facility.name}}</span>
                     <br/>
                     <br/>
-                    <HomeFilled /> {{this.$store.getters.patients[this.id].facility.address}}
+                    <HomeFilled /> {{this.$store.getters.patients[this.$route.params.id].facility.address}}
                     <br/>
-                    <PhoneFilled /> {{this.$store.getters.patients[this.id].facility.phone}}
+                    <PhoneFilled /> {{this.$store.getters.patients[this.$route.params.id].facility.phone}}
                 </div>
                 <div v-else>
                     This patient doesn't belong to any health care facilities.
@@ -30,7 +30,7 @@
             </a-descriptions-item>
 
             <a-descriptions-item label="Notes" :span="3">
-                {{ this.$store.getters.patients[this.id].notes}}
+                {{ this.$store.getters.patients[this.$route.params.id].notes}}
             </a-descriptions-item>
         </a-descriptions>
         
@@ -39,16 +39,16 @@
         
         <a-table
             :columns="emergency_contacts_columns"
-            :dataSource="this.$store.getters.patients.[this.id].emergency_contacts"
+            :dataSource="this.$store.getters.patients.[this.$route.params.id].emergency_contacts"
             :pagination="false"
         />
         
-        <div v-if="this.$store.getters.patients.[this.id].emergency_contacts.length == 0">
+        <div v-if="this.$store.getters.patients.[this.$route.params.id].emergency_contacts.length == 0">
             This patient has no emergency contacts.
         </div>
         <br/>
         <a-button type="primary" 
-            v-if="this.$store.getters.patients.[this.id].emergency_contacts.length >= 0 && this.$store.getters.patients.[this.id].emergency_contacts.length <= 2"
+            v-if="this.$store.getters.patients.[this.$route.params.id].emergency_contacts.length >= 0 && this.$store.getters.patients.[this.$route.params.id].emergency_contacts.length <= 2"
             @click="showAddEmergencyContactModal"
         >
             + Add an emergency contact
@@ -60,7 +60,7 @@
             :footer="null">
             <AddEmergencyContactForm 
                 @add-emergency-contact-success="handleFormClose"
-                :patientId = "this.id"    
+                :patientId = "this.$route.params.id"    
             />
         </a-modal>
     </a-card>
@@ -75,7 +75,6 @@ import AddEmergencyContactForm from '../EmergencyContact/Forms/AddEmergencyConta
 
 export default{
     name: "PatienInfoCard",
-    inject:['id'],
 
     components:{
         PhoneFilled,
@@ -86,6 +85,7 @@ export default{
     data(){
         return {
             addEmergencyContactVisible: false,
+            id: this.$route.params.id,
         }
     },
 

@@ -32,7 +32,7 @@
         >
             <UpdateEmergencyContactForm 
                 @update-emergency-contact-success="handleFormClose"
-                :patientId = "this.id"
+                :patientId = "this.$route.params.id"
                 :item = "this.item"  
             />
         </a-modal>
@@ -48,7 +48,6 @@ export default{
         UpdateEmergencyContactForm,
     },
 
-    inject:['id'],
     props:[
         'item'
     ],
@@ -56,6 +55,7 @@ export default{
     data(){
         return{
             showEMCVisible: false,
+            id: this.$route.params.id,
         }
     },
 

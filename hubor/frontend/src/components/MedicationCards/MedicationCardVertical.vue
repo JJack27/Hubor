@@ -28,7 +28,6 @@
 import MedicationTagGroup from './MedicationTagGroup.vue'
 export default {
     name: "MedicationCardVertical",
-    injects:['id'],
     components:{
         MedicationTagGroup,
     }

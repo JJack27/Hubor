@@ -106,7 +106,7 @@ export default{
     },
 
     mounted(){
-        this.$get(`/api/latest1hourvs/${this.id}/`)
+        this.$get(`/api/latest1hourvs/${this.$route.params.id}/`)
             .then(response => {
                 this.dataSource = response.data;
             });

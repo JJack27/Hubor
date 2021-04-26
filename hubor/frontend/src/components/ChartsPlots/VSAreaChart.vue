@@ -65,7 +65,6 @@ export default defineComponent({
         'timeSpan', // min, hr, day, 
         'title'  
     ],
-    inject:['id'],
     data(){
         return{
             aType: "min",
@@ -81,6 +80,7 @@ export default defineComponent({
             showStdev: false,
             showAbnormal: false,
             date: "",
+            id: this.$route.params.id,
         }
     },
 
@@ -157,7 +157,7 @@ export default defineComponent({
                         // min
                         {
                             type: 'text',
-                            position: ['min', this.$store.getters.patients[this.id].normal_range[this.vs + "_l"] ],
+                            position: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"] ],
                             content: 'Low',
                             offsetY: -4,
                             style: {
@@ -166,8 +166,8 @@ export default defineComponent({
                         },
                         {
                             type: 'line',
-                            start: ['min', this.$store.getters.patients[this.id].normal_range[this.vs + "_l"] ],
-                            end: ['max', this.$store.getters.patients[this.id].normal_range[this.vs + "_l"] ],
+                            start: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"] ],
+                            end: ['max', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"] ],
                             style: {
                                 stroke: '#F4664A',
                                 lineDash: [2, 2],
@@ -177,7 +177,7 @@ export default defineComponent({
                         // max
                         {
                             type: 'text',
-                            position: ['min', this.$store.getters.patients[this.id].normal_range[this.vs + "_h"] ],
+                            position: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"] ],
                             content: 'High',
                             offsetY: -4,
                             style: {
@@ -186,8 +186,8 @@ export default defineComponent({
                         },
                         {
                             type: 'line',
-                            start: ['min', this.$store.getters.patients[this.id].normal_range[this.vs + "_h"] ],
-                            end: ['max', this.$store.getters.patients[this.id].normal_range[this.vs + "_h"] ],
+                            start: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"] ],
+                            end: ['max', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"] ],
                             style: {
                                 stroke: '#F4664A',
                                 lineDash: [2, 2],
@@ -195,13 +195,13 @@ export default defineComponent({
                         },
                     ];
             // update this.valueMin 
-            if(this.valueMin > this.$store.getters.patients[this.id].normal_range[this.vs + "_l"]){
-                this.valueMin = this.$store.getters.patients[this.id].normal_range[this.vs + "_l"];
+            if(this.valueMin > this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"]){
+                this.valueMin = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"];
             }
 
             // update this.valueMax 
-            if(this.valueMax < this.$store.getters.patients[this.id].normal_range[this.vs + "_h"]){
-                this.valueMax = this.$store.getters.patients[this.id].normal_range[this.vs + "_h"];
+            if(this.valueMax < this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"]){
+                this.valueMax = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"];
             }
         }
         var range = {
@@ -243,8 +243,8 @@ export default defineComponent({
                             colorField: 'value', // 
                             mapping: {
                                 color: ({ value }) => {
-                                    if((value < this.$store.getters.patients[this.id].normal_range[this.vs + "_l"] 
-                                        || value > this.$store.getters.patients[this.id].normal_range[this.vs + "_h"] )
+                                    if((value < this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"] 
+                                        || value > this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"] )
                                         && this.showAbnormal
                                     ){
                                         return '#ed1558';
