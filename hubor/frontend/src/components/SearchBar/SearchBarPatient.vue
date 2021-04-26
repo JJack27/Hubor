@@ -72,7 +72,6 @@ export default{
 <style>
 #search-bar .ant-input {
 	border-radius: 90px !important;
-	
   border: 0;
 }
 
