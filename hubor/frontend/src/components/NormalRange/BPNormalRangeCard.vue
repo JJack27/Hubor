@@ -23,12 +23,14 @@
                 <a-col class="vs-data" :span="11">
                     <a-row type="flex" justify="space-between">
                         <a-col :span="6">
+                            <div style="font-size:8pt; text-align:start">MIN</div>
                             {{ this.diastolicLow }}
                         </a-col>
                         <a-col :span="11" style="text-align:center">
                             <a-divider style="color: #aaa; font-size:9pt; font-style:italic">DBP</a-divider>
                         </a-col>
                         <a-col :span="6" style="text-align:end;">
+                            <div style="font-size:8pt; text-align:end">MAX</div>
                             {{ this.diastolicHigh }}
                         </a-col>
                     </a-row>
@@ -39,12 +41,14 @@
                 <a-col class="vs-data" :span="11">
                     <a-row type="flex" justify="space-between" algin="bottom">
                         <a-col :span="6">
+                            <div style="font-size:8pt; text-align:start">MIN</div>
                             {{ this.systolicLow }}
                         </a-col>
                         <a-col :span="10">
                             <a-divider style="color: #aaaaaa; font-size:9pt; font-style:italic">SBP</a-divider>
                         </a-col>
                         <a-col :span="6" style="text-align:end;">
+                            <div style="font-size:8pt; text-align:end">MAX</div>
                             {{ this.systolicHigh }}
                         </a-col>
                     </a-row>

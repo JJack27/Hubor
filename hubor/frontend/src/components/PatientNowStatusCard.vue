@@ -4,7 +4,7 @@
         <a-row type="flex" justify="space-between"
             style="font-weight: bold; font-size:14pt;"
         >
-            <a-col :span="8" style="text-align: start">Current Vitals</a-col>
+            <a-col :span="8" style="text-align: start">Recent Vitals</a-col>
             <a-col :span="14" style="text-align: end">{{ this.currentTime }}</a-col>
         </a-row>
         <!-- this.$store.getters.patients[this.$route.params.id].hr -->

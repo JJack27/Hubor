@@ -23,9 +23,11 @@
                 <a-col class="vs-data" :span="24">
                     <a-row type="flex" justify="space-between">
                         <a-col :span="10">
+                            <div style="font-size:8pt; text-align:start">MIN</div>
                             {{ this.low }}
                         </a-col>
                         <a-col :span="10" style="text-align:end;">
+                            <div style="font-size:8pt; text-align:end">MAX</div>
                             {{ this.high }}
                         </a-col>
                     </a-row>
