@@ -94,7 +94,6 @@ export default{
     },
     mounted(){
         this.ranges = this.$store.getters.patients[this.$route.params.id].normal_range;
-        console.log(this.ranges);
     },
     data(){
         return {

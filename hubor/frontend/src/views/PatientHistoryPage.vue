@@ -1,8 +1,8 @@
 <template>
     <div>
         <div style="margin-top: 20pt;">
-        
-            <a-row type="flex" justify="space-around" :gutter="[16,16]">
+            <a-empty v-if="this.havingData == false"/>
+            <a-row v-else type="flex" justify="space-around" :gutter="[16,16]">
                 <a-col class="vs-history-card-cluster" :span="11">
                     <!-- top row: sort and filter -->
                     <a-row type="flex" justify="space-between">
@@ -86,6 +86,7 @@ export default{
             stat: "mean",
             title: this.titleProp,
             ascending: true,
+            havingData: true,
         }
     },
 
@@ -96,6 +97,21 @@ export default{
 
         vsProp(newVal, oldVal){
             this.vs = newVal;
+        },
+
+        '$route.params.id':function(n, o){
+            this.havingData= true,
+            this.$get(`/api/latest1hourvs/${n}/`)
+            .then(response => {
+                this.dataSource = response.data;
+                this.havingData = true;
+            }).catch(err =>{
+                this.havingData = false;
+            });
+            this.$forceUpdate()
+        },
+        dataSource(n,o){
+            this.$forceUpdate();
         }
     },
 
@@ -109,7 +125,11 @@ export default{
         this.$get(`/api/latest1hourvs/${this.$route.params.id}/`)
             .then(response => {
                 this.dataSource = response.data;
+                this.havingData = true;
+            }).catch(err =>{
+                this.havingData = false;
             });
+            this.$forceUpdate()
     },
 
     methods:{
