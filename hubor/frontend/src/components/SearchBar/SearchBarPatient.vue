@@ -1,10 +1,10 @@
 <template>
+  <div id="search-bar">
     <a-auto-complete
             ref="inputRef"
-            class="global-search"
             type="text"
             size="large"
-            :style="{ width: '80%' }"
+            :style="{ width: '95%' }"
             v-model:value="inputValue"
             @select="handleSelect"
             @search="handleSearch"
@@ -17,14 +17,21 @@
               </div>
             </a-select-option>
           </template>
-        </a-auto-complete>
+          <a-input v-model:value="inputValue" placeholder="Search...">
+            <template #prefix><SearchOutlined :style="{fontSize: '16px', color: '#555'}"/></template>
+          </a-input>
+    </a-auto-complete>
+  </div>
 </template>
 
 <script>
 import {ref} from 'vue';
+import {SearchOutlined } from '@ant-design/icons-vue';
 export default{
     name:"SearchBarPatient.vue",
-
+    components:{
+      SearchOutlined,
+    },
     setup(){
         // search bar
         const inputRef = ref();
@@ -63,4 +70,14 @@ export default{
 </script>
 
 <style>
+#search-bar .ant-input {
+	border-radius: 90px !important;
+	
+  border: 0;
+}
+
+#search-bar .ant-input-affix-wrapper{
+  border-radius: 90px !important;
+  border:0;
+}
 </style>

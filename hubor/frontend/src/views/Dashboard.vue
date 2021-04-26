@@ -1,10 +1,11 @@
 <template>
   <a-layout id="components-layout-demo-responsive">
     <a-layout-sider
-      breakpoint="lg"
+      breakpoint="xs"
       collapsed-width="0"
       @collapse="onCollapse"
       @breakpoint="onBreakpoint"
+      :style="{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }"
     >
       <div class="logo" style="text-align: start;">
         <p id="logo-text">
@@ -30,9 +31,9 @@
         
       </a-menu>
     </a-layout-sider>
-    <a-layout>
+    <a-layout :style="{ marginLeft: '200px' }">
       <!-- Header -->
-      <a-layout-header :style="{ background: '#fff', padding: 0 }">
+      <a-layout-header :style="{ background: '#fff', padding: 0, }">
         <SearchBarPatient/>
       </a-layout-header>
 
