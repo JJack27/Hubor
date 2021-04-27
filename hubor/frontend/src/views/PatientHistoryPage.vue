@@ -10,8 +10,30 @@
                             <i class="fa fa-sort-amount-asc" aria-hidden="true" v-if="this.ascending" @click="changeSortOrder"></i>
                             <i class="fa fa-sort-amount-desc" aria-hidden="true" v-else @click="changeSortOrder"></i>
                         </a-col>
+                        <!-- filter icon -->
                         <a-col :span="1" style="text-align:end">
-                            <i class="fa fa-filter" aria-hidden="true"></i>
+                            <a-popover title="Filter" trigger="click" placement="bottom">
+                                <template #content>
+                                    <div :style="{ borderBottom: '1px solid #E9E9E9' }">
+                                        <a-checkbox
+                                            v-model:checked="this.checkAll"
+                                            :indeterminate="this.indeterminate"
+                                            @change="this.onCheckAllChange"
+                                        >
+                                            All
+                                        </a-checkbox>
+                                    </div>
+                                    <br />
+                                    <a-checkbox-group v-model:value="this.checkedList">
+                                        <a-row v-for="item in this.options" :key="item.value">
+                                            <a-col :span="24">
+                                                <a-checkbox :value="item.value"> {{ item.label }} </a-checkbox>
+                                            </a-col>
+                                        </a-row>
+                                    </a-checkbox-group>
+                                </template>
+                                <i class="fa fa-filter" aria-hidden="true" ></i>
+                            </a-popover>
                         </a-col>
                     </a-row>
                     
@@ -31,6 +53,7 @@
                                 :bpl="vs.bp_l.mean"
                                 :bph="vs.bp_h.mean"
                                 :time="vs.time"
+                                @switch-to-history="handleSwitch"
                             />
                         </a-timeline-item>
                         </a-timeline>
@@ -71,6 +94,9 @@ const map={
     "spo2": `O${"2".sub()} Saturation`,
     "temp": "temperature"
 }
+
+
+
 export default{
     name:"PatientHistoryPage",
     inject:['id'],
@@ -88,6 +114,15 @@ export default{
             title: this.titleProp,
             ascending: true,
             havingData: true,
+            
+            // filter variables
+            checkAll: true,
+            indeterminate: false,
+            checkedList: ['hr', 'temp', 'rr', 'spo2'],
+            options: [{ label: 'Heart Rate', value: 'hr' },
+                      { label: 'Temperature', value: 'temp' },
+                      { label: 'Respiration', value: 'rr' },
+                      { label: 'Oxygen Saturation', value: 'spo2' },],
         }
     },
 
@@ -115,7 +150,13 @@ export default{
 
         dataAbnormal(n,o){
             this.$forceUpdate();
-        }
+        },
+
+        checkedList(n, o){
+            this.indeterminate = !!n.length && n.length < this.options.length;
+            this.checkAll = n.length === this.options.length;
+            this.reload();
+        },
     },
 
     setup(){
@@ -129,6 +170,10 @@ export default{
     },
 
     methods:{
+        handleSwitch(vs){
+            this.vs = vs;
+        },
+
         changeSortOrder(){
             this.ascending = !this.ascending;
             var list = this.dataAbnormal;
@@ -137,15 +182,14 @@ export default{
         },
 
         reload(){
-            const validVS = ['hr', 'rr', 'temp', 'spo2']
             this.havingData= true,
             this.$get(`/api/latest1hourvs/${this.$route.params.id}/`)
             .then(response => {
                 this.dataSource = response.data;
                 this.havingData = true;
                 this.dataAbnormal = response.data.filter((data) => {
-                    for(var i in validVS){
-                        var vs = validVS[i];
+                    for(var i in this.checkedList){
+                        var vs = this.checkedList[i];
                         var lowerBound = this.$store.getters.patients[this.$route.params.id].normal_range[vs+'_l'];
                         var upperBound = this.$store.getters.patients[this.$route.params.id].normal_range[vs+'_h'];
                         if(data[vs]['mean'] <= lowerBound || data[vs]['mean'] >= upperBound){
@@ -159,7 +203,12 @@ export default{
                 this.havingData = false;
             });
             this.$forceUpdate()
-        }
+        },
+
+        onCheckAllChange(e){
+            this.checkedList = e.target.checked ? this.options.map(item => item.value) : [];
+            this.indeterminate =  false;
+        },
     }
 }
 </script>

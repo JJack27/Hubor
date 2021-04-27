@@ -7,7 +7,8 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import {AutoComplete, message, Badge, Tabs, Button, Form, Input, Icon, Checkbox, 
     Card, Row, Col, Layout, Menu, Avatar, Table, Modal, DatePicker, 
-    Select, List, Descriptions, Tag, Tooltip, Empty, Radio, Switch, Timeline, Divider
+    Select, List, Descriptions, Tag, Tooltip, Empty, Radio, Switch, Timeline, Divider,
+    Popover,
 } from 'ant-design-vue'
 import Axios from 'axios';
 
@@ -124,6 +125,7 @@ app.use(store)
     .use(Modal)
     .use(Menu)
     .use(message)
+    .use(Popover)
     .use(Radio)
     .use(Radio.Button)
     .use(Radio.Group)

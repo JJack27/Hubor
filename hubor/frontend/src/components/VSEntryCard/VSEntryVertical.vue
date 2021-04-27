@@ -40,6 +40,7 @@ export default {
     emits:['switch-to-history'],
     methods:{
         switchToHistory(){
+
             this.$emit("switch-to-history", this.vs);
         },
     },

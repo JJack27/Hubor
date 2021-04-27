@@ -15,6 +15,7 @@
                     vs="hr"
                     unit="bpm"
                     title="Heart Rate"
+                    @switch-to-history="handleSwitch"
                 />
             </a-col>
             
@@ -26,6 +27,7 @@
                     vs="temp"
                     unit="°C"
                     title="Temperature"
+                    @switch-to-history="handleSwitch"
                 />
             </a-col>
 
@@ -37,6 +39,7 @@
                     vs="spo2"
                     unit="%"
                     title="O<sub>2</sub> Saturation"
+                    @switch-to-history="handleSwitch"
                 />
             </a-col>
         </a-row>
@@ -50,7 +53,7 @@
                     :value="this.rr.toFixed(1)"
                     vs="rr"
                     unit="rpm"
-                    title="Respiration Rate"
+                    title="Respiration<br/>Rate"
                     @switch-to-history="handleSwitch"
                 />
             </a-col>
@@ -63,7 +66,6 @@
                     unit="mmHg"
                     vs="bp"
                     title="Blood<br/>Pressure"
-                    @switch-to-history="handleSwitch"
                 />
             </a-col>
         </a-row>        
@@ -96,8 +98,9 @@ export default{
 
     inject:['id'],
     methods:{
-        
-    
+        handleSwitch(vs){
+            this.$emit('switch-to-history', vs);
+        }
     },
     mounted(){
     },
