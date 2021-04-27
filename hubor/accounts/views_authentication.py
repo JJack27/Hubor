@@ -70,8 +70,8 @@ class RegisterView(APIView):
             date_of_birth = date_of_birth,
             gender = int(request_body['gender']),
             notes = request_body['notes'],
-            first_name = request_body['first_name'],
-            last_name = request_body['last_name']
+            first_name = request_body['first_name'].strip(),
+            last_name = request_body['last_name'].strip()
             )
         
         user.set_password(request_body['password'])

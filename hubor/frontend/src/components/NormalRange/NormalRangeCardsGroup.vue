@@ -104,7 +104,10 @@ export default{
     },
     watch:{
         '$route.params.id':function(n, o){
-            this.ranges = this.$store.getters.patients[n].normal_range
+            if(n != undefined){
+                this.ranges = this.$store.getters.patients[n].normal_range
+            }
+            
         }
     },
 

@@ -142,7 +142,10 @@ export default{
         },
         
         '$route.params.id':function(n, o){
-            this.reload();
+            if(n != undefined){
+                this.reload();
+            }
+            
         },
         dataSource(n,o){
             this.$forceUpdate();
@@ -185,9 +188,9 @@ export default{
             this.havingData= true,
             this.$get(`/api/latest1hourvs/${this.$route.params.id}/`)
             .then(response => {
+                
                 this.dataSource = response.data;
                 this.havingData = true;
-
                 // ALTER: requesting all abnormal vital signs
                 this.dataAbnormal = response.data.filter((data) => {
                     for(var i in this.checkedList){

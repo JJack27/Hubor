@@ -148,7 +148,7 @@ class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'gender', 'first_name', 'last_name', 'user_type', 'height', 'weight', 'date_of_birth', 'notes', 'phone', 'status', 'facility',
-            'hr', 'temp', 'rr', 'spo2', 'email', 'bp_h', 'bp_l', 'emergency_contacts', 'normal_range']
+            'hr', 'temp', 'rr', 'spo2', 'email', 'bp_h', 'bp_l', 'emergency_contacts', 'normal_range', 'avatar']
 
 
 
