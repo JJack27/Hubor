@@ -44,7 +44,7 @@ class EmergencyUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'user_type', 'gender', 'facility', 'date_of_birth', 'date_joined', 'phone', 'email']
+        fields = ['id', 'first_name', 'last_name', 'user_type', 'gender', 'facility', 'date_of_birth', 'date_joined', 'phone', 'email', 'avatar']
 
 
 class PatientStatusSerializer(serializers.ModelSerializer):

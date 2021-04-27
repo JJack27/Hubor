@@ -11,7 +11,7 @@
             <a-row>
                 <!-- avatar -->
                 <a-col :span="2">
-                    <a-avatar :src="item.avatar" size="large">
+                    <a-avatar :src="item.owner.avatar" size="large">
                         <UserOutlined />
                     </a-avatar>
                 </a-col>
