@@ -187,6 +187,8 @@ export default{
             .then(response => {
                 this.dataSource = response.data;
                 this.havingData = true;
+
+                // ALTER: requesting all abnormal vital signs
                 this.dataAbnormal = response.data.filter((data) => {
                     for(var i in this.checkedList){
                         var vs = this.checkedList[i];

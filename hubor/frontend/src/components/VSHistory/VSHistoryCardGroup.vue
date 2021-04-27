@@ -63,6 +63,7 @@
                 <VSEntryVertical
                     icon="bp_icon.png"
                     :value="this.bpl.toFixed(1) + '/' + this.bph.toFixed(1)"
+                    :arterial="'('+ ((2*this.bpl+ this.bpl)/3).toFixed(0) +')'"
                     unit="mmHg"
                     vs="bp"
                     title="Blood<br/>Pressure"
