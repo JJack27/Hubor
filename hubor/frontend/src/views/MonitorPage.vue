@@ -4,20 +4,20 @@
             <ArrowLeftOutlined @click="backToDashboard" height="2em"/>
         </div>
         
-        <a-tabs v-model:activeKey="activeKey">
-        <a-tab-pane key="1" tab="Now">
-          <PatientNowPage
-            @switch-to-history="handleSwitch"
-          />
-        </a-tab-pane>
-        <a-tab-pane key="2" tab="History">
-          <PatientHistoryPage
-            :vsProp="this.vs"
-            :titleProp="this.title"
-          />
-        </a-tab-pane>
-        
-      </a-tabs>
+        <a-tabs v-model:activeKey="activeKey" >
+            <a-tab-pane key="1" tab="Now">
+            <PatientNowPage
+                @switch-to-history="handleSwitch"
+            />
+            </a-tab-pane>
+            <a-tab-pane key="2" tab="History" >
+                <PatientHistoryPage
+                    :vsProp="this.vs"
+                    :titleProp="this.title"
+                />
+            </a-tab-pane>
+            
+        </a-tabs>
     </div>
 </template>
 
@@ -68,6 +68,16 @@ export default{
             this.vs = vs;
             console.log("monitor", this.vs)
         },
+
+        /*
+        handleChange(key){
+            if(key=="2"){
+                console.log(this.$refs);
+                console.log(this.$refs.historyPage);
+                //this.$refs.historyPage.reload();
+            }
+        }
+        */
     }
 
 }

@@ -59,7 +59,6 @@ export default defineComponent({
     });
     const route = useRoute();
     const id = route.params.id;
-    console.log("diagnosis ", id);
     // load auto-complete options
     const options = reactive([]);
     const autoResult = ref([]);

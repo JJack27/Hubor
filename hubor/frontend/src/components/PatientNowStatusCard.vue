@@ -64,9 +64,10 @@
         <!-- BP -->
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
             <a-col :span="24">
-                <VSEntryHorizontal
+                <VSEntryVertical
                     icon="bp_icon.png"
                     :value="this.auto['bp_l'] + '/' + this.auto['bp_h']"
+                    :arterial="'('+ ((2*this.auto['bp_l'] + this.auto['bp_h'])/3).toFixed() +')'"
                     unit="mmHg"
                     vs="bp"
                     title="Blood Pressure"
@@ -159,7 +160,7 @@ export default{
 </script>
 
 <style>
-.patient-now-status-card .ant-card-bordered{
+.patient-now-status-card .ant-card{
     border-radius: 10px !important;
 }
 </style>

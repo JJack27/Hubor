@@ -153,7 +153,6 @@ export default {
                           .then((response) => {
                             this.$store.dispatch('addPendingRequests', response.data);
                           }).catch((error) => {
-                            console.log(error);
                           });
                         
                       });

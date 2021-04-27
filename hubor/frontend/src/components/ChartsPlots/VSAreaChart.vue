@@ -104,14 +104,17 @@ export default defineComponent({
     updated(){
         // update DataDisplay
         this.dataDisplay = []
-        this.valueMin = this.vsData[0][this.vs][this.stat];
-        this.valueMax = this.vsData[0][this.vs][this.stat];
+        // valueMin: min(min(values), normal_range[vs]) .. 
+        this.valueMin = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"];
+        this.valueMax = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"];
         this.date = new Date(this.vsData[0].time).toLocaleDateString();
         for(var i in this.vsData){
+            // update valueMin
             if(this.vsData[i][this.vs][this.stat] < this.valueMin){
                 this.valueMin = this.vsData[i][this.vs][this.stat];
             }
 
+            // update valueMax
             if(this.vsData[i][this.vs][this.stat] > this.valueMax){
                 this.valueMax = this.vsData[i][this.vs][this.stat];
             }
@@ -123,7 +126,7 @@ export default defineComponent({
         
 
         // update this.dataRange
-        if(this.showMinMax == true){
+        if(this.showMinMax){
             this.dataRange = [];
             for(var i in this.vsData){
                 var tuple = {time: this.vsData[i].time};
@@ -136,7 +139,7 @@ export default defineComponent({
         }
 
         // update this.dataStdev
-        if(this.showStdev== true){
+        if(this.showStdev){
             this.dataStdev = [];
             for(var i in this.vsData){
                 var tuple = {time: this.vsData[i].time};
@@ -150,15 +153,16 @@ export default defineComponent({
 
 
         var views = [];
-
         var annotations = [];
+        
+
         if(this.showAbnormal){
             annotations = [
                         // min
                         {
                             type: 'text',
                             position: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"] ],
-                            content: 'Low',
+                            content: `Low = ${this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"]}`,
                             offsetY: -4,
                             style: {
                                 textBaseline: 'bottom',
@@ -178,7 +182,7 @@ export default defineComponent({
                         {
                             type: 'text',
                             position: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"] ],
-                            content: 'High',
+                            content: `High = ${this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"]}`,
                             offsetY: -4,
                             style: {
                                 textBaseline: 'bottom',
@@ -194,26 +198,19 @@ export default defineComponent({
                             },
                         },
                     ];
-            // update this.valueMin 
-            if(this.valueMin > this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"]){
-                this.valueMin = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"];
-            }
-
-            // update this.valueMax 
-            if(this.valueMax < this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"]){
-                this.valueMax = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"];
-            }
+            
         }
-        var range = {
-            yAxis:{
+
+        const range = {
+            yField:{
                 min: this.valueMin - 2,
                 max: this.valueMax + 2,
-            },
+            }
         }
         
         var viewData = {
                     data: this.dataDisplay,
-                    axes: range,
+                    axes: {},
                     meta: {
                         time: {
                             type: 'time',
@@ -225,7 +222,10 @@ export default defineComponent({
                             nice: true,
                             sync: true,
                             alias: 'Value',
+                            min: this.valueMin - 2,
+                            max: this.valueMax + 2,
                         },
+                        
                     },
                     annotations: annotations,
                     // view2: prepare a line plot, mapping position to `time*temperature`
@@ -259,10 +259,13 @@ export default defineComponent({
                         },
                     ],
                 };
+        
+        
+        
 
         var viewRange = {
                     data: this.dataRange,
-                    axes: range,
+                    axes: false,
                     meta: {
                         time: {
                             type: 'time',
@@ -290,7 +293,7 @@ export default defineComponent({
         
         var viewStdev = {
                     data: this.dataStdev,
-                    axes: range,
+                    axes: false,
                     meta: {
                         time: {
                             type: 'time',
@@ -327,6 +330,9 @@ export default defineComponent({
 
         // update the chart
         this.chart.update({
+            appendPadding: 2,
+            syncViewPadding: true,
+            tooltip: { shared: true, showMarkers: false, showCrosshairs: true, offsetY: -50 },
             views:views
         })
         //this.chart.update(range);

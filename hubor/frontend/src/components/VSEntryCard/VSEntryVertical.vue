@@ -1,9 +1,9 @@
 <template>
     <a-card
         class="vs-entry-wrapper-card"
-        :bodyStyle="{background:this.bodyBackColor, color:this.BodyFontColor}"
         :hoverable="true"
         @click="switchToHistory"
+        :class="this.abnormal"
     >
         <a-row type="flex" justify="center" align="bottom">
             <a-col :span="4">
@@ -22,7 +22,10 @@
             <a-col class="vs-data" :span="16">
                 <span >{{this.value}}</span>
             </a-col>
-            <a-col class="vs-unit" :span="8">
+            <a-col class="vs-data" :span="4" style="text-align:end">
+                <span >{{this.arterial}}</span>
+            </a-col>
+            <a-col class="vs-unit" :span="4">
                 <span >{{this.unit}}</span>
             </a-col>
         </a-row>
@@ -33,13 +36,29 @@
 <script>
 export default {
     name: "VSEntryVertical",
-    props: ['icon', 'value', 'unit', 'background', 'color', 'title', 'vs'],
+    props: ['icon', 'value', 'unit', 'background', 'color', 'title', 'vs','arterial'],
     emits:['switch-to-history'],
     methods:{
         switchToHistory(){
             this.$emit("switch-to-history", this.vs);
         },
-    }
+    },
+    computed: {
+        abnormal(){
+            // TEMP: if vs is bp, return white
+            if(this.vs == 'bp'){
+                return "normal-vs";
+            }
+            // check if abnormal
+            var lowerBound = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs+'_l'];
+            var upperBound = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs+'_h'];
+            if(this.value <= lowerBound || this.value >= upperBound){
+                return "abnormal-vs"
+            }else{
+                return "normal-vs"
+            }
+        }
+    },
 }
 </script>
 
@@ -73,5 +92,13 @@ export default {
 .vs-entry-wrapper-card .ant-card-body{
     padding-top: 12px;
     padding-bottom: 12px;
+}
+
+.abnormal-vs {
+    background: #ffd4d6;
+}
+
+.normal-vs{
+    background: #fff;
 }
 </style>

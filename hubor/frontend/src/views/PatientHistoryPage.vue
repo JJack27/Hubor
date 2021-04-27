@@ -20,7 +20,7 @@
                     >   
                         <a-timeline>
                         <a-timeline-item
-                            v-for="vs in this.dataSource"
+                            v-for="vs in this.dataAbnormal"
                             :key="vs.time"
                         >
                             <VSHistoryCardGroup
@@ -82,6 +82,7 @@ export default{
     data(){
         return {
             dataSource:[],
+            dataAbnormal:[],
             vs: this.vsProp,
             stat: "mean",
             title: this.titleProp,
@@ -98,19 +99,21 @@ export default{
         vsProp(newVal, oldVal){
             this.vs = newVal;
         },
-
+        
+        '$parent.$parent.$parent.$parent.$parent.activeKey':function(n,o){
+            if(n=="2"){
+                this.reload();
+            }
+        },
+        
         '$route.params.id':function(n, o){
-            this.havingData= true,
-            this.$get(`/api/latest1hourvs/${n}/`)
-            .then(response => {
-                this.dataSource = response.data;
-                this.havingData = true;
-            }).catch(err =>{
-                this.havingData = false;
-            });
-            this.$forceUpdate()
+            this.reload();
         },
         dataSource(n,o){
+            this.$forceUpdate();
+        },
+
+        dataAbnormal(n,o){
             this.$forceUpdate();
         }
     },
@@ -122,22 +125,40 @@ export default{
     },
 
     mounted(){
-        this.$get(`/api/latest1hourvs/${this.$route.params.id}/`)
-            .then(response => {
-                this.dataSource = response.data;
-                this.havingData = true;
-            }).catch(err =>{
-                this.havingData = false;
-            });
-            this.$forceUpdate()
+        this.reload();
     },
 
     methods:{
         changeSortOrder(){
             this.ascending = !this.ascending;
-            var list = this.dataSource;
+            var list = this.dataAbnormal;
             list.reverse(this.ascending);
             this.$forceUpdate();
+        },
+
+        reload(){
+            const validVS = ['hr', 'rr', 'temp', 'spo2']
+            this.havingData= true,
+            this.$get(`/api/latest1hourvs/${this.$route.params.id}/`)
+            .then(response => {
+                this.dataSource = response.data;
+                this.havingData = true;
+                this.dataAbnormal = response.data.filter((data) => {
+                    for(var i in validVS){
+                        var vs = validVS[i];
+                        var lowerBound = this.$store.getters.patients[this.$route.params.id].normal_range[vs+'_l'];
+                        var upperBound = this.$store.getters.patients[this.$route.params.id].normal_range[vs+'_h'];
+                        if(data[vs]['mean'] <= lowerBound || data[vs]['mean'] >= upperBound){
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+            }).catch(err =>{
+                console.log(err)
+                this.havingData = false;
+            });
+            this.$forceUpdate()
         }
     }
 }
