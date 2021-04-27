@@ -29,6 +29,7 @@ class User(AbstractUser):
     user_type = models.IntegerField(choices=USER_TYPES, default=0, null=False)
 
     notes = models.TextField(max_length=800, null=True, editable=True)
+    avatar = models.TextField(max_length=150, null=True)
 
 '''
 class Patient(models.Model):
