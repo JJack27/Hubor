@@ -2,7 +2,7 @@
     <div>
         <a-row type="flex" justify="center" align="middle" :gutter="[16,16]">
             
-            <a-col :span="1">
+            <a-col :span="9" style="text-align:end">
                 <img
                     :src="require(`@/assets/icons/${this.vs}_icon.png`)"
                     height="20"
@@ -10,7 +10,7 @@
                     style="margin-top:-7pt;"
                 >
             </a-col>
-            <a-col :span="18" style="text-align:start">
+            <a-col :span="10" style="text-align:start">
                 <h1 style="text-transform: capitalize;"> <span v-html="this.title"></span> </h1>
             </a-col>
 
@@ -243,8 +243,9 @@ export default defineComponent({
                             colorField: 'value', // 
                             mapping: {
                                 color: ({ value }) => {
-                                    if((value < this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"] 
-                                        || value > this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"] )
+                                    var val = parseFloat(value.toFixed(1));
+                                    if((val < this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"] 
+                                        || val > this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"] )
                                         && this.showAbnormal
                                     ){
                                         return '#ed1558';

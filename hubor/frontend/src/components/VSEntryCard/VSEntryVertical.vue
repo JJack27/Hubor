@@ -53,7 +53,7 @@ export default {
             // check if abnormal
             var lowerBound = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs+'_l'];
             var upperBound = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs+'_h'];
-            if(this.value <= lowerBound || this.value >= upperBound){
+            if(parseFloat(this.value) < lowerBound || parseFloat(this.value) > upperBound){
                 return "abnormal-vs"
             }else{
                 return "normal-vs"

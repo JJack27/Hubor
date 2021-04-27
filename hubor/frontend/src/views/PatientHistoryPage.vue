@@ -197,7 +197,7 @@ export default{
                         var vs = this.checkedList[i];
                         var lowerBound = this.$store.getters.patients[this.$route.params.id].normal_range[vs+'_l'];
                         var upperBound = this.$store.getters.patients[this.$route.params.id].normal_range[vs+'_h'];
-                        if(data[vs]['mean'] <= lowerBound || data[vs]['mean'] >= upperBound){
+                        if(parseFloat(data[vs]['mean'].toFixed(1)) < lowerBound || parseFloat(data[vs]['mean'].toFixed(1)) > upperBound){
                             return true;
                         }
                     }
