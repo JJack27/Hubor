@@ -11,7 +11,7 @@
                             <i class="fa fa-sort-amount-desc" aria-hidden="true" v-else @click="changeSortOrder"></i>
                         </a-col>
                         <!-- filter icon -->
-                        <a-col :span="1" style="text-align:end">
+                        <a-col :span="3" style="text-align:end">
                             <a-popover title="Filter" trigger="click" placement="bottom">
                                 <template #content>
                                     <div :style="{ borderBottom: '1px solid #E9E9E9' }">
@@ -32,7 +32,7 @@
                                         </a-row>
                                     </a-checkbox-group>
                                 </template>
-                                <i class="fa fa-filter" aria-hidden="true" ></i>
+                                <i class="fa fa-filter" aria-hidden="true" ></i> Filter By
                             </a-popover>
                         </a-col>
                     </a-row>

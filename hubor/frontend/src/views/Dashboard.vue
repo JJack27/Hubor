@@ -21,12 +21,12 @@
 
         <a-menu-item key="2">
           <ExclamationCircleFilled />
-          <span class="nav-text">Notifications</span>
+          <span class="nav-text">Pending Requests</span>
         </a-menu-item>
 
         <a-menu-item key="3">
           <EditFilled />
-          <span class="nav-text">My Info</span>
+          <span class="nav-text">Add a Patient</span>
         </a-menu-item>
         
       </a-menu>
@@ -58,8 +58,8 @@
           v-else
         >
           <patients-page v-if="selectedKeys=='1'"/>
-          <notification-page v-else-if="selectedKeys=='2'"/>
-          <pending-requests-page v-else-if="selectedKeys=='3'"/>
+          <pending-requests-page v-else-if="selectedKeys=='2'"/>
+          <notification-page v-else-if="selectedKeys=='3'"/>
           <my-info-page v-else-if="selectedKeys=='4'"/>
         </div>
       </a-layout-content>
