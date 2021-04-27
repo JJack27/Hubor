@@ -40,23 +40,24 @@
                     <div
                         style="overflow-y:auto; overflow-x:hidden; height:65vh; padding-right:10pt;"
                     >   
-                        <a-timeline>
-                        <a-timeline-item
-                            v-for="vs in this.dataAbnormal"
-                            :key="vs.time"
-                        >
-                            <VSHistoryCardGroup
-                                :hr="vs.hr.mean"
-                                :rr="vs.rr.mean"
-                                :spo="vs.spo2.mean"
-                                :temp="vs.temp.mean"
-                                :bpl="vs.bp_l.mean"
-                                :bph="vs.bp_h.mean"
-                                :time="vs.time"
-                                @switch-to-history="handleSwitch"
-                            />
-                        </a-timeline-item>
+                        <a-timeline v-if="this.dataAbnormal.length != 0">
+                            <a-timeline-item
+                                v-for="vs in this.dataAbnormal"
+                                :key="vs.time"
+                            >
+                                <VSHistoryCardGroup
+                                    :hr="vs.hr.mean"
+                                    :rr="vs.rr.mean"
+                                    :spo="vs.spo2.mean"
+                                    :temp="vs.temp.mean"
+                                    :bpl="vs.bp_l.mean"
+                                    :bph="vs.bp_h.mean"
+                                    :time="vs.time"
+                                    @switch-to-history="handleSwitch"
+                                />
+                            </a-timeline-item>
                         </a-timeline>
+                        <a-empty v-else></a-empty>
                     </div>
                 </a-col>
 

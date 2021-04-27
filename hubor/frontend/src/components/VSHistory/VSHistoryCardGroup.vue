@@ -11,7 +11,7 @@
             <a-col :span="8">
                 <VSEntryVertical
                     icon="hr_icon.png"
-                    :value="this.hr.toFixed(1)"
+                    :value="this.hr.toFixed(0)"
                     vs="hr"
                     unit="bpm"
                     title="Heart Rate"
@@ -35,7 +35,7 @@
             <a-col :span="8">
                 <VSEntryVertical
                     icon="spo2_icon.png"
-                    :value="this.spo.toFixed(1)"
+                    :value="this.spo.toFixed(0)"
                     vs="spo2"
                     unit="%"
                     title="O<sub>2</sub> Saturation"
@@ -50,7 +50,7 @@
             <a-col :span="8">
                 <VSEntryVertical
                     icon="rr_icon.png"
-                    :value="this.rr.toFixed(1)"
+                    :value="this.rr.toFixed(0)"
                     vs="rr"
                     unit="rpm"
                     title="Respiration<br/>Rate"
@@ -62,7 +62,7 @@
             <a-col :span="16">
                 <VSEntryVertical
                     icon="bp_icon.png"
-                    :value="this.bpl.toFixed(1) + '/' + this.bph.toFixed(1)"
+                    :value="this.bpl.toFixed(0) + '/' + this.bph.toFixed(0)"
                     :arterial="'('+ ((2*this.bpl+ this.bpl)/3).toFixed(0) +')'"
                     unit="mmHg"
                     vs="bp"
