@@ -63,14 +63,24 @@
 
         <!-- BP -->
         <a-row type="flex" justify="bottom" :gutter="[16,16]">
-            <a-col :span="24">
+            <a-col :span="18" >
                 <VSEntryVertical
                     icon="bp_icon.png"
                     :value="this.auto['bp_l'] + '/' + this.auto['bp_h']"
                     :arterial="'('+ ((2*this.auto['bp_l'] + this.auto['bp_h'])/3).toFixed(0) +')'"
                     unit="mmHg"
                     vs="bp"
+                    ref="bpCard"
                     title="Blood Pressure"
+                    @switch-to-history="handleSwitch"
+                />
+            </a-col>
+
+            <a-col :span="6" >
+                <VSLogo
+                    vs="fall"
+                    :state="this.auto.state"
+                    :style="{height: this.matchHeight}"
                     @switch-to-history="handleSwitch"
                 />
             </a-col>
@@ -82,11 +92,13 @@
 <script>
 import VSEntryVertical from './VSEntryCard/VSEntryVertical.vue';
 import VSEntryHorizontal from './VSEntryCard/VSEntryHorizontal.vue';
+import VSLogo from './VSEntryCard/VSLogo.vue';
 export default{
     name: "PatientNowStatusCard",
     components:{
         VSEntryVertical,
         VSEntryHorizontal,
+        VSLogo
     },
     data(){
         return {
@@ -96,13 +108,18 @@ export default{
                 temp: 36.4,
                 spo2: 95,
                 bp_h: 67,
-                bp_l: 110
+                bp_l: 110,
+                state: 1,
             },
             timeTask: null,
             currentTime: new Date().toLocaleString('en-us'),
             autoTask: null,
             id: this.$route.params.id,
+            matchHeight: 129.67+"px",
         }
+    },
+
+    computed:{
     },
 
     
@@ -125,7 +142,7 @@ export default{
                 bp_h:{l:110, h:5},
             };
 
-            for(var i in this.auto){
+            for(var i in range){
                 if(i == 'temp'){
                     if(Math.random()>0.5){
                         this.auto[i] = ((Math.random() * range[i]['h']) + range[i]['l']).toFixed(1);
@@ -142,19 +159,30 @@ export default{
                     
                 }
             }
-        }
+            this.auto.state = Math.random() > 0.3 ? 1 : 0;
+            console.log(this.auto.state)
+        },
+
+
     },
     mounted(){
         this.autoTask = setInterval(this.updateVS, 3000);
         this.timeTask = setInterval(this.updateTime, 1000);
+        this.matchHeight = this.$refs.bpCard.$el.clientHeight + 'px';
+        this.$forceUpdate()
     },
 
     beforeUnmounted(){
         clearInterval(this.autoTask);
         this.autoTask = null;
     },
-
-    
+    watch:{
+        '$refs.bpCard.$el.clientHeight'(n,o){
+            console.log(n)
+            this.matchHeight = this.$refs.bpCard.$el.clientHeight + 'px';
+            this.forceUpdate();
+        }
+    }
     //this.$store.getters.patients[this.$route.params.id].bp_h + '/' + this.$store.getters.patients[this.$route.params.id].bp_l
 }
 </script>
