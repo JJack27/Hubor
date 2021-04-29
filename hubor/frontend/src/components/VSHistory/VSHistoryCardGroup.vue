@@ -67,6 +67,7 @@
                     unit="mmHg"
                     vs="bp"
                     title="Blood<br/>Pressure"
+                    @switch-to-history="handleSwitch"
                 />
             </a-col>
         </a-row>        

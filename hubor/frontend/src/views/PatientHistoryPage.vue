@@ -41,7 +41,9 @@
                             </a-popover>
                         </a-col>
                     </a-row>
+                    <!--
                     <a-divider style="height: 1px; background-color: #c4c1f4; margin-top:5px"></a-divider>
+                    -->
                     <div
                         style="overflow-y:auto; overflow-x:hidden; height:65vh; padding-right:10pt; margin-top:10px"
                     >   
@@ -104,7 +106,8 @@ const map={
     "hr": "heart rate",
     "rr": "respiration rate",
     "spo2": `O${"2".sub()} Saturation`,
-    "temp": "temperature"
+    "temp": "temperature",
+    "bp": "blood pressure"
 }
 
 
@@ -141,6 +144,7 @@ export default{
     watch:{
         vs: function(newVal, oldVal){
             this.title = map[newVal];
+            this.$forceUpdate()
         },
 
         vsProp(newVal, oldVal){
@@ -160,6 +164,7 @@ export default{
             
         },
         dataSource(n,o){
+            
             this.$forceUpdate();
         },
 

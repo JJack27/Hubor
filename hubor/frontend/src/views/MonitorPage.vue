@@ -29,7 +29,8 @@ const map={
     "hr": "heart rate",
     "rr": "respiration rate",
     "spo2": `O${"2".sub()} Saturation`,
-    "temp": "temperature"
+    "temp": "temperature",
+    "bp": "blood pressure",
 }
 export default{
     name:"MonitorPage",

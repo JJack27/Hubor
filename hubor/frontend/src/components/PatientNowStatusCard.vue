@@ -160,7 +160,6 @@ export default{
                 }
             }
             this.auto.state = Math.random() > 0.3 ? 1 : 0;
-            console.log(this.auto.state)
         },
 
 
@@ -178,7 +177,6 @@ export default{
     },
     watch:{
         '$refs.bpCard.$el.clientHeight'(n,o){
-            console.log(n)
             this.matchHeight = this.$refs.bpCard.$el.clientHeight + 'px';
             this.forceUpdate();
         }
