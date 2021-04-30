@@ -140,7 +140,7 @@ class VitalSignAPI(APIView):
         response = {}
         
         # check if user exists
-        if(str(request_user.id) != str(request.user.id)):
+        if(str(request_user) != str(request.user.id)):
             return Response(response, status=403)
 
         request_body['owner'] = request_user
