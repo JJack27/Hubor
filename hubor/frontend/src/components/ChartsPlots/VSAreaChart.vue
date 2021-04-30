@@ -1,7 +1,7 @@
 <template>
     <div>
         <a-row type="flex" justify="center" align="middle" :gutter="[16,16]">
-            
+                
             <a-col :span="9" style="text-align:end">
                 <img
                     :src="require(`@/assets/icons/${this.vs}_icon.png`)"
@@ -18,37 +18,39 @@
                 <h1> {{this.date}} </h1>
             </a-col>
         </a-row>
-        <div style="text-align:end">
-            <a-row type="flex" justify="end">
-                <a-col :span="1">
-                    <a-switch size="small" v-model:checked="showMinMax" @click="$forceUpdate"/>
-                </a-col>
-                <a-col :span="2">
-                    Min-Max
-                </a-col>
-            </a-row>
 
-            <a-row type="flex" justify="end">
-                <a-col :span="1">
-                    <a-switch size="small" v-model:checked="showStdev" @click="$forceUpdate"/>
-                </a-col>
-                <a-col :span="2">
-                    Variance
-                </a-col>
-            </a-row>
+            <div style="text-align:end">
+                <a-row type="flex" justify="end">
+                    <a-col :span="1">
+                        <a-switch size="small" v-model:checked="showMinMax" @click="$forceUpdate"/>
+                    </a-col>
+                    <a-col :span="2">
+                        Min-Max
+                    </a-col>
+                </a-row>
 
-            <a-row type="flex" justify="end">
-                <a-col :span="1">
-                    <a-switch size="small" v-model:checked="showAbnormal" @click="$forceUpdate"/>
-                </a-col>
-                <a-col :span="2">
-                    Abnormal
-                </a-col>
-            </a-row>
-            
-        </div>
-        <div id="container">
-        </div>
+                <a-row type="flex" justify="end">
+                    <a-col :span="1">
+                        <a-switch size="small" v-model:checked="showStdev" @click="$forceUpdate"/>
+                    </a-col>
+                    <a-col :span="2">
+                        Variance
+                    </a-col>
+                </a-row>
+
+                <a-row type="flex" justify="end">
+                    <a-col :span="1">
+                        <a-switch size="small" v-model:checked="showAbnormal" @click="$forceUpdate"/>
+                    </a-col>
+                    <a-col :span="2">
+                        Abnormal
+                    </a-col>
+                </a-row>
+                
+            </div>
+            <div id="container">
+            </div>
+        
     </div>
 </template>
 
@@ -80,6 +82,7 @@ export default defineComponent({
             showStdev: false,
             showAbnormal: false,
             date: "",
+            showChart: true,
             id: this.$route.params.id,
         }
     },
@@ -104,35 +107,62 @@ export default defineComponent({
     updated(){
         // update DataDisplay
         this.dataDisplay = []
-        // valueMin: min(min(values), normal_range[vs]) .. 
-        this.valueMin = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"];
-        this.valueMax = this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"];
+        var views = [];
+        var annotations = [];
+        var vs = this.vs;
+        
+        
         this.date = new Date(this.vsData[0].time).toLocaleDateString();
+        this.showChart = true;
+        if(this.vsData[0][vs] == undefined){
+            // there is no data for this vital sign. loop over the source and update the vs instead
+            let vss = ['hr', 'rr', 'spo2', 'temp', 'bp'];
+            for(var i in vss){
+                if(this.vsData[0][vss[i]] != undefined){
+                    vs = vss[i];
+                    this.showChart = false;
+                    break;
+                }
+            }
+
+            // no vs data given
+            if(this.showChart){
+                return;
+            }
+        }
+
+        // update the range of the value
+        // valueMin: min(min(values), normal_range[vs]) .. 
+        this.valueMin = this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_l"];
+        this.valueMax = this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_h"];
+
+
+        
+        // if there are any data
         for(var i in this.vsData){
             // update valueMin
-            if(this.vsData[i][this.vs][this.stat] < this.valueMin){
-                this.valueMin = this.vsData[i][this.vs][this.stat];
+            if(this.vsData[i][vs][this.stat] < this.valueMin){
+                this.valueMin = this.vsData[i][vs][this.stat];
             }
 
             // update valueMax
-            if(this.vsData[i][this.vs][this.stat] > this.valueMax){
-                this.valueMax = this.vsData[i][this.vs][this.stat];
+            if(this.vsData[i][vs][this.stat] > this.valueMax){
+                this.valueMax = this.vsData[i][vs][this.stat];
             }
 
             var tuple = {time: this.vsData[i].time};
-            tuple['value'] = this.vsData[i][this.vs][this.stat];
+            tuple['value'] = this.vsData[i][vs][this.stat];
             this.dataDisplay.push(tuple)
         }
         
-
-        // update this.dataRange
+        // update this.dataRange (min-max)
         if(this.showMinMax){
             this.dataRange = [];
             for(var i in this.vsData){
                 var tuple = {time: this.vsData[i].time};
                 tuple['value'] = [
-                    this.vsData[i][this.vs]['min'],
-                    this.vsData[i][this.vs]['max'],
+                    this.vsData[i][vs]['min'],
+                    this.vsData[i][vs]['max'],
                 ];
                 this.dataRange.push(tuple)
             }
@@ -144,25 +174,21 @@ export default defineComponent({
             for(var i in this.vsData){
                 var tuple = {time: this.vsData[i].time};
                 tuple['value'] = [
-                    parseFloat((this.vsData[i][this.vs][this.stat] - this.vsData[i][this.vs]['std'] / 2).toFixed(2)),
-                    parseFloat((this.vsData[i][this.vs][this.stat] + this.vsData[i][this.vs]['std'] / 2).toFixed(2))
+                    parseFloat((this.vsData[i][vs][this.stat] - this.vsData[i][vs]['std'] / 2).toFixed(2)),
+                    parseFloat((this.vsData[i][vs][this.stat] + this.vsData[i][vs]['std'] / 2).toFixed(2))
                 ];
                 this.dataStdev.push(tuple)
             }
         }
 
 
-        var views = [];
-        var annotations = [];
-        
-
         if(this.showAbnormal){
             annotations = [
                         // min
                         {
                             type: 'text',
-                            position: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"] ],
-                            content: `Low = ${this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"]}`,
+                            position: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_l"] ],
+                            content: `Low = ${this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_l"]}`,
                             offsetY: -4,
                             style: {
                                 textBaseline: 'bottom',
@@ -170,8 +196,8 @@ export default defineComponent({
                         },
                         {
                             type: 'line',
-                            start: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"] ],
-                            end: ['max', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"] ],
+                            start: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_l"] ],
+                            end: ['max', this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_l"] ],
                             style: {
                                 stroke: '#F4664A',
                                 lineDash: [2, 2],
@@ -181,8 +207,8 @@ export default defineComponent({
                         // max
                         {
                             type: 'text',
-                            position: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"] ],
-                            content: `High = ${this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"]}`,
+                            position: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_h"] ],
+                            content: `High = ${this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_h"]}`,
                             offsetY: -4,
                             style: {
                                 textBaseline: 'bottom',
@@ -190,24 +216,41 @@ export default defineComponent({
                         },
                         {
                             type: 'line',
-                            start: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"] ],
-                            end: ['max', this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"] ],
+                            start: ['min', this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_h"] ],
+                            end: ['max', this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_h"] ],
                             style: {
                                 stroke: '#F4664A',
                                 lineDash: [2, 2],
                             },
                         },
                     ];
-            
-        }
-
-        const range = {
-            yField:{
-                min: this.valueMin - 2,
-                max: this.valueMax + 2,
-            }
         }
         
+        
+        if(!this.showChart){
+            annotations.push({
+                type:"region",
+                start: ['min', 'min'],
+                end: ['max', 'max'],
+                top:true,
+                style:{
+                    fill: "#666",
+                    fillOpacity: 0.5,
+                }
+            });
+            annotations.push({
+              type:"text",
+              position: ["40%", "45%"],
+              top:true,
+              content:`No Data`,
+              style:{
+                fontSize: "40",
+                fill: "#fff",
+              }
+            });
+        }
+        
+
         var viewData = {
                     data: this.dataDisplay,
                     axes: {},
@@ -244,8 +287,8 @@ export default defineComponent({
                             mapping: {
                                 color: ({ value }) => {
                                     var val = parseFloat(value.toFixed(1));
-                                    if((val < this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_l"] 
-                                        || val > this.$store.getters.patients[this.$route.params.id].normal_range[this.vs + "_h"] )
+                                    if((val < this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_l"] 
+                                        || val > this.$store.getters.patients[this.$route.params.id].normal_range[vs + "_h"] )
                                         && this.showAbnormal
                                     ){
                                         return '#ed1558';
@@ -260,10 +303,7 @@ export default defineComponent({
                         },
                     ],
                 };
-        
-        
-        
-
+     
         var viewRange = {
                     data: this.dataRange,
                     axes: false,
@@ -328,6 +368,7 @@ export default defineComponent({
         if(this.showStdev){
             views.push(viewStdev);
         }
+        console.log(views.length);
 
         // update the chart
         this.chart.update({
@@ -335,8 +376,8 @@ export default defineComponent({
             syncViewPadding: true,
             tooltip: { shared: true, showMarkers: false, showCrosshairs: true, offsetY: -50 },
             views:views
-        })
-        //this.chart.update(range);
+        });
+        console.log(views);
     },
 
     mounted(){
@@ -347,7 +388,6 @@ export default defineComponent({
             
         });
         this.chart.render();
-        
     },
     
 

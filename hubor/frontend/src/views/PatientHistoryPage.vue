@@ -6,12 +6,14 @@
                 <a-col class="vs-history-card-cluster" :span="11">
                     <!-- top row: sort and filter -->
                     <a-row type="flex" justify="space-between">
-                        <a-col :span="1" style="text-align:start">
-                            <i class="fa fa-sort-amount-asc" aria-hidden="true" v-if="this.ascending" @click="changeSortOrder"></i>
-                            <i class="fa fa-sort-amount-desc" aria-hidden="true" v-else @click="changeSortOrder"></i>
+                        <a-col :span="1" style="text-align:center">
+                            <a-button shape="round" type="primary" size="small" style="color: white" @click="changeSortOrder">
+                                <i class="fa fa-sort-amount-asc" aria-hidden="true" v-if="this.ascending"/> 
+                                <i class="fa fa-sort-amount-desc" aria-hidden="true" v-else/>
+                            </a-button>
                         </a-col>
                         <!-- filter icon -->
-                        <a-col :span="3" style="text-align:end">
+                        <a-col :span="4" style="text-align:center">
                             <a-popover title="Filter" trigger="click" placement="bottom">
                                 <template #content>
                                     <div :style="{ borderBottom: '1px solid #E9E9E9' }">
@@ -32,13 +34,18 @@
                                         </a-row>
                                     </a-checkbox-group>
                                 </template>
-                                <i class="fa fa-filter" aria-hidden="true" ></i> Filter By
+                                <a-button shape="round" type="primary" style="color: white" size="small">
+                                    <i class="fa fa-filter" aria-hidden="true" ></i> Filter By
+                                </a-button>
+                                
                             </a-popover>
                         </a-col>
                     </a-row>
-                    
+                    <!--
+                    <a-divider style="height: 1px; background-color: #c4c1f4; margin-top:5px"></a-divider>
+                    -->
                     <div
-                        style="overflow-y:auto; overflow-x:hidden; height:65vh; padding-right:10pt;"
+                        style="overflow-y:auto; overflow-x:hidden; height:65vh; padding-right:10pt; margin-top:10px"
                     >   
                         <a-timeline v-if="this.dataAbnormal.length != 0">
                             <a-timeline-item
@@ -57,7 +64,13 @@
                                 />
                             </a-timeline-item>
                         </a-timeline>
-                        <a-empty v-else></a-empty>
+                        <a-empty v-else>
+                            <template #description>
+                                <span>
+                                    No Abnormal Vital Signs
+                                </span>
+                            </template>
+                        </a-empty>
                     </div>
                 </a-col>
 
@@ -93,7 +106,8 @@ const map={
     "hr": "heart rate",
     "rr": "respiration rate",
     "spo2": `O${"2".sub()} Saturation`,
-    "temp": "temperature"
+    "temp": "temperature",
+    "bp": "blood pressure"
 }
 
 
@@ -130,6 +144,7 @@ export default{
     watch:{
         vs: function(newVal, oldVal){
             this.title = map[newVal];
+            this.$forceUpdate()
         },
 
         vsProp(newVal, oldVal){
@@ -149,6 +164,7 @@ export default{
             
         },
         dataSource(n,o){
+            
             this.$forceUpdate();
         },
 
